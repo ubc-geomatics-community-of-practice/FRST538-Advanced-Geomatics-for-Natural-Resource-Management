@@ -1,0 +1,8 @@
+fig:03-flow-direction
+terrain-spatial-interpolation
+network-analysis
+hydrology-analysis
+machine-learning
+geographically-weighted-regression
+web-mapping
+writing-metadata-documentation

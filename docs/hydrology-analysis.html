@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lab 3 Terrain Analysis and Riparian Area Management | GEM 511: Advanced GIS for Environmental Management</title>
+  <meta name="description" content="Open Educational Resources for GEM 511 course at the University of British Columbia" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lab 3 Terrain Analysis and Riparian Area Management | GEM 511: Advanced GIS for Environmental Management" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Open Educational Resources for GEM 511 course at the University of British Columbia" />
+  <meta name="github-repo" content="github.com/ubc-geomatics-community-of-practice/GEM511-Advanced-GIS-for-Environmental-Management/book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lab 3 Terrain Analysis and Riparian Area Management | GEM 511: Advanced GIS for Environmental Management" />
+  
+  <meta name="twitter:description" content="Open Educational Resources for GEM 511 course at the University of British Columbia" />
+  
+
+<meta name="author" content="Paul D. Pickell" />
+
+
+<meta name="date" content="2024-03-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="network-analysis.html"/>
+<link rel="next" href="machine-learning.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">An Open Geomatics Community of Practice</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-use-these-resources"><i class="fa fa-check"></i>How to use these resources</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-get-involved"><i class="fa fa-check"></i>How to get involved</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="terrain-spatial-interpolation.html"><a href="terrain-spatial-interpolation.html"><i class="fa fa-check"></i><b>1</b> Spatial interpolation and visualization of LiDAR</a>
+<ul>
+<li class="chapter" data-level="" data-path="terrain-spatial-interpolation.html"><a href="terrain-spatial-interpolation.html#lab-overview"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="terrain-spatial-interpolation.html"><a href="terrain-spatial-interpolation.html#learning-objectives"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="terrain-spatial-interpolation.html"><a href="terrain-spatial-interpolation.html#lab1-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="terrain-spatial-interpolation.html"><a href="terrain-spatial-interpolation.html#data"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="terrain-spatial-interpolation.html"><a href="terrain-spatial-interpolation.html#task-1-preprocess-lidar-data-in-pdal"><i class="fa fa-check"></i>Task 1: Preprocess LiDAR data in PDAL</a></li>
+<li class="chapter" data-level="" data-path="terrain-spatial-interpolation.html"><a href="terrain-spatial-interpolation.html#task-2-visualize-lidar-data-in-qgis"><i class="fa fa-check"></i>Task 2: Visualize LiDAR data in QGIS</a>
+<ul>
+<li class="chapter" data-level="" data-path="terrain-spatial-interpolation.html"><a href="terrain-spatial-interpolation.html#hold-shift-orbit-camera-around-fixed-position"><i class="fa fa-check"></i>Hold SHIFT: Orbit camera around fixed position</a></li>
+<li class="chapter" data-level="" data-path="terrain-spatial-interpolation.html"><a href="terrain-spatial-interpolation.html#hold-ctrl-maintain-camera-position-and-change-camera-angle"><i class="fa fa-check"></i>Hold CTRL: Maintain camera position and change camera angle</a></li>
+<li class="chapter" data-level="" data-path="terrain-spatial-interpolation.html"><a href="terrain-spatial-interpolation.html#hold-alt-move-camera-position-on-the-x-y-plane"><i class="fa fa-check"></i>Hold ALT: Move camera position on the X-Y plane</a></li>
+<li class="chapter" data-level="" data-path="terrain-spatial-interpolation.html"><a href="terrain-spatial-interpolation.html#scroll-move-camera-position-tofrom-the-cursor-location"><i class="fa fa-check"></i>Scroll: Move camera position to/from the cursor location</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="terrain-spatial-interpolation.html"><a href="terrain-spatial-interpolation.html#task-3-prepare-lidar-in-arcgis-pro"><i class="fa fa-check"></i>Task 3: Prepare LiDAR in ArcGIS Pro</a></li>
+<li class="chapter" data-level="" data-path="terrain-spatial-interpolation.html"><a href="terrain-spatial-interpolation.html#task-4-apply-and-evaluate-spatial-interpolation-algorithms-in-arcgis-pro"><i class="fa fa-check"></i>Task 4: Apply and evaluate spatial interpolation algorithms in ArcGIS Pro</a></li>
+<li class="chapter" data-level="" data-path="terrain-spatial-interpolation.html"><a href="terrain-spatial-interpolation.html#task-5-visualize-3d-data-in-arcgis-pro"><i class="fa fa-check"></i>Task 5: Visualize 3D data in ArcGIS Pro</a></li>
+<li class="chapter" data-level="" data-path="terrain-spatial-interpolation.html"><a href="terrain-spatial-interpolation.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="network-analysis.html"><a href="network-analysis.html"><i class="fa fa-check"></i><b>2</b> Salmon Stream Network Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#lab-overview-1"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#learning-objectives-1"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#lab2-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#data-1"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#task-1-create-stream-segments"><i class="fa fa-check"></i>Task 1: Create stream segments</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#task-2-create-routes-and-apply-topology"><i class="fa fa-check"></i>Task 2: Create routes and apply topology</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#task-3-record-stream-attributes-with-linear-referencing"><i class="fa fa-check"></i>Task 3: Record stream attributes with linear referencing</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#task-4-trace-the-network"><i class="fa fa-check"></i>Task 4: Trace the network</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#task-5-overlay-and-query-the-network"><i class="fa fa-check"></i>Task 5: Overlay and query the network</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#summary-1"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="hydrology-analysis.html"><a href="hydrology-analysis.html"><i class="fa fa-check"></i><b>3</b> Terrain Analysis and Riparian Area Management</a>
+<ul>
+<li class="chapter" data-level="" data-path="hydrology-analysis.html"><a href="hydrology-analysis.html#lab-overview-2"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="hydrology-analysis.html"><a href="hydrology-analysis.html#learning-objectives-2"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="hydrology-analysis.html"><a href="hydrology-analysis.html#lab-background"><i class="fa fa-check"></i>Lab Background</a></li>
+<li class="chapter" data-level="" data-path="hydrology-analysis.html"><a href="hydrology-analysis.html#lab3-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="hydrology-analysis.html"><a href="hydrology-analysis.html#data-2"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="hydrology-analysis.html"><a href="hydrology-analysis.html#task-1-prepare-the-dem-and-map-stream-networks"><i class="fa fa-check"></i>Task 1: Prepare the DEM and Map Stream Networks</a></li>
+<li class="chapter" data-level="" data-path="hydrology-analysis.html"><a href="hydrology-analysis.html#task-2-extract-stream-characteristics"><i class="fa fa-check"></i>Task 2: Extract Stream Characteristics</a></li>
+<li class="chapter" data-level="" data-path="hydrology-analysis.html"><a href="hydrology-analysis.html#task-3-mapping-watersheds-and-riparian-management-areas"><i class="fa fa-check"></i>Task 3: Mapping Watersheds and Riparian Management Areas</a></li>
+<li class="chapter" data-level="" data-path="hydrology-analysis.html"><a href="hydrology-analysis.html#summary-2"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="machine-learning.html"><a href="machine-learning.html"><i class="fa fa-check"></i><b>4</b> Machine Learning with Geospatial Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="machine-learning.html"><a href="machine-learning.html#lab-overview-3"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="machine-learning.html"><a href="machine-learning.html#learning-objectives-3"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="machine-learning.html"><a href="machine-learning.html#lab4-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="machine-learning.html"><a href="machine-learning.html#lab4-data"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="machine-learning.html"><a href="machine-learning.html#task-1-exploratory-regression-in-arcgis-pro"><i class="fa fa-check"></i>Task 1: Exploratory Regression in ArcGIS Pro</a></li>
+<li class="chapter" data-level="" data-path="machine-learning.html"><a href="machine-learning.html#task-2-sampling-for-training-datasets"><i class="fa fa-check"></i>Task 2: Sampling for Training Datasets</a></li>
+<li class="chapter" data-level="" data-path="machine-learning.html"><a href="machine-learning.html#task-3-forest-based-classification"><i class="fa fa-check"></i>Task 3: Forest-Based Classification</a></li>
+<li class="chapter" data-level="" data-path="machine-learning.html"><a href="machine-learning.html#summary-3"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html"><i class="fa fa-check"></i><b>5</b> Analyzing Green Equity Using Geographically Weighted Regression</a>
+<ul>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#lab-overview-4"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#learning-objectives-4"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#lab5-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#lab5-data"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#task-1-prepare-census-data"><i class="fa fa-check"></i>Task 1: Prepare census data</a>
+<ul>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#a-word-about-alt_geo_code"><i class="fa fa-check"></i>A word about alt_geo_code</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#task-2-practice-geographically-weighted-regression"><i class="fa fa-check"></i>Task 2: Practice geographically weighted regression</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#task-3-analyze-your-own-census-characteristics"><i class="fa fa-check"></i>Task 3: Analyze your own census characteristics</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#summary-4"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="web-mapping.html"><a href="web-mapping.html"><i class="fa fa-check"></i><b>6</b> Web Mapping</a>
+<ul>
+<li class="chapter" data-level="" data-path="web-mapping.html"><a href="web-mapping.html#lab-overview-5"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="web-mapping.html"><a href="web-mapping.html#learning-objectives-5"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="web-mapping.html"><a href="web-mapping.html#lab6-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="web-mapping.html"><a href="web-mapping.html#data-3"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="web-mapping.html"><a href="web-mapping.html#task-1-adding-content-to-your-arcgis-online-profile"><i class="fa fa-check"></i>Task 1: Adding content to your ArcGIS Online profile</a></li>
+<li class="chapter" data-level="" data-path="web-mapping.html"><a href="web-mapping.html#task-2-creating-your-arcgis-storymap"><i class="fa fa-check"></i>Task 2: Creating your ArcGIS StoryMap</a></li>
+<li class="chapter" data-level="" data-path="web-mapping.html"><a href="web-mapping.html#summary-5"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="writing-metadata-documentation.html"><a href="writing-metadata-documentation.html"><i class="fa fa-check"></i><b>7</b> Writing Metadata and Documentation</a>
+<ul>
+<li class="chapter" data-level="" data-path="writing-metadata-documentation.html"><a href="writing-metadata-documentation.html#lab-overview-6"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="writing-metadata-documentation.html"><a href="writing-metadata-documentation.html#learning-objectives-6"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="writing-metadata-documentation.html"><a href="writing-metadata-documentation.html#lab7-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="writing-metadata-documentation.html"><a href="writing-metadata-documentation.html#data-4"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="writing-metadata-documentation.html"><a href="writing-metadata-documentation.html#task-1-depositing-in-the-dataverse"><i class="fa fa-check"></i>Task 1: Depositing in the Dataverse</a></li>
+<li class="chapter" data-level="" data-path="writing-metadata-documentation.html"><a href="writing-metadata-documentation.html#summary-6"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GEM 511: Advanced GIS for Environmental Management</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="hydrology-analysis" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Lab 3</span> Terrain Analysis and Riparian Area Management<a href="hydrology-analysis.html#hydrology-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Written by
+Hana Travers-Smith</p>
+<div id="lab-overview-2" class="section level2 unnumbered hasAnchor">
+<h2>Lab Overview<a href="hydrology-analysis.html#lab-overview-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this lab you will take on the role of a forest manager with the following task: Define reserve (no harvest) areas within a topographically complex riparian forest using current “best management” practices. To do this you will use a Digital Elevation Model and high-resolution basemaps. The deliverable for this assignment will be a written report where you will assess the application of DEMs for forest management in riparian regions.</p>
+<hr />
+</div>
+<div id="learning-objectives-2" class="section level2 unnumbered hasAnchor">
+<h2>Learning Objectives<a href="hydrology-analysis.html#learning-objectives-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Practice characterizing riparian areas using hydrologic toolsets</li>
+<li>Execute tasks using Python scripting</li>
+<li>Evaluate harvestable areas near riparian management areas</li>
+</ul>
+<hr />
+</div>
+<div id="lab-background" class="section level2 unnumbered hasAnchor">
+<h2>Lab Background<a href="hydrology-analysis.html#lab-background" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Riparian areas are found adjacent streams, lakes and wetlands. In many areas they contain highly productive and commercially valuable timber. However, vegetation in riparian zones also has important ecological function by stabilizing stream banks, regulating water temperature, providing nutrient inputs and reducing runoff into water bodies. In British Columbia, Riparian Management Areas (RMAs) are defined around sensitive streams and rivers that forbid or limit forest harvest activities within them. The width of these buffer zones depend on stream class, which is defined by channel width and fish-bearing potential. Thus, it is critical for forest managers to accurately map and measure stream networks.</p>
+<p>Airborne Laser Scanning (ALS) can be used to derive detailed maps of terrain and vegetation structure to aid in riparian forest management. Previous work has been done using ALS to map and extract stream characteristics over large areas and assign stream classes (<a href="https://doi.org/10.1016/j.rse.2017.01.038">Tompalski et al., 2017</a>). You will use similar methods to classify streams and define RMAs over a small area in the Nahmint valley, British Columbia.</p>
+<p>Throughout this lab stream <em>order</em> refers to the Strahler or Shreve ordering system seen in your previous lab, and stream <em>class</em> refers to the BC government stream classification used to determine riparian management areas.</p>
+<p>More background information on riparian forest management in British Columbia can be found here: <a href="https://www2.gov.bc.ca/gov/content/industry/forestry/managing-our-forest-resources/silviculture/silvicultural-systems/silviculture-guidebooks/riparian-management-area-guidebook" class="uri">https://www2.gov.bc.ca/gov/content/industry/forestry/managing-our-forest-resources/silviculture/silvicultural-systems/silviculture-guidebooks/riparian-management-area-guidebook</a></p>
+<hr />
+</div>
+<div id="lab3-deliverables" class="section level2 unnumbered hasAnchor">
+<h2>Deliverables<a href="hydrology-analysis.html#lab3-deliverables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Lab report with the following specification:</p>
+<p><input type="checkbox" unchecked> 6 pages maximum PDF including figures, tables and references (5 points). Single-spaced, 12-point Times New Roman font (1 point). All figures and tables should be properly captioned (1 point).</input></p>
+<p><input type="checkbox" unchecked> Results should address the following questions and requirements (25 points):</input></p>
+<ul>
+<li><p>Table of summary statistics of number of stream links, average stream length, width and percent gradient grouped by stream order.</p></li>
+<li><p>Report the flow accumulation threshold value that you used to create <strong>Stream_reclass</strong>.</p></li>
+<li><p>How many streams have fish bearing potential? What is the total length of these streams?</p></li>
+<li><p>How much forest area is retained within the Riparian Reserve and Management Zones?</p></li>
+<li><p>Average area of watersheds and number of watersheds in study area.</p></li>
+<li><p>A map including the following spatial layers:</p>
+<ul>
+<li><p>Watersheds, contour lines</p></li>
+<li><p>Stream networks symbolized by stream class</p></li>
+<li><p>Inset map showing example stream network and Riparian Management Areas</p></li>
+<li><p>Text showing the total area in the Reserve and Management Zone and the length of the stream network</p></li>
+</ul></li>
+<li><p>Any additional figures or example areas that illustrate the points in the Disucssion.</p></li>
+</ul>
+<p><input type="checkbox" unchecked> Discussion should address the following questions and requirements (20 points):</input></p>
+<ul>
+<li><p>Briefly describe what a Riparian Management Area is and how they are defined in BC?</p></li>
+<li><p>Comment on the accuracy of stream networks compared to basemaps. Discuss potential sources of error and how they could be improved.</p></li>
+<li><p>Compare and contrast the Strahler and Shreve methods for stream ordering.</p></li>
+<li><p>How did stream characteristics change across stream order? Is this what you expected?</p></li>
+<li><p>Use the watershed map, contour lines and flow direction layers to assess how runoff from harvesting may impact stream networks. Reference specific areas/examples from the maps you created. Do you think the mapped RMAs provide adequate protection to streams in this area? Why or why not?</p></li>
+<li><p>Discuss strengths and limitations of this workflow for determining riparian reserve and management zones.</p></li>
+<li><p>Reference peer review sources as needed</p></li>
+</ul>
+<hr />
+</div>
+<div id="data-2" class="section level2 unnumbered hasAnchor">
+<h2>Data<a href="hydrology-analysis.html#data-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The data for this lab are a Digital Elevation Model (DEM) of the Nahmint watershed region in British Columbia and is accessible via the UBC PostgreSQL server. Instructions for connecting to the server are given in the tasks below. We will be using data from the <code>nahmint</code> database.</p>
+<hr />
+</div>
+<div id="task-1-prepare-the-dem-and-map-stream-networks" class="section level2 unnumbered hasAnchor">
+<h2>Task 1: Prepare the DEM and Map Stream Networks<a href="hydrology-analysis.html#task-1-prepare-the-dem-and-map-stream-networks" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Step 1:</strong> The following steps should largely be review from the previous terrain modelling assignment! First, you will need to open QGIS and connect to the <code>nahmint</code> database on the UBC PostgreSQL server and export the <strong>Nahmint_DEM</strong> layer as a GeoTiff to work with in ArcGIS Pro. <strong>Set the NoData values as -9999 to 0 and the CRS as EPSG:3005</strong>.</p>
+<p>Open ArcGIS Pro and import the <strong>Nahmint_DEM</strong> GeoTiff you just created. We will do a few pre-processing steps before generating a stream network.</p>
+<p>Use the <strong>Fill</strong> tool to remove any sinks from the DEM.</p>
+<p>Sinks are small imperfections in the DEM that create areas where water cannot flow out of. If sinks are not eliminated, water flow can get trapped within these depressions, leading to unrealistic pooling of water and incorrect delineation of watershed boundaries.</p>
+<p>Navigate to Analysis &gt; Tools &gt; Fill (Spatial Analyst).</p>
+<ul>
+<li>Input Surface Raster: <strong>Nahmint_DEM</strong></li>
+<li>Output Surface Raster: <strong>Nahmint_fill</strong></li>
+<li>Z limit: <strong>leave blank</strong></li>
+</ul>
+<p>The Z-limit represents the minimum depth of sinks that will be filled. For example, if it is set to 10 m then only sinks deeper than 10 m will be filled. For now leave this field blank, this will fill all sinks in the data.</p>
+<p><strong>Step 2:</strong> Use the “Flow Direction” tool to to calculate the direction of water flow across the landscape. Use the following parameters for the tool:</p>
+<ul>
+<li>Input surface raster: <strong>Nahmint_fill</strong></li>
+<li>Output flow direction raster: <strong>Nahmint_FlowDir</strong></li>
+<li>Flow Direction Type: D8</li>
+<li>Leave the rest blank/unchecked</li>
+</ul>
+<p>There are three flow modelling algorithms, but we will use the simplest: D8. In this model water will flow from one cell to its steepest downslope neighbour. The cell will then be assigned a value based on which of its 8 neighbours water will flow into.</p>
+<p>Click Run. You should now have something like the image below:</p>
+<div class="figure"><span style="display:block;" id="fig:03-flow-direction"></span>
+<img src="images/03-flow-direction.jpg" alt="Flow Direction." width="100%" />
+<p class="caption">
+Figure 3.1: Flow Direction.
+</p>
+</div>
+<p>What direction is water flowing at points A and B? You will need to interpret this raster in your Results and Discussion. Use the ArcGIS Pro documentation to understand the output if necessary.</p>
+<p><strong>Step 3:</strong> We will use the flow direction raster calculated in the last step to calculate flow accumulation, which counts the total number of cells that will flow into a given cell. For example, a cell located at the bottom of the hill will have high flow accumulation and a cell at the top of a hill will not have any flow accumulation. Open the “Flow Accumulation” tool and parameterize it as follows:</p>
+<ul>
+<li>Input flow direction raster: <strong>Nahmint_FlowDir</strong></li>
+<li>Output flow accumulation raster: <strong>FlowAcc</strong></li>
+<li>Output data type: <strong>Integer</strong></li>
+<li>Input flow direction type: <strong>D8</strong></li>
+</ul>
+<p>Leave all other fields blank then run the tool.</p>
+<p><strong>Step 4:</strong> Next, we will create a raster-based stream network using a threshold in the flow accumulation raster. For example, if the threshold is 100, then only cells with flow accumulation greater than 100 will be counted as a stream. Cells with flow accumulation less than 100 will be set to a background value of 0.</p>
+<p>To see how different thresholds impact stream identification, change the symbology of the flow accumulation raster and use the <strong>Manual Interval</strong> symbology to set two classes. See the example below for a stream network with a flow accumulation threshold of 100 (cells with flow accumulation &lt; 100 are set to no color). Note that in the example below the threshold is likely too small, and results in many small streams that are not evident in the ArcGIS basemap.</p>
+<p><img src="images/03-streams.JPG" width="100%" /></p>
+<p>Compare your stream network to the streams visible in the ArcGIS satellite basemap and the filled DEM (use the shaded relief symbology for a better visualization). Experiment with different flow accumulation thresholds. What other features could be misclassified as a stream using this method? Find a threshold that captures a realisitc stream network visible in the basemap and DEM, without too many misclassified features.</p>
+<p>Once you have selected a threshold, open the “Reclassify (Spatial Analyst Tools)” tool.</p>
+<p>Use the threshold you have selected as the Start and End values. Set the cells representing streams to a “New value” of 1 and all other cells to <code>NODATA</code>. Save the new raster as “Stream_reclass”.</p>
+<p><img src="images/03-reclassify.JPG" width="50%" /></p>
+<p>Zoom into the reclassified flow accumulation raster to see your stream network.</p>
+<p><strong>Step 5:</strong> Next, we will assign a stream order to each segment in the stream network. Stream ordering is a system to classify streams based on the number of tributaries (smaller streams) that flow into it. First order streams have no tributaries and higher order streams may have multiple levels of tributaries flowing into it.</p>
+<p>Open the “Stream Order” tool and parameterize it as follows:</p>
+<ul>
+<li>Input stream raster: <strong>Stream_reclass</strong></li>
+<li>Input flow direction raster: <strong>Nahmint_FlowDir</strong></li>
+<li>Method of stream ordering: <strong>Strahler</strong></li>
+<li>Output raster: <strong>StreamOrder</strong></li>
+</ul>
+<p>Zoom in to see the <strong>StreamOrder</strong> output. The value of each pixel corresponds to the order of each stream segment. Now re-run the tool using the Shreve method and compare the two outputs (You will compare these two outputs in the Discussion section of your report).</p>
+<p><strong>Step 6:</strong> Use the “Stream to Feature (Spatial Analyst Tools)” tool to create polyline features representing the ordered stream network. Parameterize the tool as follows:</p>
+<ul>
+<li>Input stream raster: <strong>StreamOrder</strong></li>
+<li>Input flow direction raster: <strong>Nahmint_FlowDir</strong></li>
+<li>Output polyline features: <strong>StreamNetwork_polyline</strong></li>
+<li>Simplify polylines: <strong>Checked</strong></li>
+</ul>
+<p>Open the polyline attribute table. The “grid_code” field corresponds to the stream order of the segment. The tool also generates attributes describing the start and end points of each segment and the segment length.</p>
+<p><strong>Step 7:</strong> Finally, we will assign a unique numeric ID to each stream segment using the “Stream Link” tool. Parameterize the tool as follows:</p>
+<ul>
+<li>Input stream raster: <strong>Stream_reclass</strong></li>
+<li>Input flow direction raster: <strong>Nahmint_FlowDir</strong></li>
+<li>Output raster: <strong>StreamLinks</strong></li>
+</ul>
+<p>Zoom in and examine the output.</p>
+<hr />
+</div>
+<div id="task-2-extract-stream-characteristics" class="section level2 unnumbered hasAnchor">
+<h2>Task 2: Extract Stream Characteristics<a href="hydrology-analysis.html#task-2-extract-stream-characteristics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this task we will calculate stream gradient and estimate width for each segment in the network. These metrics will be used to assign a stream class and define the width of the riparian management area.</p>
+<p>Percent gradient is a measure of the streams “steepness” and is calculated as:</p>
+<p><span class="math display">\[
+\frac{EC}{SL}*100
+\]</span> <span class="math inline">\(EC\)</span> is elevation change <span class="math inline">\(SL\)</span> is stream length</p>
+<p>Streams with a gradient &lt;20% are considered “fish bearing” in the absence of other field data.</p>
+<p><strong>Step 1:</strong> First, use the “Raster Calculator” tool to multiply the classified flow accumulation layer <strong>Stream_reclass</strong> and the <strong>Nahmint_DEM</strong> layer. This will give elevation within streams. Name the output <strong>streams_elevation</strong>.</p>
+<p><strong>Step 2:</strong> Open the “Zonal Statistics” tool. This tool calculates summary statistics in one raster layer within “zones” or groups defined in another layer. This is a very useful tool for many applications! We will use the unique IDs from the <strong>StreamLinks</strong> layer as “zones” to calculate the change in elevation within each stream segment.</p>
+<p><img src="images/03-zonal-statistics.jpg" width="50%" /></p>
+<p>The resulting raster shows the gain in elevation within each stream segment.</p>
+<p><strong>Step 3:</strong> We will convert the elevation change raster to polygon using the “Raster to Polygon” tool. (You may have to first convert the raster from floating point to integer format using the Int Tool). Save the output of “Raster to Polygon” as <strong>elevation_change_polygon</strong> and check <strong>Simplify Polygons</strong>. This step will allow us to perform a spatial join with the vectorized stream network. Open the attribute table and note that some attribute names are the same as the <strong>StreamNetwork_polyline</strong>. The attribute “grid_code” represents the elevation gain within each stream segment.</p>
+<p>You can change the field names in both layers so you don’t get confused after joining the two features.</p>
+<p><strong>Step 4:</strong> Open the “Spatial Join” tool and join the <strong>StreamNetwork_polyline</strong> with the <strong>gradient_polygon</strong>. Parameterize the tool as follows:</p>
+<ul>
+<li>Target Features: StreamNetwork_polyline</li>
+<li>Join Features: elevation_change_polygon</li>
+<li>Output Feature Class: StreamNetwork_join</li>
+<li>Join operation: Join one to one</li>
+<li>Keep all target features: Checked</li>
+<li>Match Option: Largest Overlap</li>
+<li>Search Radius: 3 Meters</li>
+</ul>
+<p><strong>Step 5:</strong> Open the attribute table of the <strong>StreamNetwork_join</strong> feature class. If you have duplicated attribute names, the attributes are ordered first with the Target Feature and the Join Features second. You may rename and delete unnecessary attributes. You will need to keep the fields relating to stream order, change in elevation and the length of the polyline features. (There are two Shape_Length attributes from the join so figure out where they come from.)</p>
+<p>Create a new field called “PercentGradient” and use the “Calculate Field” tool to calculate the gradient for each stream segment using the change in elevation and the length of the stream segment. Streams with gradient &lt; 20% will be considered as “fish bearing”.</p>
+<p><strong>Step 6:</strong> Next, we will use the ESRI basemaps to measure stream width for a sample of streams stratified by order. We will use the average stream width per order to approximate the width for all streams in the study area. (For example, if the average width of streams in order 1 is 30 m, all streams in order 1 will be assigned that width).</p>
+<p>Stream width is defined using the entire channel width, not just the part with water currently flowing through it. Use the examples below to guide you with your mapping. You should be able to see channels for streams in orders 2-4, but order 1 streams will likely not be visible. We will assign these streams an average width of 1 m. Note that there are more sophisticated methods to calculate stream width from a DEM!</p>
+<p><img src="images/03-s4-stream.JPG" width="100%" />
+S4 Stream</p>
+<p><img src="images/03-s3-stream.JPG" width="100%" />
+S3 Stream</p>
+<p><img src="images/03-s2-stream.JPG" width="100%" />
+S2 Stream (it is barely visible)</p>
+<p>Measure 10-15 stream widths per order using the “Measure” tool on your toolbar and record these measurements in an excel document. When you are satisfied with your measurements calculate average width of each stream order. Use the shaded relief DEM and the stream network polyline to help you find some of the smaller order 2 streams.</p>
+<p><strong>Step 7:</strong> In the <strong>StreamNetwork_join</strong> layer, create a new field called “StreamWidth”. We will use an <code>ifelse</code> statement to conditionally assign values to the stream width attribute depending on stream order. Select the “StreamWidth” column in the attribute table and click “Calculate”. In the “Calculate Field” tool, change the “Expression Type” to “Python”.</p>
+<p>To use Python in the tool we need to populate two fields. First, the top “Expression” field, which should read <code>StreamWidth =</code>. This is where we can call a function and define the inputs to the function. Here we have called the function <code>reclass</code> with the “StreamOrder” attribute as the input.</p>
+<p>Next, in the “Code Block” we need to define the <code>reclass</code> function, so that we can use it as part of an expression. Here we will use an <code>ifelse</code> statement to set the values of stream width based on stream order.</p>
+<p><img src="images/03-python-stream-width.png" width="100%" /></p>
+<p>Modify the following code and paste it into the “Code Block” (delete the square brackets before running). Verify the expression using the check button &gt; Apply.</p>
+<pre><code>def reclass(Order):
+     if (Order == 1):
+          return [average stream width here]
+     elif (Order == 2):
+          return [average stream width here]
+     elif (Order == 3):
+          return [average stream width here]
+     else:
+          return [average stream width here]</code></pre>
+<p>If you get an “Invalid Field” error it is because the variable in the “Expression Field” (between the two !) does not match a field in the attribute table. So make sure to match the name of the appropriate field. You can use the pre-generated Field names to generate your expression to make sure this step works, just double-click on one to add it to your expression.</p>
+<hr />
+</div>
+<div id="task-3-mapping-watersheds-and-riparian-management-areas" class="section level2 unnumbered hasAnchor">
+<h2>Task 3: Mapping Watersheds and Riparian Management Areas<a href="hydrology-analysis.html#task-3-mapping-watersheds-and-riparian-management-areas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Step 1:</strong> Use the following table to assign a <strong>stream class</strong> (S1-S6) based on average channel width and fish bearing potential. Once a stream class is assigned, the Reserve Zone defines the region around the stream where harvest is prohibited and the Management Zone defines the region where limited harvest is permitted. Note that not all stream classes may be present in the dataset. (We do not have the S1 large rivers class in the study area so no need to include it.)</p>
+<p><img src="images/03-stream-class.PNG" width="100%" /></p>
+<p>In the <strong>StreamNetwork_join</strong> layer, create a new attribute called “Reserve_BufferDist” and set the “Number Format” to “Numeric”.</p>
+<p>Select the “Reserve_BufferDist” field in the attribute table and open the “Calculate Field” tool. Change the “Expression Type” to “Python”.</p>
+<p>This time we will combine the <code>ifelse</code> syntax from the previous task with conditional statements using stream gradient and width to assign buffer distances for each stream class. The example below defines the Reserve Zone buffer distance of 0m for the S1 class using the stream gradient and stream width attributes.</p>
+<p>The Reserve Zones and Management Zones are typically measured from the edge of the stream channel, however our streams are represented as lines down the centre of the stream channel. <strong>Think of a way to modify the buffer distances given in the table to reflect the approximate width of the stream.</strong></p>
+<p>Your code should look something like the following. Make sure the highlighted attribute names in the Expression field match the names in your table, depending on how you named your columns they may look slightly different than this screenshot!:</p>
+<p><img src="images/03-stream-network-python.jpg" width="100%" /></p>
+<p>Use the following template in the “Code Block” to calculate the buffer distance for the remaining Reserve Zones (S1-S6). For classes with a width of 0 set the buffer distance to 0.</p>
+<pre><code>def myCalc (gradient, width):
+     if (gradient &lt; 20)and(width &gt;= 100):
+          return 0
+     elif (gradient ...)and(width &gt; ... and width &lt; ...):
+     ...
+     else:
+          return ...</code></pre>
+<p>Repeat the same process for the Management Zone widths.</p>
+<p><strong>Step 2:</strong> Open the “Buffer” tool and parameterize it as follows:</p>
+<ul>
+<li>Input Features: <strong>StreamNetwork_join</strong></li>
+<li>Output Feature Class: <strong>Reserve_buffer</strong></li>
+<li>Distance: Use drop-down menu to change to from Linear Unit to <strong>Field</strong>
+<ul>
+<li><strong>Reserve_BufferDist</strong></li>
+</ul></li>
+<li>Side Type: Full</li>
+<li>End type: Round</li>
+<li>Dissolve: Dissolve all output features into a single feature</li>
+</ul>
+<p>Inspect the output.</p>
+<p>Repeat the Buffer step for the Management Zone widths.</p>
+<p><strong>Step 3:</strong> Next, we will map watersheds. A watershed is an area of land where all the water that falls or flows into it converges to a common outlet, such as a river, lake, or ocean. It is bounded by a drainage divide, which is a boundary that separates water flowing into different watersheds.</p>
+<p>The watershed tool uses flow direction and stream links to delineate watershed boundaries. The watershed boundaries will be defined such that water flows into each of the stream links.</p>
+<p>Open the “Watershed” tool and parameterize it as follows:</p>
+<ul>
+<li>Input D8 flow direction raster: <strong>Nahmint_FlowDir</strong></li>
+<li>Input raster or feature pour point data: <strong>StreamLinks</strong></li>
+<li>Output raster: <strong>Nahmint_watersheds</strong></li>
+</ul>
+<p>The output will be a new raster where the cell values correspond to each unique watershed catchment. You should have something like the following (do not worry if it is not exactly the same as the screenshot):</p>
+<p><img src="images/03-map-layers.JPG" width="100%" /></p>
+<p><strong>Step 4:</strong> Finally, we will create contour lines to help interpret the the DEM. Open the “Contour” tool and parameterize it as follows:</p>
+<ul>
+<li>Raster: <strong>Nahmint_DEM</strong></li>
+<li>Output features class: <strong>Nahmint_contour</strong></li>
+<li>Contour interval: 100</li>
+<li>Base contour: [Set to the lowest elevation in the study area]</li>
+<li>Z factor: 1</li>
+<li>Contour type: Contour</li>
+</ul>
+<hr />
+</div>
+<div id="summary-2" class="section level2 unnumbered hasAnchor">
+<h2>Summary<a href="hydrology-analysis.html#summary-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The aim of this lab was to practice solving a real-world forest management problem using raster and vector data. You have hopefully gained a thorough understanding of the tools available for modeling hydrology in ArcGIS Pro. In addition, the basemaps in ArcGIS Pro can be a valuable source of high-resolution satellite imagery. Be sure to stand up, stretch and drink some water!</p>
+<p>Return to the <a href="hydrology-analysis.html#lab3-deliverables"><strong>Deliverables</strong></a> section to check off everything you need to submit for credit in the course management system.</p>
+
+<pre><code>## Warning in readLines(file, warn = readLines.warn): incomplete final line found
+## on &#39;chapterauthors.yml&#39;</code></pre>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="network-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="machine-learning.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

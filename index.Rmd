@@ -1,0 +1,31 @@
+--- 
+title: "GEM 511: Advanced GIS for Environmental Management"
+author: "Paul D. Pickell"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+biblio-style: apalike
+link-citations: yes
+github-repo: github.com/ubc-geomatics-community-of-practice/GEM511-Advanced-GIS-for-Environmental-Management/book
+url: 'https\:github.com/ubc-geomatics-community-of-practice/GEM511-Advanced-GIS-for-Environmental-Management/book/'
+description: "Open Educational Resources for GEM 511 course at the University of British Columbia"
+always_allow_html: true
+---
+
+# Welcome {-}
+
+These are the course materials for GEM 511 in the Master of Geomatics for Environmental Management program (MGEM) at the University of British Columbia (UBC). These Open Educational Resources (OER) were developed to foster the Geomatics Community of Practice that is hosted by the Faculty of Forestry at UBC. 
+
+These materials are primarily lab assignments that students enrolled in GEM 511 will complete and submit for credit in the program. Note that much of the data referenced are either public datasets or otherwise only available to students enrolled in the course for credit. Deliverables for these assignments are submitted through the UBC learning management system and only students enrolled in the course may submit these assignments for credit.
+
+## How to use these resources {.unnumbered}
+
+Each "chapter" is a standalone lab assignment designed to be completed over one or two weeks.
+
+Students enrolled in GEM 511 will submit all deliverables through the course management system at UBC for credit and should consult the schedule and deadlines posted there. The casual user can still complete the tutorials step-by-step, but the data that are not already publicly available are not hosted on this website and therefore you will not have access to them. 
+
+Unless otherwise noted, all materials are Open Educational Resources (OER) and licensed under a Creative Commons license (CC-BY-SA-4.0). Feel free to share and adapt, just be sure to share with the same license and give credit to the author.
+
+## How to get involved {.unnumbered}
+
+Because this is an open project, we highly encourage contributions from the community. The content is hosted on our [GitHub repository](https://github.com/ubc-geomatics-community-of-practice/GEM511-Advanced-GIS-for-Environmental-Management) and from there you can [open an issue or start a discussion](https://github.com/ubc-geomatics-community-of-practice/GEM511-Advanced-GIS-for-Environmental-Management/issues/new). Feel free to open an issue for any typos, factual discrepancies, bugs, or topics you want to see. We are always looking for great Canadian case studies to share! You can also fork our GitHub repository to explore the source code and take the content offline.

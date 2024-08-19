@@ -1,0 +1,8 @@
+book_filename: "open-geomatics-community-of-practice"
+chapter_name: "Lab "
+repo: https://github.com/ubc-geomatics-community-of-practice/GEM511-Advanced-GIS-for-Environmental-Management
+output_dir: docs
+clean: [book.bib, bookdown.bbl, packages.bib]
+bibliography: book.bib
+delete_merged_file: TRUE
+link-citations: true

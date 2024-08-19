@@ -1,0 +1,12 @@
+bookdown::gitbook:
+  split_by: chapter
+  config:
+    toc:
+      collapse: subsection
+      before: |
+        <li><a href="./">An Open Geomatics Community of Practice</a></li>
+      after: |
+        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+bookdown::pdf_book:
+  latex_engine: xelatex
+  citation_package: natbib

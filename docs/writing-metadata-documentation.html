@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lab 7 Writing Metadata and Documentation | GEM 511: Advanced GIS for Environmental Management</title>
+  <meta name="description" content="Open Educational Resources for GEM 511 course at the University of British Columbia" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lab 7 Writing Metadata and Documentation | GEM 511: Advanced GIS for Environmental Management" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Open Educational Resources for GEM 511 course at the University of British Columbia" />
+  <meta name="github-repo" content="github.com/ubc-geomatics-community-of-practice/GEM511-Advanced-GIS-for-Environmental-Management/book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lab 7 Writing Metadata and Documentation | GEM 511: Advanced GIS for Environmental Management" />
+  
+  <meta name="twitter:description" content="Open Educational Resources for GEM 511 course at the University of British Columbia" />
+  
+
+<meta name="author" content="Paul D. Pickell" />
+
+
+<meta name="date" content="2024-03-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="web-mapping.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">An Open Geomatics Community of Practice</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-use-these-resources"><i class="fa fa-check"></i>How to use these resources</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-get-involved"><i class="fa fa-check"></i>How to get involved</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="terrain-spatial-interpolation.html"><a href="terrain-spatial-interpolation.html"><i class="fa fa-check"></i><b>1</b> Spatial interpolation and visualization of LiDAR</a>
+<ul>
+<li class="chapter" data-level="" data-path="terrain-spatial-interpolation.html"><a href="terrain-spatial-interpolation.html#lab-overview"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="terrain-spatial-interpolation.html"><a href="terrain-spatial-interpolation.html#learning-objectives"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="terrain-spatial-interpolation.html"><a href="terrain-spatial-interpolation.html#lab1-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="terrain-spatial-interpolation.html"><a href="terrain-spatial-interpolation.html#data"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="terrain-spatial-interpolation.html"><a href="terrain-spatial-interpolation.html#task-1-preprocess-lidar-data-in-pdal"><i class="fa fa-check"></i>Task 1: Preprocess LiDAR data in PDAL</a></li>
+<li class="chapter" data-level="" data-path="terrain-spatial-interpolation.html"><a href="terrain-spatial-interpolation.html#task-2-visualize-lidar-data-in-qgis"><i class="fa fa-check"></i>Task 2: Visualize LiDAR data in QGIS</a>
+<ul>
+<li class="chapter" data-level="" data-path="terrain-spatial-interpolation.html"><a href="terrain-spatial-interpolation.html#hold-shift-orbit-camera-around-fixed-position"><i class="fa fa-check"></i>Hold SHIFT: Orbit camera around fixed position</a></li>
+<li class="chapter" data-level="" data-path="terrain-spatial-interpolation.html"><a href="terrain-spatial-interpolation.html#hold-ctrl-maintain-camera-position-and-change-camera-angle"><i class="fa fa-check"></i>Hold CTRL: Maintain camera position and change camera angle</a></li>
+<li class="chapter" data-level="" data-path="terrain-spatial-interpolation.html"><a href="terrain-spatial-interpolation.html#hold-alt-move-camera-position-on-the-x-y-plane"><i class="fa fa-check"></i>Hold ALT: Move camera position on the X-Y plane</a></li>
+<li class="chapter" data-level="" data-path="terrain-spatial-interpolation.html"><a href="terrain-spatial-interpolation.html#scroll-move-camera-position-tofrom-the-cursor-location"><i class="fa fa-check"></i>Scroll: Move camera position to/from the cursor location</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="terrain-spatial-interpolation.html"><a href="terrain-spatial-interpolation.html#task-3-prepare-lidar-in-arcgis-pro"><i class="fa fa-check"></i>Task 3: Prepare LiDAR in ArcGIS Pro</a></li>
+<li class="chapter" data-level="" data-path="terrain-spatial-interpolation.html"><a href="terrain-spatial-interpolation.html#task-4-apply-and-evaluate-spatial-interpolation-algorithms-in-arcgis-pro"><i class="fa fa-check"></i>Task 4: Apply and evaluate spatial interpolation algorithms in ArcGIS Pro</a></li>
+<li class="chapter" data-level="" data-path="terrain-spatial-interpolation.html"><a href="terrain-spatial-interpolation.html#task-5-visualize-3d-data-in-arcgis-pro"><i class="fa fa-check"></i>Task 5: Visualize 3D data in ArcGIS Pro</a></li>
+<li class="chapter" data-level="" data-path="terrain-spatial-interpolation.html"><a href="terrain-spatial-interpolation.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="network-analysis.html"><a href="network-analysis.html"><i class="fa fa-check"></i><b>2</b> Salmon Stream Network Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#lab-overview-1"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#learning-objectives-1"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#lab2-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#data-1"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#task-1-create-stream-segments"><i class="fa fa-check"></i>Task 1: Create stream segments</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#task-2-create-routes-and-apply-topology"><i class="fa fa-check"></i>Task 2: Create routes and apply topology</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#task-3-record-stream-attributes-with-linear-referencing"><i class="fa fa-check"></i>Task 3: Record stream attributes with linear referencing</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#task-4-trace-the-network"><i class="fa fa-check"></i>Task 4: Trace the network</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#task-5-overlay-and-query-the-network"><i class="fa fa-check"></i>Task 5: Overlay and query the network</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#summary-1"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="hydrology-analysis.html"><a href="hydrology-analysis.html"><i class="fa fa-check"></i><b>3</b> Terrain Analysis and Riparian Area Management</a>
+<ul>
+<li class="chapter" data-level="" data-path="hydrology-analysis.html"><a href="hydrology-analysis.html#lab-overview-2"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="hydrology-analysis.html"><a href="hydrology-analysis.html#learning-objectives-2"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="hydrology-analysis.html"><a href="hydrology-analysis.html#lab-background"><i class="fa fa-check"></i>Lab Background</a></li>
+<li class="chapter" data-level="" data-path="hydrology-analysis.html"><a href="hydrology-analysis.html#lab3-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="hydrology-analysis.html"><a href="hydrology-analysis.html#data-2"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="hydrology-analysis.html"><a href="hydrology-analysis.html#task-1-prepare-the-dem-and-map-stream-networks"><i class="fa fa-check"></i>Task 1: Prepare the DEM and Map Stream Networks</a></li>
+<li class="chapter" data-level="" data-path="hydrology-analysis.html"><a href="hydrology-analysis.html#task-2-extract-stream-characteristics"><i class="fa fa-check"></i>Task 2: Extract Stream Characteristics</a></li>
+<li class="chapter" data-level="" data-path="hydrology-analysis.html"><a href="hydrology-analysis.html#task-3-mapping-watersheds-and-riparian-management-areas"><i class="fa fa-check"></i>Task 3: Mapping Watersheds and Riparian Management Areas</a></li>
+<li class="chapter" data-level="" data-path="hydrology-analysis.html"><a href="hydrology-analysis.html#summary-2"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="machine-learning.html"><a href="machine-learning.html"><i class="fa fa-check"></i><b>4</b> Machine Learning with Geospatial Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="machine-learning.html"><a href="machine-learning.html#lab-overview-3"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="machine-learning.html"><a href="machine-learning.html#learning-objectives-3"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="machine-learning.html"><a href="machine-learning.html#lab4-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="machine-learning.html"><a href="machine-learning.html#lab4-data"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="machine-learning.html"><a href="machine-learning.html#task-1-exploratory-regression-in-arcgis-pro"><i class="fa fa-check"></i>Task 1: Exploratory Regression in ArcGIS Pro</a></li>
+<li class="chapter" data-level="" data-path="machine-learning.html"><a href="machine-learning.html#task-2-sampling-for-training-datasets"><i class="fa fa-check"></i>Task 2: Sampling for Training Datasets</a></li>
+<li class="chapter" data-level="" data-path="machine-learning.html"><a href="machine-learning.html#task-3-forest-based-classification"><i class="fa fa-check"></i>Task 3: Forest-Based Classification</a></li>
+<li class="chapter" data-level="" data-path="machine-learning.html"><a href="machine-learning.html#summary-3"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html"><i class="fa fa-check"></i><b>5</b> Analyzing Green Equity Using Geographically Weighted Regression</a>
+<ul>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#lab-overview-4"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#learning-objectives-4"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#lab5-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#lab5-data"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#task-1-prepare-census-data"><i class="fa fa-check"></i>Task 1: Prepare census data</a>
+<ul>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#a-word-about-alt_geo_code"><i class="fa fa-check"></i>A word about alt_geo_code</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#task-2-practice-geographically-weighted-regression"><i class="fa fa-check"></i>Task 2: Practice geographically weighted regression</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#task-3-analyze-your-own-census-characteristics"><i class="fa fa-check"></i>Task 3: Analyze your own census characteristics</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#summary-4"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="web-mapping.html"><a href="web-mapping.html"><i class="fa fa-check"></i><b>6</b> Web Mapping</a>
+<ul>
+<li class="chapter" data-level="" data-path="web-mapping.html"><a href="web-mapping.html#lab-overview-5"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="web-mapping.html"><a href="web-mapping.html#learning-objectives-5"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="web-mapping.html"><a href="web-mapping.html#lab6-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="web-mapping.html"><a href="web-mapping.html#data-3"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="web-mapping.html"><a href="web-mapping.html#task-1-adding-content-to-your-arcgis-online-profile"><i class="fa fa-check"></i>Task 1: Adding content to your ArcGIS Online profile</a></li>
+<li class="chapter" data-level="" data-path="web-mapping.html"><a href="web-mapping.html#task-2-creating-your-arcgis-storymap"><i class="fa fa-check"></i>Task 2: Creating your ArcGIS StoryMap</a></li>
+<li class="chapter" data-level="" data-path="web-mapping.html"><a href="web-mapping.html#summary-5"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="writing-metadata-documentation.html"><a href="writing-metadata-documentation.html"><i class="fa fa-check"></i><b>7</b> Writing Metadata and Documentation</a>
+<ul>
+<li class="chapter" data-level="" data-path="writing-metadata-documentation.html"><a href="writing-metadata-documentation.html#lab-overview-6"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="writing-metadata-documentation.html"><a href="writing-metadata-documentation.html#learning-objectives-6"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="writing-metadata-documentation.html"><a href="writing-metadata-documentation.html#lab7-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="writing-metadata-documentation.html"><a href="writing-metadata-documentation.html#data-4"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="writing-metadata-documentation.html"><a href="writing-metadata-documentation.html#task-1-depositing-in-the-dataverse"><i class="fa fa-check"></i>Task 1: Depositing in the Dataverse</a></li>
+<li class="chapter" data-level="" data-path="writing-metadata-documentation.html"><a href="writing-metadata-documentation.html#summary-6"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GEM 511: Advanced GIS for Environmental Management</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="writing-metadata-documentation" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Lab 7</span> Writing Metadata and Documentation<a href="writing-metadata-documentation.html#writing-metadata-documentation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Written by
+Paul Pickell and Francois du Toit</p>
+<div id="lab-overview-6" class="section level2 unnumbered hasAnchor">
+<h2>Lab Overview<a href="writing-metadata-documentation.html#lab-overview-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The aim of this lab is to practice good geospatial data management habits and produce robust metadata for your final project. Metadata describe your data so it can be used, shared, and understood widely. Creating metadata can be time consuming, however bad metadata negatively affects the integrity, discoverability, preservability, and usability of your data. If you do not create good metadata, it will have significant negative effects on your data and your credibility.</p>
+<p>As you work through this lab, you should reference the UBC Library Research Commons <a href="https://ubc-library-rc.github.io/rdm/">Research Data Management website</a> and specifically the pages related to <a href="https://ubc-library-rc.github.io/rdm/content/05-4_Geospatial_Deposit.html">depositing geospatial data to Dataverse</a>.</p>
+<hr />
+</div>
+<div id="learning-objectives-6" class="section level2 unnumbered hasAnchor">
+<h2>Learning Objectives<a href="writing-metadata-documentation.html#learning-objectives-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Create metadata for geospatial data assets</li>
+<li>Archive project outcomes with the UBC Scholars Portal Dataverse</li>
+<li>Share and feature your achievements with the MGEM Project Library</li>
+</ul>
+<hr />
+</div>
+<div id="lab7-deliverables" class="section level2 unnumbered hasAnchor">
+<h2>Deliverables<a href="writing-metadata-documentation.html#lab7-deliverables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The main deliverables for this lab will be uploading your final project data products, as well as an associated README, and metadata to the Scholars Portal Dataverse and also to the course management system. These metadata will be used to create the public page that features your project acheivements on the MGEM Project Library.</p>
+<p>Answers to the metadata questions on the course management system (50 points):</p>
+<p><input type="checkbox" unchecked> What is the DOI URL for your project on the MGEM Dataverse? (5 points)</input></p>
+<p><input type="checkbox" unchecked> Upload an image that will be used to feature your project on the MGEM Project Library (5 points)</input></p>
+<p><input type="checkbox" unchecked> Upload your README file (5 points)</input></p>
+<p><input type="checkbox" unchecked> Select 6 keywords separated by commas to describe your project that you also used for the MGEM Dataverse (6 points)</input></p>
+<p><input type="checkbox" unchecked> Write the title for your project (5 points)</input></p>
+<p><input type="checkbox" unchecked> Write the abstract for your project (5 point)</input></p>
+<p><input type="checkbox" unchecked> Who is your faculty mentor or community partner? What is their affiliation? (5 points)</input></p>
+<p><input type="checkbox" unchecked> What is the URL to your project StoryMap? (5 points)</input></p>
+<p><input type="checkbox" unchecked> Upload a polygon GeoJSON file of your study area (5 points)</input></p>
+<p><input type="checkbox" unchecked> What is the maximum latitude (top) of your study area in decimal degrees? (1 point)</input></p>
+<p><input type="checkbox" unchecked> What is the minimum latitude (bottom) of your study area in decimal degrees? (1 point)</input></p>
+<p><input type="checkbox" unchecked> What is the minimum longtiude (left) of your study area in decimal degrees? (1 point)</input></p>
+<p><input type="checkbox" unchecked> What is the maximum longitude (right) of your study area in decimal degrees? (1 point)</input></p>
+<hr />
+</div>
+<div id="data-4" class="section level2 unnumbered hasAnchor">
+<h2>Data<a href="writing-metadata-documentation.html#data-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>There are no data for this lab, but the information needed will come from your FCOR 599 final project.</p>
+<hr />
+</div>
+<div id="task-1-depositing-in-the-dataverse" class="section level2 unnumbered hasAnchor">
+<h2>Task 1: Depositing in the Dataverse<a href="writing-metadata-documentation.html#task-1-depositing-in-the-dataverse" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In order to deposit data, you will first need to log in to the Dataverse.</p>
+<p><strong>Step 1:</strong> <a href="https://borealisdata.ca/dataverse/UBC_MGEM">Navigate to the MGEM Dataverse</a>, and log in via the top right corner. Be sure to select UBC, and you will be directed to use your Campus Wide Login (CWL).</p>
+<p><img src="images/07-borealis-login.png" width="50%" /></p>
+<p><strong>Step 2:</strong> Once you are logged in, you can click “+Add Data” then select “New Dataset” from the drop-down menu. Important, make sure that you are on the MGEM Dataverse landing page and not the general UBC Dataverse! See screenshot below.</p>
+<p><img src="images/07-borealis-new-dataset.png" width="100%" /></p>
+<p>Ensure that the “Host Dataverse” field is pre-populated with “Master of Geomatics for Environmental Management”. If you see anything else, go back to the URL above to access the MGEM Dataverse and try again.</p>
+<p><strong>Step 3:</strong> You might also notice that you can choose a “Dataset Template”. “CC Attribution 4.0 International (CC BY 4.0)” is the default license that most MGEM datasets are licensed under, but you have the option to select any license you prefer from the drop-down menu. Fill in all of the required “Citation Metadata” fields below. In the “Description” field, paste your abstract. Add your “Keywords”, individually in the respective fields. Other non-required fields can be left as-is for now.</p>
+<p><img src="images/07-borealis-license.png" width="100%" /></p>
+<p>It is important that you discuss with your Topical Mentor the appropriate license for your project data as some research data may have a license that takes precedence over any derivatives that you have created for your project. You can learn more about the various Creative Commons (CC) licenses here: <a href="https://creativecommons.org/share-your-work/cclicenses/">https://creativecommons.org/share-your-work/cclicenses/</a>. You may also want to use this license chooser tool: <a href="https://chooser-beta.creativecommons.org/">https://chooser-beta.creativecommons.org/</a>.</p>
+<p><strong>Step 4:</strong> Once you have filled in the metadata for your project, it is time to prepare your files for upload. Ensure that you are applying best practices:</p>
+<ul>
+<li><a href="https://ubc-library-rc.github.io/rdm/content/01_file_naming.html">Followed file naming conventions</a></li>
+<li><a href="https://ubc-library-rc.github.io/rdm/content/05-4_Geospatial_Deposit.html#types-of-geospatial-data-files">Converted your spatial data to the appropriate archival formats</a></li>
+<li><a href="https://ubc-library-rc.github.io/rdm/content/04_directory_structures.html">Organized everything in the proper directory structure</a>.</li>
+</ul>
+<p>When uploading to Borealis, the first zipped level will be unpacked into whatever files and directories you have in the zip file. Any zip files within this structure (i.e., double-zipped) will be preserved as a zip file, which has some advantages for some file types and sub-directories.</p>
+<p>Some geospatial data should be zipped or even double-zipped. Refer to the <a href="https://ubc-library-rc.github.io/rdm/content/05-4_Geospatial_Deposit.html">UBC Library Research Commons Geospatial Data Deposit guide</a> for information specific to your type of research data. You can preserve the directory structure of your project by zipping the directory into a single zip file and uploading this to Borealis. However, you may want to zip or double-zip some sub-directories, like one that contains the contents of a shapefile. Double-zipping files also makes it simpler to describe a file with metadata on Borealis.</p>
+<p><img src="images/07-borealis-upload-data.png" width="100%" /></p>
+<p><img src="images/07-borealis-data-upload-example.png" width="100%" /></p>
+<p><strong>Step 5:</strong> At a minimum, upload your final report, as well as all of your final data outputs (derivatives only, no “raw” data), and your README file. You may also optionally add any other data that might be relevant to your project such as (well-annotated) code/scripts, videos, presentation slides, posters, and other multimedia. Add metadata descriptions for each file in your project and adjust file names as necessary. Click the ellipse to the right to add pre-set tags to each file or create your own custom tags.</p>
+<p><img src="images/07-borealis-data-upload-tags.png" width="100%" /></p>
+<p><img src="images/07-borealis-success.png" width="100%" /></p>
+<p><strong>Step 6:</strong> When you are satisfied, click “Save Dataset”. You will be presented with a landing page that is a DRAFT of your final project archive. Scroll down a bit and click on the “Metadata” tab that appears just above your data files. Then click on the “Add + Edit Metdata” button in the top right. This will expose all of the available metadata fields, many of which were not available when you created the draft of your submission.</p>
+<p><img src="images/07-borealis-additional-metadata.png" width="100%" /></p>
+<p><strong>Step 7:</strong> Scroll to the bottom and expand the “Geospatial Metadata” and then fill in all of these fields. Take note that these values will also be submitted for this lab assignment on the course management system, so write them down or add them to the assignment page at the same time that you record them in Borealis. Populate as many of the other fields as you can. For example, you should be able to add information about the “Language”, “Data Type”, and “Software” fields. Not all of the fields will apply to your project, which is why they are not all required, but you should take care to fill in as many as possible.</p>
+<p>Remember, you are the only expert of your research data and the only person in the world who can properly describe your research data, so make it count!</p>
+<p><img src="images/07-borealis-geospatial-metadata.png" width="100%" /></p>
+<p><strong>Step 8:</strong> Once you are satisfied with your metadata fields, click “Save Changes” at the bottom. From the project data landing page, in the top-right, select “Submit for Review”. This action will send your draft dataset to the admins of the MGEM Dataverse, which include the Research Data Librarian and the instructor. We only will review your submission for missing required information or make suggestions to improve your file naming convention, data organization or file types. You should proof-read your submission to ensure there are no typos or other major omissions.</p>
+<hr />
+</div>
+<div id="summary-6" class="section level2 unnumbered hasAnchor">
+<h2>Summary<a href="writing-metadata-documentation.html#summary-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Writing metadata and documentation is a labor-intensive process that completes the life cycle of any project. Geospatial data have some unique characteristics that enable those data to be discovered via spatial filtering using bounding boxes or geographic and place name keywords. The important thing to remember is that you are the expert of your research or project data and no one will be more qualified to produce those metadata than yourself. Consider thinking back to all the data sources that you perused for your project. If those data did not have sufficient metadata to discover them, then your project might never have been possible. That is the power of good metadata.</p>
+<p>Return to the <a href="writing-metadata-documentation.html#lab7-deliverables"><strong>Deliverables</strong></a> section to check off everything you need to submit for credit in the course management system.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="web-mapping.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
