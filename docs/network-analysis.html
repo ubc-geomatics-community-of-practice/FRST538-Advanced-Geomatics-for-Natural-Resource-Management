@@ -4,26 +4,26 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Lab 2 Salmon Stream Network Analysis | GEM 511: Advanced GIS for Environmental Management</title>
-  <meta name="description" content="Open Educational Resources for GEM 511 course at the University of British Columbia" />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <title>Lab 2 Salmon Stream Network Analysis | FRST538-Advanced-Geomatics-for-Natural-Resource-Management</title>
+  <meta name="description" content="Open Educational Resources for FRST 538 course at the University of British Columbia" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Lab 2 Salmon Stream Network Analysis | GEM 511: Advanced GIS for Environmental Management" />
+  <meta property="og:title" content="Lab 2 Salmon Stream Network Analysis | FRST538-Advanced-Geomatics-for-Natural-Resource-Management" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="Open Educational Resources for GEM 511 course at the University of British Columbia" />
-  <meta name="github-repo" content="github.com/ubc-geomatics-community-of-practice/GEM511-Advanced-GIS-for-Environmental-Management/book" />
+  <meta property="og:description" content="Open Educational Resources for FRST 538 course at the University of British Columbia" />
+  <meta name="github-repo" content="github.com/ubc-geomatics-community-of-practice/FRST538-Advanced-Geomatics-for-Natural-Resource-Management/book" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lab 2 Salmon Stream Network Analysis | GEM 511: Advanced GIS for Environmental Management" />
+  <meta name="twitter:title" content="Lab 2 Salmon Stream Network Analysis | FRST538-Advanced-Geomatics-for-Natural-Resource-Management" />
   
-  <meta name="twitter:description" content="Open Educational Resources for GEM 511 course at the University of British Columbia" />
+  <meta name="twitter:description" content="Open Educational Resources for FRST 538 course at the University of British Columbia" />
   
 
 <meta name="author" content="Paul D. Pickell" />
 
 
-<meta name="date" content="2024-03-28" />
+<meta name="date" content="2024-08-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -54,70 +54,6 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
-<style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
 
 <style type="text/css">
   
@@ -244,7 +180,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GEM 511: Advanced GIS for Environmental Management</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">FRST538-Advanced-Geomatics-for-Natural-Resource-Management</a>
           </h1>
         </div>
 
@@ -287,6 +223,7 @@ Paul Pickell</p>
 </div>
 <div id="lab2-deliverables" class="section level2 unnumbered hasAnchor">
 <h2>Deliverables<a href="network-analysis.html#lab2-deliverables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The lab deliverables to be submitted on canvas include:</p>
 <p>Lab report with the following specification:</p>
 <p><input type="checkbox" unchecked> 6 pages maximum PDF including figures, tables and references (5 points). Single-spaced, 12-point Times New Roman font (1 point). All figures and tables should be properly captioned (1 point).</input></p>
 <p><input type="checkbox" unchecked> Results should address the following questions and requirements (25 points):</input></p>
@@ -505,8 +442,6 @@ Paul Pickell</p>
 <p>Would you have guessed that you could do all that analysis from a single DEM? That is the power of applying focal functions to the raster (flow direction, flow accumulation, slope) and deriving a network with topology. In this lab, we were principally concerned with events and attributes along the stream segments. Although we did not explicitly calculate connectivity measures, the connectivity of the network was implied through the modelling approach using flow direction from the filled DEM. If you attempted to perform this same analysis without the aid of a DEM, then you would need to take additional precautions to ensure that your polyline features have topological connectivity and valid junctions. Still, our approach using a DEM is prone to artifacts from the raster. Stream segments are limited to eight turning angles and the resolution of the DEM can impact stream attributes.</p>
 <p>Return to the <a href="network-analysis.html#lab2-deliverables"><strong>Deliverables</strong></a> section to check off everything you need to submit for credit in the course management system.</p>
 
-<pre><code>## Warning in readLines(file, warn = readLines.warn): incomplete final line found
-## on &#39;chapterauthors.yml&#39;</code></pre>
 </div>
 </div>
             </section>
@@ -569,20 +504,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

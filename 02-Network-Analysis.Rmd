@@ -54,6 +54,8 @@ In this lab, we will focus on Vancouver Island for a few reasons. First, islands
 
 ## Deliverables {#lab2-deliverables .unnumbered}
 
+The lab deliverables to be submitted on canvas include:
+
 Lab report with the following specification:
 
 <input type="checkbox" unchecked> 6 pages maximum PDF including figures, tables and references (5 points). Single-spaced, 12-point Times New Roman font (1 point). All figures and tables should be properly captioned (1 point).</input>
@@ -104,7 +106,7 @@ All data for this lab are accessible via the UBC PostgreSQL server. Instructions
 
 This was the general process applied to create the DEM in case you want to reproduce it or apply the same method for another project:
 
-1.  Download all the tiles for Vancouver Island from the B.C. Government here
+1.  Download all the tiles for Vancouver Island from the B.C. Government [here](https://www2.gov.bc.ca/gov/content/data/geographic-data-services/topographic-data/elevation)
 2.  Mosaic the rasters together using the "Mosaic to new raster" tool
 3.  Buffer a polygon shapefile of Vancouver Island by 25 m
 4.  Convert the result of step 3 to a raster with cell size 25 m and project to NAD 1983 BC Environment Albers. This is a mask that extends just beyond the shore of Vancouver Island to account for mapping errors.
@@ -181,7 +183,7 @@ Below is a useful flowchart of the process of creating a stream network from a D
 
 ## Task 2: Create routes and apply topology {.unnumbered}
 
-At this point, you have only created polyline features representing streams. Next will convert those segments to routes and apply topology for our streams, as well as incorporate dams into the network.
+At this point, you have only created polyline features representing streams. Next we will convert those segments to routes and apply topology for our streams, as well as incorporate dams into the network.
 
 ```{r 02-create-routes, out.width= "75%", echo = FALSE}
     knitr::include_graphics("images/02-create-routes.png")
