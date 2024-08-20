@@ -6,3 +6,8 @@ machine-learning
 geographically-weighted-regression
 web-mapping
 writing-metadata-documentation
+spectral-signatures
+task-2-landsat-5-bands-the-ems-arcpro-software
+add-table-in-here
+any-combination-where-this-is-not-the-case-is-a-false-color-composite-where-the-colours-chosen-to-visualize-the-data-are-not-true-to-life-i.e.-landsat-band-1-blue-480-nm-is-displayed-as-red-band-2-green-560-nm-is-displayed-as-blue-and-band-3-red-660-nm-is-displayed-as-green.
+q13-examine-your-new-spectral-profile-chart-compare-the-different-profiles-you-created-to-the-spectral-profiles-in-figures-1-and-2.-what-is-the-difference-between-them-why-might-your-spectral-curves-look-different-than-the-ones-above-take-a-screenshot-of-your-spectral-signature-chart-and-append-it-to-your-answer.
