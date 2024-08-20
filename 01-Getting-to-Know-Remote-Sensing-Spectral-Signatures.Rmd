@@ -53,20 +53,20 @@ Figure 1 shows the reflective characteristics of various features of the earthâ€
 
 Figure 1: Reflectance characteristics of various features at different wavelengths
 
-**Q1:** For broadleaf and needle-leaf vegetation, what is the approximate wavelength that is reflected most and what section of the EMS does this range belong to?
+##### Q1. For broadleaf and needle-leaf vegetation, what is the approximate wavelength that is reflected most and what section of the EMS does this range belong to? {.unnumbered}
 
 * 0.8-1.0 mm (near infrared)
 * 0.1-1.0 mm (visible)
 * 0.7-0.8 mm (near infrared)
 * 0.55-0.65 mm (visible) 
 
-**Q2:** True/False: Soil and vegetation reflect roughly the same proportion of blue light.
+##### Q2. True/False: Soil and vegetation reflect roughly the same proportion of blue light. {.unnumbered}
 
-**Q3:** Give a wavelength (in microns; mm) at which snow and ice, dry soil, and vegetation are indistinguishable by their reflectance. In other words, at which wavelength is the proportion of radiation reflected the same (+/- 10%) for these features?
+##### Q3. Give a wavelength (in microns; mm) at which snow and ice, dry soil, and vegetation are indistinguishable by their reflectance. In other words, at which wavelength is the proportion of radiation reflected the same (+/- 10%) for these features? {.unnumbered}
 
-**Q4:** Broadleaf and needle leaf vegetation reflect the same amount at 0.7 $\mu$ m. What causes this? Is there something contained in the foliage of both types of vegetation which causes identical spectral signatures? How does this pattern in spectral reflectance affect how we see live vegetation?
+##### Q4. Broadleaf and needle leaf vegetation reflect the same amount at 0.7 $\mu$ m. What causes this? Is there something contained in the foliage of both types of vegetation which causes identical spectral signatures? How does this pattern in spectral reflectance affect how we see live vegetation? {.unnumbered}
 
-**Q5:** Figure 2 contains additional spectra, belonging to unknown surface features. Hypothesize about what these spectra might be and provude your reasoning. Use the known features (broadleaf vegetation, wet soil, etc.) and what you have learned from class/readings to inform your choices. This is a difficult task, and educated guesses are all that is asked for. Do a bit of research, put some thought into it, and explain the reasoning for your guesses. These spectra do NOT represent the features which are already labeled. You must think of new features which could be observed with remote sensing.
+##### Q5. Figure 2 contains additional spectra, belonging to unknown surface features. Hypothesize about what these spectra might be and provude your reasoning. Use the known features (broadleaf vegetation, wet soil, etc.) and what you have learned from class/readings to inform your choices. This is a difficult task, and educated guesses are all that is asked for. Do a bit of research, put some thought into it, and explain the reasoning for your guesses. These spectra do NOT represent the features which are already labeled. You must think of new features which could be observed with remote sensing. {.unnumbered}
 
 ```{r 01-reflectance-characteristics-unknown-features, out.width= "80%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/01-reflectance-characteristics-unknown-features.png")
@@ -89,9 +89,9 @@ Figure 2: Reflectance characteristics of unknown features
 | 8         | 0.52-0.90                       | Green, Red, Near infrared | 15    | Panchromatic band. Large area mapping, urban change studies.                  |
 
 
-**Q6:** Each pixel of Landsat's thermal infrared band (Band 6) covers _____ pixels of the other bands. If it helps, draw a picture of the two pixel resolutions.
+##### Q6. Each pixel of Landsat's thermal infrared band (Band 6) covers _____ pixels of the other bands. If it helps, draw a picture of the two pixel resolutions. {.unnumbered}
 
-**Q7:** Consider the equation $Q = h * \nu$ where $Q$ is the energy in quanta, $h$ is Plank's constant, and $\nu$ is the frequency. Band 6 is recorded with a coarser resolution because thermal radiation has a very _____ wavelength. Therefore, there is _____ energy available to sense.
+##### Q7. Consider the equation $Q = h * \nu$ where $Q$ is the energy in quanta, $h$ is Plank's constant, and $\nu$ is the frequency. Band 6 is recorded with a coarser resolution because thermal radiation has a very _____ wavelength. Therefore, there is _____ energy available to sense. {.unnumbered}
 
 **Starting ArcGIS Pro**
 
@@ -226,15 +226,15 @@ You can experiment with different band combinations by visualizing different ban
 
 Right click the bands in the **Contents** pane, turn different layers on and off by clicking the check mark off and on in the **IsVisible** section. Zoom and pan around and investigate different areas of Vancouver that you may know. Feel free to use google maps or google earth to help you orient yourself. 
 
-**Q8:** In a ***standard false colour*** composite (Band 4 visualized used red, Band 3 visualized using green, and Band 2 visualized using blue), healthy vegetation appears _____. Vegetation is more reflective in the _____ part of the spectrum than in the green part of the spectrum so _____ appears the brightest.
+##### Q8. In a ***standard false colour*** composite (Band 4 visualized used red, Band 3 visualized using green, and Band 2 visualized using blue), healthy vegetation appears _____. Vegetation is more reflective in the _____ part of the spectrum than in the green part of the spectrum so _____ appears the brightest. {.unnumbered}
 
-**Q9:** Experiment with many different false colour composites. Which 3 bands would you combine if you wanted to analyze **vegetation**? Do soem light research on spectral properties and the applications of different Landsat bands and write a sentence or two justifying each of your choices. Then, append a screenshot of your chosen composite to your response.
+##### Q9. Experiment with many different false colour composites. Which 3 bands would you combine if you wanted to analyze **vegetation**? Do soem light research on spectral properties and the applications of different Landsat bands and write a sentence or two justifying each of your choices. Then, append a screenshot of your chosen composite to your response. {.unnumbered}
 
-**Q10:** Experiment with many different false colour composites. Which 3 bands would you combine if you wanted to analyze **water quality**? Do soem light research on spectral properties and the applications of different Landsat bands and write a sentence or two justifying each of your choices. Then, append a screenshot of your chosen composite to your response.
+##### Q10. Experiment with many different false colour composites. Which 3 bands would you combine if you wanted to analyze **water quality**? Do soem light research on spectral properties and the applications of different Landsat bands and write a sentence or two justifying each of your choices. Then, append a screenshot of your chosen composite to your response. {.unnumbered}
 
-**Q11:** Experiment with many different false colour composites. Which 3 bands would you combine if you wanted to analyze **agriculture**? Do soem light research on spectral properties and the applications of different Landsat bands and write a sentence or two justifying each of your choices. Then, append a screenshot of your chosen composite to your response.
+##### Q11. Experiment with many different false colour composites. Which 3 bands would you combine if you wanted to analyze **agriculture**? Do soem light research on spectral properties and the applications of different Landsat bands and write a sentence or two justifying each of your choices. Then, append a screenshot of your chosen composite to your response. {.unnumbered}
 
-**Q12:** Experiment with many different false colour composites. Which 3 bands would you combine if you wanted to analyze **urban areas**? Do soem light research on spectral properties and the applications of different Landsat bands and write a sentence or two justifying each of your choices. Then, append a screenshot of your chosen composite to your response.
+##### Q12. Experiment with many different false colour composites. Which 3 bands would you combine if you wanted to analyze **urban areas**? Do soem light research on spectral properties and the applications of different Landsat bands and write a sentence or two justifying each of your choices. Then, append a screenshot of your chosen composite to your response. {.unnumbered}
 
 **Viewing Spectral Signatures**
 
@@ -257,7 +257,7 @@ You might have to resize the spectral chart at the bottom of your screen in orde
     knitr::include_graphics("images/01-profile-chart.png")
 ``` 
 
-**Q13:** Examine your new spectral profile chart, compare the different profiles you created to the spectral profiles in figures 1 and 2. What is the difference between them? Why might your spectral curves look different than the ones above? Take a screenshot of your spectral signature chart and append it to your answer.
+##### Q13. Examine your new spectral profile chart, compare the different profiles you created to the spectral profiles in figures 1 and 2. What is the difference between them? Why might your spectral curves look different than the ones above? Take a screenshot of your spectral signature chart and append it to your answer. {.unnumbered}
 
 ------------------------------------------------------------------------
 

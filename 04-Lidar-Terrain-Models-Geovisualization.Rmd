@@ -68,7 +68,7 @@ We will be working with LiDAR data collected over the Malcolm Knapp Research For
     knitr::include_graphics("images/04-creating-las-dataset.png")
 ```
 
-**Q1:** What is the correct projection for this dataset 
+##### Q1. What is the correct projection for this dataset? {.unnumbered}
 
 **Step 2:** We can now add our LAS Dataset to a Map document (insert New Map). Depending on the zoom extent, you may only see the red bounding box of the las file; this isn’t an error, you just need to zoom in to see the actual points. Alternatively, you can open the dataset in a ‘Global Scene’, although due to the size of the point cloud this might cause some lag. The default display is that no point cloud filters are applied; if you want to view only ground points, right click on the file, navigate to ‘LAS Filters’, and click ‘Ground’. If you want to investigate what the forest looks like, you can add the MKRF orthophoto.
 
@@ -76,9 +76,9 @@ We will be working with LiDAR data collected over the Malcolm Knapp Research For
     knitr::include_graphics("images/04-view-and-filter-dataset.png")
 ```
 
-**Q2:** What is the average point spacing of the dataset?
+##### Q2. What is the average point spacing of the dataset? {.unnumbered}
 
-**Q3:** What is the percentage of points that are ground points?
+##### Q3. What is the percentage of points that are ground points? {.unnumbered}
 
 ------------------------------------------------------------------------
 
@@ -90,7 +90,7 @@ We will be working with LiDAR data collected over the Malcolm Knapp Research For
     knitr::include_graphics("images/04-las-dataset-to-raster.png")
 ```
 
-**Q4:** Why is it important to select the minimum value in the cell assignment selection? (2 sentence maximum)
+##### Q4. Why is it important to select the minimum value in the cell assignment selection? (2 sentence maximum) {.unnumbered}
 
 Now that we have seen how to create a raster using the built-in functions, we can look at other methods and compare them to what we just created
 
@@ -129,7 +129,7 @@ We can now add our height values to be used for interpolation. Search for the �
 
 If you haven’t done so, now is a good time to save your project as creating these rasters can sometimes be tough on MGEM laptops. Since we now have points representing height values, we can use the raster interpolation toolset to experiment with 3 different interpolation techniques; Kriging, Inverse Distance Weighting (IDW), and Spline. To help understand more about these techniques, have a look at the online help section for the [interpolation toolset]( https://pro.arcgis.com/en/pro-app/tool-reference/spatial-analyst/an-overview-of-the-interpolation-tools.htm) (see each tool in the left hand menu):
 
-**Q5:** When looking at semivariogram properties what does 'major range' and 'nugget' refer to? (two sentence maximum)
+##### Q5. When looking at semivariogram properties what does 'major range' and 'nugget' refer to? (two sentence maximum) {.unnumbered}
 
 **Step 1:** Enter the name of each interpolation technique in the geoprocessing search window individually and explore their parameters. In order to make the comparison straightforward, make sure that the output raster is the same resolution as the DTM created in Task 2. Create 3 rasters: one using Spline, one using IDW, and one using Kriging. Note, when creating the rasters, keep the default settings, except for Kriging. For this tool, change the number of points in the search radius to 6. This will increase the speed of the tool, although it will still take a while! 
 
@@ -149,7 +149,7 @@ So far, we have created 4 rasters. Take some time to inspect each raster, and lo
 
 Repeat this for all three interpolation methods (Spline, Kriging, and IDW), naming the results something like “spline_diff”, “krig_diff”, and “idw_diff”.
 
-**Q6:** Which interpolation technique most closely resembles the default raster (MKRF_DTM) from Task 2?
+##### Q6. Which interpolation technique most closely resembles the default raster (MKRF_DTM) from Task 2? {.unnumbered}
 
 ------------------------------------------------------------------------
 
