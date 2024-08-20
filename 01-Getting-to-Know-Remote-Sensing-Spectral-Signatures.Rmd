@@ -47,7 +47,7 @@ NOTE: It is important to recognize that the visible part of the EMS is the only 
 
 Figure 1 shows the reflective characteristics of various features of the earth’s surface. Use this figure to answer Q1 – Q4.
 
-```{r 01-spectral-reflectance-characteristics, out.width= "80%", echo = FALSE}
+```{r 01-spectral-reflectance-characteristics, out.width= "80%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/01-spectral-reflectance-characteristics.png")
 ```
 
@@ -68,7 +68,7 @@ Figure 1: Reflectance characteristics of various features at different wavelengt
 
 **Q5:** Figure 2 contains additional spectra, belonging to unknown surface features. Hypothesize about what these spectra might be and provude your reasoning. Use the known features (broadleaf vegetation, wet soil, etc.) and what you have learned from class/readings to inform your choices. This is a difficult task, and educated guesses are all that is asked for. Do a bit of research, put some thought into it, and explain the reasoning for your guesses. These spectra do NOT represent the features which are already labeled. You must think of new features which could be observed with remote sensing.
 
-```{r 01-reflectance-characteristics-unknown-features, out.width= "80%", echo = FALSE}
+```{r 01-reflectance-characteristics-unknown-features, out.width= "80%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/01-reflectance-characteristics-unknown-features.png")
 ```
 
@@ -76,7 +76,18 @@ Figure 2: Reflectance characteristics of unknown features
 
 ## Task 2: Landsat 5 Bands, the EMS, & ArcPro Software {.unnumbered}
 
-## add table in here 
+
+| **Bands** | **Wavelength Range (microns)** | **Spectral Region** | **Spatial Resolution (meters)** | **Applications** |
+|-----------|---------------------------------|--------------------|---------------------------------|------------------------------------------------------------|
+| 1         | 0.45-0.52                       | Blue                      | 30    | Coastal water mapping, differentiation of vegetation and soils.               |
+| 2         | 0.52-0.60                       | Green                     | 30    | Assessment of vegetation vigor.                                               |
+| 3         | 0.63-0.69                       | Red                       | 30    | Chlorophyll absorption for vegetation differentiation.                        |
+| 4         | 0.76-0.90                       | Near infrared             | 30    | Biomass surveys and delineation of water bodies.                              |
+| 5         | 1.55-1.75                       | Middle infrared           | 30    | Vegetation and soil moisture measurements. Differentiation of ice and clouds. |
+| 6         | 10.40-12.50                     | Thermal infrared          | 60    | Thermal mapping, soil moisture studies, plant heat stress measurement.        |
+| 7         | 2.08-2.35                       | Middle Infrared           | 30    | Hydrothermal mapping.                                                         |
+| 8         | 0.52-0.90                       | Green, Red, Near infrared | 15    | Panchromatic band. Large area mapping, urban change studies.                  |
+
 
 **Q6:** Each pixel of Landsat's thermal infrared band (Band 6) covers _____ pixels of the other bands. If it helps, draw a picture of the two pixel resolutions.
 
@@ -86,7 +97,7 @@ Figure 2: Reflectance characteristics of unknown features
 
 To start the lab, Open ArcPro. You should have window that looks like the screenshot below. The ArcPro theme used to create this lab is Dark. The default theme is likely Light, but if you are interested in changing themes please follow the instructions at this [link](https://pro.arcgis.com/en/pro-app/latest/get-started/general-options.htm). To open a new project, choose “Map”  from the “New Blank Template” list.
 
-```{r 01-starting-arcgispro-prompt, out.width= "100%", echo = FALSE}
+```{r 01-starting-arcgispro-prompt, out.width= "100%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/01-starting-arcgispro-prompt.png")
 ```
 
@@ -100,7 +111,7 @@ You will also notice that the Catolog frame is also “tabbed”. This means tha
 
 Without closing the Catalog window, navigate to the “Insert” tab on the ribbon and click on the “New Map” icon.
 
-```{r 01-new-map, out.width= "50%", echo = FALSE}
+```{r 01-new-map, out.width= "50%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/01-new-map.png")
 ```
 
@@ -110,7 +121,7 @@ A new topographic map will appear in the centre window. Note that it is separate
 
 This process is the exact same as in ArcMap. To add data to the map, navigate to the Pre-Lab folder using Catalog* ,if you save your project in the same folder as you data it should appear, if not right click **Folders** in the Catalog pane and select: 
 
-```{r 01-add-folder-connection, out.width= "50%", echo = FALSE}
+```{r 01-add-folder-connection, out.width= "50%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/01-add-folder-connection.png")
 ```
 
@@ -118,12 +129,12 @@ Navigate to where the data is saved and click ok. When you can find the data fol
 
 **Note** If the catalog pane does not immediately appear in your ArcGIS Pro document use the ribbons at the top to navigate to **View -> Catalog Pane** 
 
-```{r 01-catalog-pane, out.width= "50%", echo = FALSE}
+```{r 01-catalog-pane, out.width= "50%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/01-catalog-pane.png")
 ```
 
 
-```{r 01-true-colour-composite-vancouver, out.width= "100%", echo = FALSE}
+```{r 01-true-colour-composite-vancouver, out.width= "100%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/01-true-colour-composite-vancouver.png")
 ```
 
@@ -133,7 +144,7 @@ Figure 3: True colour composite of Vancouver.
 
 It is now time to explore your imagery. Right click the L5047026subset_19990922_7B.dat file in the Contents pane and select “Properties”. Use the menu on the left-hand side and select the “Source” page and the Raster Information drop down. 
 
-```{r 01-raster-information-drop-down, out.width= "50%", echo = FALSE}
+```{r 01-raster-information-drop-down, out.width= "50%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/01-raster-information-drop-down.png")
 ```
 
@@ -147,7 +158,7 @@ We will now use ArcGIS pro to zoom and pan our image.
 
 Notice the **Map** ribbon at the top, navigate to it and hover you mouse of the **Explore** tool:
 
-```{r 01-explore-tool, out.width= "50%", echo = FALSE}
+```{r 01-explore-tool, out.width= "50%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/01-explore-tool.png")
 ```
 
@@ -157,19 +168,19 @@ Use these controls to zoom in and out of the image and to pan around, try to zoo
 
  Traditionally, single bands of imagery are shown in greyscale, with dark areas shown in black, and light areas shown in white, with anything else shown in shades of grey. Think of each pixel representing a number between 0-255 (byte data type range, the same one of this very imagery!), with areas colored pure black representing the number 0, and areas colored pure white representing the number 255, and everything else is a shade of grey increasing in lightness from 1-254. The figure below displays this concept. 
  
-```{r 01-grey-scale, out.width= "50%", echo = FALSE}
+```{r 01-grey-scale, out.width= "50%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/01-grey-scale.png")
 ```
 
 Right click on you data in the Contents pane and select “Symbology”. The symbology pane should appear on the side of you window. Press the drop-down menu and select “Stretch”.
 
-```{r 01-symbology-stretch, out.width= "50%", echo = FALSE}
+```{r 01-symbology-stretch, out.width= "50%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/01-symbology-stretch.png")
 ```
 
 In the next dropdown menu labeled “Band” select “Band 4 NIR” you should see the same image as below. 
 
-```{r 01-band-4-nir, out.width= "100%", echo = FALSE}
+```{r 01-band-4-nir, out.width= "100%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/01-band-4-nir.png")
 ```
 
@@ -187,7 +198,7 @@ Visualizing wavelengths outside of the visible spectrum (Landsat bands 4-7) auto
 
 In the **Symbology** pane navigate back to “RGB” in the first dropdown list. Your image should change back into a **True Colour** Landsat image where band3 red is visualised as red, band 2 green is visualised as green and band1 blue is visualised as blue. 
 
-```{r 01-true-colour-landsat-image, out.width= "100%", echo = FALSE}
+```{r 01-true-colour-landsat-image, out.width= "100%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/01-true-colour-landsat-image.png")
 ```
 
@@ -203,13 +214,13 @@ Band 7 using Blue
 
 You should see the following 
 
-```{r 01-false-colour-composite-pink, out.width= "100%", echo = FALSE}
+```{r 01-false-colour-composite-pink, out.width= "100%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/01-false-colour-composite-pink.png")
 ``` 
 
 You can experiment with different band combinations by visualizing different bands using Red, Green and Blue. A **standard false colour composite**, for instance, has Band 4 visualized using Red, Band 3 visualized using Green and Band 2 visualized using Blue, as shown below
 
-```{r 01-standard-false-colour-composite, out.width= "100%", echo = FALSE}
+```{r 01-standard-false-colour-composite, out.width= "100%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/01-standard-false-colour-composite.png")
 ``` 
 
@@ -231,18 +242,18 @@ Now it is time to examine your data set more thoroughly. At the beginning of thi
 
 Right click on the **L5047026subset_19990922_7B.dat** file in the Contents pane and select **Create Chart -> Spectral Profile**. The Chart Properties pane should appear on the right side of your screen and the spectral chart on the bottom.
 
-```{r 01-create-spectral-profile, out.width= "100%", echo = FALSE}
+```{r 01-create-spectral-profile, out.width= "100%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/01-create-spectral-profile.png")
 ``` 
 
 In the Chart properties pane under “Define an Area of Interest” select “point” and then click a pixel on your map. Change the colour and select a variety of different points representing different land cover types (Urban, forest, water, crops, snow). 
 
-```{r 01-area-of-interest-points, out.width= "60%", echo = FALSE}
+```{r 01-area-of-interest-points, out.width= "50%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/01-area-of-interest-points.png")
 ``` 
 
 You might have to resize the spectral chart at the bottom of your screen in order to see the different profiles. Your chart should look something like this. 
-```{r 01-profile-chart, out.width= "100%", echo = FALSE}
+```{r 01-profile-chart, out.width= "100%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/01-profile-chart.png")
 ``` 
 
@@ -252,6 +263,9 @@ You might have to resize the spectral chart at the bottom of your screen in orde
 
 ## Summary {.unnumbered}
 
+
+In this lab, we introduced concepts of using specific ranges of the electromagnetic spectrum to understand spectral reflectance and spectral signatures. Spectral signatures are determined by the spectral properties of different materials. They can be used to obtain more information to us about a material than what we can see with visible light! We used ArcGIS Pro to analyze different types of remote sensing data and visualized various combinations of bands using true and false colour composites. We also 
+....
 We covered a lot of ground in this lab about LiDAR processing with GIS software. One thing that should be apparent is that the vast majority of your time will be spent preparing LiDAR data for analysis. Point clouds are dense. Advances in scanning technology are creating new challenges for managing, accessing, organizing, and manipulating these dense data. Remember, we always want to work with the least amount of LiDAR data that our task requires. For spatial interpolation of terrain, this means only working with the necessary ground returns in our AOI. By filtering the tiles and points to only those we needed for the interpolation task, we reduced our data overhead by over 650%! You also practiced evaluating different spatial interpolation algorithms, which can have a large impact on subsequent analyses with those surfaces. When choosing an interpolation algorithm, you must always consider how dense your data are (i.e., how long will it take for me to produce this surface), what properties you want the output surface to have (i.e., statistical intervals, reproducing the true ranges, etc.), and what the surface will be used for (i.g., hydrology mapping, suitability analysis, etc.). Finally, you also practiced visualizing 3D data to augment and enhance your interpretations of these 2D interpolated surfaces.
 
 Return to the [**Deliverables**](#lab1-deliverables) section to check off everything you need to submit for credit in the course management system.
