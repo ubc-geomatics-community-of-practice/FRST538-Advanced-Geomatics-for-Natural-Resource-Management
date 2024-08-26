@@ -56,55 +56,30 @@ In this lab, we will focus on Vancouver Island for a few reasons. First, islands
 
 The lab deliverables to be submitted on canvas include:
 
-Lab report with the following specification:
+Lab report with the following specifications:
 
-<input type="checkbox" unchecked> 6 pages maximum PDF including figures, tables and references (5 points). Single-spaced, 12-point Times New Roman font (1 point). All figures and tables should be properly captioned (1 point).</input>
+<input type="checkbox" unchecked> Map showing the reach of your streams from the ocean with dams as barriers </input>
 
-<input type="checkbox" unchecked> Results should address the following questions and requirements (25 points):</input>
+<input type="checkbox" unchecked> Map showing the salmon conservation unit that you have selected to focus on </input>
 
-- **You are only expected to comment on a single conservation unit.**
+<input type="checkbox" unchecked> 4 pages maximum PDF including findings and anwers to the questions at the end of the lab </input>
 
--   Map showing the reach of your streams from the ocean with dams as barriers
+<input type="checkbox" unchecked> Report should satisfy the following requirements:</input>
 
--   How many dams/ocean outlets are in your conservation area? 
-
--   How much of the stream network is accessible and inaccessible? 
-
--   How well do the streams you created line up with the mapped streams in the ArcGIS basemap?
-
--   Zoom to Lake Cowichan. What is going on here? What could you do to automatically fix this for all large lakes?
-
--   Report any other metrics that you calculated that might be useful for making your arguments in the Discussion section.
-
--   Comment on both small and large scale observations that you made throughout the process. Small scale observations would be investigating the behavior/structure of individual routes, while large scale observations would be the overall differences between total salmon habitat (all streams) and habitat that can actually be reached unimpeded from the ocean.
-
-<input type="checkbox" unchecked> Discussion should address the following questions and requirements (20 points):</input>
-
--   Why are reach and connectivity important for salmon conservation? 
-
--   What are some approaches to modelling reach within networks? Connectivity?
-
--   Consider how you might model the other salmon habitat requirements laid out at the beginning of the lab. Give brief examples for how you would model at least [three of the criteria]{.underline} that we [did not]{.underline} consider in the lab (i.e., do not discuss stream order, stream gradient). Assume that you have access to any typical data source (e.g., LiDAR, optical satellite, RADAR, land inventory, gauge stations, weather stations, etc).
-
--   How would you expect the stream network to change if you used a raster with a cell size of 5 m or 100 m?
-
--   How might additional topological errors and unidentified/unfilled sinks in the DEM impact your analysis?
-
--   Discuss any limitations to the analysis based on your observations and suggest how the modelling process might be improved further. 
-
--   What are your final recommendations to the province for conservation of spawning salmon habitat in Vancouver Island streams?
-
--   Reference any peer reviewed sources as needed.
+-   1" margins 
+-   12 point font 
+-   single spaced
+-   maximum of four pages
+-   use headings as needed
+-   omit your name, student number, date
 
 ------------------------------------------------------------------------
 
 ## Data {.unnumbered}
 
-All data for this lab are accessible via the UBC PostgreSQL server. Instructions for connecting to the server are given in prior labs. We will be using data from the `salmon` database. To save time for this lab, the data have already been assembled and pre-processed for you, but below are some details about how that was achieved.
-
 **vancouver_island_dem**
 
-This was the general process applied to create the DEM in case you want to reproduce it or apply the same method for another project:
+To save time for this lab, the DEM has already been assembled and pre-processed for you. This was the general process applied to create the DEM in case you want to reproduce it or apply the same method for another project:
 
 1.  Download all the tiles for Vancouver Island from the B.C. Government [here](https://www2.gov.bc.ca/gov/content/data/geographic-data-services/topographic-data/elevation)
 2.  Mosaic the rasters together using the "Mosaic to new raster" tool
@@ -116,6 +91,7 @@ This was the general process applied to create the DEM in case you want to repro
     knitr::include_graphics("images/02-vancouver-island-dem.png")
 ```
 
+**vancouver_island_dem**
 The DEM above was filtered several times for sinks. Generally, you can use the "Fill" tool to achieve this. However, Vancouver Island has many naturally-occurring geomorphic features that can cause real sinks (as opposed to random errors). In order to create a depressionless DEM, the DEM was iteratively put through the following process:
 
 1.  Calculate flow direction
@@ -168,8 +144,6 @@ Calculate the flow direction of the filled DEM, using the "Flow Direction" tool.
 **Step 5:** Next, you will create a grid of stream links, which assigns unique values to each stream segment, so that the user can see how the streams are connected. Open the "Stream Link" tool and use the output from the "Con" tool and the flow direction raster here. 
 
 **Step 6:** You will also use the "Stream Order" tool using the same inputs as in step 4 and the default parameters. The "Stream Order" tool assigns a numeric order to segments of the raster, essentially classifying branches of the stream network. The lowest order streams do not have any other streams that flow into it, while higher order streams can have multiple levels of tributaries that flow into it. This tool will take some time to run on the whole island. Take a moment to stretch and hydrate!
-
-
 
 **Step 7:** You will also convert your raster into polylines using the stream links raster and flow direction raster as inputs for the "Stream to Feature" tool. Toggle off "Simplify polylines". 
 
@@ -247,7 +221,7 @@ Next, we will use the same topology process to identify where the island boundar
 
 Now that we have stream routes, we can calculate some information that relate to salmon habitat. Water quality is important for salmon spawning habitat. Steeper gradients (slope) may be more susceptible to erosion that could be one proxy for lower water quality. In this task, you will practice extracting information about the streams and storing that information in the routes using linear referencing.
 
-**Important:** Some of these operations can be computationally intensive because we will be dealing with up to 10^5^ features for the entire island.
+**Important:** Some of these operations can be computationally intensive because we will be dealing with up to 10^5^ features for the entire island. You can attempt to process the entire island, but ultimately you need to clip your stream routes to one of the conservation units (CU) for any of the three species of salmon for your report.
 
 **Step 1:** Calculate the slope of the filled DEM using "Percent rise" as the output measurement and "Planar" as the Method. 
 
@@ -434,6 +408,20 @@ If everything goes *swimmingly*, then the selected stream segments that meet the
 ```
 
 **For your final report, you will clip these layers to one of the salmon conservation units.**
+
+## Final Report {.unnumbered}
+
+For your report, summarize your findings up through the final task. Comment on both small and large scale observations that you made throughout the process. Small scale observations would be investigating the behavior/structure of individual routes, while large scale observations would be the overall differences between total salmon habitat and habitat that can actually be reached from the ocean. Additionally, discuss any limitations to the analysis based on your observations and suggest how the modelling process might be improved further. Illustrate your findings with figures, maps, and tables as needed. You are only expected to comment on a single conservation unit, but you may also run the entire island if you feel ambitious.
+
+Because we introduced so many tools and the lab is already process-intensive, there is no requirement to undertake additional analysis for another scenario. Instead, we are asking you to consider how you might model the other salmon habitat requirements laid out at the beginning of the lab. Give brief examples for how you would model at least three of the criteria that we did not consider in the lab (i.e., do not discuss stream order, stream gradient). Assume that you have access to any typical data source (e.g., LiDAR, optical satellite, RADAR, land inventory, gauge stations, weather stations, etc). 
+
+Finally, answer the following questions in your report:
+
+*   Zoom to Lake Cowichan. What is going on here? What could you do to automatically fix this for all large lakes? 
+*   How well do the streams you created line up with the mapped streams in the ArcGIS basemap?
+*   How would you expect the stream network to change if you used a raster with a cell size of 5m or 100m?
+*   How might additional topological errors and unidentified/unfilled sinks in the DEM impact your analysis?
+
 
 ------------------------------------------------------------------------
 
