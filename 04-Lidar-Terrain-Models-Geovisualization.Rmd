@@ -52,11 +52,13 @@ Lab report with the following specifications:
 
 ## Data {#lab4-data .unnumbered}
 
-We will be working with LiDAR data collected over the Malcolm Knapp Research Forest (MKRF) in Maple Ridge, BC. This is the same data as what you will be using in GEM 521. There are three files associated with this lab:
+We will be working with LiDAR data collected over the Malcolm Knapp Research Forest (MKRF) in Maple Ridge, BC. There are three files associated with this lab:
 
 -   MKRF_Data_Specifications.pdf: A document describing the LiDAR data collection
 -   MKRF_lidar.las: The LiDAR data file. LAS is the standard file type for LiDAR data
 -   MKRF_Aerial_Photo.tif: An orthophoto of our study area, which was collected at the same time as the LiDAR data
+
+The data is located in the Canvas folder for Lab 4.
 
 ------------------------------------------------------------------------
 

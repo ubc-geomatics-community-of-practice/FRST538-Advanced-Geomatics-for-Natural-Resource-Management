@@ -132,7 +132,7 @@ Visually compare the Marine Sanctuary (**Humpback_Marine_Sanctuary**) to the BIA
     knitr::include_graphics("images/05-overlay-layers.png")
 ```
 
-##### Q3. What percentage of the BIA is outside of the marine sancuary? (1 point) {.unnumbered}
+##### Q3. What percentage of the BIA is outside of the marine sancuary? Hint: Use the attribute tables. {.unnumbered}
 
 ```{r 05-bia-sanctuary-erase-attribute-table, out.width= "75%", echo = FALSE}
     knitr::include_graphics("images/05-bia-sanctuary-erase-attribute-table.png")
@@ -158,7 +158,7 @@ We need to introduce a new tool, ‘Multipart to Singlepart’ to fix this probl
 
 **Step 4:** Open the ‘Multipart to Singlepart’ tool and select the input layer as the layer **BIA_Sanctuary_Erase**.
 
-##### Q4. How many individual polygons now exist? (1 point) {.unnumbered}
+##### Q4. How many individual polygons now exist? {.unnumbered}
 
 **Step 5**: Now re-do ‘Spatial Join’ from Steps 1-2. There are many polygons that have a minimal area, so, unselect ‘Keep all Target Features’, which will remove polygons that do not have any cetacean sightings within its boundaries.
 
@@ -168,7 +168,7 @@ We need to introduce a new tool, ‘Multipart to Singlepart’ to fix this probl
     knitr::include_graphics("images/05-bia-polygons.png")
 ```
 
-##### Q5. What is the Target_FID of the polygon with the most cetacean sightings? (1 point) {.unnumbered}
+##### Q5. What is the Target_FID of the polygon with the most cetacean sightings? {.unnumbered}
 
 ------------------------------------------------------------------------
 
@@ -185,6 +185,8 @@ The **Ocean_Uses** layer contains a wide range of human activities that occur at
 Now, we would like to bring the data on vessel usage and the BIA polygons together using the Overlay Layers tool. This is important to be able to see the spatial overlap between where humpback whales reproduce and rear their young and where vessels are labeled as a Dominant Use, indicating that there is a higher chance of boat strikes in these locations.
 
 **Step 2:** Open the tool ‘Overlay Layers’. The input layer should be **BIA_Sightings_Multipart** and the overlay layer is **Boat_Uses**. For ‘Overlay Type’, select Identity. Name the output **BIA_Sightings_Boat**.
+
+##### Q6. Open the attribute table for the output. What does the 0, 1, and 2 represent in the swimming column? {.unnumbered}
 
 ------------------------------------------------------------------------
 
@@ -220,19 +222,60 @@ _HINT: For Vessels, you will need to include more than one column for $F$._
 **Step 3:** Finally, use a weighted suitability calculation by creating a new field, Suitability, and writing the following expression:
  [Area] * 0.4 + [Sightings] * 0.2 + [Vessels] * 0.4.
 
-##### Q6. What is the maximum value for Area to four decimal places? (1 point) {.unnumbered}
-##### Q7. What is the maximum value for Sightings to four decimal places? (1 point) {.unnumbered}
-##### Q8. What is the maximum value for Vessels to four decimal places? (1 point) {.unnumbered}
+##### Q7. Write down the $Fmax$ value you used for area to four decimal places.{.unnumbered}
+
+##### Q8: Write down the $Fmax$ value you used for sightings to four decimal places. {.unnumbered}
+
+##### Q9: Write down the $Fmax$ value you used for vessels to four decimal places {.unnumbered}
 
 To provide a buffer zone protecting the humpback whales within the newly formed sanctuary, we will select the five BIA areas with the highest suitability score and create a five kilometer buffer.
 
 **Step 4:** Sort the Suitability field by right-clicking on the field title and selecting **Sort Descending**.
 
-**Step 5:** Select and export the top five features to a new layer named **Top_Five_Sanctuary**. Clean up the attribute table, so that it only has relevant columns. This is the output table that is a deliverable for the lab.
+**Step 5:** Select and export the top five features to a new layer named **Top_Five_Sanctuary**. Clean up the attribute table, so that it only has relevant columns. **This is the output table that is a deliverable for the lab.**
 
 **Step 6:** Open the tool **Buffer**. Input features will be **Top_Five_Sanctuary**. Name the output **Sanctuary_Buffer**. Set the distance as 5 kilometers. For dissolve type, select **Dissolve all output features into a single feature**.
 
 You just conducted a suitability analysis and produced a map of how to potentially expand the humpback whale sanctuary!
+
+Now is the time for your cartographic skills to shine. To design a map of the highest quality you will need to draw on all of you GIS skills. Ensure you include all the standard components of a map along with your artistic flair. 
+
+Also, be sure to include important data, but also make sure the map is not too cluttered. Remember that you can use inset maps to demonstrate additional detail for the most suitable habits. 
+
+The physical requirements are as follows: 
+
+*   Map should be 11”x17” either as a landscape or portrait layout 
+*   You should export the map as a PDF document
+*   All features on the map should appear in the legend
+*   Your map should have all the necessary elements of a map
+
+------------------------------------------------------------------------
+
+## Scenario 2 {.unnumbered}
+
+False killer whales, an endangered resident species in Hawaiian waters, are long-lived and only reproduce one calf every 6 or 7 years. So, the species is heavily impacted by human activities, taking a long time to recover. The false killer whales are often caught in fishing gear as bycatch, which is defined as the incidental or unintentional capture of a non-target species. Not only is this severely hurting the false killer whale population, in addition, Hawaiian fisheries have been forced to close their fishing season early, by reaching their bycatch limit. As there is a resource conflict at play, you will need to redefine the fishing grounds to limit the bycatch, as well as discuss the placement of a marine sanctuary for false killer whales.
+
+Using the tools that you learned in Scenario 1. Please complete the below tasks. 
+------------------------------------------------------------------------
+
+## Task 1: Export Relevant Data from Biologically Important Areas Shapefile {.unnumbered} 
+
+From this task, you will be able to identify where is the BIA for false killer whales in Hawaii. Try to only use one SQL expression to extract the data for species and region.
+
+------------------------------------------------------------------------
+
+## Task 2: Extract All of the Commercial Fishing Vessels from Ocean Uses {.unnumbered}
+
+From this task, you will obtain a shapefile of the relevant fishing vessels that are in conflict with the false killer whales. The fishing vessel types include: Commercial Fishing with Benthic Fixed Gear, Commercial Fishing with Benthic Mobile Gear, and Commercial Pelagic Fishing. Hint: Export Data for Dominant Uses of the above fields. 
+
+------------------------------------------------------------------------
+
+## Task 3: Erase where the False Killer Whales and Commercial Fishing Vessels overlap {.unnumbered}
+
+Use the Overlay Layers tool to determine where the BIA for false killer whales in not in conflict with the fishing vessels. You can also determine where there is the most conflict between false killer whales and fishing vessels by using the ‘Identity’ feature of the Overlay Layers tool, and then carrying out a calculation within the attribute table. 
+
+Explore the Number of other Species with BIAs that may also Conflict with the Commercial Fishing Vessels How does this impact how a marine sanctuary for false killer whales should be identified?
+
 
 ------------------------------------------------------------------------
 
