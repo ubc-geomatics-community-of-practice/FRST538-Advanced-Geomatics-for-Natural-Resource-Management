@@ -38,3 +38,14 @@ q3.-what-is-the-percentage-of-points-that-are-ground-points
 q4.-why-is-it-important-to-select-the-minimum-value-in-the-cell-assignment-selection-2-sentence-maximum
 q5.-when-looking-at-semivariogram-properties-what-does-major-range-and-nugget-refer-to-two-sentence-maximum
 q6.-which-interpolation-technique-most-closely-resembles-the-default-raster-mkrf_dtm-from-task-2
+mm-near-infrared
+mm-visible
+mm-near-infrared-1
+mm-visible-1
+scenario-2
+using-the-tools-that-you-learned-in-scenario-1.-please-complete-the-below-tasks.
+task-1-export-relevant-data-from-biologically-important-areas-shapefile-1
+task-2-extract-all-of-the-commercial-fishing-vessels-from-ocean-uses
+task-3-erase-where-the-false-killer-whales-and-commercial-fishing-vessels-overlap
+redo-these
+section
