@@ -49,3 +49,16 @@ task-2-extract-all-of-the-commercial-fishing-vessels-from-ocean-uses
 task-3-erase-where-the-false-killer-whales-and-commercial-fishing-vessels-overlap
 redo-these
 section
+time-series-image-analysis
+screenshot-1-take-a-screen-shot-of-your-band-arithmetic-equation-and-submit-it-in-your-lab-report.
+q1.-what-are-the-minimum-and-maximum-values-of-your-new-2019-ndvi-layer
+q2.-what-do-the-dark-areas-in-the-image-represent-the-gray-areas-the-white
+q3.-what-information-does-this-type-of-analysis-give-us-when-and-why-might-this-type-of-analysis-be-used
+task-2-time-series-analysis
+q4-hypothesize-on-what-is-causing-the-changes-in-ndvi-why-might-the-pattern-in-the-south-west-corner-of-the-timelapse-look-different-from-other-changes
+screenshot2-exported-version-of-temporal-profile
+q5-examine-your-graph-and-provide-some-comments-on-the-general-trends-you-notice.-hypothesize-on-why-different-points-take-longer-to-recover-or-have-smaller-changes-in-ndvi-values.
+q6-examnine-the-line-representing-a-water-pixel.-does-it-have-a-consistant-ndvi-value-explain-why-or-why-not
+task-3-change-detection
+q7-using-what-you-know-about-ndvi-what-would-cause-an-increase-in-ndvi-values-over-time
+task-4-map-creation
