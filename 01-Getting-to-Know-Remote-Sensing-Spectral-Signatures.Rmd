@@ -33,7 +33,7 @@ The aim of this lab is to learn about the electro magnetic spectrum (EMS), under
 
 ## Data {.unnumbered}
 
-We will be working with a multispectral image of Vancouver from the Landsat 5 satellite (L5047026subset_19990922_7B.dat).
+We will be working with a multispectral image of Vancouver from the Landsat 5 satellite (L5047026subset_19990922_7B.dat). The data is located in the Canvas folder for Lab 1.
 
 ------------------------------------------------------------------------
 
@@ -41,7 +41,7 @@ We will be working with a multispectral image of Vancouver from the Landsat 5 sa
 
 The electromagnetic spectrum (EMS) is the distribution of electromagnetic radiation according to wavelength/frequency, and includes radio waves, visible and infrared light, x-rays, gamma rays, and more. In remote sensing, we use the reflective, absorptive, and emissive properties of terrestrial features to identify and measure them (i.e. how do different wavelengths in the EMS interact with the surface of the earth?).
 
-NOTE: It is important to recognize that the visible part of the EMS is the only section that humans can see. All colours in the visible spectrum are wavelengths, but not all wavelengths in the EMS are colours.
+**Note:** It is important to recognize that the visible part of the EMS is the only section that humans can see. All colours in the visible spectrum are wavelengths, but not all wavelengths in the EMS are colours.
 
 **Spectral Reflectance**
 
@@ -55,10 +55,10 @@ Figure 1: Reflectance characteristics of various features at different wavelengt
 
 ##### Q1. For broadleaf and needle-leaf vegetation, what is the approximate wavelength that is reflected most and what section of the EMS does this range belong to? {.unnumbered}
 
-* 0.8-1.0 mm (near infrared)
-* 0.1-1.0 mm (visible)
-* 0.7-0.8 mm (near infrared)
-* 0.55-0.65 mm (visible) 
+* **0.8-1.0 mm (near infrared)**
+* **0.1-1.0 mm (visible) **
+* **0.7-0.8 mm (near infrared) **
+* **0.55-0.65 mm (visible) **
 
 ##### Q2. True/False: Soil and vegetation reflect roughly the same proportion of blue light. {.unnumbered}
 
@@ -224,17 +224,17 @@ You can experiment with different band combinations by visualizing different ban
     knitr::include_graphics("images/01-standard-false-colour-composite.png")
 ``` 
 
-Right click the bands in the **Contents** pane, turn different layers on and off by clicking the check mark off and on in the **IsVisible** section. Zoom and pan around and investigate different areas of Vancouver that you may know. Feel free to use google maps or google earth to help you orient yourself. 
+Right click the bands in the **Contents** pane, turn different layers on and off by clicking the check mark off and on in the **Is Visible** section. Zoom and pan around and investigate different areas of Vancouver that you may know. Feel free to use google maps or google earth to help you orient yourself. 
 
 ##### Q8. In a ***standard false colour*** composite (Band 4 visualized used red, Band 3 visualized using green, and Band 2 visualized using blue), healthy vegetation appears _____. Vegetation is more reflective in the _____ part of the spectrum than in the green part of the spectrum so _____ appears the brightest. {.unnumbered}
 
-##### Q9. Experiment with many different false colour composites. Which 3 bands would you combine if you wanted to analyze **vegetation**? Do soem light research on spectral properties and the applications of different Landsat bands and write a sentence or two justifying each of your choices. Then, append a screenshot of your chosen composite to your response. {.unnumbered}
+##### Q9. Experiment with many different false colour composites. Which 3 bands would you combine if you wanted to analyze **vegetation**? Do some light research on spectral properties and the applications of different Landsat bands and write a sentence or two justifying each of your choices. Then, append a screenshot of your chosen composite to your response. {.unnumbered}
 
-##### Q10. Experiment with many different false colour composites. Which 3 bands would you combine if you wanted to analyze **water quality**? Do soem light research on spectral properties and the applications of different Landsat bands and write a sentence or two justifying each of your choices. Then, append a screenshot of your chosen composite to your response. {.unnumbered}
+##### Q10. Experiment with many different false colour composites. Which 3 bands would you combine if you wanted to analyze **water quality**? Do some light research on spectral properties and the applications of different Landsat bands and write a sentence or two justifying each of your choices. Then, append a screenshot of your chosen composite to your response. {.unnumbered}
 
-##### Q11. Experiment with many different false colour composites. Which 3 bands would you combine if you wanted to analyze **agriculture**? Do soem light research on spectral properties and the applications of different Landsat bands and write a sentence or two justifying each of your choices. Then, append a screenshot of your chosen composite to your response. {.unnumbered}
+##### Q11. Experiment with many different false colour composites. Which 3 bands would you combine if you wanted to analyze **agriculture**? Do some light research on spectral properties and the applications of different Landsat bands and write a sentence or two justifying each of your choices. Then, append a screenshot of your chosen composite to your response. {.unnumbered}
 
-##### Q12. Experiment with many different false colour composites. Which 3 bands would you combine if you wanted to analyze **urban areas**? Do soem light research on spectral properties and the applications of different Landsat bands and write a sentence or two justifying each of your choices. Then, append a screenshot of your chosen composite to your response. {.unnumbered}
+##### Q12. Experiment with many different false colour composites. Which 3 bands would you combine if you wanted to analyze **urban areas**? Do some light research on spectral properties and the applications of different Landsat bands and write a sentence or two justifying each of your choices. Then, append a screenshot of your chosen composite to your response. {.unnumbered}
 
 **Viewing Spectral Signatures**
 
