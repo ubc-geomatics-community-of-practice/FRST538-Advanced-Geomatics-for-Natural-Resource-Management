@@ -81,7 +81,7 @@ This process is the exact same as in ArcMap. To add data to the map, navigate to
     knitr::include_graphics("images/01-add-folder-connection.png")
 ```
 
-Navigate to where the data is saved and click ok. When you can find the data folder, drag-and-drop the **MKRF_UTM10S_2019_BAP.tif **  file into the map window. At this point, you should see an RGB satellite image of the Malcolm Knapp Research Forest (Figure 1) if the mapview does not immediately pan to the image right click **MKRF_UTM10S_2019_BAP.tif ** in the Contents pane and press Zoom to Layer.
+Navigate to where the data is saved and click ok. When you can find the data folder, drag-and-drop the **MKRF_UTM10S_2019_BAP.tif **  file into the map window. At this point, you should see an RGB satellite image of the Malcom Knapp Research Forest (Figure 1) if the mapview does not immediately pan to the image right click **MKRF_UTM10S_2019_BAP.tif ** in the Contents pane and press Zoom to Layer.
 
 **Note** If the catalog pane does not immediately appear in your ArcGIS Pro document use the ribbons at the top to navigate to **View -> Catalog Pane** 
 
@@ -278,15 +278,16 @@ If you need some inspiration a quick google search for “Design principles for 
 
 Also, be sure to include important data, but also make sure the map is not too cluttered. 
 The physical requirements are as follows: 
--   Map should be 11”x17” either as a landscape or portrait layout 
 
--   You should export the map as a pdf 
+- Map should be 11”x17” either as a landscape or portrait layout
 
--   Your map should incorporate the suite of standard map element:
-  -   Title 
-  -   Scale bar
-  -   Compass 
-  -   Legend 
+- You should export the map as a pdf 
+
+- Your map should incorporate the suite of standard map element:
+  - Title 
+  - Scale bar
+  - Compass 
+  - Legend 
   
 -   ONE map showing both NDVIcutblocks and true colour BAP scene.
 

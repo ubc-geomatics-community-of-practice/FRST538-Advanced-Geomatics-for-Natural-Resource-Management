@@ -62,3 +62,13 @@ q6-examnine-the-line-representing-a-water-pixel.-does-it-have-a-consistant-ndvi-
 task-3-change-detection
 q7-using-what-you-know-about-ndvi-what-would-cause-an-increase-in-ndvi-values-over-time
 task-4-map-creation
+lidar-for-forest-management
+task-2-load-and-explore-the-lidar-data-.unnumbered
+q1-examine-the-lascheck-output.-is-the-data-normalized-has-a-ground-classification-been-completed-already
+q2-examine-the-output-of-str.-how-many-first-returns-are-there-what-is-the-maximum-z-value
+q3-examine-the-output-of-print.-what-is-the-density-of-this-data-is-that-high-low-or-somewhere-in-the-middle
+task-4-read-multiple-.las-files-into-lascatolog-object
+q5.-what-do-you-think-the-large-empty-locations-in-the-chm-represent
+task-7-stem-volume-models-with-lidr
+machine-learning-for-classification
+q1-landsat-oli-bands-8-10-and-11-were-not-included-in-the-provided-layer-and-therefore-purposefully-excluded-from-this-classification-and-excersise.-what-portion-of-the-electromagnetic-spectrum-do-these-bands-represent-and-why-do-you-think-they-were-not-included

@@ -2,13 +2,15 @@ spectral-signatures:
   author: Unknown
 network-analysis:
   author: Paul Pickell
-hydrology-analysis:
-  author: Hana Travers-Smith
+lidar-for-forest-management:
+  author: Unknown
 lidar-terrain:
   author: Unknown
 suitability-overlay-analysis:
   author: Unknown
-web-mapping:
-  author: Paul Pickell
-writing-metadata-documentation:
-  author: Paul Pickell and Francois du Toit
+geographically-weighted-analysis:
+  author: Unkown
+time-series-image-analysis:
+  author: Unknown
+machine-learning-for-classification:
+  author: Uknown
