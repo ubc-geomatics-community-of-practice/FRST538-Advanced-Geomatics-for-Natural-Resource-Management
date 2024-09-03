@@ -19,7 +19,13 @@ The aim of this lab is to use LiDAR data from the Malcolm Knapp Research Forest 
 
 ## Learning Objectives {.unnumbered}
 
--   TBD
+-   install R and Rstudio 
+-   create a DEM from LiDAR point data in both 2D and 3D
+-   extract meaningful metrics from points clouds
+-   use an OLS model to predict forest forest attributes with LiDAR metrics 
+-   understand the importance of variable selection in modeling 
+-   conduct individual tree detection using point and CHM 
+-   find tall trees using point cloud 
 
 ------------------------------------------------------------------------
 
@@ -754,6 +760,6 @@ plot(Subsetmax, bg = "white")
 ------------------------------------------------------------------------
 ## Summary {.unnumbered}
 
-REDO
+We started this lab with learning to install R and Rstudio and progressed quickly towards visualizing RGB and point cloud data, creating a DEM and CHM, extracting cloud_metrics, using an OLS regression to preduct forest attributes with lidar metrics, and using individual tree detection methods to find tall trees using points clouds. Packages like lidR and tidyverse allow us to conduct meaningful and important analysis with relatively few lines of code. This lab was just a few examples of important questions about our forests that can be modeled and answered using these tools! When moving forward and including these methods into your own workflows, remember the importance of getting to know your data and modeling methods. Ask yourself, what are these duplicate points doing to my processing times? How are these outlying points affecting my data? What model works best for the question I am trying to answer with my metrics? Are these variables equally important or are they highly correlated and I am fitting noise?
 
 Return to the [**Deliverables**](#lab3-deliverables) section to check off everything you need to submit for credit in the course management system.

@@ -3,7 +3,7 @@ yml_content <- yaml::read_yaml("chapterauthors.yml")
 author <- yml_content[["time-series-image-analysis"]][["author"]]
 ```
 
-# Writing Metadata and Documentation {#time-series-image-analysis}
+# Time Series Analysis {#time-series-image-analysis}
 
 Written by
 ```{r results='asis', echo=FALSE}
@@ -18,7 +18,12 @@ In this lab, we will be using Landsat derived Best Available Pixel (BAP) imagery
 
 ## Learning Objectives {.unnumbered}
 
-TBD
+- Use Raster Functions tool to calculate NDVI in ArcGIS
+- Interpret the physical meaning of regions of high, medium, and low NDVI 
+- Visualize temporal NDVI data in ArcGIS
+- create a temporal profile to help quantify changes in the image
+- Use the change detection wizard to determine the difference in NDVI from 2000-2019
+- create a map showing change in NDVI 
 
 ------------------------------------------------------------------------
 
@@ -295,6 +300,6 @@ The physical requirements are as follows:
 
 ## Summary {.unnumbered}
 
-Todo
+Spectral Indices offer a unique ability to highlight landcover and image properties that would be very difficult to map without the use of spectral information. The Normalized Difference Vegetation Index (NDVI) has become one of the most widely used indices and thanks to satellite programs like Landsat, we now have access to global coverage of this index. In this lab, we explored the ability to derive this index from Landsat BAP data from 2000-2019 in ArcGIS and explore the temporal profile of NDVI to quantify chnages in the image through time. We can use change detection tools to then be able to assess regions that have changed significantly through our time period. Time series data of spectral indices like NDVI can be game changing for many research applications like monitoring drought, agricultural productivity, and measuring biomass! 
 
 Return to the [**Deliverables**](#lab7-deliverables) section to check off everything you need to submit for credit in the course management system.

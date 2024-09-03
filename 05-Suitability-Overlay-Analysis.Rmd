@@ -2,7 +2,7 @@
 yml_content <- yaml::read_yaml("chapterauthors.yml")
 author <- yml_content[["suitability-overlay-analysis"]][["author"]]
 ```
-# Suitability and Overlay Analysis {#suitability-overlay-analysis}
+# Suitability and Overlay Analysis {#suitability-overlay-analysis} 
 
 Written by
 ```{r results='asis', echo=FALSE}
@@ -96,7 +96,7 @@ knitr::kable(
 
 ------------------------------------------------------------------------
 
-## Scenario 1
+## Scenario 1 {.unnumbered}
 
 ## Task 1: Export Relevant Data from Biologically Important Areas Shapefile {.unnumbered}
 
@@ -255,7 +255,8 @@ The physical requirements are as follows:
 
 False killer whales, an endangered resident species in Hawaiian waters, are long-lived and only reproduce one calf every 6 or 7 years. So, the species is heavily impacted by human activities, taking a long time to recover. The false killer whales are often caught in fishing gear as bycatch, which is defined as the incidental or unintentional capture of a non-target species. Not only is this severely hurting the false killer whale population, in addition, Hawaiian fisheries have been forced to close their fishing season early, by reaching their bycatch limit. As there is a resource conflict at play, you will need to redefine the fishing grounds to limit the bycatch, as well as discuss the placement of a marine sanctuary for false killer whales.
 
-Using the tools that you learned in Scenario 1. Please complete the below tasks. 
+Using the tools that you learned in Scenario 1. Please complete the below tasks.
+
 ------------------------------------------------------------------------
 
 ## Task 1: Export Relevant Data from Biologically Important Areas Shapefile {.unnumbered} 

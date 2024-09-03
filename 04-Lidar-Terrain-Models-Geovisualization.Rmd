@@ -18,7 +18,11 @@ The aim of this lab is to use LiDAR data from the Malcolm Knapp Research Forest 
 
 ## Learning Objectives {.unnumbered}
 
--   TBD
+-   View and analyze LiDAR point clouds using ArcPro 
+-   Build DTM using built-in ArcGIS functions 
+-   Use different interpolation techniques (Kriging, Inverse Distance Weighting, Spline) for creating DTM
+-   Visually interpret and quantitatively assess differences in DTM rasters made from the three interpolation methods 
+- Create DSM and explore in 3D view 
 
 ------------------------------------------------------------------------
 
@@ -129,7 +133,7 @@ We can now add our height values to be used for interpolation. Search for the �
 
 ## Task 4: Raster interpolation {.unnumbered}
 
-If you haven’t done so, now is a good time to save your project as creating these rasters can sometimes be tough on MGEM laptops. Since we now have points representing height values, we can use the raster interpolation toolset to experiment with 3 different interpolation techniques; Kriging, Inverse Distance Weighting (IDW), and Spline. To help understand more about these techniques, have a look at the online help section for the [interpolation toolset]( https://pro.arcgis.com/en/pro-app/tool-reference/spatial-analyst/an-overview-of-the-interpolation-tools.htm) (see each tool in the left hand menu):
+If you haven’t done so, now is a good time to save your project as creating these rasters can sometimes be tough on laptops. Since we now have points representing height values, we can use the raster interpolation toolset to experiment with 3 different interpolation techniques; Kriging, Inverse Distance Weighting (IDW), and Spline. To help understand more about these techniques, have a look at the online help section for the [interpolation toolset]( https://pro.arcgis.com/en/pro-app/tool-reference/spatial-analyst/an-overview-of-the-interpolation-tools.htm) (see each tool in the left hand menu):
 
 ##### Q5. When looking at semivariogram properties what does 'major range' and 'nugget' refer to? (two sentence maximum) {.unnumbered}
 
@@ -240,7 +244,6 @@ Take some time to play around and explore the scene. One thing we notice is that
 
 ## Summary {.unnumbered}
 
-## fix this {.unnumbered}
-There are many things to consider when undertaking machine learning with geospatial data. Although we only practiced with the random forest algorithm, many of these considerations are important for other methods as well. Machine learning algorithms work well for large datasets where you can randomly apportion testing, training and validation datasets. When applying these algorithms to spatial data, we often need to consider data density in the spatial and sometimes temporal domains. Interrogating spatial and temporal autocorrelation can help to identify the appropriate sampling strategy for your problem. As you learned in this lab, even the type of variable that you are predicting (continuous vs discrete) can require completely different methods for data handling, testing, and validation. Keep in mind that most of the data pre-processing was removed from the lab (see [Data](#lab4-data)) so that you could focus on the analysis, though these efforts remain some of the most time-consuming to ensure a successful analysis.
+In this lab, we explored the capabilities of ArcGIS to view, manipulate, and analyze LiDAR point cloud data. We harnessed the power and ease of use of the ArcGIS built-in functions for preprocessing the LiDAR and making a DTM. We tested three different interpolation methods when making our point cloud derived DTM: Kriging, Inverse Distance Weighting, and Spline. We looked for patterns based on low, medium, and high elevation and sloped areas across our different DTM products for more insight into how our choice of interpolation method will have an impact on our eventual data product. Moving then onto making a 3D scene in ArcGIS, we explored how to more accurately reflect the real world by ensuring the ground surface matches the forest. Finally, we ended on a discussion of highlighting particular characteristics of your dataset through changing the lighting or exagerating height differences within the ArcGIS scene. 
 
 Return to the [**Deliverables**](#lab4-deliverables) section to check off everything you need to submit for credit in the course management system

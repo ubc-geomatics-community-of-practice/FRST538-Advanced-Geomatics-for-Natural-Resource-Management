@@ -13,13 +13,16 @@ cat(author)
 
 ## Lab Overview {.unnumbered}
 
-The aim of this lab is to learn about the electro magnetic spectrum (EMS), understand spectral properties of differing materials, and get comfortable using ArcGIS Pro to load and explore different types of remotely sensed images, display individual spectral bands, make different colour composites, and view spectral signatures.  
+The aim of this lab is to learn about the electromagnetic spectrum (EMS), understand spectral properties of differing materials, and get comfortable using ArcGIS Pro to load and explore different types of remotely sensed images, display individual spectral bands, make different colour composites, and view spectral signatures.  
 
 ------------------------------------------------------------------------
 
 ## Learning Objectives {.unnumbered}
 
--   TBD 
+-   Understand how materials exhibit varying spectral reflectance for wavelengths of different lengths.
+-   Learn to open data in ArcGIS and assess Raster Information of layers.
+-   Display imagery using greyscale, true colour composite, and false colour composite and understand the usefulness of each display method. 
+-   Justify choice of possible false colour compsite combinations for displaying important characteristics of various landcover classes.
 
 ------------------------------------------------------------------------
 
@@ -264,8 +267,6 @@ You might have to resize the spectral chart at the bottom of your screen in orde
 ## Summary {.unnumbered}
 
 
-In this lab, we introduced concepts of using specific ranges of the electromagnetic spectrum to understand spectral reflectance and spectral signatures. Spectral signatures are determined by the spectral properties of different materials. They can be used to obtain more information to us about a material than what we can see with visible light! We used ArcGIS Pro to analyze different types of remote sensing data and visualized various combinations of bands using true and false colour composites. We also 
-....
-We covered a lot of ground in this lab about LiDAR processing with GIS software. One thing that should be apparent is that the vast majority of your time will be spent preparing LiDAR data for analysis. Point clouds are dense. Advances in scanning technology are creating new challenges for managing, accessing, organizing, and manipulating these dense data. Remember, we always want to work with the least amount of LiDAR data that our task requires. For spatial interpolation of terrain, this means only working with the necessary ground returns in our AOI. By filtering the tiles and points to only those we needed for the interpolation task, we reduced our data overhead by over 650%! You also practiced evaluating different spatial interpolation algorithms, which can have a large impact on subsequent analyses with those surfaces. When choosing an interpolation algorithm, you must always consider how dense your data are (i.e., how long will it take for me to produce this surface), what properties you want the output surface to have (i.e., statistical intervals, reproducing the true ranges, etc.), and what the surface will be used for (i.g., hydrology mapping, suitability analysis, etc.). Finally, you also practiced visualizing 3D data to augment and enhance your interpretations of these 2D interpolated surfaces.
+In this lab, we introduced concepts of using specific ranges of the electromagnetic spectrum to understand spectral reflectance and spectral signatures. Spectral signatures are determined by the spectral properties of different materials. They can be used to gather more information about a material than what we can see with visible light! We used ArcGIS Pro to analyze different types of remote sensing data and visualized various combinations of bands using greyscale, true colour composites, and false colour composites. This lab is just the beginning of our remote sensing journey but opens our eyes to the power of remote sensing and it's ability to unveil information about the world around us!
 
 Return to the [**Deliverables**](#lab1-deliverables) section to check off everything you need to submit for credit in the course management system.

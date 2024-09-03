@@ -18,7 +18,11 @@ In this lab you will learn about supervised classification and selecting trainin
 
 ## Learning Objectives {.unnumbered}
 
-TBD
+- Understand the four steps of supervised classification 
+- Use the Classification wizard in ArcGIS pro to create classes 
+- Choose representive training regions based on classes
+- Train a random forest model using training data
+- Use visual intepretation and confusion matrix to assess classified map accuracy 
 
 ------------------------------------------------------------------------
 
@@ -68,7 +72,7 @@ The goal of a supervised classification is to manually identify sample training 
 
 **Applying the classification algorithm**-The fourth and final step is to assess the accuracy of the classification. Accuracy assessment is crucial, for any map that is produced. 
 
-To begin **Open** ArcGIS Pro and create a new Project called “Lab7_yourName” and save it in your lab 7 folder. Navigate to the Catalog and open the “LC08_L1TP_047026_20210529_2.tif” file in map view. This file is a raster layer stack representing 8 bands/channels of Landsat 8 OLI imagery acquired May 29th 2021; where each band corresponds to the table above in the Data description except band_8 = Cirrus. 
+To begin **Open** ArcGIS Pro and create a new Project called “LabML_yourName” and save it in your lab folder. Navigate to the Catalog and open the “LC08_L1TP_047026_20210529_2.tif” file in map view. This file is a raster layer stack representing 8 bands/channels of Landsat 8 OLI imagery acquired May 29th 2021; where each band corresponds to the table above in the Data description except band_8 = Cirrus. 
 
 ##### Q1: Landsat OLI Bands 8, 10, and 11 were not included in the provided layer and therefore purposefully excluded from this classification and excersise. What portion of the electromagnetic spectrum do these bands represent, and why do you think they were not included? {.unnumbered}
 
@@ -96,7 +100,7 @@ ArcGIS PRO has a convenient built in **Classification Wizard** that we will be u
     knitr::include_graphics("images/08-image-classification-wizard.png")
 ```
 
-Select the Lab 7 Project folder as your “Output Location” and select **Next** at the bottom of the Image Classification Wizard pane. The “Training Samples Manager” should appear and you should see something similar to the image below. 
+Select the Lab Project folder as your “Output Location” and select **Next** at the bottom of the Image Classification Wizard pane. The “Training Samples Manager” should appear and you should see something similar to the image below. 
 
 ```{r 08-nalcms-simple-classes, out.width= "30%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/08-nalcms-simple-classes.png")
@@ -207,6 +211,6 @@ The physical requirements are as follows:
 
 ## Summary {.unnumbered}
 
-Todo
+In this lab, you will conduct a supervised classification of a remote sensing image. The process involves four key steps: defining information classes, identifying training areas, defining spectral signatures, and applying a classification algorithm. You’ll start by defining land-cover classes relevant to your image, followed by manually selecting training areas that represent these classes. Next, you will create a random forest model to classify the full image. Machine learning plays a crucial role in this process by automating and improving the accuracy of the classification, enabling more efficient and reliable analysis. Finally, you’ll assess the accuracy of the classification using visual interpretation and confusion matrix to ensure dependable results.
 
 Return to the [**Deliverables**](#lab8-deliverables) section to check off everything you need to submit for credit in the course management system.
