@@ -166,7 +166,7 @@ Wonderful! We can now explore lidar data in 3D by clicking and scrolling through
 
 ------------------------------------------------------------------------
 
-## Task 4: Read Multiple LAS Files into LAScatolog object  {.unnumbered}
+## Task 3: Read Multiple LAS Files into LAScatolog object  {.unnumbered}
 
 Once you have a basic understanding of the study area, it is time to load your lidar data. The file type used in this course is LAS, which is an industry standard format for storing lidar data. In the future, you may also work with other file formats, such as LAZ. You can explore the differences between these formats [online](https://rapidlasso.de/five-myths-about-las-laz-and-optimized-las/).
 
@@ -425,7 +425,7 @@ Once our model is developed, we can apply the model ‘wall-to-wall’ across ou
 
 #### Part A {.unnumbered}
 
-We will begin by exploring our lidar metrics and selecting an initial subset of metrics to include in model development. In lab 2, we calculated lidar metrics for each plot using a radius of 30 m. We will use these metrics to develop our model.
+We will begin by exploring our lidar metrics and selecting an initial subset of metrics to include in model development.
 
 ```{r, echo=TRUE, eval=FALSE}
 #Read in relevant .csvs
@@ -441,7 +441,7 @@ data_table <- plot_table %>%
 
 ```
 
-This script is divided into 4 Parts (A - D). Part A contains the required inputs for the script to run correctly. These inputs are filled in, but make any adjustments if your filenames are different. Part B reads in our Plot_Table.csv and MKRF_Plot_Metrics.csv files, and organizes them. The Plot_Table.csv file contains the net stem volume estimates for each plot, while the MKRF_Plot_Metrics.csv file contains our calculated lidar metrics. A number of metrics are not of any interest to us (e.g, intensity metrics), so if you wish an extra challenge you can remove them from dataTable. At the end of Part A, our Plot_Table.csv and MKRF_Plot_Metrics.csv are combined into a single master table called dataTable. Run Part A of the script by highlighting them, and hitting Ctrl + Enter. You should see the commands executed in the Console window in the lower left of the R studio window.
+This script is divided into 3 Parts (A - C). Part A contains the required inputs for the script to run correctly. These inputs are filled in, but make any adjustments if your filenames are different. Part B reads in our Plot_Table.csv and MKRF_Plot_Metrics.csv files, and organizes them. The Plot_Table.csv file contains the net stem volume estimates for each plot, while the MKRF_Plot_Metrics.csv file contains our calculated lidar metrics. A number of metrics are not of any interest to us (e.g, intensity metrics), so if you wish an extra challenge you can remove them from dataTable. At the end of Part A, our Plot_Table.csv and MKRF_Plot_Metrics.csv are combined into a single master table called dataTable. Run Part A of the script by highlighting them, and hitting Ctrl + Enter. You should see the commands executed in the Console window in the lower left of the R studio window.
 
 Once Part A is executed, scroll down to Part B. This section of the script is designed for us to explore our lidar metrics and select a subset of metrics for model development. Begin by highlighting the line colnames (dataTable) and pressing Ctrl + Enter to run it. This will generate a list of the column names in dataTable:
 
@@ -502,15 +502,102 @@ This will display more scatterplots, but between variables that are less correla
 
 ##### Screenshot 3: Export the result of `pairs()` as an image and insert into your submission. {.unnumbered}
 
-##### Developing a statistial model {.unnumbered}
+##### Developing a statistical model {.unnumbered}
 
-After selecting a handful of initial metrics, we can develop our model to predict net stem volume. We will try two example sets of initial metrics. As noted in the introduction, we will use a forward selection process to develop our final model.
+After selecting a handful of initial metrics, we can develop our model to predict net stem volume. We will try two example sets of initial metrics. As noted in the introduction, we will use a forward selection process to develop our final model. We will work through two examples, where different initial variables are selected.
 
 Go to Example 1 of Part C in the R script. For this example, our initial variables are zq90, pzabove2, zentropy, and zskew. Run through this example line by line in the R script to build our first model using forward selection. Read the comments in the script to understand how this process works.
+
+#### Part C {.unnumbered}
+
+Example 1. Selected variables = zq90, pzabove2, zentropy, zskew.
+
+We start with no variables in our model:
+
+```{r, echo=TRUE, eval=FALSE}
+model1 = lm(Net_Volume ~ 1, data = data_table)
+#Now, we add each selected variable to our model one by one, to see which variable is the most significant
+#predictor of volume
+add1(model1,~  zq90 + pzabove2 + zentropy + zskew, test = 'F')
+
+#Elev.P90 was the most significant (lowest Pr(>F)), so we add it to our model
+model1 = lm(Net_Volume ~ zq90, data = data_table)
+#Now, We add each remaining variable to the new model one by one, to see 
+#if any variable is a significant addition
+add1(model1,~  zq90 + pzabove2 + zentropy + zskew, test = 'F')
+
+#pzabove2 was the most significant addition (lowest Pr(>F)), so we add it to our model
+model1 = lm(Net_Volume ~ zq90 + pzabove2, data = data_table)
+
+#Again, we test all the remaining variables one by one
+add1(model1,~ zq90 + pzabove2 + zentropy + zskew, test = 'F')
+
+```
+
+No additional variables were significant, so we can stop building our model
+
+Get the summary of the final model.
+
+```{r, echo=TRUE, eval=FALSE}
+summary(model1)
+```
+
+Plot our predicted volume against our measured volume
+
+```{r, echo=TRUE, eval=FALSE}
+{plot(Net_Volume ~ model1$fitted,data = data_table,xlab = 'Predicted',ylab = 'Measured')
+abline(0,1)} #Adds a one to one line
+```
+
+Get the coefficients to our model
+
+```{r, echo=TRUE, eval=FALSE}
+model1$coefficients
+```
 
 Once you complete Example 1, move on to Example 2. The only change here is that zq90 has been replaced by zq25. Run through example 2 line by line.
 
 You will notice that the small change from Example 1 to Example 2 (Using zq25 instead of zq90) completely changed our final model. Here are the final two developed models below. Look at the model coefficients in R to confirm that these models are correct.
+
+Example 2 Here is a slightly different selection of metrics (zq25 instead of zq90) Variables to include:zq25, pzabove2, zentropy, zskew Again, we start with no variables in our model.
+
+```{r, echo=TRUE, eval=FALSE}
+model2 = lm(Net_Volume ~ 1, data = data_table)
+#Now, add in one variable at time, and select the most significant
+add1(model2,~ zq25 + pzabove2 + zentropy + zskew, test = 'F')
+
+#Elev.P25 was the most significant, so we add it to our model
+model2 = lm(Net_Volume ~ zq25, data = data_table)
+#Add each remaining variable one by one
+add1(model2,~ zq25 + pzabove2 + zentropy + zskew, test = 'F')
+```
+
+No additional variable comes out as significant, so our final model only has one variable Get the summary of our model
+
+```{r, echo=TRUE, eval=FALSE}
+summary(model2)
+```
+
+Plot our predicted volume against our measured volume
+
+```{r, echo=TRUE, eval=FALSE}
+plot.new()
+{plot(Net_Volume ~ model2$fitted,data = data_table,xlab = 'Predicted', ylab = 'Measured')
+  abline(0,1)}
+```
+
+Get the output coefficients to our model
+
+```{r, echo=TRUE, eval=FALSE}
+model2$coefficients
+```
+
+We can compare our two models
+
+```{r, echo=TRUE, eval=FALSE}
+summary(model1)
+summary(model2)
+```
 
 **Model 1:**
 
@@ -550,6 +637,18 @@ f <- function(x){
 
 Now, use `calc` to apply the model to the entire study area. Add this Figure into your PDF as Screenshot 4.
 
+```{r, echo=TRUE, eval=FALSE}
+#Apply function to raster
+net_volume_mkrf <- calc(zq25_mkrf_r, f)
+
+plot(net_volume_mkrf, col = col_1)
+
+#to help answer Q8
+plot(Net_Volume ~ pzabove2, data = data_table)
+```
+
+Done! You have successfully developed and applied a model to predict net stem volume at Malcolm Knapp. Hooray!
+
 Done! You have successfully developed and applied a model to predict net stem volume at Malcolm Knapp Research Forest. Hooray!
 
 ##### Q7: Does a reasonable high ${R^2}$ value necessarily mean this is a good model? Do you think our estimates of volume are accurate? How could we test the accuracy of our model? {.unnumbered}
@@ -559,9 +658,10 @@ Done! You have successfully developed and applied a model to predict net stem vo
 ```{r, echo=TRUE, eval=FALSE}
 plot(Net_Volume ~ pabove2, data = data_table)
 ```
+
 ------------------------------------------------------------------------
 
-## Task 9 {.unnumbered}
+## Task 8: Individual Tree Detection {.unnumbered}
 
 #### Part A) Detect individual trees from a point cloud {.unnumbered}
 
@@ -689,7 +789,7 @@ plot(crowns2, add = TRUE)
 
 In this section we will isolate the largest of trees in plot 2. 
 
-Run **Part C**  of the script now.
+Run **Part C**  of the script now. 
 
 ```{r, echo=TRUE, eval=FALSE}
 
