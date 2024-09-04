@@ -1,5 +1,5 @@
 --- 
-title: "FRST538-Advanced-Geomatics-for-Natural-Resource-Management"
+title: "FRST 538: Advanced Geomatics for Natural Resource Management"
 author: "Paul D. Pickell"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
