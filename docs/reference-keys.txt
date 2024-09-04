@@ -8,6 +8,7 @@ fig:07-example-output-ndvi-calculation
 spectral-signatures
 network-analysis
 lidar-for-forest-management
+lidar-terrain
 suitability-overlay-analysis
 geographically-weighted-regression
 time-series-image-analysis

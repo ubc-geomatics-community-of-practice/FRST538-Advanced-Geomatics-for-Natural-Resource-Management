@@ -241,6 +241,7 @@ Take some time to play around and explore the scene. One thing we notice is that
     knitr::include_graphics("images/04-example-scene-MKRF.png")
 ```
 
+------------------------------------------------------------------------
 
 ## Summary {.unnumbered}
 

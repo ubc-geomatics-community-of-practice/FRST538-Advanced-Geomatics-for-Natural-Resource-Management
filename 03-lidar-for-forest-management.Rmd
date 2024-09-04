@@ -145,9 +145,7 @@ las_check(las_mkrf) #run lascheck a second time to ensure duplicates removed
 
 Now that we have a general understanding of our lidar data, it is time to start visualizing! We will explore 2D and 3D plots of our data to gain an even deeper understanding of our study site before undergoing some basic manipulation. 
 
-First, we will visualize the density of lidar points across our site. You will notice that some areas have a higher density than others. This is likely due to the flight path of the aircraft that collected our data and probably causes some of the duplicated points that were highlighted by `lascheck`. Next, we will plot las_mkrf in 3D using the plot function. In lidR, this function can produce plots 
-
-in 2D or 3D, depending on structure of the input object. LASobjects are plotted in 3D, while Raster objects are 2D.
+First, we will visualize the density of lidar points across our site. You will notice that some areas have a higher density than others. This is likely due to the flight path of the aircraft that collected our data and probably causes some of the duplicated points that were highlighted by `lascheck`. Next, we will plot las_mkrf in 3D using the plot function. In lidR, this function can produce plots in 2D or 3D, depending on structure of the input object. LASobjects are plotted in 3D, while Raster objects are 2D.
 
 ```{r, echo=TRUE, eval=FALSE}
 #Visualize point density 
@@ -817,6 +815,7 @@ plot(Subsetmax, bg = "white")
 ##### Screenshot 6: Include an image of the subsetmax plot {.unnumbered}
 
 ------------------------------------------------------------------------
+
 ## Summary {.unnumbered}
 
 We started this lab with learning to install R and Rstudio and progressed quickly towards visualizing RGB and point cloud data, creating a DEM and CHM, extracting cloud_metrics, using an OLS regression to preduct forest attributes with lidar metrics, and using individual tree detection methods to find tall trees using points clouds. Packages like lidR and tidyverse allow us to conduct meaningful and important analysis with relatively few lines of code. This lab was just a few examples of important questions about our forests that can be modeled and answered using these tools! When moving forward and including these methods into your own workflows, remember the importance of getting to know your data and modeling methods. Ask yourself, what are these duplicate points doing to my processing times? How are these outlying points affecting my data? What model works best for the question I am trying to answer with my metrics? Are these variables equally important or are they highly correlated and I am fitting noise?
