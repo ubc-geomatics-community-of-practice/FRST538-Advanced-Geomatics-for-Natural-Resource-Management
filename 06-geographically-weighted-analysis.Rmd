@@ -40,7 +40,7 @@ Vancouver is the most populous city in British Columbia, Canada with a populatio
 
 Lab report with the following specification:
 
-<input type="checkbox" unchecked> 6 pages maximum PDF including figures, tables and references (3 points). Single-spaced, 12-point Times New Roman font (1 point). All
+<input type="checkbox" unchecked> 6 pages maximum PDF including figures, tables and references (3 points). Single-spaced, 12-point Times New Roman font (1 point).
 
 <input type="checkbox" unchecked> Results should address the following questions and requirements (25 points):</input>
 
