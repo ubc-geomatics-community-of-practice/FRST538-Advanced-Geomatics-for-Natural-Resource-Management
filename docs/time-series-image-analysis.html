@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lab: 6 Time Series Analysis | FRST538-Advanced-Geomatics-for-Natural-Resource-Management</title>
+  <meta name="description" content="Open Educational Resources for FRST 538 course at the University of British Columbia" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lab: 6 Time Series Analysis | FRST538-Advanced-Geomatics-for-Natural-Resource-Management" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Open Educational Resources for FRST 538 course at the University of British Columbia" />
+  <meta name="github-repo" content="github.com/ubc-geomatics-community-of-practice/FRST538-Advanced-Geomatics-for-Natural-Resource-Management/book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lab: 6 Time Series Analysis | FRST538-Advanced-Geomatics-for-Natural-Resource-Management" />
+  
+  <meta name="twitter:description" content="Open Educational Resources for FRST 538 course at the University of British Columbia" />
+  
+
+<meta name="author" content="Paul D. Pickell" />
+
+
+<meta name="date" content="2024-09-04" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="geographically-weighted-regression.html"/>
+<link rel="next" href="machine-learning-for-classification.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">An Open Geomatics Community of Practice</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-use-these-resources"><i class="fa fa-check"></i>How to use these resources</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-get-involved"><i class="fa fa-check"></i>How to get involved</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="spectral-signatures.html"><a href="spectral-signatures.html"><i class="fa fa-check"></i><b>1</b> Getting to know Remote Sensing and spectral signatures</a>
+<ul>
+<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#lab-overview"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#learning-objectives"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#lab1-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#data"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#task-1-the-electromagnetic-spectrum"><i class="fa fa-check"></i>Task 1: The Electromagnetic Spectrum</a></li>
+<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#task-2-landsat-5-bands-the-ems-arcgis-pro-software"><i class="fa fa-check"></i>Task 2: Landsat 5 Bands, the EMS, &amp; ArcGIS Pro Software</a></li>
+<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="network-analysis.html"><a href="network-analysis.html"><i class="fa fa-check"></i><b>2</b> Salmon Stream Network Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#lab-overview-1"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#learning-objectives-1"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#lab2-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#data-1"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#task-1-create-stream-segments"><i class="fa fa-check"></i>Task 1: Create stream segments</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#task-2-create-routes-and-apply-topology"><i class="fa fa-check"></i>Task 2: Create routes and apply topology</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#task-3-record-stream-attributes-with-linear-referencing"><i class="fa fa-check"></i>Task 3: Record stream attributes with linear referencing</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#task-4-trace-the-network"><i class="fa fa-check"></i>Task 4: Trace the network</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#task-5-overlay-and-query-the-network"><i class="fa fa-check"></i>Task 5: Overlay and query the network</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#final-report"><i class="fa fa-check"></i>Final Report</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#summary-1"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html"><i class="fa fa-check"></i><b>3</b> Lidar for Forest Management</a>
+<ul>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#lab-overview-2"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#learning-objectives-2"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#lab3-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#data-2"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#software"><i class="fa fa-check"></i>Software</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#lab-set-up"><i class="fa fa-check"></i>Lab Set up</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-1-load-rgb-imagery"><i class="fa fa-check"></i>Task 1: Load RGB Imagery</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-2-load-and-explore-the-lidar-data"><i class="fa fa-check"></i>Task 2: Load and Explore the LiDAR Data</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-4-read-multiple-las-files-into-lascatolog-object"><i class="fa fa-check"></i>Task 4: Read Multiple LAS Files into LAScatolog object</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-4-create-digital-elevation-model-dem"><i class="fa fa-check"></i>Task 4: Create Digital Elevation Model (DEM)</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-5-create-a-canopy-height-model"><i class="fa fa-check"></i>Task 5: Create a Canopy Height Model</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-6-extract-metrics-from-the-point-clouds"><i class="fa fa-check"></i>Task 6: Extract Metrics From the Point Clouds</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-7-stem-volume-models-with-lidr"><i class="fa fa-check"></i>Task 7: Stem Volume Models with lidR</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-9"><i class="fa fa-check"></i>Task 9</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#learning-objectives-3"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#lab4-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#lab4-data"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-1-load-and-explore-the-lidar-data"><i class="fa fa-check"></i>Task 1: Load and explore the LiDAR data</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-2-create-a-dtm-using-built-in-arcgis-functions"><i class="fa fa-check"></i>Task 2: Create a DTM using built-in ArcGIS functions</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-3-pre-process-data-for-interpolation"><i class="fa fa-check"></i>Task 3: Pre-process data for interpolation</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-4-raster-interpolation"><i class="fa fa-check"></i>Task 4: Raster interpolation</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-5-visually-interpret-differences"><i class="fa fa-check"></i>Task 5: Visually interpret differences</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-6-quantitatively-interpret-the-differences-and-calculate-statistics-for-each-zone"><i class="fa fa-check"></i>Task 6: Quantitatively interpret the differences and calculate statistics for each zone</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-7-create-a-map-document"><i class="fa fa-check"></i>Task 7: Create a map document</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-8-exploring-scenes"><i class="fa fa-check"></i>Task 8: Exploring Scenes</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#summary-2"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html"><i class="fa fa-check"></i><b>4</b> Suitability and Overlay Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#lab-overview-3"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#learning-objectives-4"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#lab5-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#data-3"><i class="fa fa-check"></i>Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#data-organization"><i class="fa fa-check"></i>Data Organization</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#files-to-create"><i class="fa fa-check"></i>Files to Create</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#scenario-1"><i class="fa fa-check"></i>Scenario 1</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-1-export-relevant-data-from-biologically-important-areas-shapefile"><i class="fa fa-check"></i>Task 1: Export Relevant Data from Biologically Important Areas Shapefile</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-2-identify-the-bia-of-the-humpback-whale-that-is-not-within-the-established-marine-sanctuary"><i class="fa fa-check"></i>Task 2: Identify the BIA of the Humpback Whale that is not within the established Marine Sanctuary</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-3-calculate-the-density-of-cetacean-sightings-using-the-bia-for-humpback-whales"><i class="fa fa-check"></i>Task 3: Calculate the Density of Cetacean Sightings using the BIA for Humpback Whales</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-4-extract-the-boats-from-ocean-uses-and-identity-the-vessels-within-the-bia-polygons"><i class="fa fa-check"></i>Task 4: Extract the Boats from Ocean Uses and Identity the Vessels within the BIA Polygons</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-5-calculate-suitability-and-identify-most-suitable-locations-for-the-marine-sanctuary"><i class="fa fa-check"></i>Task 5: Calculate Suitability and Identify Most Suitable Locations for the Marine Sanctuary</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#scenario-2"><i class="fa fa-check"></i>Scenario 2</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-1-export-relevant-data-from-biologically-important-areas-shapefile-1"><i class="fa fa-check"></i>Task 1: Export Relevant Data from Biologically Important Areas Shapefile</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-2-extract-all-of-the-commercial-fishing-vessels-from-ocean-uses"><i class="fa fa-check"></i>Task 2: Extract All of the Commercial Fishing Vessels from Ocean Uses</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-3-erase-where-the-false-killer-whales-and-commercial-fishing-vessels-overlap"><i class="fa fa-check"></i>Task 3: Erase where the False Killer Whales and Commercial Fishing Vessels overlap</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#summary-3"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html"><i class="fa fa-check"></i><b>5</b> Analyzing Green Equity Using Geographically Weighted Regression</a>
+<ul>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#lab-overview-4"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#learning-objectives-5"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#redo-these"><i class="fa fa-check"></i>redo these</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#lab6-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#lab6-data"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#task-1-join-demographics-data-to-the-dissemination-areas"><i class="fa fa-check"></i>Task 1: Join Demographics data to the Dissemination Areas</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#task-2-determine-the-distance-from-green-spaces-to-disssemination-areas"><i class="fa fa-check"></i>Task 2: Determine the distance from green spaces to Disssemination Areas</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#task-3-detrmine-the-variables-to-include-in-your-analysis"><i class="fa fa-check"></i>Task 3: Detrmine the variables to include in your analysis</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#task-4-determine-the-overarching-relationship-between-green-spaces-and-your-variables"><i class="fa fa-check"></i>Task 4: Determine the Overarching Relationship Between Green Spaces and your Variables</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#task-5-conduct-a-geographically-weighted-analysis"><i class="fa fa-check"></i>Task 5: Conduct a Geographically Weighted Analysis</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#final-report-1"><i class="fa fa-check"></i>Final Report</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#summary-4"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html"><i class="fa fa-check"></i><b>6</b> Time Series Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#lab-overview-5"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#learning-objectives-6"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#lab7-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#data-4"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#task-1-starting-arcgis-pro"><i class="fa fa-check"></i>Task 1: Starting ArcGIS Pro</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#toggling-extentions"><i class="fa fa-check"></i>Toggling Extentions</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#inserting-a-new-map"><i class="fa fa-check"></i>Inserting a New Map</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#adding-data-to-the-map"><i class="fa fa-check"></i>Adding Data to the Map</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#task-1-calculating-ndvi"><i class="fa fa-check"></i>Task 1: Calculating NDVI</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#task-2-time-series-analysis"><i class="fa fa-check"></i>Task 2: Time Series Analysis</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#task-3-change-detection"><i class="fa fa-check"></i>Task 3: Change Detection</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#task-4-map-creation"><i class="fa fa-check"></i>Task 4: Map Creation</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#summary-5"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html"><i class="fa fa-check"></i><b>7</b> Machine Learning for Classification</a>
+<ul>
+<li class="chapter" data-level="" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html#lab-overview-6"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html#learning-objectives-7"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html#lab8-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html#data-5"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html#task-1-creating-training-data"><i class="fa fa-check"></i>Task 1: Creating training data</a></li>
+<li class="chapter" data-level="" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html#task-2-training-a-random-forest-random-forest-algorithm"><i class="fa fa-check"></i>Task 2: Training a Random Forest (Random Forest Algorithm)</a></li>
+<li class="chapter" data-level="" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html#task-3-interpreting-classification-results"><i class="fa fa-check"></i>Task 3: Interpreting Classification Results</a></li>
+<li class="chapter" data-level="" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html#task-4-making-a-map"><i class="fa fa-check"></i>Task 4: Making a Map</a></li>
+<li class="chapter" data-level="" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html#summary-6"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">FRST538-Advanced-Geomatics-for-Natural-Resource-Management</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="time-series-image-analysis" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Lab: 6</span> Time Series Analysis<a href="time-series-image-analysis.html#time-series-image-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Written by
+Nicholas Coops</p>
+<div id="lab-overview-5" class="section level2 unnumbered hasAnchor">
+<h2>Lab Overview<a href="time-series-image-analysis.html#lab-overview-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this lab, we will be using Landsat derived Best Available Pixel (BAP) imagery to examine changes in the Malcom Knapp Research Forest over a 19-year time span. In Task 1 you will use the “raster calculator” to calculate NDVI across the study area. In Task 2, you will use ArcPro to visualize a multidimensional NDVI data set and create a temporal profile. In task 3, you will conduct a change detection between two NDVI layers. For task 4 you will create a map showing this change.</p>
+<hr />
+</div>
+<div id="learning-objectives-6" class="section level2 unnumbered hasAnchor">
+<h2>Learning Objectives<a href="time-series-image-analysis.html#learning-objectives-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Use Raster Functions tool to calculate NDVI in ArcGIS</li>
+<li>Interpret the physical meaning of regions of high, medium, and low NDVI</li>
+<li>Visualize temporal NDVI data in ArcGIS</li>
+<li>Create a temporal profile to help quantify changes in the image</li>
+<li>Use the change detection wizard to determine the difference in NDVI from 2000-2019</li>
+<li>Create a map showing change in NDVI</li>
+</ul>
+<hr />
+</div>
+<div id="lab7-deliverables" class="section level2 unnumbered hasAnchor">
+<h2>Deliverables<a href="time-series-image-analysis.html#lab7-deliverables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>After you have completed the lab you will submit a pdf on Canvas with:</p>
+<p><input type="checkbox" unchecked> 1. Answer to lab questions.</input></p>
+<p><input type="checkbox" unchecked> 2. Screen Shots.</input></p>
+<p><input type="checkbox" unchecked> 3. Full page map showing the True Colour BAP image and the NDVI file you created.</input></p>
+<hr />
+</div>
+<div id="data-4" class="section level2 unnumbered hasAnchor">
+<h2>Data<a href="time-series-image-analysis.html#data-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The data for this lab consists of a Landsat derived BAP imagery from the year 2000 – 2019. Information on this dataset and direction for downloading similar datasets can be found here:</p>
+<p>White, J.C.; Wulder, M.A.; Hobart, G.W.; Luther, J.E.; Hermosilla, T.; Griffiths, P.; Coops, N.C.; Hall, R.J.; Hostert, P.; Dyk, A.; et al. Pixel-based image compositing for large-area dense time series applications and science. Can. J. Remote Sens. 2014, 40, 192–212, <a href="doi:10.1080/07038992.2014.945827" class="uri">doi:10.1080/07038992.2014.945827</a>.</p>
+<p><a href="https://github.com/saveriofrancini/bap">https://github.com/saveriofrancini/bap</a></p>
+<hr />
+</div>
+<div id="task-1-starting-arcgis-pro" class="section level2 unnumbered hasAnchor">
+<h2>Task 1: Starting ArcGIS Pro<a href="time-series-image-analysis.html#task-1-starting-arcgis-pro" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To start the lab, Open ArcPro. You should have window that looks like the screenshot below. The ArcPro theme used to create this lab is Dark. The default theme is likely Light, but if you are interested in changing themes please follow the instructions at this <a href="https://pro.arcgis.com/en/pro-app/latest/get-started/general-options.htm">link</a>. To open a new project, choose “Map” from the “New Blank Template” list.</p>
+<p><img src="images/01-starting-arcgispro-prompt.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>A prompt will appear requesting you to Name and state the location of your project. It is recommended to name your project “LabXX_yourlastname”. Uncheck the “Create a new folder for this project” box. As usual, save your project on the (C:) drive in the same folder that your downloaded data is located.</p>
+<p>The next window is the generic start of a new project in ArcPro. In the centre you will see the standard “Catalog” frame. At the top is the ribbon, which is where the majority of your analysis options can be found. On the left is the standard “Contents” frame, which is similar to that of other Esri products. Tabs, similar to those found in ArcMap, can be found on the right-hand side of the window. When using tools or adjusting symbology, be sure to look here for a relevant tab before exploring the ribbon.</p>
+<p>You will also notice that the Catolog frame is also “tabbed”. This means that you can close the frame without closing ArcPro. It also means that you can have Maps, Catalogs and 3D Scenes all open at the same time. Although this is very cool, be aware that too many tabs are likely to crash ArcPro. Know your computers processing limits and play within it.</p>
+</div>
+<div id="toggling-extentions" class="section level2 unnumbered hasAnchor">
+<h2>Toggling Extentions<a href="time-series-image-analysis.html#toggling-extentions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>With your ArcGIS pro student licence you have access to the full suite of Esri Extensions. In this lab we will be using the “Spatial Analyst” and “Image Analyst” extensions. If you do not toggle these some of the tools you are required to use will be grayed out. In the top ribbon navigate to <strong>Project</strong>. Select “Licensing” and press the “Configure your licening options” button. In the Licensing window press the check mark beside “Image Analyst” and “Spatial Analyst” and select OK and navigate back to the map view. ’</p>
+</div>
+<div id="inserting-a-new-map" class="section level2 unnumbered hasAnchor">
+<h2>Inserting a New Map<a href="time-series-image-analysis.html#inserting-a-new-map" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Without closing the Catalog window, navigate to the “Insert” tab on the ribbon and click on the “New Map” icon.</p>
+<p><img src="images/01-new-map.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>A new topographic map will appear in the centre window. Note that it is separate from the Catalog tab. You can switch back and forth between these as you wish, but recall that there is another Catalog tab on the right-hand side of the screen. When analyzing a map or editing a model, this is the easiest tab to use. For the remainder of the lab, when “Catalog” is mentioned it is referring to this side tab.</p>
+</div>
+<div id="adding-data-to-the-map" class="section level2 unnumbered hasAnchor">
+<h2>Adding Data to the Map<a href="time-series-image-analysis.html#adding-data-to-the-map" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This process is the exact same as in ArcMap. To add data to the map, navigate to the Pre-Lab folder using Catalog* ,if you save your project in the same folder as you data it should appear, if not right click <strong>Folders</strong> in the Catalog pane and select:</p>
+<p><img src="images/01-add-folder-connection.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>Navigate to where the data is saved and click ok. When you can find the data folder, drag-and-drop the <strong>MKRF_UTM10S_2019_BAP.tif</strong> file into the map window. At this point, you should see an RGB satellite image of the Malcom Knapp Research Forest (Figure <a href="time-series-image-analysis.html#fig:07-true-colour-composite-mkrf">6.1</a>) if the mapview does not immediately pan to the image right click <strong>MKRF_UTM10S_2019_BAP.tif </strong> in the Contents pane and press Zoom to Layer.</p>
+<p><em>Note: If the catalog pane does not immediately appear in your ArcGIS Pro document use the ribbons at the top to navigate to <strong>View -&gt; Catalog Pane</strong></em></p>
+<p><img src="images/01-catalog-pane.png" width="50%" style="display: block; margin: auto;" /></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:07-true-colour-composite-mkrf"></span>
+<img src="images/07-true-colour-composite-mkrf.png" alt="True colour composite of Malcom Knapp Research Forest (MKRF)." width="100%" />
+<p class="caption">
+Figure 6.1: True colour composite of Malcom Knapp Research Forest (MKRF).
+</p>
+</div>
+</div>
+<div id="task-1-calculating-ndvi" class="section level2 unnumbered hasAnchor">
+<h2>Task 1: Calculating NDVI<a href="time-series-image-analysis.html#task-1-calculating-ndvi" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Spectral indices are mathematical equations containing spectral reflectance values from two or more wavelengths used to highlight areas of spectral importance in an image. There are a wide variety of spectral indices used to highlight a variety of different land covers and image properties including burned Areas (Normalized Burn Ratio), urban/ built up areas (Normalized Difference Built-Up Index), and water (Normalized Difference Water Index) to name a few. The Normalized Difference Vegetation Index (NDVI) is a frequently used spectral index that takes advantage of the high near-infrared reflectance and high red absorption properties of healthy vegetation and is therefore often used to quantify vegetation in a remotely sensed multispectral image.</p>
+<p>NDVI is calculated with the below formula:</p>
+<p><span class="math display">\[
+NDVI=\frac{NIR-Red}{NIR+Red}
+\]</span>
+Where NIR is the near-infrared band (Landsat 7 Band 4) and Red is the red band (Landsat 7 Band 3). The results of this equation should be between -1 and 1 with values less than 0 representing water and values between 0-1 representing different levels of green vegetation.</p>
+<p>ArcGIS Pro contains a built-in tool to calculate NDVI and a series of other spectral indices. To solidify your knowledge of NDVI metric this lab uses the “band arithmetic” function and the above equation to create our own NDVI tool. This is useful because many things we want to calculate with rasters are not built-in to ArcGIS Pro.</p>
+<p>Navigate to the <strong>Imagery</strong> ribbon at the top of your ArcPro window and click the <strong>Raster Function</strong> button.</p>
+<p><img src="images/07-raster-functions.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>The Raster Functions pane should appear, you can either navigate the drop-down menus to <strong>Math-&gt; Band Arithmetic</strong> or use the search function to find the <strong>Band Arithmetic Tool</strong> and click to open.</p>
+<p><img src="images/07-band-arithmetic.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>The “Band Arithmetic Properties” dialogue should appear. Under <strong>“Raster”</strong> use the drop-down menu and select the <strong>MKRF_UTM10s_2019_BAP.tif</strong> layer. If it is not currently in your map view and can use the folder button and navigate to your lab data folder and select the file. Under <strong>“Method”</strong> select <strong>User Defined</strong>. It should look like the screen shot below.</p>
+<p><img src="images/07-band-arithmetic-properties.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>Use your knowledge of spectral indices, the NDVI formula given above and the table below fill in the NDVI calculation for your data.</p>
+<div id="screenshot-1-take-a-screen-shot-of-your-band-arithmetic-equation-and-submit-it-in-your-lab-report." class="section level5 unnumbered hasAnchor">
+<h5>Screenshot 1: Take a screen shot of your band arithmetic equation and submit it in your lab report.<a href="time-series-image-analysis.html#screenshot-1-take-a-screen-shot-of-your-band-arithmetic-equation-and-submit-it-in-your-lab-report." class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<table>
+<thead>
+<tr class="header">
+<th>Band Name</th>
+<th>Bandwidth (<span class="math inline">\(\mu\)</span>m)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Band 1</td>
+<td>0.45 - 0.52</td>
+</tr>
+<tr class="even">
+<td>Band 2</td>
+<td>0.52 - 0.60</td>
+</tr>
+<tr class="odd">
+<td>Band 3</td>
+<td>0.63 - 0.69</td>
+</tr>
+<tr class="even">
+<td>Band 4</td>
+<td>0.77 - 0.90</td>
+</tr>
+<tr class="odd">
+<td>Band 5</td>
+<td>1.55 - 1.75</td>
+</tr>
+<tr class="even">
+<td>Band 6</td>
+<td>2.09 - 2.35</td>
+</tr>
+</tbody>
+</table>
+<p>Table 1: Landsat BAP Composite Band Information</p>
+<p>After taking a screen shot select <strong>“Create new layer”</strong> at the bottom of the window. The output should look something like Figure <a href="time-series-image-analysis.html#fig:07-example-output-ndvi-calculation">6.2</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:07-example-output-ndvi-calculation"></span>
+<img src="images/07-example-output-ndvi-calculation.png" alt="Example output for the 2019 NDVI raster calculation for MKRF " width="70%" />
+<p class="caption">
+Figure 6.2: Example output for the 2019 NDVI raster calculation for MKRF
+</p>
+</div>
+</div>
+<div id="q1.-what-are-the-minimum-and-maximum-values-of-your-new-2019-ndvi-layer" class="section level5 unnumbered hasAnchor">
+<h5>Q1. What are the minimum and maximum values of your new 2019 NDVI layer?<a href="time-series-image-analysis.html#q1.-what-are-the-minimum-and-maximum-values-of-your-new-2019-ndvi-layer" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+</div>
+<div id="q2.-what-do-the-dark-areas-in-the-image-represent-the-gray-areas-the-white" class="section level5 unnumbered hasAnchor">
+<h5>Q2. What do the dark areas in the image represent? The gray areas? the white?<a href="time-series-image-analysis.html#q2.-what-do-the-dark-areas-in-the-image-represent-the-gray-areas-the-white" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+</div>
+<div id="q3.-what-information-does-this-type-of-analysis-give-us-when-and-why-might-this-type-of-analysis-be-used" class="section level5 unnumbered hasAnchor">
+<h5>Q3. What information does this type of analysis give us? When and why might this type of analysis be used?<a href="time-series-image-analysis.html#q3.-what-information-does-this-type-of-analysis-give-us-when-and-why-might-this-type-of-analysis-be-used" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<hr />
+</div>
+</div>
+<div id="task-2-time-series-analysis" class="section level2 unnumbered hasAnchor">
+<h2>Task 2: Time Series Analysis<a href="time-series-image-analysis.html#task-2-time-series-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In the previous section of this lab you calculated NDVI for an image of the Malcom Knapp Research Forest. In this section you will use a multidimensional dataset containing NDVI layers from 2000-2019 to create a temporal profile of NDVI change over time.</p>
+<p>Open the <strong>Catalogue</strong> pane and navigate to the lab data folder. Press the arrow for the data folder to expand. Click and drag the NDVI multidimensional data set into your map viewer.</p>
+<p><img src="images/07-ndvi-layer.png" width="40%" style="display: block; margin: auto;" /></p>
+<p>After opening the multidimensional dataset a new ribbon should appear at the top called Time along with a slider at the top of the map pane.</p>
+<p><img src="images/07-slider.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Press the play button on the slider to start an animation of NDVI change over time. You can also click and drag the slider to view individual years.</p>
+<div id="q4-hypothesize-on-what-is-causing-the-changes-in-ndvi-why-might-the-pattern-in-the-south-west-corner-of-the-timelapse-look-different-from-other-changes" class="section level5 unnumbered hasAnchor">
+<h5>Q4: Hypothesize on what is causing the changes in NDVI? Why might the pattern in the south west corner of the timelapse look different from other changes?<a href="time-series-image-analysis.html#q4-hypothesize-on-what-is-causing-the-changes-in-ndvi-why-might-the-pattern-in-the-south-west-corner-of-the-timelapse-look-different-from-other-changes" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>Now that you have visualized the imagery, it is time to create a temporal profile help quantify the changes in the images. Right Click on the NDVI layer in the Contents pane and hover over “Create Chart” and select <strong>Temporal Profile</strong>.</p>
+<p><img src="images/07-temporal-profile.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>The “Temporal Profile” pane should appear on your screen, select “Properties” at the top of this pane. The “Chart Properties” pane should appear. Under “Time series” select “Multiple Locations with one variable” and select “Point” under area of interest.</p>
+<p><img src="images/07-chart-properties-ndvi.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>Your cursor should change into a coloured dot when hovering over the map pane. Clicking the left mouse button will select a pixel to view on your temporal profile. Use the Time slider animation function to find <strong>4</strong> changes that occur in different years, a 5th pixel representing water and a 6th representing an area with minimal change. See example bellow for possible locations but feel free to find and select your own.</p>
+<p><img src="images/07-example-of-aois-for-temporal-profile.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>Click on <strong>Export</strong> in the Temporal profile pane and save your chart as a jpeg and submit it in your final report.</p>
+</div>
+<div id="screenshot2-exported-version-of-temporal-profile" class="section level5 unnumbered hasAnchor">
+<h5>Screenshot2: Exported version of temporal profile<a href="time-series-image-analysis.html#screenshot2-exported-version-of-temporal-profile" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+</div>
+<div id="q5-examine-your-graph-and-provide-some-comments-on-the-general-trends-you-notice.-hypothesize-on-why-different-points-take-longer-to-recover-or-have-smaller-changes-in-ndvi-values." class="section level5 unnumbered hasAnchor">
+<h5>Q5: Examine your graph and provide some comments on the general trends you notice. Hypothesize on why different points take longer to recover or have smaller changes in NDVI values.<a href="time-series-image-analysis.html#q5-examine-your-graph-and-provide-some-comments-on-the-general-trends-you-notice.-hypothesize-on-why-different-points-take-longer-to-recover-or-have-smaller-changes-in-ndvi-values." class="anchor-section" aria-label="Anchor link to header"></a></h5>
+</div>
+<div id="q6-examnine-the-line-representing-a-water-pixel.-does-it-have-a-consistant-ndvi-value-explain-why-or-why-not" class="section level5 unnumbered hasAnchor">
+<h5>Q6: Examnine the line representing a water pixel. Does it have a consistant NDVI value? Explain why or why not?<a href="time-series-image-analysis.html#q6-examnine-the-line-representing-a-water-pixel.-does-it-have-a-consistant-ndvi-value-explain-why-or-why-not" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<hr />
+</div>
+</div>
+<div id="task-3-change-detection" class="section level2 unnumbered hasAnchor">
+<h2>Task 3: Change Detection<a href="time-series-image-analysis.html#task-3-change-detection" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Select the NDVI layer in the Contents pane, navigate to the Imagery ribbon and select <strong>Change Detection Wizard</strong>. A new pane should appear, under “Change Detection Method” select <strong>Pixel Value Change</strong>. Choose your NDVI multidimensional dataset as the “Input Raster”. “Variable” and “Dimension” should auto fill to NDVI and StdTime. Under “From Slice” select the year 2000 for “To Slice” select 2019 and press next. In the next window select <strong>Absolute</strong> under “Difference Type” and leave the remainder as default and press the Next button at the bottom. The “Classify Difference” pane should appear and you should see a histogram. Uncheck the “Classify the difference in values” button and then press next. Under “Smoothing Neighborhood” select <strong>3x3</strong> and set the “Statistics Fill Method” to <strong>median</strong>. Save your result as a raster dataset and under “Output Dataset” write “ChangeDetection_2000_2019” and press finish.</p>
+<p>Your results should appear in your map area. If you see a gray box right click the layer in the Contents pane and select “Symbology”. Under Primary symbology use the drop down menu and select <strong>Classify</strong>. You should now see an image on your screen that looks something like this:</p>
+<p><img src="images/07-difference-in-ndvi.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>This output shows the difference in NDVI values between the 2000 and 2019 values close to zero mean that no change occurred while negative values represent a decrease in NDVI and positive values an increase in NDVI. In our case we are trying to extract the cut blocks and are therefore looking for decreases in NDVI representing clear-cuts.</p>
+<div id="q7-using-what-you-know-about-ndvi-what-would-cause-an-increase-in-ndvi-values-over-time" class="section level5 unnumbered hasAnchor">
+<h5>Q7: Using what you know about NDVI, what would cause an increase in NDVI values over time?<a href="time-series-image-analysis.html#q7-using-what-you-know-about-ndvi-what-would-cause-an-increase-in-ndvi-values-over-time" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>We are now going to use Geoprocessing tools to extract only the areas that have been identified. Navigate to the <strong>Analysis</strong> tab and select <strong>Tools</strong>.</p>
+<p><img src="images/07-analysis-tools.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>The “Geoprocessing” window should appear, in the search bar type “Reclassify” and select the second option <strong>Reclassify (Spatial Analyst Tools)</strong>. The “Reclassify Window” should appear. Under the reclassification table press the <strong>Classify</strong> button and under “Number of Classes” write 2. The table should change and look like this:</p>
+<p><img src="images/07-classify-table.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>Change the “End” value in the first class to <strong>-0.05</strong> and the “Start” value in the second class to <strong>-0.049999</strong> and change the new field from 2 to <strong>NODATA</strong>. Run the tool. Your output should be a layer containing only pixels that had a negative change between the year 2000 NDVI image and the year 2019 NDVI image.</p>
+<p>Notice that some of the pixels you have retained are above lakes. Since we are principally concerned with terrestrial vegetation it is common practice to remove pixels that represent water using a water mask. Masking can either be done as a pre-processing step or at the end of our analysis.</p>
+<p>Navigate to the “Analysis” ribbon and select <strong>Tools</strong>. Search for the tool “Extract by Mask”. Under “Input Raster” select your cutblock raster and under feature mask data navigate to the data folder and select the “LakeMask” file. Save your output as “NDVICutblocks” select run.</p>
+<hr />
+</div>
+</div>
+<div id="task-4-map-creation" class="section level2 unnumbered hasAnchor">
+<h2>Task 4: Map Creation<a href="time-series-image-analysis.html#task-4-map-creation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this section you will create a map showing the location of NDVI derived cut blocks overtop of your 2019 BAP true colour composite.</p>
+<p>In order to map your NDVI Cutblocks and true colour composite you will need to create a layout, using symbology and ensuring that the map communicates the purpose of your analysis. This process is both a strategic, but also artistic showcase of your data.</p>
+<p>In ArcPro, the process of creating and stylizing a map is slightly different than ArcMap. To create a new layout, navigate to the “Insert” ribbon tab and click “New Layout”.</p>
+<p><img src="images/07-new-layout.png" width="20%" style="display: block; margin: auto;" /></p>
+<p>When the page size and orientation options appear, select the one you wish to use. Be sure to follow lab guidelines when making this selection (ie. 11” x 17” in portrait or landscape).</p>
+<p>To insert your map, select “Map Frame -&gt; Default” under the Insert ribbon tab.</p>
+<p><img src="images/07-map-frame-default.png" width="30%" style="display: block; margin: auto;" /></p>
+<p>A map frame will appear, but it is not active yet. To alter the extent of this frame, select <strong>“Activate”</strong> under the Layout ribbon tab.</p>
+<p><img src="images/07-activate-map-frame.png" width="30%" style="display: block; margin: auto;" /></p>
+<p>You should now be able to Zoom In and Out in the map frame. “Full Extent” is located beside the “Activate” button. If it isn’t acting as you expect, remove any topographic baselayers from your Contents pane.</p>
+<p>To access a particular layer’s symbology or properties, follow standard Arc protocol by right-clicking on the desired layer. Alternatively, you can select the layer in the Contents pane with a single left-click and access the newly activated “Symbology” tab on the left-hand side of the screen. Compared to ArcMap, the symbology options in ArcPro are more intuitive, so please explore.</p>
+<p>Now is the time for your cartographic skills to shine. To design a map of the highest quality you will need to draw on all of you GIS skills. Ensure you include all the standard components of a map along with your artistic flair.</p>
+<p>If you need some inspiration a quick google search for “Design principles for cartography” or browsing through some of the maps featured <a href="https://www.esri.com/en-us/maps-we-love/gallery">here</a> should do the trick.</p>
+<p>Also, be sure to include important data, but also make sure the map is not too cluttered.
+The physical requirements are as follows:</p>
+<ul>
+<li><p>Map should be 11”x17” either as a landscape or portrait layout</p></li>
+<li><p>You should export the map as a pdf</p></li>
+<li><p>Your map should incorporate the suite of standard map element:</p>
+<ul>
+<li>Title</li>
+<li>Scale bar</li>
+<li>Compass</li>
+<li>Legend</li>
+</ul></li>
+<li><p>ONE map showing both NDVIcutblocks and true colour BAP scene.</p></li>
+</ul>
+<hr />
+</div>
+<div id="summary-5" class="section level2 unnumbered hasAnchor">
+<h2>Summary<a href="time-series-image-analysis.html#summary-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Spectral Indices offer a unique ability to highlight landcover and image properties that would be very difficult to map without the use of spectral information. The Normalized Difference Vegetation Index (NDVI) has become one of the most widely used indices and thanks to satellite programs like Landsat, we now have access to global coverage of this index. In this lab, we explored the ability to derive this index from Landsat BAP data from 2000-2019 in ArcGIS and explore the temporal profile of NDVI to quantify changes in the image through time. We can use change detection tools to then be able to assess regions that have changed significantly through our time period. Time series data of spectral indices like NDVI can be game changing for many research applications like monitoring drought, agricultural productivity, and measuring biomass!</p>
+<p>Return to the <a href="time-series-image-analysis.html#lab7-deliverables"><strong>Deliverables</strong></a> section to check off everything you need to submit for credit in the course management system.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="geographically-weighted-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="machine-learning-for-classification.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

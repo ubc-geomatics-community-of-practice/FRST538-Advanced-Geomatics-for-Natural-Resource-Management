@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lab: 1 Getting to know Remote Sensing and spectral signatures | FRST538-Advanced-Geomatics-for-Natural-Resource-Management</title>
+  <meta name="description" content="Open Educational Resources for FRST 538 course at the University of British Columbia" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lab: 1 Getting to know Remote Sensing and spectral signatures | FRST538-Advanced-Geomatics-for-Natural-Resource-Management" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Open Educational Resources for FRST 538 course at the University of British Columbia" />
+  <meta name="github-repo" content="github.com/ubc-geomatics-community-of-practice/FRST538-Advanced-Geomatics-for-Natural-Resource-Management/book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lab: 1 Getting to know Remote Sensing and spectral signatures | FRST538-Advanced-Geomatics-for-Natural-Resource-Management" />
+  
+  <meta name="twitter:description" content="Open Educational Resources for FRST 538 course at the University of British Columbia" />
+  
+
+<meta name="author" content="Paul D. Pickell" />
+
+
+<meta name="date" content="2024-09-04" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="network-analysis.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">An Open Geomatics Community of Practice</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-use-these-resources"><i class="fa fa-check"></i>How to use these resources</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-get-involved"><i class="fa fa-check"></i>How to get involved</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="spectral-signatures.html"><a href="spectral-signatures.html"><i class="fa fa-check"></i><b>1</b> Getting to know Remote Sensing and spectral signatures</a>
+<ul>
+<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#lab-overview"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#learning-objectives"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#lab1-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#data"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#task-1-the-electromagnetic-spectrum"><i class="fa fa-check"></i>Task 1: The Electromagnetic Spectrum</a></li>
+<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#task-2-landsat-5-bands-the-ems-arcgis-pro-software"><i class="fa fa-check"></i>Task 2: Landsat 5 Bands, the EMS, &amp; ArcGIS Pro Software</a></li>
+<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="network-analysis.html"><a href="network-analysis.html"><i class="fa fa-check"></i><b>2</b> Salmon Stream Network Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#lab-overview-1"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#learning-objectives-1"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#lab2-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#data-1"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#task-1-create-stream-segments"><i class="fa fa-check"></i>Task 1: Create stream segments</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#task-2-create-routes-and-apply-topology"><i class="fa fa-check"></i>Task 2: Create routes and apply topology</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#task-3-record-stream-attributes-with-linear-referencing"><i class="fa fa-check"></i>Task 3: Record stream attributes with linear referencing</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#task-4-trace-the-network"><i class="fa fa-check"></i>Task 4: Trace the network</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#task-5-overlay-and-query-the-network"><i class="fa fa-check"></i>Task 5: Overlay and query the network</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#final-report"><i class="fa fa-check"></i>Final Report</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#summary-1"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html"><i class="fa fa-check"></i><b>3</b> Lidar for Forest Management</a>
+<ul>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#lab-overview-2"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#learning-objectives-2"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#lab3-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#data-2"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#software"><i class="fa fa-check"></i>Software</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#lab-set-up"><i class="fa fa-check"></i>Lab Set up</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-1-load-rgb-imagery"><i class="fa fa-check"></i>Task 1: Load RGB Imagery</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-2-load-and-explore-the-lidar-data"><i class="fa fa-check"></i>Task 2: Load and Explore the LiDAR Data</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-4-read-multiple-las-files-into-lascatolog-object"><i class="fa fa-check"></i>Task 4: Read Multiple LAS Files into LAScatolog object</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-4-create-digital-elevation-model-dem"><i class="fa fa-check"></i>Task 4: Create Digital Elevation Model (DEM)</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-5-create-a-canopy-height-model"><i class="fa fa-check"></i>Task 5: Create a Canopy Height Model</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-6-extract-metrics-from-the-point-clouds"><i class="fa fa-check"></i>Task 6: Extract Metrics From the Point Clouds</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-7-stem-volume-models-with-lidr"><i class="fa fa-check"></i>Task 7: Stem Volume Models with lidR</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-9"><i class="fa fa-check"></i>Task 9</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#learning-objectives-3"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#lab4-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#lab4-data"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-1-load-and-explore-the-lidar-data"><i class="fa fa-check"></i>Task 1: Load and explore the LiDAR data</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-2-create-a-dtm-using-built-in-arcgis-functions"><i class="fa fa-check"></i>Task 2: Create a DTM using built-in ArcGIS functions</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-3-pre-process-data-for-interpolation"><i class="fa fa-check"></i>Task 3: Pre-process data for interpolation</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-4-raster-interpolation"><i class="fa fa-check"></i>Task 4: Raster interpolation</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-5-visually-interpret-differences"><i class="fa fa-check"></i>Task 5: Visually interpret differences</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-6-quantitatively-interpret-the-differences-and-calculate-statistics-for-each-zone"><i class="fa fa-check"></i>Task 6: Quantitatively interpret the differences and calculate statistics for each zone</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-7-create-a-map-document"><i class="fa fa-check"></i>Task 7: Create a map document</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-8-exploring-scenes"><i class="fa fa-check"></i>Task 8: Exploring Scenes</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#summary-2"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html"><i class="fa fa-check"></i><b>4</b> Suitability and Overlay Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#lab-overview-3"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#learning-objectives-4"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#lab5-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#data-3"><i class="fa fa-check"></i>Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#data-organization"><i class="fa fa-check"></i>Data Organization</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#files-to-create"><i class="fa fa-check"></i>Files to Create</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#scenario-1"><i class="fa fa-check"></i>Scenario 1</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-1-export-relevant-data-from-biologically-important-areas-shapefile"><i class="fa fa-check"></i>Task 1: Export Relevant Data from Biologically Important Areas Shapefile</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-2-identify-the-bia-of-the-humpback-whale-that-is-not-within-the-established-marine-sanctuary"><i class="fa fa-check"></i>Task 2: Identify the BIA of the Humpback Whale that is not within the established Marine Sanctuary</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-3-calculate-the-density-of-cetacean-sightings-using-the-bia-for-humpback-whales"><i class="fa fa-check"></i>Task 3: Calculate the Density of Cetacean Sightings using the BIA for Humpback Whales</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-4-extract-the-boats-from-ocean-uses-and-identity-the-vessels-within-the-bia-polygons"><i class="fa fa-check"></i>Task 4: Extract the Boats from Ocean Uses and Identity the Vessels within the BIA Polygons</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-5-calculate-suitability-and-identify-most-suitable-locations-for-the-marine-sanctuary"><i class="fa fa-check"></i>Task 5: Calculate Suitability and Identify Most Suitable Locations for the Marine Sanctuary</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#scenario-2"><i class="fa fa-check"></i>Scenario 2</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-1-export-relevant-data-from-biologically-important-areas-shapefile-1"><i class="fa fa-check"></i>Task 1: Export Relevant Data from Biologically Important Areas Shapefile</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-2-extract-all-of-the-commercial-fishing-vessels-from-ocean-uses"><i class="fa fa-check"></i>Task 2: Extract All of the Commercial Fishing Vessels from Ocean Uses</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-3-erase-where-the-false-killer-whales-and-commercial-fishing-vessels-overlap"><i class="fa fa-check"></i>Task 3: Erase where the False Killer Whales and Commercial Fishing Vessels overlap</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#summary-3"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html"><i class="fa fa-check"></i><b>5</b> Analyzing Green Equity Using Geographically Weighted Regression</a>
+<ul>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#lab-overview-4"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#learning-objectives-5"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#redo-these"><i class="fa fa-check"></i>redo these</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#lab6-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#lab6-data"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#task-1-join-demographics-data-to-the-dissemination-areas"><i class="fa fa-check"></i>Task 1: Join Demographics data to the Dissemination Areas</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#task-2-determine-the-distance-from-green-spaces-to-disssemination-areas"><i class="fa fa-check"></i>Task 2: Determine the distance from green spaces to Disssemination Areas</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#task-3-detrmine-the-variables-to-include-in-your-analysis"><i class="fa fa-check"></i>Task 3: Detrmine the variables to include in your analysis</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#task-4-determine-the-overarching-relationship-between-green-spaces-and-your-variables"><i class="fa fa-check"></i>Task 4: Determine the Overarching Relationship Between Green Spaces and your Variables</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#task-5-conduct-a-geographically-weighted-analysis"><i class="fa fa-check"></i>Task 5: Conduct a Geographically Weighted Analysis</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#final-report-1"><i class="fa fa-check"></i>Final Report</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#summary-4"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html"><i class="fa fa-check"></i><b>6</b> Time Series Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#lab-overview-5"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#learning-objectives-6"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#lab7-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#data-4"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#task-1-starting-arcgis-pro"><i class="fa fa-check"></i>Task 1: Starting ArcGIS Pro</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#toggling-extentions"><i class="fa fa-check"></i>Toggling Extentions</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#inserting-a-new-map"><i class="fa fa-check"></i>Inserting a New Map</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#adding-data-to-the-map"><i class="fa fa-check"></i>Adding Data to the Map</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#task-1-calculating-ndvi"><i class="fa fa-check"></i>Task 1: Calculating NDVI</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#task-2-time-series-analysis"><i class="fa fa-check"></i>Task 2: Time Series Analysis</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#task-3-change-detection"><i class="fa fa-check"></i>Task 3: Change Detection</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#task-4-map-creation"><i class="fa fa-check"></i>Task 4: Map Creation</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#summary-5"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html"><i class="fa fa-check"></i><b>7</b> Machine Learning for Classification</a>
+<ul>
+<li class="chapter" data-level="" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html#lab-overview-6"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html#learning-objectives-7"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html#lab8-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html#data-5"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html#task-1-creating-training-data"><i class="fa fa-check"></i>Task 1: Creating training data</a></li>
+<li class="chapter" data-level="" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html#task-2-training-a-random-forest-random-forest-algorithm"><i class="fa fa-check"></i>Task 2: Training a Random Forest (Random Forest Algorithm)</a></li>
+<li class="chapter" data-level="" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html#task-3-interpreting-classification-results"><i class="fa fa-check"></i>Task 3: Interpreting Classification Results</a></li>
+<li class="chapter" data-level="" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html#task-4-making-a-map"><i class="fa fa-check"></i>Task 4: Making a Map</a></li>
+<li class="chapter" data-level="" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html#summary-6"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">FRST538-Advanced-Geomatics-for-Natural-Resource-Management</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="spectral-signatures" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Lab: 1</span> Getting to know Remote Sensing and spectral signatures<a href="spectral-signatures.html#spectral-signatures" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Written by
+Nicholas Coops</p>
+<div id="lab-overview" class="section level2 unnumbered hasAnchor">
+<h2>Lab Overview<a href="spectral-signatures.html#lab-overview" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The aim of this lab is to learn about the electromagnetic spectrum (EMS), understand spectral properties of differing materials, and get comfortable using ArcGIS Pro to load and explore different types of remotely sensed images, display individual spectral bands, make different colour composites, and view spectral signatures.</p>
+<hr />
+</div>
+<div id="learning-objectives" class="section level2 unnumbered hasAnchor">
+<h2>Learning Objectives<a href="spectral-signatures.html#learning-objectives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Understand how materials exhibit varying spectral reflectance for wavelengths of different lengths.</li>
+<li>Learn to open data in ArcGIS Pro and assess Raster Information of layers.</li>
+<li>Display imagery using greyscale, true colour composite, and false colour composite and understand the usefulness of each display method.</li>
+<li>Justify choice of possible false colour compsite combinations for displaying important characteristics of various landcover classes.</li>
+</ul>
+<hr />
+</div>
+<div id="lab1-deliverables" class="section level2 unnumbered hasAnchor">
+<h2>Deliverables<a href="spectral-signatures.html#lab1-deliverables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><input type="checkbox" unchecked> Turn in answers to the questions below in a document on Canvas</input></p>
+<hr />
+</div>
+<div id="data" class="section level2 unnumbered hasAnchor">
+<h2>Data<a href="spectral-signatures.html#data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We will be working with a multispectral image of Vancouver from the Landsat 5 satellite (L5047026subset_19990922_7B.dat). The data is located in the Canvas folder for Lab 1.</p>
+<hr />
+</div>
+<div id="task-1-the-electromagnetic-spectrum" class="section level2 unnumbered hasAnchor">
+<h2>Task 1: The Electromagnetic Spectrum<a href="spectral-signatures.html#task-1-the-electromagnetic-spectrum" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The electromagnetic spectrum (EMS) is the distribution of electromagnetic radiation according to wavelength/frequency, and includes radio waves, visible and infrared light, x-rays, gamma rays, and more. In remote sensing, we use the reflective, absorptive, and emissive properties of terrestrial features to identify and measure them (i.e. how do different wavelengths in the EMS interact with the surface of the Earth?).</p>
+<p><em>Note: It is important to recognize that the visible part of the EMS is the only section that humans can see. All colours in the visible spectrum are wavelengths, but not all wavelengths in the EMS are colours.</em></p>
+<p>Figure <a href="spectral-signatures.html#fig:01-spectral-reflectance-characteristics">1.1</a> shows the reflective characteristics of various features of the Earth’s surface. Use this figure to answer Q1 – Q4.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:01-spectral-reflectance-characteristics"></span>
+<img src="images/01-spectral-reflectance-characteristics.png" alt="Reflectance characteristics of various features at different wavelengths." width="80%" />
+<p class="caption">
+Figure 1.1: Reflectance characteristics of various features at different wavelengths.
+</p>
+</div>
+<div id="q1.-for-broadleaf-and-needle-leaf-vegetation-what-is-the-approximate-wavelength-that-is-reflected-most-and-what-section-of-the-ems-does-this-range-belong-to" class="section level5 unnumbered hasAnchor">
+<h5>Q1. For broadleaf and needle-leaf vegetation, what is the approximate wavelength that is reflected most and what section of the EMS does this range belong to?<a href="spectral-signatures.html#q1.-for-broadleaf-and-needle-leaf-vegetation-what-is-the-approximate-wavelength-that-is-reflected-most-and-what-section-of-the-ems-does-this-range-belong-to" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<ul>
+<li><strong>0.8-1.0 mm (near infrared)</strong></li>
+<li><strong>0.1-1.0 mm (visible) </strong></li>
+<li><strong>0.7-0.8 mm (near infrared) </strong></li>
+<li><strong>0.55-0.65 mm (visible) </strong></li>
+</ul>
+</div>
+<div id="q2.-truefalse-soil-and-vegetation-reflect-roughly-the-same-proportion-of-blue-light." class="section level5 unnumbered hasAnchor">
+<h5>Q2. True/False: Soil and vegetation reflect roughly the same proportion of blue light.<a href="spectral-signatures.html#q2.-truefalse-soil-and-vegetation-reflect-roughly-the-same-proportion-of-blue-light." class="anchor-section" aria-label="Anchor link to header"></a></h5>
+</div>
+<div id="q3.-give-a-wavelength-in-microns-mm-at-which-snow-and-ice-dry-soil-and-vegetation-are-indistinguishable-by-their-reflectance.-in-other-words-at-which-wavelength-is-the-proportion-of-radiation-reflected-the-same---10-for-these-features" class="section level5 unnumbered hasAnchor">
+<h5>Q3. Give a wavelength (in microns; mm) at which snow and ice, dry soil, and vegetation are indistinguishable by their reflectance. In other words, at which wavelength is the proportion of radiation reflected the same (+/- 10%) for these features?<a href="spectral-signatures.html#q3.-give-a-wavelength-in-microns-mm-at-which-snow-and-ice-dry-soil-and-vegetation-are-indistinguishable-by-their-reflectance.-in-other-words-at-which-wavelength-is-the-proportion-of-radiation-reflected-the-same---10-for-these-features" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+</div>
+<div id="q4.-broadleaf-and-needle-leaf-vegetation-reflect-the-same-amount-at-0.7-mu-m.-what-causes-this-is-there-something-contained-in-the-foliage-of-both-types-of-vegetation-which-causes-identical-spectral-signatures-how-does-this-pattern-in-spectral-reflectance-affect-how-we-see-live-vegetation" class="section level5 unnumbered hasAnchor">
+<h5>Q4. Broadleaf and needle leaf vegetation reflect the same amount at 0.7 <span class="math inline">\(\mu\)</span> m. What causes this? Is there something contained in the foliage of both types of vegetation which causes identical spectral signatures? How does this pattern in spectral reflectance affect how we see live vegetation?<a href="spectral-signatures.html#q4.-broadleaf-and-needle-leaf-vegetation-reflect-the-same-amount-at-0.7-mu-m.-what-causes-this-is-there-something-contained-in-the-foliage-of-both-types-of-vegetation-which-causes-identical-spectral-signatures-how-does-this-pattern-in-spectral-reflectance-affect-how-we-see-live-vegetation" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+</div>
+<div id="q5.-figure-reffig01-reflectance-characteristics-unknown-features-contains-additional-spectra-belonging-to-unknown-surface-features.-hypothesize-about-what-these-spectra-might-be-and-provude-your-reasoning.-use-the-known-features-broadleaf-vegetation-wet-soil-etc.-and-what-you-have-learned-from-classreadings-to-inform-your-choices.-this-is-a-difficult-task-and-educated-guesses-are-all-that-is-asked-for.-do-a-bit-of-research-put-some-thought-into-it-and-explain-the-reasoning-for-your-guesses.-these-spectra-do-not-represent-the-features-which-are-already-labeled.-you-must-think-of-new-features-which-could-be-observed-with-remote-sensing." class="section level5 unnumbered hasAnchor">
+<h5>Q5. Figure <a href="spectral-signatures.html#fig:01-reflectance-characteristics-unknown-features">1.2</a> contains additional spectra, belonging to unknown surface features. Hypothesize about what these spectra might be and provude your reasoning. Use the known features (broadleaf vegetation, wet soil, etc.) and what you have learned from class/readings to inform your choices. This is a difficult task, and educated guesses are all that is asked for. Do a bit of research, put some thought into it, and explain the reasoning for your guesses. These spectra do NOT represent the features which are already labeled. You must think of new features which could be observed with remote sensing.<a href="spectral-signatures.html#q5.-figure-reffig01-reflectance-characteristics-unknown-features-contains-additional-spectra-belonging-to-unknown-surface-features.-hypothesize-about-what-these-spectra-might-be-and-provude-your-reasoning.-use-the-known-features-broadleaf-vegetation-wet-soil-etc.-and-what-you-have-learned-from-classreadings-to-inform-your-choices.-this-is-a-difficult-task-and-educated-guesses-are-all-that-is-asked-for.-do-a-bit-of-research-put-some-thought-into-it-and-explain-the-reasoning-for-your-guesses.-these-spectra-do-not-represent-the-features-which-are-already-labeled.-you-must-think-of-new-features-which-could-be-observed-with-remote-sensing." class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:01-reflectance-characteristics-unknown-features"></span>
+<img src="images/01-reflectance-characteristics-unknown-features.png" alt="Reflectance characteristics of unknown features." width="80%" />
+<p class="caption">
+Figure 1.2: Reflectance characteristics of unknown features.
+</p>
+</div>
+</div>
+</div>
+<div id="task-2-landsat-5-bands-the-ems-arcgis-pro-software" class="section level2 unnumbered hasAnchor">
+<h2>Task 2: Landsat 5 Bands, the EMS, &amp; ArcGIS Pro Software<a href="spectral-signatures.html#task-2-landsat-5-bands-the-ems-arcgis-pro-software" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table>
+<colgroup>
+<col width="7%" />
+<col width="21%" />
+<col width="12%" />
+<col width="21%" />
+<col width="38%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Bands</strong></th>
+<th><strong>Wavelength Range (microns)</strong></th>
+<th><strong>Spectral Region</strong></th>
+<th><strong>Spatial Resolution (meters)</strong></th>
+<th><strong>Applications</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>0.45-0.52</td>
+<td>Blue</td>
+<td>30</td>
+<td>Coastal water mapping, differentiation of vegetation and soils.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>0.52-0.60</td>
+<td>Green</td>
+<td>30</td>
+<td>Assessment of vegetation vigor.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>0.63-0.69</td>
+<td>Red</td>
+<td>30</td>
+<td>Chlorophyll absorption for vegetation differentiation.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>0.76-0.90</td>
+<td>Near infrared</td>
+<td>30</td>
+<td>Biomass surveys and delineation of water bodies.</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>1.55-1.75</td>
+<td>Middle infrared</td>
+<td>30</td>
+<td>Vegetation and soil moisture measurements. Differentiation of ice and clouds.</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>10.40-12.50</td>
+<td>Thermal infrared</td>
+<td>60</td>
+<td>Thermal mapping, soil moisture studies, plant heat stress measurement.</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>2.08-2.35</td>
+<td>Middle Infrared</td>
+<td>30</td>
+<td>Hydrothermal mapping.</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>0.52-0.90</td>
+<td>Green, Red, Near infrared</td>
+<td>15</td>
+<td>Panchromatic band. Large area mapping, urban change studies.</td>
+</tr>
+</tbody>
+</table>
+<div id="q6.-each-pixel-of-landsats-thermal-infrared-band-band-6-covers-_____-pixels-of-the-other-bands.-if-it-helps-draw-a-picture-of-the-two-pixel-resolutions." class="section level5 unnumbered hasAnchor">
+<h5>Q6. Each pixel of Landsat’s thermal infrared band (Band 6) covers _____ pixels of the other bands. If it helps, draw a picture of the two pixel resolutions.<a href="spectral-signatures.html#q6.-each-pixel-of-landsats-thermal-infrared-band-band-6-covers-_____-pixels-of-the-other-bands.-if-it-helps-draw-a-picture-of-the-two-pixel-resolutions." class="anchor-section" aria-label="Anchor link to header"></a></h5>
+</div>
+<div id="q7.-consider-the-equation-q-h-nu-where-q-is-the-energy-in-quanta-h-is-planks-constant-and-nu-is-the-frequency.-band-6-is-recorded-with-a-coarser-resolution-because-thermal-radiation-has-a-very-_____-wavelength.-therefore-there-is-_____-energy-available-to-sense." class="section level5 unnumbered hasAnchor">
+<h5>Q7. Consider the equation <span class="math inline">\(Q = h * \nu\)</span> where <span class="math inline">\(Q\)</span> is the energy in quanta, <span class="math inline">\(h\)</span> is Plank’s constant, and <span class="math inline">\(\nu\)</span> is the frequency. Band 6 is recorded with a coarser resolution because thermal radiation has a very _____ wavelength. Therefore, there is _____ energy available to sense.<a href="spectral-signatures.html#q7.-consider-the-equation-q-h-nu-where-q-is-the-energy-in-quanta-h-is-planks-constant-and-nu-is-the-frequency.-band-6-is-recorded-with-a-coarser-resolution-because-thermal-radiation-has-a-very-_____-wavelength.-therefore-there-is-_____-energy-available-to-sense." class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p><strong>Step 1:</strong> To start the lab, Open ArcGIS Pro. You should have window that looks like the screenshot below. The ArcGIS Pro theme used to create this lab is Dark. The default theme is likely Light, but if you are interested in changing themes please follow the instructions at this <a href="https://pro.arcgis.com/en/pro-app/latest/get-started/general-options.htm">link</a>. To open a new project, choose “Map” from the “New Blank Template” list.</p>
+<p><img src="images/01-starting-arcgispro-prompt.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>A prompt will appear requesting you to Name and state the location of your project. It is recommended to name your project “LabXX_yourlastname”. Uncheck the “Create a new folder for this project” box. As usual, save your project on the (C:) drive in the same folder that your downloaded data is located.</p>
+<p>The next window is the generic start of a new project in ArcGIS Pro. In the centre you will see the standard “Catalog” frame. At the top is the ribbon, which is where the majority of your analysis options can be found. On the left is the standard “Contents” frame, which is similar to that of other Esri products. Tabs can be found on the right-hand side of the window. When using tools or adjusting symbology, be sure to look here for a relevant tab before exploring the ribbon.</p>
+<p>You will also notice that the Catolog frame is also “tabbed”. This means that you can close the frame without closing ArcGIS Pro. It also means that you can have Maps, Catalogs and 3D Scenes all open at the same time. Although this is very cool, be aware that too many tabs are likely to crash ArcGIS Pro. Know your computers processing limits and play within it.</p>
+<p><strong>Step 2:</strong> Without closing the Catalog window, navigate to the “Insert” tab on the ribbon and click on the “New Map” icon.</p>
+<p><img src="images/01-new-map.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>A new topographic map will appear in the centre window. Note that it is separate from the Catalog tab. You can switch back and forth between these as you wish, but recall that there is another Catalog tab on the right-hand side of the screen. When analyzing a map or editing a model, this is the easiest tab to use. For the remainder of the lab, when “Catalog” is mentioned it is referring to this side tab.</p>
+<p><strong>Step 3:</strong> To add data to the map, navigate to the Pre-Lab folder using Catalog* ,if you save your project in the same folder as you data it should appear, if not right click <strong>Folders</strong> in the Catalog pane and select:</p>
+<p><img src="images/01-add-folder-connection.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><strong>Step 4:</strong> Navigate to where the data is saved and click ok. When you can find the data folder, drag-and-drop the <strong>L5047026subset_19990922_7B.dat</strong> file into the map window. At this point, you should see an RGB satellite image of the city of Vancouver (Figure <a href="spectral-signatures.html#fig:01-true-colour-composite-vancouver">1.3</a>) if the mapview does not immediately pan to the image right click <strong>L5047026subset_19990922_7B.dat</strong> in the Contents pane and press Zoom to Layer.</p>
+<p><em>Note: If the catalog pane does not immediately appear in your ArcGIS Pro document use the ribbons at the top to navigate to <strong>View -&gt; Catalog Pane</strong></em></p>
+<p><img src="images/01-catalog-pane.png" width="50%" style="display: block; margin: auto;" /></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:01-true-colour-composite-vancouver"></span>
+<img src="images/01-true-colour-composite-vancouver.png" alt="True colour composite of Vancouver." width="100%" />
+<p class="caption">
+Figure 1.3: True colour composite of Vancouver.
+</p>
+</div>
+<p><strong>Step 5:</strong> It is now time to explore your imagery. Right-click the L5047026subset_19990922_7B.dat file in the Contents pane and select “Properties”. Use the menu on the left-hand side and select the “Source” page and the Raster Information drop down.</p>
+<p><img src="images/01-raster-information-drop-down.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><strong>Step 6:</strong> After clicking on the <strong>Raster Information</strong>, the tab should open up, and display important information about the image, such as dimensions (number of pixels in the X or Y directions), data types, projection, and resolution (listed as Projection/Pixel). This information can be useful when examining an image!</p>
+<p><strong>Step 7:</strong> From the <strong>Raster Information</strong> you can see that the spatial resolution of this image is approximately 30 m by 30 m, square. That means that each pixel in the image represents an area of approximately 30 x 30 m on the ground, or 900 square meters. Furthermore, it is a Landsat 5 Thematic Mapper image of Vancouver and its surroundings taken at 22 September 1999 - Wow! Even more details are apparent – its size is 4000 by 3000 pixels, and has seven bands.</p>
+<p><strong>Step 8:</strong> Scroll down and press on the <strong>Spatial Reference</strong> to see the projection information.</p>
+<p>We will now use ArcGIS Pro to zoom and pan our image.</p>
+<p><strong>Step 9:</strong> Notice the <strong>Map</strong> ribbon at the top, navigate to it and hover you mouse of the <strong>Explore</strong> tool:</p>
+<p><img src="images/01-explore-tool.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>Use these controls to zoom in and out of the image and to pan around, try to zoom into the Fraser estuary and navigate upriver. Included in the Navigate pane there are also the fixed zoom tools the previous extent arrows and the small globe which will zoom to the full extent of your data.</p>
+<p>Traditionally, single bands of imagery are shown in greyscale, with dark areas shown in black, and light areas shown in white, with anything else shown in shades of grey. Think of each pixel representing a number between 0-255 (byte data type range, the same one of this very imagery!), with areas colored pure black representing the number 0, and areas colored pure white representing the number 255, and everything else is a shade of grey increasing in lightness from 1-254. The figure below displays this concept.</p>
+<p><img src="images/01-grey-scale.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><strong>Step 10:</strong> Right-click on you data in the Contents pane and select “Symbology”. The symbology pane should appear on the side of you window. Press the drop-down menu and select “Stretch”.</p>
+<p><img src="images/01-symbology-stretch.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><strong>Step 11:</strong> In the next dropdown menu labeled “Band” select “Band 4 NIR” you should see the same image as below.</p>
+<p><img src="images/01-band-4-nir.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>You have now displayed a single band of greyscale imagery. Pixels that are bright/light/white have high amounts of light being reflected back to the sensor in this section of the EMS. Pixels that are dark/black have high amounts of absorption in this section of the EMS. Pixels are colored by the actual numeric values which indicate how much reflected light the sensor detected (from 0-255). This is a critical component to understand about remote sensing data sets.</p>
+<p>When more than 1 spectral band is available for a given image (like the Landsat data provided), colours can be used for visualization. Computer monitors display visible light as combinations of red, green, and blue using the RGB colour model.</p>
+<p><em>Note: Remember that the colours we see are also a wavelength in the EMS. e.g. Red – 660 nm, Green – 560 nm, Blue – 480 nm</em></p>
+<p>In a true colour image, the computer display visualizes objects the way we see them in real life. In other words, in a true colour image, Landsat band 1 (Blue – 480 nm) is displayed as blue, band 2 (Green – 560 nm) is displayed as green, and band 3 (Red – 660 nm) is displayed as red.</p>
+<p>Any combination where this is not the case is a <strong><em>false color composite</em></strong>, where the colours chosen to visualize the data are not true to life, i.e. Landsat band 1 (Blue – 480 nm) is displayed as red, band 2 (Green – 560 nm) is displayed as blue, and band 3 (Red – 660 nm) is displayed as green.</p>
+<p>Visualizing wavelengths outside of the visible spectrum (Landsat bands 4-7) automatically apply as false colour composites. False colour composites are necessary because many remote sensing devices can measure a broader range of wavelengths than humans can see. As a result, in order to display these data visually for humans, they must be displayed using a part of the spectrum that humans can see (Red, Green, Blue).</p>
+<p><strong>Step 12:</strong> In the <strong>Symbology</strong> pane navigate back to “RGB” in the first dropdown list. Your image should change back into a <strong>True Colour</strong> Landsat image where band3 red is visualised as red, band 2 green is visualised as green and band1 blue is visualised as blue.</p>
+<p><img src="images/01-true-colour-landsat-image.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>By displaying <strong>false colour composites</strong> it is possible to display many band combinations of the image on our screen. This time you will create a false colour composite by selecting different wavelengths (bands) to be visualized using red, green and blue colours.</p>
+<p><strong>Step 13:</strong> In the <strong>Symbology</strong> pane under their respective drop done lists visualize the following band combination.</p>
+<p>Band 4 using Red</p>
+<p>Band 2 using Green</p>
+<p>Band 7 using Blue</p>
+<p>You should see the following</p>
+<p><img src="images/01-false-colour-composite-pink.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>You can experiment with different band combinations by visualizing different bands using Red, Green and Blue. A <strong>standard false colour composite</strong>, for instance, has Band 4 visualized using Red, Band 3 visualized using Green and Band 2 visualized using Blue, as shown below</p>
+<p><img src="images/01-standard-false-colour-composite.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Right click the bands in the <strong>Contents</strong> pane, turn different layers on and off by clicking the check mark off and on in the <strong>Is Visible</strong> section. Zoom and pan around and investigate different areas of Vancouver that you may know. Feel free to use Google Maps or Google Earth to help you orient yourself.</p>
+</div>
+<div id="q8.-in-a-standard-false-colour-composite-band-4-visualized-used-red-band-3-visualized-using-green-and-band-2-visualized-using-blue-healthy-vegetation-appears-_____.-vegetation-is-more-reflective-in-the-_____-part-of-the-spectrum-than-in-the-green-part-of-the-spectrum-so-_____-appears-the-brightest." class="section level5 unnumbered hasAnchor">
+<h5>Q8. In a <strong><em>standard false colour</em></strong> composite (Band 4 visualized used red, Band 3 visualized using green, and Band 2 visualized using blue), healthy vegetation appears _____. Vegetation is more reflective in the _____ part of the spectrum than in the green part of the spectrum so _____ appears the brightest.<a href="spectral-signatures.html#q8.-in-a-standard-false-colour-composite-band-4-visualized-used-red-band-3-visualized-using-green-and-band-2-visualized-using-blue-healthy-vegetation-appears-_____.-vegetation-is-more-reflective-in-the-_____-part-of-the-spectrum-than-in-the-green-part-of-the-spectrum-so-_____-appears-the-brightest." class="anchor-section" aria-label="Anchor link to header"></a></h5>
+</div>
+<div id="q9.-experiment-with-many-different-false-colour-composites.-which-3-bands-would-you-combine-if-you-wanted-to-analyze-vegetation-do-some-light-research-on-spectral-properties-and-the-applications-of-different-landsat-bands-and-write-a-sentence-or-two-justifying-each-of-your-choices.-then-append-a-screenshot-of-your-chosen-composite-to-your-response." class="section level5 unnumbered hasAnchor">
+<h5>Q9. Experiment with many different false colour composites. Which 3 bands would you combine if you wanted to analyze <strong>vegetation</strong>? Do some light research on spectral properties and the applications of different Landsat bands and write a sentence or two justifying each of your choices. Then, append a screenshot of your chosen composite to your response.<a href="spectral-signatures.html#q9.-experiment-with-many-different-false-colour-composites.-which-3-bands-would-you-combine-if-you-wanted-to-analyze-vegetation-do-some-light-research-on-spectral-properties-and-the-applications-of-different-landsat-bands-and-write-a-sentence-or-two-justifying-each-of-your-choices.-then-append-a-screenshot-of-your-chosen-composite-to-your-response." class="anchor-section" aria-label="Anchor link to header"></a></h5>
+</div>
+<div id="q10.-experiment-with-many-different-false-colour-composites.-which-3-bands-would-you-combine-if-you-wanted-to-analyze-water-quality-do-some-light-research-on-spectral-properties-and-the-applications-of-different-landsat-bands-and-write-a-sentence-or-two-justifying-each-of-your-choices.-then-append-a-screenshot-of-your-chosen-composite-to-your-response." class="section level5 unnumbered hasAnchor">
+<h5>Q10. Experiment with many different false colour composites. Which 3 bands would you combine if you wanted to analyze <strong>water quality</strong>? Do some light research on spectral properties and the applications of different Landsat bands and write a sentence or two justifying each of your choices. Then, append a screenshot of your chosen composite to your response.<a href="spectral-signatures.html#q10.-experiment-with-many-different-false-colour-composites.-which-3-bands-would-you-combine-if-you-wanted-to-analyze-water-quality-do-some-light-research-on-spectral-properties-and-the-applications-of-different-landsat-bands-and-write-a-sentence-or-two-justifying-each-of-your-choices.-then-append-a-screenshot-of-your-chosen-composite-to-your-response." class="anchor-section" aria-label="Anchor link to header"></a></h5>
+</div>
+<div id="q11.-experiment-with-many-different-false-colour-composites.-which-3-bands-would-you-combine-if-you-wanted-to-analyze-agriculture-do-some-light-research-on-spectral-properties-and-the-applications-of-different-landsat-bands-and-write-a-sentence-or-two-justifying-each-of-your-choices.-then-append-a-screenshot-of-your-chosen-composite-to-your-response." class="section level5 unnumbered hasAnchor">
+<h5>Q11. Experiment with many different false colour composites. Which 3 bands would you combine if you wanted to analyze <strong>agriculture</strong>? Do some light research on spectral properties and the applications of different Landsat bands and write a sentence or two justifying each of your choices. Then, append a screenshot of your chosen composite to your response.<a href="spectral-signatures.html#q11.-experiment-with-many-different-false-colour-composites.-which-3-bands-would-you-combine-if-you-wanted-to-analyze-agriculture-do-some-light-research-on-spectral-properties-and-the-applications-of-different-landsat-bands-and-write-a-sentence-or-two-justifying-each-of-your-choices.-then-append-a-screenshot-of-your-chosen-composite-to-your-response." class="anchor-section" aria-label="Anchor link to header"></a></h5>
+</div>
+<div id="q12.-experiment-with-many-different-false-colour-composites.-which-3-bands-would-you-combine-if-you-wanted-to-analyze-urban-areas-do-some-light-research-on-spectral-properties-and-the-applications-of-different-landsat-bands-and-write-a-sentence-or-two-justifying-each-of-your-choices.-then-append-a-screenshot-of-your-chosen-composite-to-your-response." class="section level5 unnumbered hasAnchor">
+<h5>Q12. Experiment with many different false colour composites. Which 3 bands would you combine if you wanted to analyze <strong>urban areas</strong>? Do some light research on spectral properties and the applications of different Landsat bands and write a sentence or two justifying each of your choices. Then, append a screenshot of your chosen composite to your response.<a href="spectral-signatures.html#q12.-experiment-with-many-different-false-colour-composites.-which-3-bands-would-you-combine-if-you-wanted-to-analyze-urban-areas-do-some-light-research-on-spectral-properties-and-the-applications-of-different-landsat-bands-and-write-a-sentence-or-two-justifying-each-of-your-choices.-then-append-a-screenshot-of-your-chosen-composite-to-your-response." class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>Now it is time to examine your data set more thoroughly. At the beginning of this lab we examined the spectral signatures of different materials. We will now do the same thing for the different sections of our Vancouver Landsat image.</p>
+<p><strong>Step 14:</strong> Right-click on the <strong>L5047026subset_19990922_7B.dat</strong> file in the Contents pane and select <strong>Create Chart -&gt; Spectral Profile</strong>. The Chart Properties pane should appear on the right side of your screen and the spectral chart on the bottom.</p>
+<p><img src="images/01-create-spectral-profile.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>In the Chart properties pane under “Define an Area of Interest” select “point” and then click a pixel on your map. Change the colour and select a variety of different points representing different land cover types (Urban, forest, water, crops, snow).</p>
+<p><img src="images/01-area-of-interest-points.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>You might have to resize the spectral chart at the bottom of your screen in order to see the different profiles. Your chart should look something like this:</p>
+<p><img src="images/01-profile-chart.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="q13.-examine-your-new-spectral-profile-chart-compare-the-different-profiles-you-created-to-the-spectral-profiles-in-figures-1-and-2.-what-is-the-difference-between-them-why-might-your-spectral-curves-look-different-than-the-ones-above-take-a-screenshot-of-your-spectral-signature-chart-and-append-it-to-your-answer." class="section level5 unnumbered hasAnchor">
+<h5>Q13. Examine your new spectral profile chart, compare the different profiles you created to the spectral profiles in figures 1 and 2. What is the difference between them? Why might your spectral curves look different than the ones above? Take a screenshot of your spectral signature chart and append it to your answer.<a href="spectral-signatures.html#q13.-examine-your-new-spectral-profile-chart-compare-the-different-profiles-you-created-to-the-spectral-profiles-in-figures-1-and-2.-what-is-the-difference-between-them-why-might-your-spectral-curves-look-different-than-the-ones-above-take-a-screenshot-of-your-spectral-signature-chart-and-append-it-to-your-answer." class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<hr />
+</div>
+</div>
+<div id="summary" class="section level2 unnumbered hasAnchor">
+<h2>Summary<a href="spectral-signatures.html#summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this lab, we introduced concepts of using specific ranges of the electromagnetic spectrum to understand spectral reflectance and spectral signatures. Spectral signatures are determined by the spectral properties of different materials. They can be used to gather more information about a material than what we can see with visible light! We used ArcGIS Pro to analyze different types of remote sensing data and visualized various combinations of bands using greyscale, true colour composites, and false colour composites. This lab is just the beginning of our remote sensing journey but opens our eyes to the power of remote sensing and its ability to unveil information about the world around us!</p>
+<p>Return to the <a href="spectral-signatures.html#lab1-deliverables"><strong>Deliverables</strong></a> section to check off everything you need to submit for credit in the course management system.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="network-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

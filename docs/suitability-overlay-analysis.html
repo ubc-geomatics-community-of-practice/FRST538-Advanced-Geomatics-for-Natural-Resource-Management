@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lab: 4 Suitability and Overlay Analysis | FRST538-Advanced-Geomatics-for-Natural-Resource-Management</title>
+  <meta name="description" content="Open Educational Resources for FRST 538 course at the University of British Columbia" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lab: 4 Suitability and Overlay Analysis | FRST538-Advanced-Geomatics-for-Natural-Resource-Management" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Open Educational Resources for FRST 538 course at the University of British Columbia" />
+  <meta name="github-repo" content="github.com/ubc-geomatics-community-of-practice/FRST538-Advanced-Geomatics-for-Natural-Resource-Management/book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lab: 4 Suitability and Overlay Analysis | FRST538-Advanced-Geomatics-for-Natural-Resource-Management" />
+  
+  <meta name="twitter:description" content="Open Educational Resources for FRST 538 course at the University of British Columbia" />
+  
+
+<meta name="author" content="Paul D. Pickell" />
+
+
+<meta name="date" content="2024-09-04" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="lidar-for-forest-management.html"/>
+<link rel="next" href="geographically-weighted-regression.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">An Open Geomatics Community of Practice</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-use-these-resources"><i class="fa fa-check"></i>How to use these resources</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-get-involved"><i class="fa fa-check"></i>How to get involved</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="spectral-signatures.html"><a href="spectral-signatures.html"><i class="fa fa-check"></i><b>1</b> Getting to know Remote Sensing and spectral signatures</a>
+<ul>
+<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#lab-overview"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#learning-objectives"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#lab1-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#data"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#task-1-the-electromagnetic-spectrum"><i class="fa fa-check"></i>Task 1: The Electromagnetic Spectrum</a></li>
+<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#task-2-landsat-5-bands-the-ems-arcgis-pro-software"><i class="fa fa-check"></i>Task 2: Landsat 5 Bands, the EMS, &amp; ArcGIS Pro Software</a></li>
+<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="network-analysis.html"><a href="network-analysis.html"><i class="fa fa-check"></i><b>2</b> Salmon Stream Network Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#lab-overview-1"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#learning-objectives-1"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#lab2-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#data-1"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#task-1-create-stream-segments"><i class="fa fa-check"></i>Task 1: Create stream segments</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#task-2-create-routes-and-apply-topology"><i class="fa fa-check"></i>Task 2: Create routes and apply topology</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#task-3-record-stream-attributes-with-linear-referencing"><i class="fa fa-check"></i>Task 3: Record stream attributes with linear referencing</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#task-4-trace-the-network"><i class="fa fa-check"></i>Task 4: Trace the network</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#task-5-overlay-and-query-the-network"><i class="fa fa-check"></i>Task 5: Overlay and query the network</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#final-report"><i class="fa fa-check"></i>Final Report</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#summary-1"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html"><i class="fa fa-check"></i><b>3</b> Lidar for Forest Management</a>
+<ul>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#lab-overview-2"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#learning-objectives-2"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#lab3-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#data-2"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#software"><i class="fa fa-check"></i>Software</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#lab-set-up"><i class="fa fa-check"></i>Lab Set up</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-1-load-rgb-imagery"><i class="fa fa-check"></i>Task 1: Load RGB Imagery</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-2-load-and-explore-the-lidar-data"><i class="fa fa-check"></i>Task 2: Load and Explore the LiDAR Data</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-4-read-multiple-las-files-into-lascatolog-object"><i class="fa fa-check"></i>Task 4: Read Multiple LAS Files into LAScatolog object</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-4-create-digital-elevation-model-dem"><i class="fa fa-check"></i>Task 4: Create Digital Elevation Model (DEM)</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-5-create-a-canopy-height-model"><i class="fa fa-check"></i>Task 5: Create a Canopy Height Model</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-6-extract-metrics-from-the-point-clouds"><i class="fa fa-check"></i>Task 6: Extract Metrics From the Point Clouds</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-7-stem-volume-models-with-lidr"><i class="fa fa-check"></i>Task 7: Stem Volume Models with lidR</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-9"><i class="fa fa-check"></i>Task 9</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#learning-objectives-3"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#lab4-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#lab4-data"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-1-load-and-explore-the-lidar-data"><i class="fa fa-check"></i>Task 1: Load and explore the LiDAR data</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-2-create-a-dtm-using-built-in-arcgis-functions"><i class="fa fa-check"></i>Task 2: Create a DTM using built-in ArcGIS functions</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-3-pre-process-data-for-interpolation"><i class="fa fa-check"></i>Task 3: Pre-process data for interpolation</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-4-raster-interpolation"><i class="fa fa-check"></i>Task 4: Raster interpolation</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-5-visually-interpret-differences"><i class="fa fa-check"></i>Task 5: Visually interpret differences</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-6-quantitatively-interpret-the-differences-and-calculate-statistics-for-each-zone"><i class="fa fa-check"></i>Task 6: Quantitatively interpret the differences and calculate statistics for each zone</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-7-create-a-map-document"><i class="fa fa-check"></i>Task 7: Create a map document</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-8-exploring-scenes"><i class="fa fa-check"></i>Task 8: Exploring Scenes</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#summary-2"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html"><i class="fa fa-check"></i><b>4</b> Suitability and Overlay Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#lab-overview-3"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#learning-objectives-4"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#lab5-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#data-3"><i class="fa fa-check"></i>Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#data-organization"><i class="fa fa-check"></i>Data Organization</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#files-to-create"><i class="fa fa-check"></i>Files to Create</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#scenario-1"><i class="fa fa-check"></i>Scenario 1</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-1-export-relevant-data-from-biologically-important-areas-shapefile"><i class="fa fa-check"></i>Task 1: Export Relevant Data from Biologically Important Areas Shapefile</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-2-identify-the-bia-of-the-humpback-whale-that-is-not-within-the-established-marine-sanctuary"><i class="fa fa-check"></i>Task 2: Identify the BIA of the Humpback Whale that is not within the established Marine Sanctuary</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-3-calculate-the-density-of-cetacean-sightings-using-the-bia-for-humpback-whales"><i class="fa fa-check"></i>Task 3: Calculate the Density of Cetacean Sightings using the BIA for Humpback Whales</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-4-extract-the-boats-from-ocean-uses-and-identity-the-vessels-within-the-bia-polygons"><i class="fa fa-check"></i>Task 4: Extract the Boats from Ocean Uses and Identity the Vessels within the BIA Polygons</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-5-calculate-suitability-and-identify-most-suitable-locations-for-the-marine-sanctuary"><i class="fa fa-check"></i>Task 5: Calculate Suitability and Identify Most Suitable Locations for the Marine Sanctuary</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#scenario-2"><i class="fa fa-check"></i>Scenario 2</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-1-export-relevant-data-from-biologically-important-areas-shapefile-1"><i class="fa fa-check"></i>Task 1: Export Relevant Data from Biologically Important Areas Shapefile</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-2-extract-all-of-the-commercial-fishing-vessels-from-ocean-uses"><i class="fa fa-check"></i>Task 2: Extract All of the Commercial Fishing Vessels from Ocean Uses</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-3-erase-where-the-false-killer-whales-and-commercial-fishing-vessels-overlap"><i class="fa fa-check"></i>Task 3: Erase where the False Killer Whales and Commercial Fishing Vessels overlap</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#summary-3"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html"><i class="fa fa-check"></i><b>5</b> Analyzing Green Equity Using Geographically Weighted Regression</a>
+<ul>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#lab-overview-4"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#learning-objectives-5"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#redo-these"><i class="fa fa-check"></i>redo these</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#lab6-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#lab6-data"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#task-1-join-demographics-data-to-the-dissemination-areas"><i class="fa fa-check"></i>Task 1: Join Demographics data to the Dissemination Areas</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#task-2-determine-the-distance-from-green-spaces-to-disssemination-areas"><i class="fa fa-check"></i>Task 2: Determine the distance from green spaces to Disssemination Areas</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#task-3-detrmine-the-variables-to-include-in-your-analysis"><i class="fa fa-check"></i>Task 3: Detrmine the variables to include in your analysis</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#task-4-determine-the-overarching-relationship-between-green-spaces-and-your-variables"><i class="fa fa-check"></i>Task 4: Determine the Overarching Relationship Between Green Spaces and your Variables</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#task-5-conduct-a-geographically-weighted-analysis"><i class="fa fa-check"></i>Task 5: Conduct a Geographically Weighted Analysis</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#final-report-1"><i class="fa fa-check"></i>Final Report</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#summary-4"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html"><i class="fa fa-check"></i><b>6</b> Time Series Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#lab-overview-5"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#learning-objectives-6"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#lab7-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#data-4"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#task-1-starting-arcgis-pro"><i class="fa fa-check"></i>Task 1: Starting ArcGIS Pro</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#toggling-extentions"><i class="fa fa-check"></i>Toggling Extentions</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#inserting-a-new-map"><i class="fa fa-check"></i>Inserting a New Map</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#adding-data-to-the-map"><i class="fa fa-check"></i>Adding Data to the Map</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#task-1-calculating-ndvi"><i class="fa fa-check"></i>Task 1: Calculating NDVI</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#task-2-time-series-analysis"><i class="fa fa-check"></i>Task 2: Time Series Analysis</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#task-3-change-detection"><i class="fa fa-check"></i>Task 3: Change Detection</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#task-4-map-creation"><i class="fa fa-check"></i>Task 4: Map Creation</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#summary-5"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html"><i class="fa fa-check"></i><b>7</b> Machine Learning for Classification</a>
+<ul>
+<li class="chapter" data-level="" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html#lab-overview-6"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html#learning-objectives-7"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html#lab8-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html#data-5"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html#task-1-creating-training-data"><i class="fa fa-check"></i>Task 1: Creating training data</a></li>
+<li class="chapter" data-level="" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html#task-2-training-a-random-forest-random-forest-algorithm"><i class="fa fa-check"></i>Task 2: Training a Random Forest (Random Forest Algorithm)</a></li>
+<li class="chapter" data-level="" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html#task-3-interpreting-classification-results"><i class="fa fa-check"></i>Task 3: Interpreting Classification Results</a></li>
+<li class="chapter" data-level="" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html#task-4-making-a-map"><i class="fa fa-check"></i>Task 4: Making a Map</a></li>
+<li class="chapter" data-level="" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html#summary-6"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">FRST538-Advanced-Geomatics-for-Natural-Resource-Management</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="suitability-overlay-analysis" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Lab: 4</span> Suitability and Overlay Analysis<a href="suitability-overlay-analysis.html#suitability-overlay-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Written by
+Annie Mejaes</p>
+<div id="lab-overview-3" class="section level2 unnumbered hasAnchor">
+<h2>Lab Overview<a href="suitability-overlay-analysis.html#lab-overview-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Oftentimes, what we consider to be GIS analysis in the natural resources domain is related to suitability analysis. This analysis typically involves identifying areas/features that could support a given activity, use, or process and eliminating areas/features that would not be able to fulfill the required needs. Suitability analysis typically refers to an ordinal classification of the capable areas/features to denote the relative abilities of these areas/features to fulfill these needs. This number is mostly likely represented as an index that ranges from 0 to 1 where 1 = the most suitability possible for a given area/feature and 0 = no suitability. Typically, there will be no 0 values present in this index as all incapable areas should have already been eliminated in previous steps.</p>
+<p>In order to perform a suitability analysis, geospatial operations, such as vector polygon overlay and database table intersection are not only the distinguishing functional characteristics of a geographic information system, but are also the most common aspects of this process. In order to gain an understanding of the potential of cartographic modeling using a GIS, this lab has been constructed to take you through an exercise that closely mirrors a prototypical GIS analysis related to conservation values.</p>
+<p>Marine spatial planning is “a collaborative and transparent approach to managing ocean spaces that helps to balance the increased demand for human activities with the need to protect marine ecosystems. It takes into consideration all activities and partners in an area to help make informed decisions about the management of our oceans in a more open and practical way.</p>
+<p>Marine Spatial Planning is internationally recognized as an effective tool for transparent, inclusive and sustainable oceans planning and management. Approximately 65 countries are currently using this approach. Marine Spatial Plans are tailored to each unique area to help manage human activities and their impacts on our oceans. Depending on the area, these plans may include areas for potential resource development and areas that require special protection” (Fisheries and Oceans Canada).</p>
+<p>The State of Hawai’i defines Marine Protected Areas as “a subset of MMAs, and focus on protection, enhancement, and conservation of habitat and ecosystems. Some MPAs have very few fishing restrictions and allow sustainable fishing, while others restrict all fishing and are “no take” areas. In Hawai‘i, forms of MPAs have been in use for over 40 years.” -Division of Aquatic Resources</p>
+<p>Within this lab, we will utilize existing and new geospatial tools to conduct a marine spatial planning exercise in Hawaii, USA. You will complete tasks based on a scenario related to the critical habitat of cetaceans in Hawaii and conflicting uses. You will learn tools and processes while completing the first scenario that you can apply to complete the second scenario more independently.</p>
+<ol style="list-style-type: decimal">
+<li><p>Considered one of the world’s most important humpback whale habitats, the Hawaiian Islands Humpback Whale National Marine Sanctuary was established in 1992 to protect humpback whales (<em>Megaptera novaeangliae</em>) and their habitat in Hawai‘i. Humpback whales commonly give birth and raise their young in the state’s warm and shallow waters. Yet, there is increasing conflict between the whales and vessels, including recreational and whale watching boats, as well as cargo ships. Thus, national and state government agencies would like to expand the marine sanctuary to reduce the whales strikes, further protecting the whales and their calves. The government agencies are searching for the largest suitable areas to include as part of the sanctuary.</p></li>
+<li><p>False killer whales, an endangered resident species in Hawaiian waters, are long-lived and only reproduce one calf every 6 or 7 years. So, the species is heavily impacted by human activities, taking a long time to recover. The false killer whales are often caught in fishing gear as bycatch, which is defined as the incidental or unintentional capture of a non-target species. Not only is this severely hurting the false killer whale population, in addition, Hawaiian fisheries have been forced to close their fishing season early, by reaching their bycatch limit. As there is a resource conflict at play, you will need to redefine the fishing grounds to limit the bycatch, as well as discuss the placement of a marine sanctuary for false killer whales.</p></li>
+</ol>
+<hr />
+</div>
+<div id="learning-objectives-4" class="section level2 unnumbered hasAnchor">
+<h2>Learning Objectives<a href="suitability-overlay-analysis.html#learning-objectives-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Practice good data management principles</li>
+<li>Distinguish overlay tools and recognize when to apply them</li>
+<li>Calculate a weighted suitability index</li>
+<li>Identify and map the most suitable locations for new marine sanctuaries</li>
+</ul>
+<hr />
+</div>
+<div id="lab5-deliverables" class="section level2 unnumbered hasAnchor">
+<h2>Deliverables<a href="suitability-overlay-analysis.html#lab5-deliverables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><input type="checkbox" unchecked> Scenario 1: </input></p>
+<ul>
+<li>An output table of the top 5 ranked features (see Task 7)</li>
+<li>Map of the final product</li>
+<li>a screenshot of the geodatabase</li>
+<li>a <a href="https://www.usgs.gov/data-management/data-dictionaries">data dictionary</a> - includes all files in the gdb</li>
+<li>answers to the questions submitted to the Lab 4 section on Canvas</li>
+</ul>
+<p><input type="checkbox" unchecked> Scenario 2:</input></p>
+<ul>
+<li>Two page report including your findings, which should also include at least one table and two maps in the appendix (not counting toward the page count)</li>
+</ul>
+<p><input type="checkbox" unchecked> Report should satisfy the following requirements:</input></p>
+<ul>
+<li>place maps and tables at the end of the document</li>
+<li>1” margins</li>
+<li>12 point font</li>
+<li>single spaced</li>
+<li>maximum of two pages</li>
+<li>structure as a technical report where you are given a recommendation to someone, trying to make a case as to why this should happen</li>
+<li>use headings as needed</li>
+<li>omit your name, student number, date</li>
+</ul>
+<p>In addition to including relevant maps, please answer the following questions in your report:</p>
+<ul>
+<li>What did you learn from Scenario 2 Tasks 3 and 4?</li>
+<li>How would you conduct a suitability analysis to determine the location of a marine sanctuary for false killer whales? What other factors could you consider?</li>
+<li>Why is it important to consider multiple dimensions in a suitability analysis?</li>
+</ul>
+<hr />
+</div>
+<div id="data-3" class="section level2 unnumbered hasAnchor">
+<h2>Data<a href="suitability-overlay-analysis.html#data-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The relevant data is located in your Canvas folder. You will be expected to practice proper data management by updating the existing file geodatabase with new shapefiles that are produced. Utilize what you have learnt in the past labs regarding the geodatabase creation, including using best practices regarding naming conventions.</p>
+<div id="data-organization" class="section level3 unnumbered hasAnchor">
+<h3>Data Organization<a href="suitability-overlay-analysis.html#data-organization" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You will find this lab much easier if you keep your data in a structure that makes sense for you – and others (as much as possible!) – by using meaningful names. As you progress through each step, we recommend that you also take a look at your data and use tools to delete unnecessary fields in your attribute tables so that they are not overpopulated and confusing.</p>
+</div>
+<div id="files-to-create" class="section level3 unnumbered hasAnchor">
+<h3>Files to Create<a href="suitability-overlay-analysis.html#files-to-create" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Here is a table of files you will be creating:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">File Name</th>
+<th align="left">Created in Task</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Humpback_BIA</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left">Humpback_Hawaii_BIA</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="left">BIA_Sanctuary_Erase</td>
+<td align="left">2</td>
+</tr>
+<tr class="even">
+<td align="left">BIA_Sightings</td>
+<td align="left">3</td>
+</tr>
+<tr class="odd">
+<td align="left">BIA_Multipart</td>
+<td align="left">3</td>
+</tr>
+<tr class="even">
+<td align="left">BIA_Sightings_Multipart</td>
+<td align="left">3</td>
+</tr>
+<tr class="odd">
+<td align="left">Boat_Uses</td>
+<td align="left">4</td>
+</tr>
+<tr class="even">
+<td align="left">BIA_Sightings_Boat</td>
+<td align="left">5</td>
+</tr>
+<tr class="odd">
+<td align="left">Top_Five_Sanctuary</td>
+<td align="left">7</td>
+</tr>
+<tr class="even">
+<td align="left">Sanctuary_Buffer</td>
+<td align="left">7</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+</div>
+<div id="scenario-1" class="section level2 unnumbered hasAnchor">
+<h2>Scenario 1<a href="suitability-overlay-analysis.html#scenario-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="task-1-export-relevant-data-from-biologically-important-areas-shapefile" class="section level2 unnumbered hasAnchor">
+<h2>Task 1: Export Relevant Data from Biologically Important Areas Shapefile<a href="suitability-overlay-analysis.html#task-1-export-relevant-data-from-biologically-important-areas-shapefile" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A biologically important area (BIA) identifies where cetaceans concentrate for specific behaviours. Download the Lab 7 data from your Canvas folder and connect the geodatabase to your new Map. Explore the file <strong>Cetaceans_BIA</strong>.</p>
+<p>You will need to extract the BIA for the humpback whales from the other species.</p>
+<p><strong>Step 1:</strong> Start a new project in ArcGIS Pro.</p>
+<p><strong>Step 2:</strong> Connect to the <code>whale</code> database on the UBC PostgreSQL server in ArcGIS Pro. Add <strong>Cetaceans_BIA</strong> to your map in ArcGIS Pro.</p>
+<p><strong>Step 3:</strong> Right-click on the layer and select ‘Attribute Table’. Explore the attribute table and understand what field you will need to use to extract ‘Humpback Whale’.</p>
+<p><strong>Step 4:</strong> Right-click on the layer again, select ‘Data’, and then select ‘Export Features’. Write a SQL query to extract the BIA for the humpback whales from the other species and save the output to your local geodatabase in your ArcGIS Pro project. Ensure the file is added to your map in ArcGIS Pro and then explore the new layer and attribute table.</p>
+<div id="q1.-what-was-the-sql-expression-that-you-used-to-export-only-the-humpback-whale-bia" class="section level5 unnumbered hasAnchor">
+<h5>Q1. What was the SQL expression that you used to export only the humpback whale BIA?<a href="suitability-overlay-analysis.html#q1.-what-was-the-sql-expression-that-you-used-to-export-only-the-humpback-whale-bia" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+</div>
+<div id="q2.-apart-from-hawaii-does-the-humpback-whale-have-any-other-locations-with-a-bia-for-reproduction-1-point" class="section level5 unnumbered hasAnchor">
+<h5>Q2. Apart from Hawaii, does the humpback whale have any other locations with a BIA for reproduction? (1 point)<a href="suitability-overlay-analysis.html#q2.-apart-from-hawaii-does-the-humpback-whale-have-any-other-locations-with-a-bia-for-reproduction-1-point" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p><strong>Step 5:</strong> Repeat Step 4, but this time only export the humpback whale BIA for Hawaii and name the file <strong>Humpback_Hawaii_BIA</strong>.</p>
+<hr />
+</div>
+</div>
+<div id="task-2-identify-the-bia-of-the-humpback-whale-that-is-not-within-the-established-marine-sanctuary" class="section level2 unnumbered hasAnchor">
+<h2>Task 2: Identify the BIA of the Humpback Whale that is not within the established Marine Sanctuary<a href="suitability-overlay-analysis.html#task-2-identify-the-bia-of-the-humpback-whale-that-is-not-within-the-established-marine-sanctuary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Visually compare the Marine Sanctuary (<strong>Humpback_Marine_Sanctuary</strong>) to the BIA of the humpback whale population.</p>
+<p><strong>Step 1:</strong> Open the tool ‘Overlay Layers’.</p>
+<p><strong>Step 2:</strong> Within the tool, the input layer should be the BIA, the overlay layer is the sanctuary. For ‘Overlay Type’, select Erase. Name the output <strong>BIA_Sanctuary_Erase</strong>.</p>
+<p><img src="images/05-overlay-layers.png" width="50%" /></p>
+<div id="q3.-what-percentage-of-the-bia-is-outside-of-the-marine-sancuary-hint-use-the-attribute-tables." class="section level5 unnumbered hasAnchor">
+<h5>Q3. What percentage of the BIA is outside of the marine sancuary? Hint: Use the attribute tables.<a href="suitability-overlay-analysis.html#q3.-what-percentage-of-the-bia-is-outside-of-the-marine-sancuary-hint-use-the-attribute-tables." class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p><img src="images/05-bia-sanctuary-erase-attribute-table.png" width="75%" /></p>
+<hr />
+</div>
+</div>
+<div id="task-3-calculate-the-density-of-cetacean-sightings-using-the-bia-for-humpback-whales" class="section level2 unnumbered hasAnchor">
+<h2>Task 3: Calculate the Density of Cetacean Sightings using the BIA for Humpback Whales<a href="suitability-overlay-analysis.html#task-3-calculate-the-density-of-cetacean-sightings-using-the-bia-for-humpback-whales" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Next, we have a point layer named <strong>Humpback_Sightings</strong> that is curated based on where cetaceans have been located or identified in Hawaiian waters. We want to understand the density of the sightings within the remaining BIA layer to understand which polygons should be prioritized.</p>
+<p><strong>Step 1:</strong> Open the tool ‘Spatial Join’. Spatial Join is a valuable tool that joins attributes from one feature to another based on a spatial relationship. The target feature defines the spatial boundary, while the input feature is molded to the target feature.</p>
+<p><strong>Step 2:</strong> Within the tool, the target features are <strong>BIA_Sanctuary_Erase</strong>, the input feature is <strong>Humpback_Sightings</strong>, and the join operation is ‘Join one to one’. The match option is ‘Contains’. Name the output <strong>BIA_Sightings</strong>.</p>
+<p><img src="images/05-spatial-join.png" width="50%" /></p>
+<p><strong>Step 3:</strong> Open the attribute table. What do you see went wrong with this analysis?</p>
+<p>We need to introduce a new tool, ‘Multipart to Singlepart’ to fix this problem. After you have used the ‘Overlay Layers’ to erase features from the BIA for humpback whales, you will be left with several polygons that are still considered the same polygon by ArcGIS Pro, but are now spatially separated (refer to the help page for <a href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/multipart-to-singlepart.htm">Multipart to Singlepart tool</a>). Try finding one and selecting it. You will know it is multipart when a number of additional polygons are outlined when you click one polygon. You will need to separate those parts into unique polygons before continuing on to the next step. What this is allowing you to do is to recommend placement of the expanded marine sanctuary into a portion of a BIA.</p>
+<p><strong>Step 4:</strong> Open the ‘Multipart to Singlepart’ tool and select the input layer as the layer <strong>BIA_Sanctuary_Erase</strong>.</p>
+<div id="q4.-how-many-individual-polygons-now-exist" class="section level5 unnumbered hasAnchor">
+<h5>Q4. How many individual polygons now exist?<a href="suitability-overlay-analysis.html#q4.-how-many-individual-polygons-now-exist" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p><strong>Step 5</strong>: Now re-do ‘Spatial Join’ from Steps 1-2. There are many polygons that have a minimal area, so, unselect ‘Keep all Target Features’, which will remove polygons that do not have any cetacean sightings within its boundaries.</p>
+<p><strong>Step 6:</strong> Use symbology to display the BIA polygons by number of cetacean sightings.</p>
+<p><img src="images/05-bia-polygons.png" width="75%" /></p>
+</div>
+<div id="q5.-what-is-the-target_fid-of-the-polygon-with-the-most-cetacean-sightings" class="section level5 unnumbered hasAnchor">
+<h5>Q5. What is the Target_FID of the polygon with the most cetacean sightings?<a href="suitability-overlay-analysis.html#q5.-what-is-the-target_fid-of-the-polygon-with-the-most-cetacean-sightings" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<hr />
+</div>
+</div>
+<div id="task-4-extract-the-boats-from-ocean-uses-and-identity-the-vessels-within-the-bia-polygons" class="section level2 unnumbered hasAnchor">
+<h2>Task 4: Extract the Boats from Ocean Uses and Identity the Vessels within the BIA Polygons<a href="suitability-overlay-analysis.html#task-4-extract-the-boats-from-ocean-uses-and-identity-the-vessels-within-the-bia-polygons" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The <strong>Ocean_Uses</strong> layer contains a wide range of human activities that occur at the coast or in the ocean. We would like to extract ‘Motorized Boating’, ‘Wildlife Viewing at Sea’, ‘Commercial Pelagic Fishing’, ‘Cruise Ships’, and ‘Shipping’. These human activities pose the most threat to humpback whales, and, so, we would like to expand the sanctuary to protect humpback whales where their current risk of collision with a vessel is the highest.</p>
+<p><strong>Step 1:</strong> Export features where Motorized Boating or any of the other human activities mentioned above is equal to ‘Dominant Use’ (value of 2). Be sure to set the output location to your local ArcGIS Pro project geodatabase and name the output feature class <strong>Boat_Uses</strong>.</p>
+<p><img src="images/05-feature-class-to-feature-class.png" width="50%" /></p>
+<p>Now, we would like to bring the data on vessel usage and the BIA polygons together using the Overlay Layers tool. This is important to be able to see the spatial overlap between where humpback whales reproduce and rear their young and where vessels are labeled as a Dominant Use, indicating that there is a higher chance of boat strikes in these locations.</p>
+<p><strong>Step 2:</strong> Open the tool ‘Overlay Layers’. The input layer should be <strong>BIA_Sightings_Multipart</strong> and the overlay layer is <strong>Boat_Uses</strong>. For ‘Overlay Type’, select Identity. Name the output <strong>BIA_Sightings_Boat</strong>.</p>
+<div id="q6.-open-the-attribute-table-for-the-output.-what-does-the-0-1-and-2-represent-in-the-swimming-column" class="section level5 unnumbered hasAnchor">
+<h5>Q6. Open the attribute table for the output. What does the 0, 1, and 2 represent in the swimming column?<a href="suitability-overlay-analysis.html#q6.-open-the-attribute-table-for-the-output.-what-does-the-0-1-and-2-represent-in-the-swimming-column" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<hr />
+</div>
+</div>
+<div id="task-5-calculate-suitability-and-identify-most-suitable-locations-for-the-marine-sanctuary" class="section level2 unnumbered hasAnchor">
+<h2>Task 5: Calculate Suitability and Identify Most Suitable Locations for the Marine Sanctuary<a href="suitability-overlay-analysis.html#task-5-calculate-suitability-and-identify-most-suitable-locations-for-the-marine-sanctuary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now, we will determine where is the most suitable location to expand the marine sanctuary for humpback whales. The suitability value will be a new field between the value of 0 and 1 with 1 being the most suitable, and 0 being not suitable. It will be based on 3 characteristics (suitability factors):</p>
+<ul>
+<li>the larger the area the higher the suitability score</li>
+<li>the more cetacean sightings per area, within an area the higher the suitability score</li>
+<li>the more dominant ocean uses the higher the suitability score</li>
+</ul>
+<p><strong>Step 1:</strong> Before you calculate final suitability score, you will need to add three new fields to <strong>BIA_Sightings_Boat</strong> within the attribute table:</p>
+<ul>
+<li>Area (float)</li>
+<li>Sightings (float)</li>
+<li>Vessels (float)</li>
+</ul>
+<p><strong>Step 2:</strong> For each of the three fields you just added, you will need to calculate <span class="math inline">\([F /Fmax]\)</span> for each record (row):</p>
+<ul>
+<li><span class="math inline">\(F\)</span> is the value of the attribute for that record</li>
+<li><span class="math inline">\(Fmax\)</span> is the maximum record value for the field</li>
+</ul>
+<p><em>HINT: Always add a decimal point to the Fmax so that the result is a floating point decimal number.</em></p>
+<p>First, determine <span class="math inline">\(Fmax\)</span> for Area (use Shape Area field for <span class="math inline">\(Fmax\)</span>), Sightings (use Join Count), and Vessels (calculate manually based on the number of columns). Then, Right-click on the field in the attribute table and view statistics (write down the number that appears beside ‘maximum’). Finally, right-click on the field and select ‘Calculate Field’ and enter the expression using the correct field name and the maximum value for the field.</p>
+<p><img src="images/05-calculate-field.png" width="50%" /></p>
+<p><em>HINT: For Vessels, you will need to include more than one column for <span class="math inline">\(F\)</span>.</em></p>
+<p><strong>Step 3:</strong> Finally, use a weighted suitability calculation by creating a new field, Suitability, and writing the following expression:
+[Area] * 0.4 + [Sightings] * 0.2 + [Vessels] * 0.4.</p>
+<div id="q7.-write-down-the-fmax-value-you-used-for-area-to-four-decimal-places." class="section level5 unnumbered hasAnchor">
+<h5>Q7. Write down the <span class="math inline">\(Fmax\)</span> value you used for area to four decimal places.<a href="suitability-overlay-analysis.html#q7.-write-down-the-fmax-value-you-used-for-area-to-four-decimal-places." class="anchor-section" aria-label="Anchor link to header"></a></h5>
+</div>
+<div id="q8-write-down-the-fmax-value-you-used-for-sightings-to-four-decimal-places." class="section level5 unnumbered hasAnchor">
+<h5>Q8: Write down the <span class="math inline">\(Fmax\)</span> value you used for sightings to four decimal places.<a href="suitability-overlay-analysis.html#q8-write-down-the-fmax-value-you-used-for-sightings-to-four-decimal-places." class="anchor-section" aria-label="Anchor link to header"></a></h5>
+</div>
+<div id="q9-write-down-the-fmax-value-you-used-for-vessels-to-four-decimal-places" class="section level5 unnumbered hasAnchor">
+<h5>Q9: Write down the <span class="math inline">\(Fmax\)</span> value you used for vessels to four decimal places<a href="suitability-overlay-analysis.html#q9-write-down-the-fmax-value-you-used-for-vessels-to-four-decimal-places" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>To provide a buffer zone protecting the humpback whales within the newly formed sanctuary, we will select the five BIA areas with the highest suitability score and create a five kilometer buffer.</p>
+<p><strong>Step 4:</strong> Sort the Suitability field by right-clicking on the field title and selecting <strong>Sort Descending</strong>.</p>
+<p><strong>Step 5:</strong> Select and export the top five features to a new layer named <strong>Top_Five_Sanctuary</strong>. Clean up the attribute table, so that it only has relevant columns. <strong>This is the output table that is a deliverable for the lab.</strong></p>
+<p><strong>Step 6:</strong> Open the tool <strong>Buffer</strong>. Input features will be <strong>Top_Five_Sanctuary</strong>. Name the output <strong>Sanctuary_Buffer</strong>. Set the distance as 5 kilometers. For dissolve type, select <strong>Dissolve all output features into a single feature</strong>.</p>
+<p>You just conducted a suitability analysis and produced a map of how to potentially expand the humpback whale sanctuary!</p>
+<p>Now is the time for your cartographic skills to shine. To design a map of the highest quality you will need to draw on all of you GIS skills. Ensure you include all the standard components of a map along with your artistic flair.</p>
+<p>Also, be sure to include important data, but also make sure the map is not too cluttered. Remember that you can use inset maps to demonstrate additional detail for the most suitable habits.</p>
+<p>The physical requirements are as follows:</p>
+<ul>
+<li>Map should be 11”x17” either as a landscape or portrait layout</li>
+<li>You should export the map as a PDF document</li>
+<li>All features on the map should appear in the legend</li>
+<li>Your map should have all the necessary elements of a map</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="scenario-2" class="section level2 unnumbered hasAnchor">
+<h2>Scenario 2<a href="suitability-overlay-analysis.html#scenario-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>False killer whales, an endangered resident species in Hawaiian waters, are long-lived and only reproduce one calf every 6 or 7 years. So, the species is heavily impacted by human activities, taking a long time to recover. The false killer whales are often caught in fishing gear as bycatch, which is defined as the incidental or unintentional capture of a non-target species. Not only is this severely hurting the false killer whale population, in addition, Hawaiian fisheries have been forced to close their fishing season early, by reaching their bycatch limit. As there is a resource conflict at play, you will need to redefine the fishing grounds to limit the bycatch, as well as discuss the placement of a marine sanctuary for false killer whales.</p>
+<p>Using the tools that you learned in Scenario 1. Please complete the below tasks.</p>
+<hr />
+</div>
+<div id="task-1-export-relevant-data-from-biologically-important-areas-shapefile-1" class="section level2 unnumbered hasAnchor">
+<h2>Task 1: Export Relevant Data from Biologically Important Areas Shapefile<a href="suitability-overlay-analysis.html#task-1-export-relevant-data-from-biologically-important-areas-shapefile-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>From this task, you will be able to identify where is the BIA for false killer whales in Hawaii. Try to only use one SQL expression to extract the data for species and region.</p>
+<hr />
+</div>
+<div id="task-2-extract-all-of-the-commercial-fishing-vessels-from-ocean-uses" class="section level2 unnumbered hasAnchor">
+<h2>Task 2: Extract All of the Commercial Fishing Vessels from Ocean Uses<a href="suitability-overlay-analysis.html#task-2-extract-all-of-the-commercial-fishing-vessels-from-ocean-uses" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>From this task, you will obtain a shapefile of the relevant fishing vessels that are in conflict with the false killer whales. The fishing vessel types include: Commercial Fishing with Benthic Fixed Gear, Commercial Fishing with Benthic Mobile Gear, and Commercial Pelagic Fishing. Hint: Export Data for Dominant Uses of the above fields.</p>
+<hr />
+</div>
+<div id="task-3-erase-where-the-false-killer-whales-and-commercial-fishing-vessels-overlap" class="section level2 unnumbered hasAnchor">
+<h2>Task 3: Erase where the False Killer Whales and Commercial Fishing Vessels overlap<a href="suitability-overlay-analysis.html#task-3-erase-where-the-false-killer-whales-and-commercial-fishing-vessels-overlap" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Use the Overlay Layers tool to determine where the BIA for false killer whales in not in conflict with the fishing vessels. You can also determine where there is the most conflict between false killer whales and fishing vessels by using the ‘Identity’ feature of the Overlay Layers tool, and then carrying out a calculation within the attribute table.</p>
+<p>Explore the Number of other Species with BIAs that may also Conflict with the Commercial Fishing Vessels How does this impact how a marine sanctuary for false killer whales should be identified?</p>
+<hr />
+</div>
+<div id="summary-3" class="section level2 unnumbered hasAnchor">
+<h2>Summary<a href="suitability-overlay-analysis.html#summary-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Suitability modeling is a very common type of analysis that usually integrates multiple factors as geospatial layers using overlay and proximity tools. As you can imagine, there are many ways to structure this analysis and different weightings in the suitability calculation will yield entirely different results. Therefore, it is always important to maintain good justification and rationale for the weightings that you choose and any limitations in the analysis (e.g., missing data/information, incomplete or unavailable attributes, etc.) are clearly communicated in any recommendations that you make from your analysis. In this lab, you were also exposed to significant data manipulation and management. Using good data organization and naming conventions helps others understand your analysis and output data, including your future self if you ever need to return to your old work.</p>
+<p>Return to the <strong><a href="suitability-overlay-analysis.html#lab5-deliverables">Deliverables</a></strong> section to check off everything you need to submit for credit in the course management system.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="lidar-for-forest-management.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="geographically-weighted-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
