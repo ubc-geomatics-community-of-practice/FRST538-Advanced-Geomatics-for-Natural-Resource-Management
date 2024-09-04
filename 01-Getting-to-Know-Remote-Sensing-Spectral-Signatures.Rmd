@@ -113,7 +113,7 @@ A new topographic map will appear in the centre window. Note that it is separate
     knitr::include_graphics("images/01-add-folder-connection.png")
 ```
 
-**Step 4:** Navigate to where the data is saved and click ok. When you can find the data folder, drag-and-drop the **L5047026subset_19990922_7B.dat**  file into the map window. At this point, you should see an RGB satellite image of the city of Vancouver (Figure 3) if the mapview does not immediately pan to the image right click **L5047026subset_19990922_7B.dat** in the Contents pane and press Zoom to Layer.
+**Step 4:** Navigate to where the data is saved and click ok. When you can find the data folder, drag-and-drop the **L5047026subset_19990922_7B.dat**  file into the map window. At this point, you should see an RGB satellite image of the city of Vancouver (Figure \@ref(fig:01-true-colour-composite-vancouver)) if the mapview does not immediately pan to the image right click **L5047026subset_19990922_7B.dat** in the Contents pane and press Zoom to Layer.
 
 _Note: If the catalog pane does not immediately appear in your ArcGIS Pro document use the ribbons at the top to navigate to **View -> Catalog Pane**_
 

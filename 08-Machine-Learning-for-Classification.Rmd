@@ -22,12 +22,11 @@ In this lab you will learn about supervised classification and selecting trainin
 - Use the Classification wizard in ArcGIS pro to create classes 
 - Choose representive training regions based on classes
 - Train a random forest model using training data
-- Use visual intepretation and confusion matrix to assess classified map accuracy 
+- Interpret a confusion matrix and inspect the classification visually to assess classified map accuracy
 
 ------------------------------------------------------------------------
 
 ## Deliverables {#lab8-deliverables .unnumbered}
-
 
 <input type="checkbox" unchecked> PDF report with the answers to all of the lab questions, the required screen shots and maps. </input>
 

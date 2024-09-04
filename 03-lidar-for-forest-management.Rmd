@@ -92,7 +92,7 @@ setwd("C:/{file_path}")
 
 When working with any airborne spatial data, it is useful to examine an RGB photo of the study site (MKRF_Aerial_Photo.tif). Take time to locate different land cover features (roads, lakes, streams, etc.) and to understand how vegetation structures are distributed. Is there wall-to-wall forest at the site? Are there any cut-blocks or major roads that could act as reference points during processing? Will the location of water bodies compromise random plot selection?
 
-For this lab, these considerations have already been made. At the very least, you can use the RGB image of Malcolm Knapp Research Forest (MKRF) to gain perspective of our study area. We will use the brick function from the package raster, which was loaded automatically when we loaded lidR. This function creates a RasterBrick object from a multi-layer (or band) file (Figure \@ref(fig:03-rgb-malcom-knapp)).
+For this lab, these considerations have already been made. At the very least, you can use the RGB image of Malcolm Knapp Research Forest (MKRF) to gain perspective of our study area. We will use the brick function from the package raster, which was loaded automatically when we loaded lidR. This function creates a RasterBrick object from a multi-layer (or band) file (Figure \@ref(fig:03-rgb-malcolm-knapp)).
 
 You can explore the details of any function that we use in this lab by typing a question mark `?` followed by the function name into the console: `?brick`. The information will appear in the Help pane of your RStudio interface.
 
@@ -105,9 +105,9 @@ str(rgb_mkrf)
 plotRGB(rgb_mkrf)
 ```
 
-```{r 03-rgb-malcom-knapp, out.width= "100%", echo = FALSE, fig.align='center', fig.cap=fig_cap}
-    knitr::include_graphics("images/03-rgb-malcom-knapp.png")
-    fig_cap <- paste0("RGB image of the Malcom Knapp Research Forest")
+```{r 03-rgb-malcolm-knapp, out.width= "100%", echo = FALSE, fig.align='center', fig.cap=fig_cap}
+    knitr::include_graphics("images/03-rgb-malcolm-knapp.png")
+    fig_cap <- paste0("RGB image of the Malcolm Knapp Research Forest")
 ```
 
 ------------------------------------------------------------------------
@@ -154,15 +154,14 @@ in 2D or 3D, depending on structure of the input object. LASobjects are plotted 
 density_mkrf <- grid_density(las_mkrf, res = 2) #create a map of the point density
 plot(density_mkrf) 
 
-#Visualize `las_mkrf` in 3D 
+#Visualize las_mkrf in 3D 
 plot(las_mkrf)
 ```
 
 Wonderful! We can now explore lidar data in 3D by clicking and scrolling through the RGL plot. Due to the size of the file this exploration may be relatively slow (Figure \@ref(fig:03-rgl-plot)). 
 
-```{r 03-rgl-plot, out.width= "100%", echo = FALSE, fig.align='center', fig.cap=fig_cap}
+```{r, 03-rgl-plot, out.width= "100%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/03-rgl-plot.png")
-    fig_cap <- paste0("Output of plot(las_mkrf). ")
 ```
 
 ------------------------------------------------------------------------
@@ -259,7 +258,7 @@ Explore the 3D rgl plot that is produced by the last line in the above code bloc
 
 ```{r 03-normalized-tile-mkrf, out.width= "100%", echo = FALSE, fig.align='center', fig.cap=fig_cap}
     knitr::include_graphics("images/03-normalized-tile-mkrf.png")
-    fig_cap <- paste0("Normalized tile 1 from the MKRF.")
+    fig_cap <- paste0("Normalized tile 1 from MKRF.")
 ```
 
 ##### Q4: There appears to be an outlying data point located high above the others. Explain why this would cause issues during our processing and an example of what would cause this outlier. {.unnumbered}

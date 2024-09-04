@@ -21,9 +21,9 @@ In this lab, we will be using Landsat derived Best Available Pixel (BAP) imagery
 - Use Raster Functions tool to calculate NDVI in ArcGIS
 - Interpret the physical meaning of regions of high, medium, and low NDVI 
 - Visualize temporal NDVI data in ArcGIS
-- create a temporal profile to help quantify changes in the image
+- Create a temporal profile to help quantify changes in the image
 - Use the change detection wizard to determine the difference in NDVI from 2000-2019
-- create a map showing change in NDVI 
+- Create a map showing change in NDVI 
 
 ------------------------------------------------------------------------
 
@@ -47,14 +47,13 @@ White, J.C.; Wulder, M.A.; Hobart, G.W.; Luther, J.E.; Hermosilla, T.; Griffiths
 
 [https://github.com/saveriofrancini/bap](https://github.com/saveriofrancini/bap)
 
-
 ------------------------------------------------------------------------
 
 ## Task 1: Starting ArcGIS Pro {.unnumbered}
 
 To start the lab, Open ArcPro. You should have window that looks like the screenshot below. The ArcPro theme used to create this lab is Dark. The default theme is likely Light, but if you are interested in changing themes please follow the instructions at this [link](https://pro.arcgis.com/en/pro-app/latest/get-started/general-options.htm). To open a new project, choose “Map”  from the “New Blank Template” list.
 
-```{r 01-starting-arcgispro-prompt, out.width= "100%", echo = FALSE, fig.align='center'}
+```{r 07-starting-arcgispro-prompt, out.width= "100%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/01-starting-arcgispro-prompt.png")
 ```
 
@@ -68,11 +67,11 @@ You will also notice that the Catolog frame is also “tabbed”. This means tha
 
 With your ArcGIS pro student licence you have access to the full suite of Esri Extensions. In this lab we will be using the “Spatial Analyst” and “Image Analyst” extensions. If you do not toggle these some of the tools you are required to use will be grayed out. In the top ribbon navigate to **Project**. Select "Licensing" and press the "Configure your licening options" button. In the Licensing window press the check mark beside “Image Analyst” and “Spatial Analyst” and select OK and navigate back to the map view.  '
 
-## Inserting a New Map{.unnumbered}
+## Inserting a New Map {.unnumbered}
 
 Without closing the Catalog window, navigate to the “Insert” tab on the ribbon and click on the “New Map” icon.
 
-```{r 01-new-map, out.width= "50%", echo = FALSE, fig.align='center'}
+```{r 07-new-map, out.width= "50%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/01-new-map.png")
 ```
 
@@ -82,24 +81,22 @@ A new topographic map will appear in the centre window. Note that it is separate
 
 This process is the exact same as in ArcMap. To add data to the map, navigate to the Pre-Lab folder using Catalog* ,if you save your project in the same folder as you data it should appear, if not right click **Folders** in the Catalog pane and select: 
 
-```{r 01-add-folder-connection, out.width= "50%", echo = FALSE, fig.align='center'}
+```{r 07-add-folder-connection, out.width= "50%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/01-add-folder-connection.png")
 ```
 
-Navigate to where the data is saved and click ok. When you can find the data folder, drag-and-drop the **MKRF_UTM10S_2019_BAP.tif **  file into the map window. At this point, you should see an RGB satellite image of the Malcom Knapp Research Forest (Figure 1) if the mapview does not immediately pan to the image right click **MKRF_UTM10S_2019_BAP.tif ** in the Contents pane and press Zoom to Layer.
+Navigate to where the data is saved and click ok. When you can find the data folder, drag-and-drop the **MKRF_UTM10S_2019_BAP.tif**  file into the map window. At this point, you should see an RGB satellite image of the Malcom Knapp Research Forest (Figure \@ref(fig:07-true-colour-composite-mkrf)) if the mapview does not immediately pan to the image right click **MKRF_UTM10S_2019_BAP.tif ** in the Contents pane and press Zoom to Layer.
 
-**Note** If the catalog pane does not immediately appear in your ArcGIS Pro document use the ribbons at the top to navigate to **View -> Catalog Pane** 
+_Note: If the catalog pane does not immediately appear in your ArcGIS Pro document use the ribbons at the top to navigate to **View -> Catalog Pane**_
 
-```{r 01-catalog-pane, out.width= "50%", echo = FALSE, fig.align='center'}
+```{r 07-catalog-pane, out.width= "50%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/01-catalog-pane.png")
 ```
 
-
-```{r 07-true-colour-composite-mkrf, out.width= "100%", echo = FALSE, fig.align='center'}
+```{r 07-true-colour-composite-mkrf, out.width= "100%", echo = FALSE, fig.align='center', fig.cap=fig_cap}
     knitr::include_graphics("images/07-true-colour-composite-mkrf.png")
+    fig_cap <- paste0("True colour composite of Malcom Knapp Research Forest (MKRF).")
 ```
-
-Figure 1: True colour composite of Malcom Knapp Research Forest (MKRF).
 
 ## Task 1: Calculating NDVI {.unnumbered}
 
@@ -148,13 +145,12 @@ Use your knowledge of spectral indices, the NDVI formula given above and the tab
 
 Table 1: Landsat BAP Composite Band Information
 
-After taking a screen shot select **“Create new layer”** at the bottom of the window. The output should look something like figure 2. 
+After taking a screen shot select **“Create new layer”** at the bottom of the window. The output should look something like Figure \@ref(fig:07-example-output-ndvi-calculation). 
 
-```{r 07-example-output-ndvi-calculation, out.width= "70%", echo = FALSE, fig.align='center'}
+```{r 07-example-output-ndvi-calculation, out.width= "70%", echo = FALSE, fig.align='center', fig.cap=fig_cap}
     knitr::include_graphics("images/07-example-output-ndvi-calculation.png")
+    fig_cap <- paste0("Example output for the 2019 NDVI raster calculation for MKRF ")
 ```
-
-Figure 2. Example output for the 2019 NDVI raster calculation for MKRF 
 
 ##### Q1. What are the minimum and maximum values of your new 2019 NDVI layer? {.unnumbered}
  
@@ -300,6 +296,6 @@ The physical requirements are as follows:
 
 ## Summary {.unnumbered}
 
-Spectral Indices offer a unique ability to highlight landcover and image properties that would be very difficult to map without the use of spectral information. The Normalized Difference Vegetation Index (NDVI) has become one of the most widely used indices and thanks to satellite programs like Landsat, we now have access to global coverage of this index. In this lab, we explored the ability to derive this index from Landsat BAP data from 2000-2019 in ArcGIS and explore the temporal profile of NDVI to quantify chnages in the image through time. We can use change detection tools to then be able to assess regions that have changed significantly through our time period. Time series data of spectral indices like NDVI can be game changing for many research applications like monitoring drought, agricultural productivity, and measuring biomass! 
+Spectral Indices offer a unique ability to highlight landcover and image properties that would be very difficult to map without the use of spectral information. The Normalized Difference Vegetation Index (NDVI) has become one of the most widely used indices and thanks to satellite programs like Landsat, we now have access to global coverage of this index. In this lab, we explored the ability to derive this index from Landsat BAP data from 2000-2019 in ArcGIS and explore the temporal profile of NDVI to quantify changes in the image through time. We can use change detection tools to then be able to assess regions that have changed significantly through our time period. Time series data of spectral indices like NDVI can be game changing for many research applications like monitoring drought, agricultural productivity, and measuring biomass! 
 
 Return to the [**Deliverables**](#lab7-deliverables) section to check off everything you need to submit for credit in the course management system.
