@@ -19,18 +19,15 @@ The aim of this lab is to use LiDAR data from the Malcolm Knapp Research Forest 
 
 ## Learning Objectives {.unnumbered}
 
--   install R and Rstudio 
--   create a DEM from LiDAR point data in both 2D and 3D
--   extract meaningful metrics from points clouds
--   use an OLS model to predict forest forest attributes with LiDAR metrics 
--   understand the importance of variable selection in modeling 
--   conduct individual tree detection using point and CHM 
--   find tall trees using point cloud 
+-   Create a DEM from LiDAR point data in both 2D and 3D
+-   Calculate meaningful metrics from points clouds
+-   Apply an OLS model to predict forest forest attributes with LiDAR metrics 
+-   Practice variable selection in modeling 
+-   Apply individual tree detection using point and CHM to create a map of tall trees from a LiDAR point cloud
 
 ------------------------------------------------------------------------
 
 ## Deliverables {#lab3-deliverables .unnumbered}
-
 
 <input type="checkbox" unchecked> Turn in the answers to the questions given in the lab on Canvas.</input>
 
@@ -57,7 +54,6 @@ We will be working with LiDAR data collected over the Malcolm Knapp Research For
 For this lab you will need to download R and RStudio. Rstudio is an open source integrated development environment (IDE, think fancy notepad) for the R programing language. It includes a console, syntax editor for code execution and will generally improve your R programing experience. If you need to install [R](https://cran.rstudio.com/) and [R studio](https://posit.co/download/rstudio-desktop/) click the respective links or ask your TA. If you already have them installed on your computer continue to the next section of the lab. 
 
 **Warning:** This lab (and LiDAR processing in general) is computationally demanding. I have reduced the study area and used less rigorous algorithms to speed up processing time. Generally speaking a single line of code should not take longer than 5 minutes to run.  
-
 
 ------------------------------------------------------------------------
 
@@ -96,11 +92,11 @@ setwd("C:/{file_path}")
 
 When working with any airborne spatial data, it is useful to examine an RGB photo of the study site (MKRF_Aerial_Photo.tif). Take time to locate different land cover features (roads, lakes, streams, etc.) and to understand how vegetation structures are distributed. Is there wall-to-wall forest at the site? Are there any cut-blocks or major roads that could act as reference points during processing? Will the location of water bodies compromise random plot selection?
 
-For this lab, these considerations have already been made. At the very least, you can use the RGB image of Malcolm Knapp Research Forest (MKRF) to gain perspective of our study area. We will use the brick function from the package raster, which was loaded automatically when we loaded lidR. This function creates a RasterBrick object from a multi-layer (or band) file (Figure 1).
+For this lab, these considerations have already been made. At the very least, you can use the RGB image of Malcolm Knapp Research Forest (MKRF) to gain perspective of our study area. We will use the brick function from the package raster, which was loaded automatically when we loaded lidR. This function creates a RasterBrick object from a multi-layer (or band) file (Figure \@ref(fig:03-rgb-malcom-knapp)).
 
-You can explore the details of any function that we use in this lab by typing a question mark (?) followed by the function name into the console: ?brick. The information will appear in the Help pane of your RStudio interface.
+You can explore the details of any function that we use in this lab by typing a question mark `?` followed by the function name into the console: `?brick`. The information will appear in the Help pane of your RStudio interface.
 
-Once the RasterBrick has been read into R, we will explore the objects structure using the str() function and plot the RGB image using the plot function. 
+Once the RasterBrick has been read into R, we will explore the objects structure using the `str()` function and plot the RGB image using the plot function. 
 
 ```{r, echo=TRUE, eval=FALSE}
 #Load RGB image and explore structure
@@ -109,21 +105,20 @@ str(rgb_mkrf)
 plotRGB(rgb_mkrf)
 ```
 
-```{r 03-rgb-malcom-knapp, out.width= "100%", echo = FALSE, fig.align='center'}
+```{r 03-rgb-malcom-knapp, out.width= "100%", echo = FALSE, fig.align='center', fig.cap=fig_cap}
     knitr::include_graphics("images/03-rgb-malcom-knapp.png")
+    fig_cap <- paste0("RGB image of the Malcom Knapp Research Forest")
 ```
-
-Figure 1: RGB image of the Malcom Knapp Research Forest
 
 ------------------------------------------------------------------------
 
 ## Task 2: Load and Explore the LiDAR Data {.unnumbered}
 
-First, we need to load the file MKRF_lidar.las from your /Data folder. This file contains the lidar data you will need to complete this section of the lab. We will use the function readLAS to load the .las file. Once the file is loaded it should appear in your Environment as a ‘Large LAS’. It is best practice to use the function lascheck to conduct a deep inspection of a LAS object. This function will print a report for you to examine.
+First, we need to load the file MKRF_lidar.las from your /Data folder. This file contains the lidar data you will need to complete this section of the lab. We will use the function `readLAS` to load the .las file. Once the file is loaded it should appear in your Environment as a ‘Large LAS’. It is best practice to use the function `lascheck` to conduct a deep inspection of a LAS object. This function will print a report for you to examine.
 
-You can explore the structure of objects in your Environment using the str() base function in the Console. You can also explore the contents of a single column within the object by typing the objects name followed by a dollar sign and the column name: object$column.
+You can explore the structure of objects in your Environment using the `str()` base function in the Console. You can also explore the contents of a single column within the object by typing the objects name followed by a dollar sign and the column name: `object$column`.
 
-HINT: If you wish to learn the details of any function associated with your loaded packages, you can type a question mark followed by the functions name: ?function_name
+_HINT: If you wish to learn the details of any function associated with your loaded packages, you can type a question mark followed by the functions name: `?function_name`_
 
 ```{r, echo=TRUE, eval=FALSE}
 #Load lidar data
@@ -131,7 +126,6 @@ las_mkrf <- readLAS("./MKRF_lidar.las") #read the specified .las file
 las_check(las_mkrf) #check the LAS object
 str(las_mkrf) #compactly display the internal structure of las_mkrf
 print(las_mkrf)
-
 ```
 
 ##### Q1: Examine the lascheck output. Is the data normalized? Has a ground classification been completed already? {.unnumbered}
@@ -140,20 +134,18 @@ print(las_mkrf)
 
 ##### Q3: Examine the output of print(). What is the density of this data? Is that high, low, or somewhere in the middle? {.unnumbered}
 
-Upon exploring the lascheck output you will notice that there are some duplicated points. This is not a problem for our analyses, but it is worth noting. For example, the statement: There were 6 degenerated ground points. Some X Y coordinates were repeated but with different Z coordinates means that multiple pulses measured the same location and returned different Z, or elevation, coordinates. This could be caused by overlapping flight paths or pre-processing errors, but lidR has the capacity to deal with these issue. Overall, our lidar data looks good. Before moving on let’s remove the duplicated points.
-
+Upon exploring the lascheck output you will notice that there are some duplicated points. This is not a problem for our analyses, but it is worth noting. For example, the statement: There were 6 degenerated ground points. Some X Y coordinates were repeated but with different Z coordinates means that multiple pulses measured the same location and returned different Z, or elevation, coordinates. This could be caused by overlapping flight paths or pre-processing errors, but lidR has the capacity to deal with these issue. Overall, our lidar data looks good. Before moving on let us remove the duplicated points.
 
 ```{r, echo=TRUE, eval=FALSE}
 #remove duplicated Z (eleavation) points
 las_mkrf <- filter_duplicates(las_mkrf) #remove the duplicated points
 #confirm duplicates removed
 las_check(las_mkrf) #run lascheck a second time to ensure duplicates removed
-
 ```
 
 Now that we have a general understanding of our lidar data, it is time to start visualizing! We will explore 2D and 3D plots of our data to gain an even deeper understanding of our study site before undergoing some basic manipulation. 
 
-First, we will visualize the density of lidar points across our site. You will notice that some areas have a higher density than others. This is likely due to the flight path of the aircraft that collected our data and probably causes some of the duplicated points that were highlighted by lascheck. Next, we will plot las_mkrf in 3D using the plot function. In lidR, this function can produce plots 
+First, we will visualize the density of lidar points across our site. You will notice that some areas have a higher density than others. This is likely due to the flight path of the aircraft that collected our data and probably causes some of the duplicated points that were highlighted by `lascheck`. Next, we will plot las_mkrf in 3D using the plot function. In lidR, this function can produce plots 
 
 in 2D or 3D, depending on structure of the input object. LASobjects are plotted in 3D, while Raster objects are 2D.
 
@@ -164,26 +156,24 @@ plot(density_mkrf)
 
 #Visualize `las_mkrf` in 3D 
 plot(las_mkrf)
-
 ```
 
-Wonderful! We can now explore lidar data in 3D by clicking and scrolling through the RGL plot. Due to the size of the file this exploration may be relatively slow (Figure 2). 
+Wonderful! We can now explore lidar data in 3D by clicking and scrolling through the RGL plot. Due to the size of the file this exploration may be relatively slow (Figure \@ref(fig:03-rgl-plot)). 
 
-```{r 03-rgl-plot, out.width= "100%", echo = FALSE, fig.align='center'}
+```{r 03-rgl-plot, out.width= "100%", echo = FALSE, fig.align='center', fig.cap=fig_cap}
     knitr::include_graphics("images/03-rgl-plot.png")
+    fig_cap <- paste0("Output of plot(las_mkrf). ")
 ```
-
-Figure 2: Output of plot(las_mkrf). 
 
 ------------------------------------------------------------------------
 
-## Task 4: Read Multiple .las Files into LAScatolog object  {.unnumbered}
+## Task 4: Read Multiple LAS Files into LAScatolog object  {.unnumbered}
 
-Once you have a basic understanding of the study area, it is time to load your lidar data. The file type used in this course is .las, which is an industry standard format for storing lidar data. In the future, you may also work with other file formats, such as .laz. You can explore the differences between these formats [online](https://rapidlasso.de/five-myths-about-las-laz-and-optimized-las/).
+Once you have a basic understanding of the study area, it is time to load your lidar data. The file type used in this course is LAS, which is an industry standard format for storing lidar data. In the future, you may also work with other file formats, such as LAZ. You can explore the differences between these formats [online](https://rapidlasso.de/five-myths-about-las-laz-and-optimized-las/).
 
-In task 2, we loaded a single .las object  and plotted it. For the remainder of this lab, we will load 20 tiles collected over MKRF into a LAScatalog object. This will enable us to manage and process our entire data set as one object, rather than 20 separate files. We can use lascheck to perform a deep inspection of the LASCatalog object or use summary() for a more succinct report.
+In the last task, we loaded a single LAS object  and plotted it. For the remainder of this lab, we will load 20 tiles collected over MKRF into a LAScatalog object. This will enable us to manage and process our entire data set as one object, rather than 20 separate files. We can use lascheck to perform a deep inspection of the LASCatalog object or use `summary()` for a more succinct report.
 
-We can also plot a LAScatalog object to observe how our tiles are arranged. Since the LASCAtalog object is a SpatialPolygonsDataFrame, it is possible to use the spplot function to visualize certain characteristics of our data. For example, the line spplot(cat_mkrf, "Min.Z") will plot catalog and color each tile based on it’s lowest elevation (Z) value (Figure 2).
+We can also plot a LAScatalog object to observe how our tiles are arranged. Since the LASCAtalog object is a SpatialPolygonsDataFrame, it is possible to use the `spplot` function to visualize certain characteristics of our data. For example, the line `spplot(cat_mkrf, "Min.Z")` will plot catalog and color each tile based on it’s lowest elevation (Z) value (Figure \@ref(fig:03-rgl-plot)).
 
 ```{r, echo=TRUE, eval=FALSE}
 #Create LAScatalog object from MKRF las tiles
@@ -191,19 +181,17 @@ cat_mkrf <- readLAScatalog("LAS")
 las_check(cat_mkrf)
 summary(cat_mkrf)
 plot(cat_mkrf)
-
 ```
 
-Notice that there are overlapping tiles. This indicates that there may be duplicate points within our data. We can confirm this by applying the lascheck function to a single tile.
+Notice that there are overlapping tiles. This indicates that there may be duplicate points within our data. We can confirm this by applying the `lascheck` function to a single tile.
 
 ```{r, echo=TRUE, eval=FALSE}
 #Examine single .las tile to determine duplication
 tile_1_mkrf <- readLAS("LAS/MKRF_Tile1.las")
 lascheck(tile_1_mkrf)
-
 ```
 
-It appears that there are 421 duplicate points. These may impact both the accuracy of our analysis and the processing speed. Let’s remove them using the filter_duplicates function and store the filtered tiles in a new folder named ‘Filtered’ (this folder has already been created for you). Once complete, confirm that the duplicates were removed.
+It appears that there are 421 duplicate points. These may impact both the accuracy of our analysis and the processing speed. Let us remove them using the `filter_duplicates` function and store the filtered tiles in a new folder named ‘Filtered’ (this folder has already been created for you). Once complete, confirm that the duplicates were removed.
 
 ```{r, echo=TRUE, eval=FALSE}
 #Set the output directory for the filtered .las data
@@ -214,10 +202,9 @@ cat_mkrf <- filter_duplicates(cat_mkrf) #remove duplicate points and speed up pr
 #confirm that duplicates were removed for Tile 1
 filtered_t1_mkrf <- readLAS("Filtered/filtered_mkrf_1.las") #load from stored file
 lascheck(filtered_t1_mkrf)
-
 ```
 
-Success! We can now proceed with our analysis. Let’s read all filtered .las data into a catalog and perform the usual checks.
+Success! We can now proceed with our analysis. Let us read all filtered LAS data into a catalog and perform the usual checks.
 
 ```{r, echo=TRUE, eval=FALSE}
 #read filtered .las into LAScatalog
@@ -225,7 +212,6 @@ filtered_cat_mkrf <- readLAScatalog("Filtered")
 summary(filtered_cat_mkrf)
 plot(filtered_cat_mkrf)
 spplot(filtered_cat_mkrf, "Min.Z")
-
 ```
 
 ------------------------------------------------------------------------
@@ -234,7 +220,7 @@ spplot(filtered_cat_mkrf, "Min.Z")
 
 Now that we have practiced some of the basic visualization, reading, and cleaning techniques on raw lidar data it is time to move onto processing. The first thing we will do is create a digital elevation model (DEM). A DEM represents the Earth's surface without vegetation, which we will refer to as "ground". Although this seems like an intuitive statement, there is the potential for logs, rocks and other non-soil objects to be included as ground points. These won't cause issues for our analyses, but it is important to use precise language when working with common words like "ground". Never assume that your definition of something is a global truth. It is also important to consider that a DEM can also be referred to as a digital terrain model (DTM). Take time to understand that both terms refer to a surface model of only ground points. Instructors/colleagues could use DEM and DTM interchangeably.
 
-We will create and visualize a DEM in both 2D and 3D. The 3D version will be created by filtering out all points that are not classified as ground (Classification: 2). For the 2D DEM, we will use the grid_terrain function on our LidR catalogue(Figure 3). This function enables the user to select the output resolution and the algorithm that computes spatial interpolation. It is recommended that you take time to understand the three algorithms in highlighted in the grid_terrain 'Help' file.
+We will create and visualize a DEM in both 2D and 3D. The 3D version will be created by filtering out all points that are not classified as ground (Classification: 2). For the 2D DEM, we will use the `grid_terrain` function on our LidR catalogue. This function enables the user to select the output resolution and the algorithm that computes spatial interpolation. It is recommended that you take time to understand the three algorithms in highlighted in the `grid_terrain` 'Help' file.
 
 ```{r, echo=TRUE, eval=FALSE}
 #DEM
@@ -247,12 +233,11 @@ dem_allLAS_mkrf <- grid_terrain(filtered_cat_mkrf, 2, tin()) #why use this metho
 # create Colour ramp for visualization 
 col_1 <- height.colors(50)
 plot(dem_allLAS_mkrf, col = col_1)
-
-
 ```
+
 ##### Screenshot 1: Submit the output of this plot() as a screenshot. {.unnumbered}
 
-With the DEM complete we can normalize our LAScatalog. Each tile will be normalized seperately, which means there will be one normalized output tile for each input. lidR requires an output directory to be specified. A folder named ‘Normalized’ has already been created for you. Once the output file directory is set we will use lasnormalize to conduct the normalization of all our MKRF lidar tiles.
+With the DEM complete we can normalize our LAScatalog. Each tile will be normalized separately, which means there will be one normalized output tile for each input. lidR requires an output directory to be specified. A folder named ‘Normalized’ has already been created for you. Once the output file directory is set we will use `lasnormalize` to conduct the normalization of all our MKRF lidar tiles.
 
 ```{r, echo=TRUE, eval=FALSE}
 #Normalize catalog with DEM
@@ -270,13 +255,12 @@ plot(norm_mkrf_1)
 
 ```
 
-Explore the 3D rgl plot that is produced by the last line in the above code block (Figure 3). Does anything look abnormal to you?
+Explore the 3D rgl plot that is produced by the last line in the above code block (Figure \@ref(fig:03-normalized-tile-mkrf)). Does anything look abnormal to you?
 
-```{r 03-normalized-tile-mkrf, out.width= "100%", echo = FALSE, fig.align='center'}
+```{r 03-normalized-tile-mkrf, out.width= "100%", echo = FALSE, fig.align='center', fig.cap=fig_cap}
     knitr::include_graphics("images/03-normalized-tile-mkrf.png")
+    fig_cap <- paste0("Normalized tile 1 from the MKRF.")
 ```
-
-Figure 3: Normalized tile 1 from the MKRF.  
 
 ##### Q4: There appears to be an outlying data point located high above the others. Explain why this would cause issues during our processing and an example of what would cause this outlier. {.unnumbered}
 
@@ -284,28 +268,26 @@ Figure 3: Normalized tile 1 from the MKRF.
 
 ## Task 5: Create a Canopy Height Model {.unnumbered}
 
-We can explore the effect of this outlier by generating a canopy height model (CHM) with the grid_canopy function. Mathematically, a CHM is simply the DEM (or DTM, remember these terms are interchangeable!) subtracted from the DSM. This subtraction can be called 'normalization', differing from the normalization conducted using lasnormalize in the sense that the output is 2D. The CHM is an important surface model as it allows us to analyze objects above a common ground value (0m). This 2D output should have a maximum height around that of the highest tree on site (~ 60m).
+We can explore the effect of this outlier by generating a canopy height model (CHM) with the grid_canopy function. Mathematically, a CHM is simply the DEM (or DTM, remember these terms are interchangeable!) subtracted from the DSM. This subtraction can be called 'normalization', differing from the normalization conducted using `lasnormalize` in the sense that the output is 2D. The CHM is an important surface model as it allows us to analyze objects above a common ground value (0m). This 2D output should have a maximum height around that of the highest tree on site (~ 60m).
 
-The grid_canopy function is used to generate CHMs, which has three user defined arguments. The first, las refers to the input data (LAS or LAScatalog). The second, res, refers to the spatial resolution. The third arguments, algorithm, specifies the algorithm that will be used to compute the digital surface model. There are three algorithms compatible with grid_canopy:
+The `grid_canopy` function is used to generate CHMs, which has three user defined arguments. The first, `las` refers to the input data (LAS or LAScatalog). The second, `res` refers to the spatial resolution. The third argument, `algorithm` specifies the algorithm that will be used to compute the digital surface model. There are three algorithms compatible with grid_canopy:
 
-   p2r is a point-to-raster method. It returns the maximum height value of the point cloud for each area, which is defined by the spatial resolution. This is a relatively fast algorithm, but can generate 'pits', or areas of ‘NoData’ in the CHM where there are no returns present. You can add a subcircle argument within the p2r algorithm to try and remove pits. This method replaces each lidar point with a disk of a specified size and increases return coverage. If you use this method, be aware that issues related to computation speed may arise.
+   `p2r` is a point-to-raster method. It returns the maximum height value of the point cloud for each area, which is defined by the spatial resolution. This is a relatively fast algorithm, but can generate 'pits', or areas of ‘NoData’ in the CHM where there are no returns present. You can add a subcircle argument within the p2r algorithm to try and remove pits. This method replaces each lidar point with a disk of a specified size and increases return coverage. If you use this method, be aware that issues related to computation speed may arise.
    
-   dsmtin is a triangulation-based method that creates a triangular irregular network (TIN) by interpolating only the first returns before generating a 2D grid. This method eliminates empty pixels, but can still generate pits within crowns as some first returns inevitably reach the ground.
+   `dsmtin` is a triangulation-based method that creates a triangular irregular network (TIN) by interpolating only the first returns before generating a 2D grid. This method eliminates empty pixels, but can still generate pits within crowns as some first returns inevitably reach the ground.
    
-  pitfree is a triangulation-based method that conducts multiple triangulations at various heights. Developed by Khosravipour et al. (2014), the pitfree algorithm ensure there are no empty cells or deep pits. Shallow pits may remain, but can be removed by adding a subcircle argument. Although the most sophisticated, this algorithm is computationally intense.
+  `pitfree` is a triangulation-based method that conducts multiple triangulations at various heights. Developed by Khosravipour et al. (2014), the pitfree algorithm ensure there are no empty cells or deep pits. Shallow pits may remain, but can be removed by adding a subcircle argument. Although the most sophisticated, this algorithm is computationally intense.
 
-Since we know that our lidar data has 3.1 returns/m2, we can assume that a spatial resolution of 2m will ensure that every cell in our raster contains at least one return. This, along with the advantage of quick processing (~1 min for entire site), allows us to use the stock p2r algorithm without worrying about pits. Feel free to use dsmtin() (~5 min) or pitfree() (~10 min) for the following steps, just ensure you annotate your code accordingly.
+Since we know that our lidar data has 3.1 returns · m^-2^, we can assume that a spatial resolution of 2 m will ensure that every cell in our raster contains at least one return. This, along with the advantage of quick processing (~1 min for entire site), allows us to use the stock `p2r` algorithm without worrying about pits. Feel free to use `dsmtin()` (~5 min) or `pitfree()` (~10 min) for the following steps, just ensure you annotate your code accordingly.
 
 ```{r, echo=TRUE, eval=FALSE}
 #Create CHM for normalized Tile 1
 chm_mkrf_1 <- grid_canopy(norm_mkrf_1, 2, p2r()) #las, resolution, algorithm
 plot(chm_mkrf_1, col = col_1) #plot in 2D
 plot_dtm3d(chm_mkrf_1) #plot in 3D
-
-
 ```
 
-It is clear that the normalization was not perfect as the maximum height of the CHM is well above our expected maximum height. This issue is caused by the outlier visible in the 3D plot. It also looks like there are some points below 0m. To remedy these issues, we can use the LAScatalog options engine to filter out data points below 0m and above 65m.
+It is clear that the normalization was not perfect as the maximum height of the CHM is well above our expected maximum height. This issue is caused by the outlier visible in the 3D plot. It also looks like there are some points below 0m. To remedy these issues, we can use the LAScatalog options engine to filter out data points below 0 m and above 65 m.
 
 ```{r, echo=TRUE, eval=FALSE}
 LAScatalog options engine to filter out data points below 0m and above 65m.
@@ -318,18 +300,15 @@ opt_filter(norm_cat_mkrf) <- '-drop_z_below 0 -drop_z_above 65'
 #ensure the entire study area was processed
 plot(norm_cat_mkrf)
 summary(norm_cat_mkrf)
-
 ```
 
-It seems like all of the normalized .las files were loaded correctly, but we still need to confirm that the outliers were removed by the filter we applied. To do this we will create another CHM. Instead of making the CHM for Tile 1, we will create a CHM for the entire site.
-
+It seems like all of the normalized LAS files were loaded correctly, but we still need to confirm that the outliers were removed by the filter we applied. To do this we will create another CHM. Instead of making the CHM for Tile 1, we will create a CHM for the entire site.
 
 ```{r, echo=TRUE, eval=FALSE}
 #Create CHM for all normalized MKRF Tiles
 chm_mkrf <- grid_canopy(norm_cat_mkrf, 2, p2r()) 
 plot(chm_mkrf, col = col_1) #plot in 2D
 #plot_dtm3d(chm_mkrf) #plot in 3D *DON'T RUN IF COMPUTER IS SLOW*
-
 ```
 
 Excellent! The heights in our CHM are as expected. If you are interested in exploring how the CHM relates to the RGB image of the area, please compare the two now.
@@ -342,7 +321,7 @@ Excellent! The heights in our CHM are as expected. If you are interested in expl
 
 ## Task 6: Extract Metrics From the Point Clouds  {.unnumbered}
 
-Now that we have confirmed that our filter works at the catalog level, it is time to extract some plots. First, let’s extract a single plot. We use the lasclip function to do this. Specifically, we will use lasclipCircle to extract circular plots from our lidar data. Check out the details of this function in the lidR documentation provided at the start of the lab. We will extract a plot with the following characteristics:
+Now that we have confirmed that our filter works at the catalog level, it is time to extract some plots. First, let us extract a single plot. We use the lasclip function to do this. Specifically, we will use lasclipCircle to extract circular plots from our lidar data. Check out the details of this function in the lidR documentation provided at the start of the lab. We will extract a plot with the following characteristics:
 
 **X = 530118.9**
 
@@ -357,7 +336,7 @@ plot(single_plot_mkrf)
 
 ```
 
-Now we will extract multiple plots using a for loop. The location of each plots is provided in the ‘Plot_Table.csv’ within the ‘/Plots’ folder of your lab data. Plot radii should be 30m. The for loop is annotated for you so you can understand what each line of code is doing.
+Now we will extract multiple plots using a for loop. The location of each plots is provided in the ‘Plot_Table.csv’ within the ‘/Plots’ folder of your lab data. Plot radii should be 30 m. The for loop is annotated for you so you can understand what each line of code is doing.
 
 ```{r, echo=TRUE, eval=FALSE}
 plot_table <- read_csv("Plots/Plot_Table.csv")
@@ -368,11 +347,11 @@ for(i in 1:nrow(plot_table)){ #run the loop until i = the number of rows in 'plo
   output_file <- paste("Plots/MKRF_Plot_", i, ".las", sep = "") #output directory as string
   writeLAS(assign(paste("MKRF_Plot_", i, sep = ""), plot_las), output_file) #write'MKRF_Plot_i' to output dir.
 }
-
 ```
-At this point, you can explore individual plots in 3D, which should be loaded in your Environment, using plot().
-Now that we have extracted our plots it is time to compute some standard cloud metrics. To do this, we will need to analyze each plot individually. We also need to make sure that we are only including the first returns. This will ensure our metrics don’t include points that have been scattered throughout the canopy. Let’s also remove all points below 2m, as objects below this height could be non-tree (shrubs, fallen logs, etc.). We don’t need to worry about outliers as we removed them during the normalization process. Explore the Console output of the line plot_1_metrics for a brief overview of the metrics being created.
 
+At this point, you can explore individual plots in 3D, which should be loaded in your Environment, using `plot()`.
+
+Now that we have extracted our plots it is time to compute some standard cloud metrics. To do this, we will need to analyze each plot individually. We also need to make sure that we are only including the first returns. This will ensure our metrics do not include points that have been scattered throughout the canopy. Let’s also remove all points below 2 m, as objects below this height could be non-tree (shrubs, fallen logs, etc.). We do not need to worry about outliers as we removed them during the normalization process. Explore the Console output of the line plot_1_metrics for a brief overview of the metrics being created.
 
 ```{r, echo=TRUE, eval=FALSE}
 #Calculate cloud metrics for all plots
@@ -386,11 +365,9 @@ for(i in 1:nrow(plot_table)){ #for loop == number of rows in plot_table (20)
   metrics <- cloud_metrics(plot, .stdmetrics) #compute standard metrics
   mkrf_plot_metrics <- rbind(mkrf_plot_metrics, metrics) #add the new 'metrics' to 'mkrf_cloud_metrics'
 }
-
 ```
 
-Take a few minutes to scroll through mkrf_cloud_metrics. You can export this dataframe to a .csv if you wish. There are many metrics calculate by this function and you can explore them in detail by typing ?cloud_metrics into your console and navigating through the interactive Help page. Below are some basic details relating to cloud_metric notation that you can find by clicking on stdmetrics in the aforementioned Help page
-
+Take a few minutes to scroll through mkrf_cloud_metrics. You can export this dataframe to a .csv if you wish. There are many metrics calculate by this function and you can explore them in detail by typing `?cloud_metrics` into your console and navigating through the interactive Help page. Below are some basic details relating to cloud_metric notation that you can find by clicking on `stdmetrics` in the aforementioned Help page
 
 ```{r, echo=TRUE, eval=FALSE}
 Details
@@ -410,11 +387,9 @@ a: refers to the ScanAngleRank or ScanAngle
 n: refers to a number (a count)
 
 p: refers to a percentage
-
-
 ```
 
-Let’s take a closer look at the metrics for plots 1 and 16. Use the code below to create a new table called ‘compare_metrics’ to make your exploration easier.
+Let us take a closer look at the metrics for plots 1 and 16. Use the code below to create a new table called ‘compare_metrics’ to make your exploration easier:
 
 ```{r, echo=TRUE, eval=FALSE}
 #Compare Plots 1 and 16
@@ -423,7 +398,6 @@ head(compare_metrics)
 
 #Export mkrf_plot_metrics as .csv in Plots folder
 write_csv(mkrf_plot_metrics, "Plots/mkrf_plot_metrics.csv")
-
 ```
 
 ##### Q6: Why is the 50th heigh percentile so different between the two plots while the 95th height percentile is so similar? {.unnumbered}
@@ -432,7 +406,7 @@ write_csv(mkrf_plot_metrics, "Plots/mkrf_plot_metrics.csv")
 
 ## Task 7: Stem Volume Models with lidR {.unnumbered}
 
-In order to estimate forest attributes across our study area, we must first develop relationships between our lidar metrics and field measured forest attributes. For our 20 plots, we have estimates of net stem volume m3/ha that were measured in the field in 1996. Plot locations were evenly spaced across the study area, and volume was estimated at each plot using a variable-radius approach (basically, the further a tree is from the plot center, the larger it must be to be included in the plot).
+In order to estimate forest attributes across our study area, we must first develop relationships between our lidar metrics and field measured forest attributes. For our 20 plots, we have estimates of net stem volume m^3^ · ha^-1^ that were measured in the field in 1996. Plot locations were evenly spaced across the study area, and volume was estimated at each plot using a variable-radius approach (basically, the further a tree is from the plot center, the larger it must be to be included in the plot).
 
 These plot data violate many of our lidar best practices for estimating forest attributes. First, there is a long time lag between our field measurements (1996) and our lidar data collection (2010). Ideally, there would be a maximum of one or two years difference. Changes in forest conditions (growth and mortality) could lead to large differences in net stem volume between 1996 and 2010 at these plot locations. Second, because forest conditions were not used to guide the selection of plot locations, they do not capture the full range of structural variability across our study area. Therefore, our models may only be applicable to a small range in forest conditions. Third, because the plots are variable radius, there is not a fixed plot size that we can extract from our lidar data to associate with each plot.
 
@@ -450,7 +424,7 @@ Additionally, there are various approaches to determine which of our initial var
 
 Once our model is developed, we can apply the model ‘wall-to-wall’ across our study area. This is accomplished by calculating the lidar metrics on a grid across our entire study area, and applying the relationship we developed.
 
-#### Part A) {.unnumbered}
+#### Part A {.unnumbered}
 
 We will begin by exploring our lidar metrics and selecting an initial subset of metrics to include in model development. In lab 2, we calculated lidar metrics for each plot using a radius of 30 m. We will use these metrics to develop our model.
 
@@ -472,22 +446,20 @@ This script is divided into 4 Parts (A - D). Part A contains the required inputs
 
 Once Part A is executed, scroll down to Part B. This section of the script is designed for us to explore our lidar metrics and select a subset of metrics for model development. Begin by highlighting the line colnames (dataTable) and pressing Ctrl + Enter to run it. This will generate a list of the column names in dataTable:
 
-#### Part B) {.unnumbered}
+#### Part B {.unnumbered}
 
 ```{r, echo=TRUE, eval=FALSE}
 colnames(data_table)
 plot(Net_Volume ~ zq50, data = data_table)
-
 ```
-This table contains the forest attribute we want to predict (Net_Volume) in addition to all of our lidar metrics. Revist the cloud_metrics Help page to review each metric.
 
-We will start by exploring the relationship between our lidar metrics and volume. Run the line:
+This table contains the forest attribute we want to predict (Net_Volume) in addition to all of our lidar metrics. Revisit the `cloud_metrics` Help page to review each metric.
+
+We will start by exploring the relationship between our lidar metrics and volume. Run the following line to plot the relationship between the 50th height percentile and net stem volume:
 
 ```{r, echo=TRUE, eval=FALSE}
 plot(Net_Volume ~ zq50, data = data_table)
-
 ```
-to plot the relationship between the 50th height percentile and net stem volume . 
 
 data = data_table tells R to look in dataTable for columns named Net_Volume and zq50.
 
@@ -496,16 +468,16 @@ Next, we will fit linear models between our lidar metrics and volume. Run the fo
 ```{r, echo=TRUE, eval=FALSE}
 model = lm(Net_Volume ~ zq50, data = data_table)
 summary(model)
-
 ```
+
 We can have two or more predictors in our linear model by adding a + sign between the predictor names. Run the following lines:
 
 ```{r, echo=TRUE, eval=FALSE}
 model = lm(Net_Volume ~ zq50 + zq90, data = data_table)
 summary(model)
-
 ```
-Notice how the R2 value barely improved. This is because the 50th and the 90th height percentiles are highly correlated with one another, so adding the 90th height percentile does not add much additional information. Run the line model$coefficients. This will display the coefficients of our model. Using these coefficients, we can write our linear model as follows:
+
+Notice how the R^2^ value barely improved. This is because the 50th and the 90th height percentiles are highly correlated with one another, so adding the 90th height percentile does not add much additional information. Run the line model$coefficients. This will display the coefficients of our model. Using these coefficients, we can write our linear model as follows:
 
 ${Volume = 48.31 * zq50 - 22.91 * zq90 - 95.39}$
 
@@ -519,7 +491,7 @@ We can also look at the correlation between our lidar metrics. Run the line:
 pairs(~ zq10 + zq25 + zq50 + zq75 + zq90, data = data_table)
 ```
 
-This will generate a matrix of scatterplots between the five height percentiles that are listed (zq10, zq25, zq50, zq75, zq90). Notice how all of these height percentiles are highly correlated with one another. We wouldn’t want more than one or two of these in our model, as they basically provide the same information.
+This will generate a matrix of scatterplots between the five height percentiles that are listed (zq10, zq25, zq50, zq75, zq90). Notice how all of these height percentiles are highly correlated with one another. We would not want more than one or two of these in our model, as they basically provide the same information.
 
 Run the line:
 
@@ -529,7 +501,7 @@ pairs(~ zq90 + pzabove2 + zentropy + zskew, data = data_table)
 
 This will display more scatterplots, but between variables that are less correlated with each other. The goal is to find a set of metrics where each metric provides unique information (i.e., not strongly correlated to any other variable). There may be some correlation between variables, you just don’t want too much of it. Notice how we have at least one cover metric, one height metric, and one complexity metric (i.e., variability metric).
 
-##### Screenshot 3: Export the result of pairs() as an image and insert into your submission. {.unnumbered}
+##### Screenshot 3: Export the result of `pairs()` as an image and insert into your submission. {.unnumbered}
 
 ##### Developing a statistial model {.unnumbered}
 
@@ -553,17 +525,16 @@ The models explain the same amount of variance in volume (similar R2 values). Ho
 
 Now that we have developed a model, we will apply the model over our entire study area. To do this, we must calculate lidar metrics over the entire study area on a grid. If we use model 2, we only have to calculate the 25th percentile.
 
-We will use the grid_metrics function in lidR and the calc function in raster to do this. Explore the details of grid_metrics and calc before beginning this step. Notice that grid_metrics calls for an internal function to be applied to each pixel in the raster. It seems intuitive to apply a function created directly from the coefficients of Model 2, but we first need to calculate zq25 for each pixel. To do this we will calculate the standard metrics for the entire study site using .stdmetrics_z as our function. For the sake of time, the spatial resolution is set to 10m.
+We will use the `grid_metrics` function in lidR and the `calc` function in raster to do this. Explore the details of `grid_metrics` and `calc` before beginning this step. Notice that `grid_metrics` calls for an internal function to be applied to each pixel in the raster. It seems intuitive to apply a function created directly from the coefficients of Model 2, but we first need to calculate zq25 for each pixel. To do this we will calculate the standard metrics for the entire study site using `.stdmetrics_z` as our function. For the sake of time, the spatial resolution is set to 10 m.
 
-Once the processing is complete, we should plot grid_metrics.
-
+Once the processing is complete, we should plot `grid_metrics`.
 
 ```{r, echo=TRUE, eval=FALSE}
 grid_metrics_mkrf <- grid_metrics(norm_cat_mkrf, .stdmetrics_z, 10)
 plot(grid_metrics_mkrf)
 ```
 
-Wow! Look at all the rasters we have created. We can plot individual rasters using plot(grid_metrics_mkrf, "zentropy"). For this lab, we want to extract the zq25 raster from this RasterBrick. We can do that by using the subset function in the raster package. Let’s plot the extracted RasterLayer to confirm it was successful.
+Wow! Look at all the rasters we have created. We can plot individual rasters using `plot(grid_metrics_mkrf, "zentropy")`. For this lab, we want to extract the zq25 raster from this RasterBrick. We can do that by using the subset function in the raster package. Let us plot the extracted RasterLayer to confirm it was successful.
 
 ```{r, echo=TRUE, eval=FALSE}
 zq25_mkrf <- subset(grid_metrics_mkrf, "zq_25")
@@ -572,22 +543,19 @@ plot(zq25_mkrf)
 
 Excellent. Now that we have the value of the 25th percentile for each pixel across the study area we can apply Model 2. To do this, we first need to write a function that will apply this equation to all pixels in zq25_mkrf. The function we will create is based on the coefficents derived from Model 2:
 
-
 ```{r, echo=TRUE, eval=FALSE}
 f <- function(x){
 24.96*x -139.45
 }
-
 ```
 
-Now, use calc to apply the model to the entire study area. Add this Figure into your PDF as Screenshot 4.
+Now, use `calc` to apply the model to the entire study area. Add this Figure into your PDF as Screenshot 4.
 
-Done! You have successfully developed and applied a model to predict net stem volume at Malcolm Knapp. Hooray!
+Done! You have successfully developed and applied a model to predict net stem volume at Malcolm Knapp Research Forest. Hooray!
 
 ##### Q7: Does a reasonable high ${R^2}$ value necessarily mean this is a good model? Do you think our estimates of volume are accurate? How could we test the accuracy of our model? {.unnumbered}
 
 ##### Q8: Cover is typically an important metric for predicting forest attributes such as volume (the higher the cover, the higher the volume). Why do you think cover was not an important variable in our model? Consider the location of the plots in your answer. Use the following line to view a scatterplot between cover and volume in R. {.unnumbered}
-
 
 ```{r, echo=TRUE, eval=FALSE}
 plot(Net_Volume ~ pabove2, data = data_table)
@@ -600,17 +568,16 @@ plot(Net_Volume ~ pabove2, data = data_table)
 
 For the first part of this task, we will detect individual trees using only the lidar point cloud data. To start, we will focus on Plot 1. This plot is located in a clearcut, where a number of trees were left standing. The crowns of these trees are clearly separated, so this plot is a good place to test our individual tree detection (i.e., we can compare detected trees against those we can see in the plot).
 
-To detect individual trees, we will use the segment_trees function. There are multiple algorithms available in segment_trees and we recommend you explore each. For this section of the lab, we will use the li2012 algorithm. Please review the Li et al., 2012 paper if you wish  understand how this algorithm works. 
+To detect individual trees, we will use the segment_trees function. There are multiple algorithms available in segment_trees and we recommend you explore each. For this section of the lab, we will use the li2012 algorithm. Please review the Li et al., 2012 paper if you wish understand how this algorithm works. 
 
 To run, this function requires multiple arguments. The first arguments are the adaptive thresholds, or dt1 and dt2 . These thresholds determine the distance that one point can be from another to be included in the same tree. They are considered adaptive because the algorithm chooses to use dt1 or dt2 based on the height of the seed point, which is a technical term for tree top. To be accurate, it is necessary to determine the spacing of trees within the area being classified. This can cause challenges because it is difficult to calculate tree spacing without first accurately segmenting individual trees.
 
 The argument R refers to the search radius for points around the local maxima, which has been determined by Li et al., 2012 to be 2m in most cases. 
-The argument Zu determines which threshold is used by evaluating the height of the seed point. If Zu = 15 , then any seed point higher than 15m will use dt2 . Any seed point lower than 15m will use dt1 . Li et al., 2012 have determined default values through trial and error: dt1 = 1.5 , dt2 = 2 , Zu = 15 , and R = 2
+The argument Zu determines which threshold is used by evaluating the height of the seed point. If Zu = 15 , then any seed point higher than 15m will use dt2 . Any seed point lower than 15m will use dt1. Li et al., 2012 have determined default values through trial and error: dt1 = 1.5 , dt2 = 2 , Zu = 15 , and R = 2
 
 For this lab, we will use the default values determined by Li et al., 2012 for all arguments: dt1 = 1.5 , dt2 = 2 , R = 2 , Zu = 15 and speed_up = 10 . We will also use the default value for hmin , which is 2m, as it follows with previous labs in excluding points below 2m from our analyses.
 
-Run **Part A** of the script now. 
-
+Run **Part A** of the script now.
 
 ```{r, echo=TRUE, eval=FALSE}
 #Part A) Point Cloud based 
@@ -644,7 +611,6 @@ plot(p1_li, color = 'treeID')
 #segment each plot
 p2_li = segment_trees(Plot_2, li2012())
 plot(p2_li, color = 'treeID')
-
 ```
 
 ##### Q9: Describe a use case for delineating individual trees within a raw point cloud. {.unnumbered}
@@ -672,9 +638,7 @@ ID individual identification number of each tree.
 
 Run **Part B**  of the script now. 
 
-
 ```{r, echo=TRUE, eval=FALSE}
-
 ### Part b) CHM based
 
 #Dalponte et al., 2016 CHM-based 
@@ -714,22 +678,19 @@ dalponte_2_0.5 <- Plot_2 %>%
 #find crowns
 crowns2 <- delineate_crowns(dalponte_2_0.5)
 plot(crowns2, add = TRUE)
-
-
 ```
+
 ##### Screenshot 5: Include a figure of plot 2 showing the CHM within delineated crowns and tree tops {.unnumbered}
 
 ##### Q10: Compare the two CHM plots. In your opinion when does individual tree detection work well and where does it fall short. Explain. {.unnumbered}
 
 #### Part C) Find tall trees using Point Cloud {.unnumbered}
 
-tree_metrics() gives the ID of trees and associated metrics. We can use these data to filter the scene and isolate only the tallest trees. 
+`tree_metrics()` gives the ID of trees and associated metrics. We can use these data to filter the scene and isolate only the tallest trees. 
 
 In this section we will isolate the largest of trees in plot 2. 
 
-Run **Part C**  of the script now. 
-
-
+Run **Part C**  of the script now.
 
 ```{r, echo=TRUE, eval=FALSE}
 
@@ -752,7 +713,6 @@ x <- plot(p2_li, bg = "white", size = 4)
 plot(Subsetmax, add = x + c(-200, 0), size = 5) # some plotting
 
 plot(Subsetmax, bg = "white")
-
 ```
 
 ##### Screenshot 6: Include an image of the subsetmax plot {.unnumbered}
