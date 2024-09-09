@@ -119,7 +119,41 @@ Conservation units for Chinook, Chum, and Coho were acquired from Oceans and Fis
 
 **Step 1**: Before starting the lab, you will need to download all of the data from Canvas.
 
-**Step 2:** In ArcGIS Pro, add the Vancouver Island DEM to your map project. Clip the DEM to the"vancouver_island_boundary" using the clip raster tool, toggle on "use input features for clipping geometry".  
+**Step 2:** Open ArcGIS Pro. You should have window that looks like the screenshot below. The ArcGIS Pro theme used to create this lab is Dark. The default theme is likely Light, but if you are interested in changing themes please follow the instructions at this [link](https://pro.arcgis.com/en/pro-app/latest/get-started/general-options.htm). To open a new project, choose “Map” from the “New Blank Template” list.
+
+```{r 01-starting-arcgispro-prompt, out.width= "100%", echo = FALSE, fig.align='center'}
+    knitr::include_graphics("images/01-starting-arcgispro-prompt.png")
+```
+
+A prompt will appear requesting you to Name and state the location of your project. It is recommended to name your project “LabXX_yourlastname”. Uncheck the “Create a new folder for this project” box. As usual, save your project on the (C:) drive in the same folder that your downloaded data is located.
+
+The next window is the generic start of a new project in ArcGIS Pro. In the centre you will see the standard “Catalog” frame. At the top is the ribbon, which is where the majority of your analysis options can be found. On the left is the standard “Contents” frame, which is similar to that of other Esri products. Tabs can be found on the right-hand side of the window. When using tools or adjusting symbology, be sure to look here for a relevant tab before exploring the ribbon. 
+
+You will also notice that the Catolog frame is also “tabbed”. This means that you can close the frame without closing ArcGIS Pro. It also means that you can have Maps, Catalogs and 3D Scenes all open at the same time. Although this is very cool, be aware that too many tabs are likely to crash ArcGIS Pro. Know your computers processing limits and play within it.  
+
+**Step 3:** Without closing the Catalog window, navigate to the “Insert” tab on the ribbon and click on the “New Map” icon.
+
+```{r 01-new-map, out.width= "50%", echo = FALSE, fig.align='center'}
+    knitr::include_graphics("images/01-new-map.png")
+```
+
+A new topographic map will appear in the centre window. Note that it is separate from the Catalog tab. You can switch back and forth between these as you wish, but recall that there is another Catalog tab on the right-hand side of the screen. When analyzing a map or editing a model, this is the easiest tab to use. For the remainder of the lab, when “Catalog” is mentioned it is referring to this side tab. 
+
+**Step 4:** To add data to the map, navigate to the Pre-Lab folder using Catalog* ,if you save your project in the same folder as you data it should appear, if not right click **Folders** in the Catalog pane and select: 
+
+```{r 01-add-folder-connection, out.width= "50%", echo = FALSE, fig.align='center'}
+    knitr::include_graphics("images/01-add-folder-connection.png")
+```
+
+**Step 5:** Navigate to where the data is saved and click ok. When you can find the data folder, drag-and-drop the **vancouver_island_dem**  file into the map window. At this point, you should see a DEM covering Vancouver Island. If the mapview does not immediately pan to the image right click **vancouver_island_dem** in the Contents pane and press Zoom to Layer.
+
+_Note: If the catalog pane does not immediately appear in your ArcGIS Pro document use the ribbons at the top to navigate to **View -> Catalog Pane**_
+
+```{r 01-catalog-pane, out.width= "50%", echo = FALSE, fig.align='center'}
+    knitr::include_graphics("images/01-catalog-pane.png")
+```
+
+**Step 6:** Clip the DEM to the"vancouver_island_boundary" using the clip raster tool, toggle on "use input features for clipping geometry".  
 
 You should save all of your outputs from the tools in this lab directly into your ArcGIS Pro project geodatabase. The reasoning for this is because we will only be working in ArcGIS Pro for this lab and also because the ArcGIS Pro topology tools only work with data inside an ArcGIS Pro geodatabase.
 
@@ -129,19 +163,19 @@ Calculate the flow direction of the filled DEM, using the "Flow Direction" tool.
     knitr::include_graphics("images/02-flow-direction.png")
 ```
 
-**Step 3:** Use the output from the "Flow Direction" tool as an input into the "Flow Accumulation" tool. Again, use the defaults within the tool, but select integer as the output data type because the output of this tool is a count. This tool will create a raster that represents the number of pixels that will accumulate into any given pixel. You may need to zoom into the output to be able to see these streams. Play around with the symbology to visualize the stream network. (Hint: try using classify and various methods within symbology).
+**Step 7:** Use the output from the "Flow Direction" tool as an input into the "Flow Accumulation" tool. Again, use the defaults within the tool, but select integer as the output data type because the output of this tool is a count. This tool will create a raster that represents the number of pixels that will accumulate into any given pixel. You may need to zoom into the output to be able to see these streams. Play around with the symbology to visualize the stream network. (Hint: try using classify and various methods within symbology).
 
-**Step 4:** To define streams, you need to set a threshold for the flow accumulation. Open "Con"(Image Analyst Tools). This tool allows you to set a true/false condition and assign values to a new raster based on whether the condition is met. Set the expression so that a pixel that has a count equal to or more than 1000 will be assigned a value of 1. For "Input true raster or constant value", use value 1. For "Input false raster or constant value", use value 0.
+**Step 8:** To define streams, you need to set a threshold for the flow accumulation. Open "Con"(Image Analyst Tools). This tool allows you to set a true/false condition and assign values to a new raster based on whether the condition is met. Set the expression so that a pixel that has a count equal to or more than 1000 will be assigned a value of 1. For "Input true raster or constant value", use value 1. For "Input false raster or constant value", use value 0.
 
 ```{r 02-con, out.width= "50%", echo = FALSE}
     knitr::include_graphics("images/02-con.png")
 ```
 
-**Step 5:** Next, you will create a grid of stream links, which assigns unique values to each stream segment, so that the user can see how the streams are connected. Open the "Stream Link" tool and use the output from the "Con" tool and the flow direction raster here. 
+**Step 9:** Next, you will create a grid of stream links, which assigns unique values to each stream segment, so that the user can see how the streams are connected. Open the "Stream Link" tool and use the output from the "Con" tool and the flow direction raster here. 
 
-**Step 6:** You will also use the "Stream Order" tool using the same inputs as in step 4 and the default parameters. The "Stream Order" tool assigns a numeric order to segments of the raster, essentially classifying branches of the stream network. The lowest order streams do not have any other streams that flow into it, while higher order streams can have multiple levels of tributaries that flow into it. This tool will take some time to run on the whole island. Take a moment to stretch and hydrate!
+**Step 10:** You will also use the "Stream Order" tool using the same inputs as in step 4 and the default parameters. The "Stream Order" tool assigns a numeric order to segments of the raster, essentially classifying branches of the stream network. The lowest order streams do not have any other streams that flow into it, while higher order streams can have multiple levels of tributaries that flow into it. This tool will take some time to run on the whole island. Take a moment to stretch and hydrate!
 
-**Step 7:** You will also convert your raster into polylines using the stream links raster and flow direction raster as inputs for the "Stream to Feature" tool. Toggle off "Simplify polylines". 
+**Step 11:** You will also convert your raster into polylines using the stream links raster and flow direction raster as inputs for the "Stream to Feature" tool. Toggle off "Simplify polylines". 
 
 Below is a useful flowchart of the process of creating a stream network from a DEM ([ArcGIS Pro](https://pro.arcgis.com/en/pro-app/tool-reference/spatial-analyst/deriving-runoff-characteristics.htm)).
 
