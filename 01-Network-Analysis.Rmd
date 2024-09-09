@@ -121,7 +121,7 @@ Conservation units for Chinook, Chum, and Coho were acquired from Oceans and Fis
 
 **Step 2:** Open ArcGIS Pro. You should have window that looks like the screenshot below. The ArcGIS Pro theme used to create this lab is Dark. The default theme is likely Light, but if you are interested in changing themes please follow the instructions at this [link](https://pro.arcgis.com/en/pro-app/latest/get-started/general-options.htm). To open a new project, choose “Map” from the “New Blank Template” list.
 
-```{r 01-starting-arcgispro-prompt, out.width= "100%", echo = FALSE, fig.align='center'}
+```{r, 01-starting-arcgispro-prompt-network-analysis, out.width= "100%", echo = FALSE, fig.align="center"}
     knitr::include_graphics("images/01-starting-arcgispro-prompt.png")
 ```
 
@@ -133,7 +133,7 @@ You will also notice that the Catolog frame is also “tabbed”. This means tha
 
 **Step 3:** Without closing the Catalog window, navigate to the “Insert” tab on the ribbon and click on the “New Map” icon.
 
-```{r 01-new-map, out.width= "50%", echo = FALSE, fig.align='center'}
+```{r, 01-new-map-network-analysis, out.width= "50%", echo = FALSE, fig.align="center"}
     knitr::include_graphics("images/01-new-map.png")
 ```
 
@@ -141,7 +141,7 @@ A new topographic map will appear in the centre window. Note that it is separate
 
 **Step 4:** To add data to the map, navigate to the Pre-Lab folder using Catalog* ,if you save your project in the same folder as you data it should appear, if not right click **Folders** in the Catalog pane and select: 
 
-```{r 01-add-folder-connection, out.width= "50%", echo = FALSE, fig.align='center'}
+```{r 01-add-folder-connection-network-analysis, out.width= "50%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/01-add-folder-connection.png")
 ```
 
@@ -149,7 +149,7 @@ A new topographic map will appear in the centre window. Note that it is separate
 
 _Note: If the catalog pane does not immediately appear in your ArcGIS Pro document use the ribbons at the top to navigate to **View -> Catalog Pane**_
 
-```{r 01-catalog-pane, out.width= "50%", echo = FALSE, fig.align='center'}
+```{r 01-catalog-pane-network-analysis, out.width= "50%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/01-catalog-pane.png")
 ```
 
