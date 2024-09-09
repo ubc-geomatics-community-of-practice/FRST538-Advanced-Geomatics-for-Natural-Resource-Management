@@ -5,11 +5,11 @@ fig:03-rgb-malcolm-knapp
 fig:03-normalized-tile-mkrf
 fig:07-true-colour-composite-mkrf
 fig:07-example-output-ndvi-calculation
-spectral-signatures
 network-analysis
-lidar-for-forest-management
 lidar-terrain
 suitability-overlay-analysis
 geographically-weighted-regression
+spectral-signatures
+lidar-for-forest-management
 time-series-image-analysis
 machine-learning-for-classification

@@ -26,7 +26,7 @@ The aim of this lab is to use LiDAR data from the Malcolm Knapp Research Forest 
 
 ------------------------------------------------------------------------
 
-## Deliverables {#lab4-deliverables .unnumbered}
+## Deliverables {#lab2-deliverables .unnumbered}
 
 Lab report with the following specifications:
 
@@ -54,7 +54,7 @@ Lab report with the following specifications:
 
 ------------------------------------------------------------------------
 
-## Data {#lab4-data .unnumbered}
+## Data {#lab2-data .unnumbered}
 
 We will be working with LiDAR data collected over the Malcolm Knapp Research Forest (MKRF) in Maple Ridge, BC. There are three files associated with this lab:
 
@@ -247,4 +247,4 @@ Take some time to play around and explore the scene. One thing we notice is that
 
 In this lab, we explored the capabilities of ArcGIS to view, manipulate, and analyze LiDAR point cloud data. We harnessed the power and ease of use of the ArcGIS built-in functions for preprocessing the LiDAR and making a DTM. We tested three different interpolation methods when making our point cloud derived DTM: Kriging, Inverse Distance Weighting, and Spline. We looked for patterns based on low, medium, and high elevation and sloped areas across our different DTM products for more insight into how our choice of interpolation method will have an impact on our eventual data product. Moving then onto making a 3D scene in ArcGIS, we explored how to more accurately reflect the real world by ensuring the ground surface matches the forest. Finally, we ended on a discussion of highlighting particular characteristics of your dataset through changing the lighting or exagerating height differences within the ArcGIS scene. 
 
-Return to the [**Deliverables**](#lab4-deliverables) section to check off everything you need to submit for credit in the course management system
+Return to the [**Deliverables**](#lab2-deliverables) section to check off everything you need to submit for credit in the course management system

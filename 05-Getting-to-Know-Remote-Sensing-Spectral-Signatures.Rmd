@@ -25,7 +25,7 @@ The aim of this lab is to learn about the electromagnetic spectrum (EMS), unders
 
 ------------------------------------------------------------------------
 
-## Deliverables {#lab1-deliverables .unnumbered}
+## Deliverables {#lab5-deliverables .unnumbered}
 
 <input type="checkbox" unchecked> Turn in answers to the questions below in a document on Canvas</input>
 
@@ -33,7 +33,7 @@ The aim of this lab is to learn about the electromagnetic spectrum (EMS), unders
 
 ## Data {.unnumbered}
 
-We will be working with a multispectral image of Vancouver from the Landsat 5 satellite (L5047026subset_19990922_7B.dat). The data is located in the Canvas folder for Lab 1.
+We will be working with a multispectral image of Vancouver from the Landsat 5 satellite (L5047026subset_19990922_7B.dat). The data is located on Canvas.
 
 ------------------------------------------------------------------------
 
@@ -246,4 +246,4 @@ You might have to resize the spectral chart at the bottom of your screen in orde
 
 In this lab, we introduced concepts of using specific ranges of the electromagnetic spectrum to understand spectral reflectance and spectral signatures. Spectral signatures are determined by the spectral properties of different materials. They can be used to gather more information about a material than what we can see with visible light! We used ArcGIS Pro to analyze different types of remote sensing data and visualized various combinations of bands using greyscale, true colour composites, and false colour composites. This lab is just the beginning of our remote sensing journey but opens our eyes to the power of remote sensing and its ability to unveil information about the world around us!
 
-Return to the [**Deliverables**](#lab1-deliverables) section to check off everything you need to submit for credit in the course management system.
+Return to the [**Deliverables**](#lab5-deliverables) section to check off everything you need to submit for credit in the course management system.

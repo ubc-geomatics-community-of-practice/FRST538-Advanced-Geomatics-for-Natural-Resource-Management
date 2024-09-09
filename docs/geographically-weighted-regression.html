@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Lab: 6 Analyzing Green Equity Using Geographically Weighted Regression | FRST 538: Advanced Geomatics for Natural Resource Management</title>
+  <title>Lab: 4 Analyzing Green Equity Using Geographically Weighted Regression | FRST 538: Advanced Geomatics for Natural Resource Management</title>
   <meta name="description" content="Open Educational Resources for FRST 538 course at the University of British Columbia" />
   <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Lab: 6 Analyzing Green Equity Using Geographically Weighted Regression | FRST 538: Advanced Geomatics for Natural Resource Management" />
+  <meta property="og:title" content="Lab: 4 Analyzing Green Equity Using Geographically Weighted Regression | FRST 538: Advanced Geomatics for Natural Resource Management" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Open Educational Resources for FRST 538 course at the University of British Columbia" />
   <meta name="github-repo" content="github.com/ubc-geomatics-community-of-practice/FRST538-Advanced-Geomatics-for-Natural-Resource-Management/book" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lab: 6 Analyzing Green Equity Using Geographically Weighted Regression | FRST 538: Advanced Geomatics for Natural Resource Management" />
+  <meta name="twitter:title" content="Lab: 4 Analyzing Green Equity Using Geographically Weighted Regression | FRST 538: Advanced Geomatics for Natural Resource Management" />
   
   <meta name="twitter:description" content="Open Educational Resources for FRST 538 course at the University of British Columbia" />
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Paul D. Pickell" />
 
 
-<meta name="date" content="2024-09-04" />
+<meta name="date" content="2024-09-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="suitability-overlay-analysis.html"/>
-<link rel="next" href="time-series-image-analysis.html"/>
+<link rel="next" href="spectral-signatures.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -144,54 +144,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-use-these-resources"><i class="fa fa-check"></i>How to use these resources</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-get-involved"><i class="fa fa-check"></i>How to get involved</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="spectral-signatures.html"><a href="spectral-signatures.html"><i class="fa fa-check"></i><b>1</b> Getting to know Remote Sensing and spectral signatures</a>
+<li class="chapter" data-level="1" data-path="network-analysis.html"><a href="network-analysis.html"><i class="fa fa-check"></i><b>1</b> Salmon Stream Network Analysis</a>
 <ul>
-<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#lab-overview"><i class="fa fa-check"></i>Lab Overview</a></li>
-<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#learning-objectives"><i class="fa fa-check"></i>Learning Objectives</a></li>
-<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#lab1-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
-<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#data"><i class="fa fa-check"></i>Data</a></li>
-<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#task-1-the-electromagnetic-spectrum"><i class="fa fa-check"></i>Task 1: The Electromagnetic Spectrum</a></li>
-<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#task-2-landsat-5-bands-the-ems-arcgis-pro-software"><i class="fa fa-check"></i>Task 2: Landsat 5 Bands, the EMS, &amp; ArcGIS Pro Software</a></li>
-<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#summary"><i class="fa fa-check"></i>Summary</a></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="network-analysis.html"><a href="network-analysis.html"><i class="fa fa-check"></i><b>2</b> Salmon Stream Network Analysis</a>
-<ul>
-<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#lab-overview-1"><i class="fa fa-check"></i>Lab Overview</a></li>
-<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#learning-objectives-1"><i class="fa fa-check"></i>Learning Objectives</a></li>
-<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#lab2-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
-<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#data-1"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#lab-overview"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#learning-objectives"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#lab1-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#data"><i class="fa fa-check"></i>Data</a></li>
 <li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#task-1-create-stream-segments"><i class="fa fa-check"></i>Task 1: Create stream segments</a></li>
 <li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#task-2-create-routes-and-apply-topology"><i class="fa fa-check"></i>Task 2: Create routes and apply topology</a></li>
 <li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#task-3-record-stream-attributes-with-linear-referencing"><i class="fa fa-check"></i>Task 3: Record stream attributes with linear referencing</a></li>
 <li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#task-4-trace-the-network"><i class="fa fa-check"></i>Task 4: Trace the network</a></li>
 <li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#task-5-overlay-and-query-the-network"><i class="fa fa-check"></i>Task 5: Overlay and query the network</a></li>
 <li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#final-report"><i class="fa fa-check"></i>Final Report</a></li>
-<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#summary-1"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#summary"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html"><i class="fa fa-check"></i><b>3</b> Lidar for Forest Management</a>
+<li class="chapter" data-level="2" data-path="lidar-terrain.html"><a href="lidar-terrain.html"><i class="fa fa-check"></i><b>2</b> LiDAR, terrain models and geovisualization</a>
 <ul>
-<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#lab-overview-2"><i class="fa fa-check"></i>Lab Overview</a></li>
-<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#learning-objectives-2"><i class="fa fa-check"></i>Learning Objectives</a></li>
-<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#lab3-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
-<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#data-2"><i class="fa fa-check"></i>Data</a></li>
-<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#software"><i class="fa fa-check"></i>Software</a></li>
-<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#lab-set-up"><i class="fa fa-check"></i>Lab Set up</a></li>
-<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-1-load-rgb-imagery"><i class="fa fa-check"></i>Task 1: Load RGB Imagery</a></li>
-<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-2-load-and-explore-the-lidar-data"><i class="fa fa-check"></i>Task 2: Load and Explore the LiDAR Data</a></li>
-<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-3-read-multiple-las-files-into-lascatolog-object"><i class="fa fa-check"></i>Task 3: Read Multiple LAS Files into LAScatolog object</a></li>
-<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-4-create-digital-elevation-model-dem"><i class="fa fa-check"></i>Task 4: Create Digital Elevation Model (DEM)</a></li>
-<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-5-create-a-canopy-height-model"><i class="fa fa-check"></i>Task 5: Create a Canopy Height Model</a></li>
-<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-6-extract-metrics-from-the-point-clouds"><i class="fa fa-check"></i>Task 6: Extract Metrics From the Point Clouds</a></li>
-<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-7-stem-volume-models-with-lidr"><i class="fa fa-check"></i>Task 7: Stem Volume Models with lidR</a></li>
-<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-8-individual-tree-detection"><i class="fa fa-check"></i>Task 8: Individual Tree Detection</a></li>
-<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#summary-2"><i class="fa fa-check"></i>Summary</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="lidar-terrain.html"><a href="lidar-terrain.html"><i class="fa fa-check"></i><b>4</b> LiDAR, terrain models and geovisualization</a>
-<ul>
-<li class="chapter" data-level="" data-path="lidar-terrain.html"><a href="lidar-terrain.html#lab-overview-3"><i class="fa fa-check"></i>Lab Overview</a></li>
-<li class="chapter" data-level="" data-path="lidar-terrain.html"><a href="lidar-terrain.html#learning-objectives-3"><i class="fa fa-check"></i>Learning Objectives</a></li>
-<li class="chapter" data-level="" data-path="lidar-terrain.html"><a href="lidar-terrain.html#lab4-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
-<li class="chapter" data-level="" data-path="lidar-terrain.html"><a href="lidar-terrain.html#lab4-data"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="lidar-terrain.html"><a href="lidar-terrain.html#lab-overview-1"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="lidar-terrain.html"><a href="lidar-terrain.html#learning-objectives-1"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="lidar-terrain.html"><a href="lidar-terrain.html#lab2-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="lidar-terrain.html"><a href="lidar-terrain.html#lab2-data"><i class="fa fa-check"></i>Data</a></li>
 <li class="chapter" data-level="" data-path="lidar-terrain.html"><a href="lidar-terrain.html#task-1-load-and-explore-the-lidar-data"><i class="fa fa-check"></i>Task 1: Load and explore the LiDAR data</a></li>
 <li class="chapter" data-level="" data-path="lidar-terrain.html"><a href="lidar-terrain.html#task-2-create-a-dtm-using-built-in-arcgis-functions"><i class="fa fa-check"></i>Task 2: Create a DTM using built-in ArcGIS functions</a></li>
 <li class="chapter" data-level="" data-path="lidar-terrain.html"><a href="lidar-terrain.html#task-3-pre-process-data-for-interpolation"><i class="fa fa-check"></i>Task 3: Pre-process data for interpolation</a></li>
@@ -200,14 +172,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="lidar-terrain.html"><a href="lidar-terrain.html#task-6-quantitatively-interpret-the-differences-and-calculate-statistics-for-each-zone"><i class="fa fa-check"></i>Task 6: Quantitatively interpret the differences and calculate statistics for each zone</a></li>
 <li class="chapter" data-level="" data-path="lidar-terrain.html"><a href="lidar-terrain.html#task-7-create-a-map-document"><i class="fa fa-check"></i>Task 7: Create a map document</a></li>
 <li class="chapter" data-level="" data-path="lidar-terrain.html"><a href="lidar-terrain.html#task-8-exploring-scenes"><i class="fa fa-check"></i>Task 8: Exploring Scenes</a></li>
-<li class="chapter" data-level="" data-path="lidar-terrain.html"><a href="lidar-terrain.html#summary-3"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="lidar-terrain.html"><a href="lidar-terrain.html#summary-1"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html"><i class="fa fa-check"></i><b>5</b> Suitability and Overlay Analysis</a>
+<li class="chapter" data-level="3" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html"><i class="fa fa-check"></i><b>3</b> Suitability and Overlay Analysis</a>
 <ul>
-<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#lab-overview-4"><i class="fa fa-check"></i>Lab Overview</a></li>
-<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#learning-objectives-4"><i class="fa fa-check"></i>Learning Objectives</a></li>
-<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#lab5-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
-<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#data-3"><i class="fa fa-check"></i>Data</a>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#lab-overview-2"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#learning-objectives-2"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#lab3-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#data-1"><i class="fa fa-check"></i>Data</a>
 <ul>
 <li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#data-organization"><i class="fa fa-check"></i>Data Organization</a></li>
 <li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#files-to-create"><i class="fa fa-check"></i>Files to Create</a></li>
@@ -222,17 +194,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-1-export-relevant-data-from-biologically-important-areas-shapefile-1"><i class="fa fa-check"></i>Task 1: Export Relevant Data from Biologically Important Areas Shapefile</a></li>
 <li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-2-extract-all-of-the-commercial-fishing-vessels-from-ocean-uses"><i class="fa fa-check"></i>Task 2: Extract All of the Commercial Fishing Vessels from Ocean Uses</a></li>
 <li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-3-erase-where-the-false-killer-whales-and-commercial-fishing-vessels-overlap"><i class="fa fa-check"></i>Task 3: Erase where the False Killer Whales and Commercial Fishing Vessels overlap</a></li>
-<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#summary-4"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#summary-2"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html"><i class="fa fa-check"></i><b>6</b> Analyzing Green Equity Using Geographically Weighted Regression</a>
+<li class="chapter" data-level="4" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html"><i class="fa fa-check"></i><b>4</b> Analyzing Green Equity Using Geographically Weighted Regression</a>
 <ul>
-<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#lab-overview-5"><i class="fa fa-check"></i>Lab Overview</a></li>
-<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#learning-objectives-5"><i class="fa fa-check"></i>Learning Objectives</a></li>
-<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#lab6-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
-<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#lab6-data"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#lab-overview-3"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#learning-objectives-3"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#lab4-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#lab4-data"><i class="fa fa-check"></i>Data</a></li>
 <li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#task-1-visualize-census-data"><i class="fa fa-check"></i>Task 1: Visualize census data</a></li>
 <li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#task-2-practice-geographically-weighted-regression"><i class="fa fa-check"></i>Task 2: Practice geographically weighted regression</a></li>
-<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#summary-5"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#summary-3"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="spectral-signatures.html"><a href="spectral-signatures.html"><i class="fa fa-check"></i><b>5</b> Getting to know Remote Sensing and spectral signatures</a>
+<ul>
+<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#lab-overview-4"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#learning-objectives-4"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#lab5-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#data-2"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#task-1-the-electromagnetic-spectrum"><i class="fa fa-check"></i>Task 1: The Electromagnetic Spectrum</a></li>
+<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#task-2-landsat-5-bands-the-ems-arcgis-pro-software"><i class="fa fa-check"></i>Task 2: Landsat 5 Bands, the EMS, &amp; ArcGIS Pro Software</a></li>
+<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#summary-4"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html"><i class="fa fa-check"></i><b>6</b> Lidar for Forest Management</a>
+<ul>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#lab-overview-5"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#learning-objectives-5"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#lab6-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#data-3"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#software"><i class="fa fa-check"></i>Software</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#lab-set-up"><i class="fa fa-check"></i>Lab Set up</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-1-load-rgb-imagery"><i class="fa fa-check"></i>Task 1: Load RGB Imagery</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-2-load-and-explore-the-lidar-data"><i class="fa fa-check"></i>Task 2: Load and Explore the LiDAR Data</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-3-read-multiple-las-files-into-lascatolog-object"><i class="fa fa-check"></i>Task 3: Read Multiple LAS Files into LAScatolog object</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-4-create-digital-elevation-model-dem"><i class="fa fa-check"></i>Task 4: Create Digital Elevation Model (DEM)</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-5-create-a-canopy-height-model"><i class="fa fa-check"></i>Task 5: Create a Canopy Height Model</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-6-extract-metrics-from-the-point-clouds"><i class="fa fa-check"></i>Task 6: Extract Metrics From the Point Clouds</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-7-stem-volume-models-with-lidr"><i class="fa fa-check"></i>Task 7: Stem Volume Models with lidR</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-8-individual-tree-detection"><i class="fa fa-check"></i>Task 8: Individual Tree Detection</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#summary-5"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html"><i class="fa fa-check"></i><b>7</b> Time Series Analysis</a>
 <ul>
@@ -282,12 +282,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="geographically-weighted-regression" class="section level1 hasAnchor" number="6">
-<h1><span class="header-section-number">Lab: 6</span> Analyzing Green Equity Using Geographically Weighted Regression<a href="geographically-weighted-regression.html#geographically-weighted-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="geographically-weighted-regression" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Lab: 4</span> Analyzing Green Equity Using Geographically Weighted Regression<a href="geographically-weighted-regression.html#geographically-weighted-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Written by
 Paul Pickell</p>
-<div id="lab-overview-5" class="section level2 unnumbered hasAnchor">
-<h2>Lab Overview<a href="geographically-weighted-regression.html#lab-overview-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="lab-overview-3" class="section level2 unnumbered hasAnchor">
+<h2>Lab Overview<a href="geographically-weighted-regression.html#lab-overview-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In this lab, you will be exploring a few different statistical approaches to modelling geographic data, including geographically weighted regression (GWR). GWR is the spatial extension of aspatial regression analysis and much more. Traditional regression analysis assumes that global statistics adequately describe local relationships that might exist in the data. For example, consider looking at the relationship between housing prices and the floor space, lot size, etc., of houses in the city of Vancouver. While we could develop a ‘global’ model that adequately describes the relationship between those variables, knowing what you do about housing prices in the city of Vancouver (e.g., that a house of similar dimensions, age, lot size, etc., in the east side of Vancouver will sell for hundreds of thousands of dollars less than an identical house in the west side of Vancouver), the utility of such a model when looking at neighborhood-level housing issues would be very doubtful. Nonetheless, for decades such models, such as hedonic models, have been normalized in real estate research.</p>
 <p>Similarly, consider studying the relationship between rates of crime or diseases to environmental conditions, local conditions can be much more important than any global relationship that might be discovered via a traditional aspatial statistical approach. Using polygon or point data, GWR allows us to explore the local relationships amongst a set of variables and examine the results spatially using ArcGIS Pro. It should be noted that in R you can find more sophisticated approaches to GWR than what is provided by ArcGIS Pro.</p>
 <p>In this lab, you will explore the equity of green space for the city of Vancouver using Landsat imagery and demographic data from the 2021 Canadian census.</p>
@@ -295,8 +295,8 @@ Paul Pickell</p>
 <p>Vancouver is the most populous city in British Columbia, Canada with a population of 662,248 in 2021. Vancouver is an ideal study site because of the city’s high level of heterogeneity among its demographic and green space structure.</p>
 <hr />
 </div>
-<div id="learning-objectives-5" class="section level2 unnumbered hasAnchor">
-<h2>Learning Objectives<a href="geographically-weighted-regression.html#learning-objectives-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="learning-objectives-3" class="section level2 unnumbered hasAnchor">
+<h2>Learning Objectives<a href="geographically-weighted-regression.html#learning-objectives-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><p>Calculate a vegetation index from Landsat imagery and report summary statistics over census dissemination areas</p></li>
 <li><p>Evaluate different models and defend your model selection</p></li>
@@ -305,8 +305,8 @@ Paul Pickell</p>
 </ul>
 <hr />
 </div>
-<div id="lab6-deliverables" class="section level2 unnumbered hasAnchor">
-<h2>Deliverables<a href="geographically-weighted-regression.html#lab6-deliverables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="lab4-deliverables" class="section level2 unnumbered hasAnchor">
+<h2>Deliverables<a href="geographically-weighted-regression.html#lab4-deliverables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Lab report with the following specification:</p>
 <p><input type="checkbox" unchecked> 6 pages maximum PDF including figures, tables and references (3 points). Single-spaced, 12-point Times New Roman font (1 point).</p>
 <p><input type="checkbox" unchecked> Results should address the following questions and requirements (25 points):</input></p>
@@ -329,8 +329,8 @@ Paul Pickell</p>
 </ul>
 <hr />
 </div>
-<div id="lab6-data" class="section level2 unnumbered hasAnchor">
-<h2>Data<a href="geographically-weighted-regression.html#lab6-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="lab4-data" class="section level2 unnumbered hasAnchor">
+<h2>Data<a href="geographically-weighted-regression.html#lab4-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>All data for this lab are accessible from the course management system. The data provided on the course management system are a subset of the following public datasets:</p>
 <p>Statistics Canada. 2022. Census Profile. 2021 Census. Statistics Canada Catalogue no. 98-316-X2021001. Ottawa. Released December 15, 2022. <a href="https://www12.statcan.gc.ca/census-recensement/2021/dp-pd/prof/index.cfm?Lang=E" class="uri">https://www12.statcan.gc.ca/census-recensement/2021/dp-pd/prof/index.cfm?Lang=E</a></p>
 <p>We are using only a small subset of the national 2021 census data set for British Columbia: “Canada, provinces, territories, census divisions (CDs), census subdivisions (CSDs) and dissemination areas (DAs) - British Columbia only” (Statistics Canada Catalogue no. 98-401-X2021006).</p>
@@ -507,10 +507,10 @@ NDVI=\frac{Band5-Band4}{Band5+Band4}
 </ul>
 <hr />
 </div>
-<div id="summary-5" class="section level2 unnumbered hasAnchor">
-<h2>Summary<a href="geographically-weighted-regression.html#summary-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="summary-3" class="section level2 unnumbered hasAnchor">
+<h2>Summary<a href="geographically-weighted-regression.html#summary-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Geographically weighted regression can be a powerful tool for exploring spatial relationships. It takes some care and practice learning to interpret the many statistics along the journey, but it is one of the statistical methods that is rewarding to map and visualize. You should think of geographically weighted regression as a first approach at looking at a problem. It is great for exploring relationships, but not necessarily testing them. As you have seen, geographically weighted regression is a wonderful way to generate spatial hypotheses about data and explore the underlying tendencies of different relationships. Along the way, you have also learned how to wield high-dimensional census data in a database. Census data pair well with a wide variety of spatial analyses once you have decoded and unlocked their spatial mysteries.</p>
-<p>Return to the <a href="geographically-weighted-regression.html#lab6-deliverables"><strong>Deliverables</strong></a> section to check off everything you need to submit for credit in the course management system.</p>
+<p>Return to the <a href="geographically-weighted-regression.html#lab4-deliverables"><strong>Deliverables</strong></a> section to check off everything you need to submit for credit in the course management system.</p>
 
 </div>
 </div>
@@ -520,7 +520,7 @@ NDVI=\frac{Band5-Band4}{Band5+Band4}
         </div>
       </div>
 <a href="suitability-overlay-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="time-series-image-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="spectral-signatures.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

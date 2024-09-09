@@ -52,7 +52,7 @@ In this lab, we will focus on Vancouver Island for a few reasons. First, islands
 
 ------------------------------------------------------------------------
 
-## Deliverables {#lab2-deliverables .unnumbered}
+## Deliverables {#lab1-deliverables .unnumbered}
 
 The lab deliverables to be submitted on canvas include:
 
@@ -429,4 +429,4 @@ Finally, answer the following questions in your report:
 
 Would you have guessed that you could do all that analysis from a single DEM? That is the power of applying focal functions to the raster (flow direction, flow accumulation, slope) and deriving a network with topology. In this lab, we were principally concerned with events and attributes along the stream segments. Although we did not explicitly calculate connectivity measures, the connectivity of the network was implied through the modelling approach using flow direction from the filled DEM. If you attempted to perform this same analysis without the aid of a DEM, then you would need to take additional precautions to ensure that your polyline features have topological connectivity and valid junctions. Still, our approach using a DEM is prone to artifacts from the raster. Stream segments are limited to eight turning angles and the resolution of the DEM can impact stream attributes.
 
-Return to the [**Deliverables**](#lab2-deliverables) section to check off everything you need to submit for credit in the course management system.
+Return to the [**Deliverables**](#lab1-deliverables) section to check off everything you need to submit for credit in the course management system.

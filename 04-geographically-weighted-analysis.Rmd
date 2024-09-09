@@ -36,7 +36,7 @@ Vancouver is the most populous city in British Columbia, Canada with a populatio
 
 ------------------------------------------------------------------------
 
-## Deliverables {#lab6-deliverables .unnumbered}
+## Deliverables {#lab4-deliverables .unnumbered}
 
 Lab report with the following specification:
 
@@ -72,7 +72,7 @@ Lab report with the following specification:
 
 ------------------------------------------------------------------------
 
-## Data {#lab6-data .unnumbered}
+## Data {#lab4-data .unnumbered}
 
 All data for this lab are accessible from the course management system. The data provided on the course management system are a subset of the following public datasets:
 
@@ -235,4 +235,4 @@ _NOTE: Some fields were truncated when we saved the "vancouver_da_characteristic
 
 Geographically weighted regression can be a powerful tool for exploring spatial relationships. It takes some care and practice learning to interpret the many statistics along the journey, but it is one of the statistical methods that is rewarding to map and visualize. You should think of geographically weighted regression as a first approach at looking at a problem. It is great for exploring relationships, but not necessarily testing them. As you have seen, geographically weighted regression is a wonderful way to generate spatial hypotheses about data and explore the underlying tendencies of different relationships. Along the way, you have also learned how to wield high-dimensional census data in a database. Census data pair well with a wide variety of spatial analyses once you have decoded and unlocked their spatial mysteries.
 
-Return to the [**Deliverables**](#lab6-deliverables) section to check off everything you need to submit for credit in the course management system.
+Return to the [**Deliverables**](#lab4-deliverables) section to check off everything you need to submit for credit in the course management system.
