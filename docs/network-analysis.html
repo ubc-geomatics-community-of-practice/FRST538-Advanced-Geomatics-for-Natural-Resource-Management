@@ -366,9 +366,7 @@ The DEM above was filtered several times for sinks. Generally, you can use the �
 </div>
 <div id="task-1-create-stream-segments" class="section level2 unnumbered hasAnchor">
 <h2>Task 1: Create stream segments<a href="network-analysis.html#task-1-create-stream-segments" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Step 1</strong>: Before starting the lab, you will need to download all of the data from the <code>salmon</code> database on the UBC PostgreSQL server. Currently, ArcGIS Pro cannot read Post GIS raster datasets so we will first open the Vancouver Island DEM in QGIS and Export it as a GeoTiff, which can be opened in ArcGIS Pro.</p>
-<p>Open QGIS and connect to the <code>salmon</code> PostgreSQL server. Expand the <code>salmon</code> database in the Browser pane and right-click on “vancouver_island_dem” &gt; Add Layer to Project.</p>
-<p>Right click on the DEM layer in the Layers pane &gt; Export &gt; Save as. Save the file as a GeoTiff in your Lab 2 project folder. Leave the default settings. Close QGIS.</p>
+<p><strong>Step 1</strong>: Before starting the lab, you will need to download all of the data from Canvas.</p>
 <p><strong>Step 2:</strong> In ArcGIS Pro, add the Vancouver Island DEM to your map project. Clip the DEM to the”vancouver_island_boundary” using the clip raster tool, toggle on “use input features for clipping geometry”.</p>
 <p>You should save all of your outputs from the tools in this lab directly into your ArcGIS Pro project geodatabase. The reasoning for this is because we will only be working in ArcGIS Pro for this lab and also because the ArcGIS Pro topology tools only work with data inside an ArcGIS Pro geodatabase.</p>
 <p>Calculate the flow direction of the filled DEM, using the “Flow Direction” tool. The flow direction tool determines which raster cells flow into other cells based on the elevation difference the immediate neighborhood. Keep the defaults of the tool. Ensure that “Force all edge cells to flow outward” is toggled on and leave all other parameters with the default value. The cell values in the output raster represent the steepest down slope direction of each pixel.</p>
@@ -389,7 +387,7 @@ The DEM above was filtered several times for sinks. Generally, you can use the �
 <p><img src="images/02-create-routes.png" width="75%" /></p>
 <p><strong>Step 1:</strong> Create a blank feature dataset and name it “stream_routes_dams”. To do this, right-click the geodatabase in the Catalog pane and select New Feature Dataset. For the projection, use NAD 1983 BC Environment Albers (EPSG: 3005).</p>
 <p><strong>Step 2:</strong> Convert your stream features into routes using the “Create routes” tool. Set the Route ID field to “arcid”. The coordinate Priority parameter can be set to any corner. When you go to save your output, navigate into your feature dataset (it “feels” like entering another folder from the Catalog view), and save the output as “vancouver_island_stream_routes”.</p>
-<p><strong>Step 3:</strong> Right-click on the feature dataset, select “Import”, and then navigate to the <strong>dams</strong> layer on the UBC PostgreSQL server and import this layer into your feeature dataset.</p>
+<p><strong>Step 3:</strong> Right-click on the feature dataset, select “Import”, and then navigate to the <strong>dams</strong> layer from the lab data package.</p>
 <p>The dams are modelled as polylines. We need to identify where these dams intersect the stream routes. We want to return a single point for that location so that we can properly model the dams in our network, which act as barriers to salmon as they travel through the stream network. We will use topology to achieve this.</p>
 <p><img src="images/02-example-dam.png" width="100%" /></p>
 <p><strong>Step 4:</strong> Right-click the feature dataset and select “New” and “Topology”. This will open the Create Topology Wizard dialogue box.</p>

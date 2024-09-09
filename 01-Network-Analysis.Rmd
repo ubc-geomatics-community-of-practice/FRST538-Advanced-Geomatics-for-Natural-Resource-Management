@@ -117,11 +117,7 @@ Conservation units for Chinook, Chum, and Coho were acquired from Oceans and Fis
 
 ## Task 1: Create stream segments {.unnumbered}
 
-**Step 1**: Before starting the lab, you will need to download all of the data from the `salmon` database on the UBC PostgreSQL server. Currently, ArcGIS Pro cannot read Post GIS raster datasets so we will first open the Vancouver Island DEM in QGIS and Export it as a GeoTiff, which can be opened in ArcGIS Pro. 
-
-Open QGIS and connect to the `salmon` PostgreSQL server. Expand the `salmon` database in the Browser pane and right-click on "vancouver_island_dem" > Add Layer to Project. 
-
-Right click on the DEM layer in the Layers pane >  Export > Save as. Save the file as a GeoTiff in your Lab 2 project folder. Leave the default settings. Close QGIS. 
+**Step 1**: Before starting the lab, you will need to download all of the data from Canvas.
 
 **Step 2:** In ArcGIS Pro, add the Vancouver Island DEM to your map project. Clip the DEM to the"vancouver_island_boundary" using the clip raster tool, toggle on "use input features for clipping geometry".  
 
@@ -167,7 +163,7 @@ At this point, you have only created polyline features representing streams. Nex
 
 **Step 2:** Convert your stream features into routes using the "Create routes" tool. Set the Route ID field to "arcid". The coordinate Priority parameter can be set to any corner. When you go to save your output, navigate into your feature dataset (it "feels" like entering another folder from the Catalog view), and save the output as "vancouver_island_stream_routes".
 
-**Step 3:** Right-click on the feature dataset, select "Import", and then navigate to the **dams** layer on the UBC PostgreSQL server and import this layer into your feeature dataset.
+**Step 3:** Right-click on the feature dataset, select "Import", and then navigate to the **dams** layer from the lab data package.
 
 The dams are modelled as polylines. We need to identify where these dams intersect the stream routes. We want to return a single point for that location so that we can properly model the dams in our network, which act as barriers to salmon as they travel through the stream network. We will use topology to achieve this.
 
