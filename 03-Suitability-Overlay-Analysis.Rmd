@@ -100,13 +100,13 @@ knitr::kable(
 
 ## Task 1: Export Relevant Data from Biologically Important Areas Shapefile {.unnumbered}
 
-A biologically important area (BIA) identifies where cetaceans concentrate for specific behaviours. Download the Lab 7 data from your Canvas folder and connect the geodatabase to your new Map. Explore the file **Cetaceans_BIA**.
+**Step 1:** Start a new project in ArcGIS Pro.
+
+A biologically important area (BIA) identifies where cetaceans concentrate for specific behaviours. Download the data from Canvas and connect the geodatabase to your new Map.
 
 You will need to extract the BIA for the humpback whales from the other species. 
 
-**Step 1:** Start a new project in ArcGIS Pro.
-
-**Step 2:** Connect to the `whale` database on the UBC PostgreSQL server in ArcGIS Pro. Add **Cetaceans_BIA** to your map in ArcGIS Pro.
+**Step 2:** Add **Cetaceans_BIA** to your map in ArcGIS Pro.
 
 **Step 3:** Right-click on the layer and select ‘Attribute Table’. Explore the attribute table and understand what field you will need to use to extract ‘Humpback Whale’.
 
