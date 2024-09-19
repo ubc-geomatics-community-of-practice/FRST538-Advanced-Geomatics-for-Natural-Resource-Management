@@ -23,7 +23,7 @@
 <meta name="author" content="Paul D. Pickell" />
 
 
-<meta name="date" content="2024-09-18" />
+<meta name="date" content="2024-09-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -388,8 +388,8 @@ The DEM above was filtered several times for sinks. Generally, you can use the �
 <p><strong>Step 8:</strong> To define streams, you need to set a threshold for the flow accumulation. Open “Con”(Image Analyst Tools). This tool allows you to set a true/false condition and assign values to a new raster based on whether the condition is met. Set the expression so that a pixel that has a count equal to or more than 1000 will be assigned a value of 1. For “Input true raster or constant value”, use value 1. For “Input false raster or constant value”, use value 0.</p>
 <p><img src="images/02-con.png" width="50%" /></p>
 <p><strong>Step 9:</strong> Next, you will create a grid of stream links, which assigns unique values to each stream segment, so that the user can see how the streams are connected. Open the “Stream Link” tool and use the output from the “Con” tool and the flow direction raster here.</p>
-<p><strong>Step 10:</strong> You will also use the “Stream Order” tool using the same inputs as in step 4 and the default parameters. The “Stream Order” tool assigns a numeric order to segments of the raster, essentially classifying branches of the stream network. The lowest order streams do not have any other streams that flow into it, while higher order streams can have multiple levels of tributaries that flow into it. This tool will take some time to run on the whole island. Take a moment to stretch and hydrate!</p>
-<p><strong>Step 11:</strong> You will also convert your raster into polylines using the stream links raster and flow direction raster as inputs for the “Stream to Feature” tool. Toggle off “Simplify polylines”.</p>
+<p><strong>Step 10:</strong> Calculate stream order using the “Stream Order” tool with the same inputs as the prior step and the default parameters. The “Stream Order” tool assigns a numeric order to segments of the raster, essentially classifying branches of the stream network. The lowest order streams do not have any other streams that flow into it, while higher order streams can have multiple levels of tributaries that flow into it. This tool will take some time to run on the whole island. Take a moment to stretch and hydrate!</p>
+<p><strong>Step 11:</strong> Convert your raster into polylines using the stream links raster and flow direction raster as inputs for the “Stream to Feature” tool. Toggle off “Simplify polylines”.</p>
 <p>Below is a useful flowchart of the process of creating a stream network from a DEM (<a href="https://pro.arcgis.com/en/pro-app/tool-reference/spatial-analyst/deriving-runoff-characteristics.htm">ArcGIS Pro</a>).</p>
 <p><img src="images/02-flow-chart.png" width="75%" /></p>
 <hr />

@@ -173,9 +173,9 @@ Calculate the flow direction of the filled DEM, using the "Flow Direction" tool.
 
 **Step 9:** Next, you will create a grid of stream links, which assigns unique values to each stream segment, so that the user can see how the streams are connected. Open the "Stream Link" tool and use the output from the "Con" tool and the flow direction raster here. 
 
-**Step 10:** You will also use the "Stream Order" tool using the same inputs as in step 4 and the default parameters. The "Stream Order" tool assigns a numeric order to segments of the raster, essentially classifying branches of the stream network. The lowest order streams do not have any other streams that flow into it, while higher order streams can have multiple levels of tributaries that flow into it. This tool will take some time to run on the whole island. Take a moment to stretch and hydrate!
+**Step 10:** Calculate stream order using the "Stream Order" tool with the same inputs as the prior step and the default parameters. The "Stream Order" tool assigns a numeric order to segments of the raster, essentially classifying branches of the stream network. The lowest order streams do not have any other streams that flow into it, while higher order streams can have multiple levels of tributaries that flow into it. This tool will take some time to run on the whole island. Take a moment to stretch and hydrate!
 
-**Step 11:** You will also convert your raster into polylines using the stream links raster and flow direction raster as inputs for the "Stream to Feature" tool. Toggle off "Simplify polylines". 
+**Step 11:** Convert your raster into polylines using the stream links raster and flow direction raster as inputs for the "Stream to Feature" tool. Toggle off "Simplify polylines". 
 
 Below is a useful flowchart of the process of creating a stream network from a DEM ([ArcGIS Pro](https://pro.arcgis.com/en/pro-app/tool-reference/spatial-analyst/deriving-runoff-characteristics.htm)).
 
