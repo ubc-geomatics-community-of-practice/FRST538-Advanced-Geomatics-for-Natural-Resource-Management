@@ -21,11 +21,9 @@ Marine Spatial Planning is internationally recognized as an effective tool for t
 
 The State of Hawai’i defines Marine Protected Areas as “a subset of MMAs, and focus on protection, enhancement, and conservation of habitat and ecosystems. Some MPAs have very few fishing restrictions and allow sustainable fishing, while others restrict all fishing and are “no take” areas. In Hawai‘i, forms of MPAs have been in use for over 40 years.”	-Division of Aquatic Resources 
 
-Within this lab, we will utilize existing and new geospatial tools to conduct a marine spatial planning exercise in Hawaii, USA. You will complete tasks based on a scenario related to the critical habitat of cetaceans in Hawaii and conflicting uses. You will learn tools and processes while completing the first scenario that you can apply to complete the second scenario more independently.
+Within this lab, we will utilize existing and new geospatial tools to conduct a marine spatial planning exercise in Hawaii, USA. You will complete tasks based on a scenario related to the critical habitat of cetaceans in Hawaii and conflicting uses. 
 
-1. Considered one of the world’s most important humpback whale habitats, the Hawaiian Islands Humpback Whale National Marine Sanctuary was established in 1992 to protect humpback whales (_Megaptera novaeangliae_) and their habitat in Hawai‘i. Humpback whales commonly give birth and raise their young in the state’s warm and shallow waters. Yet, there is increasing conflict between the whales and vessels, including recreational and whale watching boats, as well as cargo ships. Thus, national and state government agencies would like to expand the marine sanctuary to reduce the whales strikes, further protecting the whales and their calves. The government agencies are searching for the largest suitable areas to include as part of the sanctuary. 
-
-2. False killer whales, an endangered resident species in Hawaiian waters, are long-lived and only reproduce one calf every 6 or 7 years. So, the species is heavily impacted by human activities, taking a long time to recover. The false killer whales are often caught in fishing gear as bycatch, which is defined as the incidental or unintentional capture of a non-target species. Not only is this severely hurting the false killer whale population, in addition, Hawaiian fisheries have been forced to close their fishing season early, by reaching their bycatch limit. As there is a resource conflict at play, you will need to redefine the fishing grounds to limit the bycatch, as well as discuss the placement of a marine sanctuary for false killer whales.
+Considered one of the world’s most important humpback whale habitats, the Hawaiian Islands Humpback Whale National Marine Sanctuary was established in 1992 to protect humpback whales (_Megaptera novaeangliae_) and their habitat in Hawai‘i. Humpback whales commonly give birth and raise their young in the state’s warm and shallow waters. Yet, there is increasing conflict between the whales and vessels, including recreational and whale watching boats, as well as cargo ships. Thus, national and state government agencies would like to expand the marine sanctuary to reduce the whales strikes, further protecting the whales and their calves. The government agencies are searching for the largest suitable areas to include as part of the sanctuary. 
 
 ------------------------------------------------------------------------
 
@@ -44,13 +42,7 @@ Within this lab, we will utilize existing and new geospatial tools to conduct a 
 
 -   An output table of the top 5 ranked features (see Task 7) 
 -   Map of the final product
--   a screenshot of the geodatabase
--   a [data dictionary](https://www.usgs.gov/data-management/data-dictionaries) - includes all files in the gdb
 -   answers to the questions submitted to the Lab 4 section on Canvas
-
-<input type="checkbox" unchecked> Scenario 2:</input>
-
--   Two page report including your findings, which should also include at least one table and two maps in the appendix (not counting toward the page count)
 
 <input type="checkbox" unchecked> Report should satisfy the following requirements:</input>
 
@@ -58,17 +50,15 @@ Within this lab, we will utilize existing and new geospatial tools to conduct a 
 -   1" margins 
 -   12 point font 
 -   single spaced
--   maximum of two pages
--   structure as a technical report where you are given a recommendation to someone, trying to make a case as to why this should happen
+-   maximum of four pages (including figures & tables)
 -   use headings as needed
 -   omit your name, student number, date
 
 In addition to including relevant maps, please answer the following questions in your report:
 
--   What did you learn from Scenario 2 Tasks 3 and 4?
--   How would you conduct a suitability analysis to determine the location of a marine sanctuary for false killer whales? What other factors could you consider?
+-   Describe the characteristics of the "top 5 suitable" marine sanctuaries. Based on your analysis recommend one new sanctuary location. What factors make this location the most suitable?
+-   What other factors could you consider in this suitability analysis?
 -   Why is it important to consider multiple dimensions in a suitability analysis?
-
 
 ------------------------------------------------------------------------
 
@@ -248,35 +238,6 @@ The physical requirements are as follows:
 *   You should export the map as a PDF document
 *   All features on the map should appear in the legend
 *   Your map should have all the necessary elements of a map
-
-------------------------------------------------------------------------
-
-## Scenario 2 {.unnumbered}
-
-False killer whales, an endangered resident species in Hawaiian waters, are long-lived and only reproduce one calf every 6 or 7 years. So, the species is heavily impacted by human activities, taking a long time to recover. The false killer whales are often caught in fishing gear as bycatch, which is defined as the incidental or unintentional capture of a non-target species. Not only is this severely hurting the false killer whale population, in addition, Hawaiian fisheries have been forced to close their fishing season early, by reaching their bycatch limit. As there is a resource conflict at play, you will need to redefine the fishing grounds to limit the bycatch, as well as discuss the placement of a marine sanctuary for false killer whales.
-
-Using the tools that you learned in Scenario 1. Please complete the below tasks.
-
-------------------------------------------------------------------------
-
-## Task 1: Export Relevant Data from Biologically Important Areas Shapefile {.unnumbered} 
-
-From this task, you will be able to identify where is the BIA for false killer whales in Hawaii. Try to only use one SQL expression to extract the data for species and region.
-
-------------------------------------------------------------------------
-
-## Task 2: Extract All of the Commercial Fishing Vessels from Ocean Uses {.unnumbered}
-
-From this task, you will obtain a shapefile of the relevant fishing vessels that are in conflict with the false killer whales. The fishing vessel types include: Commercial Fishing with Benthic Fixed Gear, Commercial Fishing with Benthic Mobile Gear, and Commercial Pelagic Fishing. Hint: Export Data for Dominant Uses of the above fields. 
-
-------------------------------------------------------------------------
-
-## Task 3: Erase where the False Killer Whales and Commercial Fishing Vessels overlap {.unnumbered}
-
-Use the Overlay Layers tool to determine where the BIA for false killer whales in not in conflict with the fishing vessels. You can also determine where there is the most conflict between false killer whales and fishing vessels by using the ‘Identity’ feature of the Overlay Layers tool, and then carrying out a calculation within the attribute table. 
-
-Explore the Number of other Species with BIAs that may also Conflict with the Commercial Fishing Vessels How does this impact how a marine sanctuary for false killer whales should be identified?
-
 
 ------------------------------------------------------------------------
 
