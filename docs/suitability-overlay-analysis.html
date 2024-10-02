@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Lab: 3 Suitability and Overlay Analysis | FRST 538: Advanced Geomatics for Natural Resource Management</title>
   <meta name="description" content="Open Educational Resources for FRST 538 course at the University of British Columbia" />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Lab: 3 Suitability and Overlay Analysis | FRST 538: Advanced Geomatics for Natural Resource Management" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Paul D. Pickell" />
 
 
-<meta name="date" content="2024-09-19" />
+<meta name="date" content="2024-10-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,7 +56,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -66,7 +66,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -190,10 +190,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-3-calculate-the-density-of-cetacean-sightings-using-the-bia-for-humpback-whales"><i class="fa fa-check"></i>Task 3: Calculate the Density of Cetacean Sightings using the BIA for Humpback Whales</a></li>
 <li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-4-extract-the-boats-from-ocean-uses-and-identity-the-vessels-within-the-bia-polygons"><i class="fa fa-check"></i>Task 4: Extract the Boats from Ocean Uses and Identity the Vessels within the BIA Polygons</a></li>
 <li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-5-calculate-suitability-and-identify-most-suitable-locations-for-the-marine-sanctuary"><i class="fa fa-check"></i>Task 5: Calculate Suitability and Identify Most Suitable Locations for the Marine Sanctuary</a></li>
-<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#scenario-2"><i class="fa fa-check"></i>Scenario 2</a></li>
-<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-1-export-relevant-data-from-biologically-important-areas-shapefile-1"><i class="fa fa-check"></i>Task 1: Export Relevant Data from Biologically Important Areas Shapefile</a></li>
-<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-2-extract-all-of-the-commercial-fishing-vessels-from-ocean-uses"><i class="fa fa-check"></i>Task 2: Extract All of the Commercial Fishing Vessels from Ocean Uses</a></li>
-<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-3-erase-where-the-false-killer-whales-and-commercial-fishing-vessels-overlap"><i class="fa fa-check"></i>Task 3: Erase where the False Killer Whales and Commercial Fishing Vessels overlap</a></li>
 <li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#summary-2"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html"><i class="fa fa-check"></i><b>4</b> Analyzing Green Equity Using Geographically Weighted Regression</a>
@@ -293,11 +289,8 @@ Annie Mejaes</p>
 <p>Marine spatial planning is “a collaborative and transparent approach to managing ocean spaces that helps to balance the increased demand for human activities with the need to protect marine ecosystems. It takes into consideration all activities and partners in an area to help make informed decisions about the management of our oceans in a more open and practical way.</p>
 <p>Marine Spatial Planning is internationally recognized as an effective tool for transparent, inclusive and sustainable oceans planning and management. Approximately 65 countries are currently using this approach. Marine Spatial Plans are tailored to each unique area to help manage human activities and their impacts on our oceans. Depending on the area, these plans may include areas for potential resource development and areas that require special protection” (Fisheries and Oceans Canada).</p>
 <p>The State of Hawai’i defines Marine Protected Areas as “a subset of MMAs, and focus on protection, enhancement, and conservation of habitat and ecosystems. Some MPAs have very few fishing restrictions and allow sustainable fishing, while others restrict all fishing and are “no take” areas. In Hawai‘i, forms of MPAs have been in use for over 40 years.” -Division of Aquatic Resources</p>
-<p>Within this lab, we will utilize existing and new geospatial tools to conduct a marine spatial planning exercise in Hawaii, USA. You will complete tasks based on a scenario related to the critical habitat of cetaceans in Hawaii and conflicting uses. You will learn tools and processes while completing the first scenario that you can apply to complete the second scenario more independently.</p>
-<ol style="list-style-type: decimal">
-<li><p>Considered one of the world’s most important humpback whale habitats, the Hawaiian Islands Humpback Whale National Marine Sanctuary was established in 1992 to protect humpback whales (<em>Megaptera novaeangliae</em>) and their habitat in Hawai‘i. Humpback whales commonly give birth and raise their young in the state’s warm and shallow waters. Yet, there is increasing conflict between the whales and vessels, including recreational and whale watching boats, as well as cargo ships. Thus, national and state government agencies would like to expand the marine sanctuary to reduce the whales strikes, further protecting the whales and their calves. The government agencies are searching for the largest suitable areas to include as part of the sanctuary.</p></li>
-<li><p>False killer whales, an endangered resident species in Hawaiian waters, are long-lived and only reproduce one calf every 6 or 7 years. So, the species is heavily impacted by human activities, taking a long time to recover. The false killer whales are often caught in fishing gear as bycatch, which is defined as the incidental or unintentional capture of a non-target species. Not only is this severely hurting the false killer whale population, in addition, Hawaiian fisheries have been forced to close their fishing season early, by reaching their bycatch limit. As there is a resource conflict at play, you will need to redefine the fishing grounds to limit the bycatch, as well as discuss the placement of a marine sanctuary for false killer whales.</p></li>
-</ol>
+<p>Within this lab, we will utilize existing and new geospatial tools to conduct a marine spatial planning exercise in Hawaii, USA. You will complete tasks based on a scenario related to the critical habitat of cetaceans in Hawaii and conflicting uses.</p>
+<p>Considered one of the world’s most important humpback whale habitats, the Hawaiian Islands Humpback Whale National Marine Sanctuary was established in 1992 to protect humpback whales (<em>Megaptera novaeangliae</em>) and their habitat in Hawai‘i. Humpback whales commonly give birth and raise their young in the state’s warm and shallow waters. Yet, there is increasing conflict between the whales and vessels, including recreational and whale watching boats, as well as cargo ships. Thus, national and state government agencies would like to expand the marine sanctuary to reduce the whales strikes, further protecting the whales and their calves. The government agencies are searching for the largest suitable areas to include as part of the sanctuary.</p>
 <hr />
 </div>
 <div id="learning-objectives-2" class="section level2 unnumbered hasAnchor">
@@ -316,13 +309,7 @@ Annie Mejaes</p>
 <ul>
 <li>An output table of the top 5 ranked features (see Task 7)</li>
 <li>Map of the final product</li>
-<li>a screenshot of the geodatabase</li>
-<li>a <a href="https://www.usgs.gov/data-management/data-dictionaries">data dictionary</a> - includes all files in the gdb</li>
 <li>answers to the questions submitted to the Lab 4 section on Canvas</li>
-</ul>
-<p><input type="checkbox" unchecked> Scenario 2:</input></p>
-<ul>
-<li>Two page report including your findings, which should also include at least one table and two maps in the appendix (not counting toward the page count)</li>
 </ul>
 <p><input type="checkbox" unchecked> Report should satisfy the following requirements:</input></p>
 <ul>
@@ -330,15 +317,14 @@ Annie Mejaes</p>
 <li>1” margins</li>
 <li>12 point font</li>
 <li>single spaced</li>
-<li>maximum of two pages</li>
-<li>structure as a technical report where you are given a recommendation to someone, trying to make a case as to why this should happen</li>
+<li>maximum of four pages (including figures &amp; tables)</li>
 <li>use headings as needed</li>
 <li>omit your name, student number, date</li>
 </ul>
 <p>In addition to including relevant maps, please answer the following questions in your report:</p>
 <ul>
-<li>What did you learn from Scenario 2 Tasks 3 and 4?</li>
-<li>How would you conduct a suitability analysis to determine the location of a marine sanctuary for false killer whales? What other factors could you consider?</li>
+<li>Describe the characteristics of the “top 5 suitable” marine sanctuaries. Based on your analysis recommend one new sanctuary location. What factors make this location the most suitable?</li>
+<li>What other factors could you consider in this suitability analysis?</li>
 <li>Why is it important to consider multiple dimensions in a suitability analysis?</li>
 </ul>
 <hr />
@@ -519,28 +505,6 @@ Annie Mejaes</p>
 </ul>
 <hr />
 </div>
-</div>
-<div id="scenario-2" class="section level2 unnumbered hasAnchor">
-<h2>Scenario 2<a href="suitability-overlay-analysis.html#scenario-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>False killer whales, an endangered resident species in Hawaiian waters, are long-lived and only reproduce one calf every 6 or 7 years. So, the species is heavily impacted by human activities, taking a long time to recover. The false killer whales are often caught in fishing gear as bycatch, which is defined as the incidental or unintentional capture of a non-target species. Not only is this severely hurting the false killer whale population, in addition, Hawaiian fisheries have been forced to close their fishing season early, by reaching their bycatch limit. As there is a resource conflict at play, you will need to redefine the fishing grounds to limit the bycatch, as well as discuss the placement of a marine sanctuary for false killer whales.</p>
-<p>Using the tools that you learned in Scenario 1. Please complete the below tasks.</p>
-<hr />
-</div>
-<div id="task-1-export-relevant-data-from-biologically-important-areas-shapefile-1" class="section level2 unnumbered hasAnchor">
-<h2>Task 1: Export Relevant Data from Biologically Important Areas Shapefile<a href="suitability-overlay-analysis.html#task-1-export-relevant-data-from-biologically-important-areas-shapefile-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>From this task, you will be able to identify where is the BIA for false killer whales in Hawaii. Try to only use one SQL expression to extract the data for species and region.</p>
-<hr />
-</div>
-<div id="task-2-extract-all-of-the-commercial-fishing-vessels-from-ocean-uses" class="section level2 unnumbered hasAnchor">
-<h2>Task 2: Extract All of the Commercial Fishing Vessels from Ocean Uses<a href="suitability-overlay-analysis.html#task-2-extract-all-of-the-commercial-fishing-vessels-from-ocean-uses" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>From this task, you will obtain a shapefile of the relevant fishing vessels that are in conflict with the false killer whales. The fishing vessel types include: Commercial Fishing with Benthic Fixed Gear, Commercial Fishing with Benthic Mobile Gear, and Commercial Pelagic Fishing. Hint: Export Data for Dominant Uses of the above fields.</p>
-<hr />
-</div>
-<div id="task-3-erase-where-the-false-killer-whales-and-commercial-fishing-vessels-overlap" class="section level2 unnumbered hasAnchor">
-<h2>Task 3: Erase where the False Killer Whales and Commercial Fishing Vessels overlap<a href="suitability-overlay-analysis.html#task-3-erase-where-the-false-killer-whales-and-commercial-fishing-vessels-overlap" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Use the Overlay Layers tool to determine where the BIA for false killer whales in not in conflict with the fishing vessels. You can also determine where there is the most conflict between false killer whales and fishing vessels by using the ‘Identity’ feature of the Overlay Layers tool, and then carrying out a calculation within the attribute table.</p>
-<p>Explore the Number of other Species with BIAs that may also Conflict with the Commercial Fishing Vessels How does this impact how a marine sanctuary for false killer whales should be identified?</p>
-<hr />
 </div>
 <div id="summary-2" class="section level2 unnumbered hasAnchor">
 <h2>Summary<a href="suitability-overlay-analysis.html#summary-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
