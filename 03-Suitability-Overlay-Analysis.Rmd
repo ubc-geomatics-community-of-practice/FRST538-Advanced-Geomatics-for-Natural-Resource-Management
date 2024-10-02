@@ -40,7 +40,7 @@ Considered one of the world’s most important humpback whale habitats, the Hawa
  
 <input type="checkbox" unchecked> Scenario 1: </input>
 
--   An output table of the top 5 ranked features (see Task 7) 
+-   An output table of the top 5 ranked features
 -   Map of the final product
 -   answers to the questions submitted to the Lab 4 section on Canvas
 
