@@ -9,14 +9,11 @@ Written by
 cat(author)
 ```
 
-
-
-
 ## Lab Overview {.unnumbered}
 
 Oftentimes, what we consider to be GIS analysis in the natural resources domain is related to suitability analysis. This analysis typically involves identifying areas/features that could support a given activity, use, or process and eliminating areas/features that would not be able to fulfill the required needs. Suitability analysis typically refers to an ordinal classification of the capable areas/features to denote the relative abilities of these areas/features to fulfill these needs. This number is mostly likely represented as an index that ranges from 0 to 1 where 1 = the most suitability possible for a given area/feature and 0 = no suitability. Typically, there will be no 0 values present in this index as all incapable areas should have already been eliminated in previous steps.
 
-In order to perform a suitability analysis, geospatial operations, such as vector polygon overlay and database table intersection are not only the distinguishing functional characteristics of a geographic information system, but are also the most common aspects of this process. In order to gain an understanding of the potential of cartographic modeling using a GIS, this lab has been constructed to take you through an exercise that closely mirrors a prototypical GIS analysis related to conservation values. 
+In order to perform a suitability analysis, geospatial operations, such as vector polygon overlay and database table intersection are not only the distinguishing functional characteristics of a geographic information system, but are also the most common aspects of this process. In order to gain an understanding of the potential of cartographic modeling using a GIS, this lab has been constructed to take you through an exercise that closely mirrors a prototypical GIS analysis related to conservation values.
 
 Marine spatial planning is “a collaborative and transparent approach to managing ocean spaces that helps to balance the increased demand for human activities with the need to protect marine ecosystems. It takes into consideration all activities and partners in an area to help make informed decisions about the management of our oceans in a more open and practical way. 
 
@@ -89,17 +86,12 @@ knitr::kable(
 
 ------------------------------------------------------------------------
 
-## Scenario 1 {.unnumbered}
-
-## Task 1: Export Relevant Data from Biologically Important Areas Shapefile {.unnumbered}
+## Task 1: Export Relevant Data from Biologically Important Areas {.unnumbered}
 
 **Step 1:** Create a New Project and Download Data
 
 1. Open ArcGIS Pro and create a new project.
 2. Go to Canvas and download the **Suitability-and-overlay-analysis-Data.zip** file for your project.
-
-
-
 
 **Step 2:** Connect the geodatabase to your project
 
@@ -119,8 +111,6 @@ Once you find your data in the Catalog, you will see four data sets. Select Ceta
     knitr::include_graphics("images/05-add-to-current-map.png")
 ```
 
-
-
 **Step 4:** Open Cetaceans_BIA attribute table 
 
 Right click on the layer Cetaceans_BIA and select Attribute Table. A table will open containing all the information from the layer. Understand the information: In the table, you will see columns like OBJECTID_1, Shape, BIA_Id, region, etc. These columns indicate what type of information is in each cell. Note that there are several species of whales listed, along with their scientific names and common names. 
@@ -132,34 +122,30 @@ To extract Humpback Whale, we need to use a SQL query. Once your attribute table
 ```
 
 This will open a dialog where you can enter the query needed to extract the data. Leave the input data as **Cetaceans_BIA**, and select **New Selection** under Selection type. 
+
 Now,where it says **Where**, look for the Field that contains the **Humpback Whale** data. Write the SQL query to extract the attribute needed and select **OK**.
 
 ```{r 05-select-by-attributes-box, out.width= "50%", echo = FALSE}
     knitr::include_graphics("images/05-select-by-attributes-box.png")
 ```
 
-
 **Step 5:** Export the features
 
-Once you have applied a SQL query and selected only the Humpback Whale data, right click again on Cetaceans_BIA layer, select **Data**, and then choose **Export Features**. Save the output in your data folder within your ArcGIS Pro project, and name it as **Humpback_BIA**.
+Once you have applied a SQL query and selected only the Humpback Whale data, right click again on Cetaceans_BIA layer, select **Data**, and then choose **Export Features**. Save the output in your ArcGIS Pro project geodatabase and name it as **Humpback_BIA**.
 
 ```{r 05-export-feature, out.width= "50%", echo = FALSE}
     knitr::include_graphics("images/05-export-feature.png")
 ```
 
-Make sure that the exported file is added to your map in ArcGIS Pro. Then, explore the new layer and its attribute table to verify that the information has been extracted correctly.
+Make sure that the exported layer is added to your map in ArcGIS Pro. Then, explore the new layer and its attribute table to verify that the information has been extracted correctly.
 
 **Step 6:** Extract and Export Hawaii Data
 
-Now that the Humpback Whale data has been extracted, we will export the data that belongs to the area of Hawaii. To do this, repeat steps 4 and 5 to extract from your Humpback Whale dataset the features that correspond to Hawaii. Name it as **Humpback_Hawaii_BIA**.
-
-
+Now that the Humpback Whale data has been extracted, we will export the data that belongs to the area of Hawaii. To do this, repeat steps 4 and 5 to extract from your Humpback Whale dataset the features that correspond to Hawaii. Save the output in your ArcGIS Pro project geodatabase and name it **Humpback_Hawaii_BIA**.
 
 ##### Q1. What was the SQL expression that you used to export only the humpback whale BIA? {.unnumbered}
 
-##### Q2. Apart from Hawaii, does the humpback whale have any other locations with a BIA for reproduction? (1 point) {.unnumbered}
-
-
+##### Q2. Apart from Hawaii, does the humpback whale have any other locations with a BIA for reproduction? {.unnumbered}
 
 ------------------------------------------------------------------------
 
@@ -176,21 +162,13 @@ Now that we have extracted the Humpback_Hawaii_BIA layer, we will perform a visu
 
 For Overlay Type, select **Erase**. This will remove the areas of overlap, allowing you to see where the BIA of the humpback whale population in Hawaii lies outside the sanctuary.
 
-**Step 3:** Name the output file **BIA_Sanctuary_Erase** and click **Run**.
+**Step 3:** Save the output in your ArcGIS Pro project geodatabase and name the output file **BIA_Sanctuary_Erase** and click **Run**.
 
 ```{r 05-overlay-layers, out.width= "50%", echo = FALSE}
     knitr::include_graphics("images/05-overlay-layers.png")
 ```
 
-
-
-
-
-
-
 ##### Q3. What percentage of the BIA is outside of the marine sancuary? Hint: Use the attribute tables. {.unnumbered}
-
-
 
 ------------------------------------------------------------------------
 
@@ -198,13 +176,13 @@ For Overlay Type, select **Erase**. This will remove the areas of overlap, allow
 
 Next, we have a point layer named **Humpback_Sightings** that is curated based on where cetaceans have been located or identified in Hawaiian waters. We want to understand the density of the sightings within the remaining BIA layer to understand which polygons should be prioritized.
 
-**Step 1:** Go to the Geoprocessing tab and open the **Spatial Join** tool. 
+**Step 1:** Go to the Geoprocessing tab and open the **Spatial Join** tool.
 
 Spatial Join is a valuable tool that joins attributes from one feature to another based on a spatial relationship. The target feature defines the spatial boundary, while the input feature is molded to the target feature.
 
 **Step 2:** Within the tool window, set the Target Features to **BIA_Sanctuary_Erase**, and the Join Features to **Humpback_Sightings**. For Join Operation, select **Join one to one**, and the Match Option select **Contains**.
 
-**Step 3:** Name the output file **BIA_Sightings** and click Run.
+**Step 3:** Save the output in your ArcGIS Pro project geodatabase and name the output file **BIA_Sightings** and click Run.
 
 ```{r 05-spatial-join, out.width= "50%", echo = FALSE}
     knitr::include_graphics("images/05-spatial-join.png")
@@ -222,12 +200,11 @@ To solve this, we will use **Multipart to Singlepart** tool. This tool will spli
  
 **Step 5:**  Go to the Geoprocessing tab and open the **Multipart to Singlepart** tool. 
  
-**Step 6:** Set the Input Layer to **BIA_Sanctuary_Erase** and name the output file **BIA_Multipart** and click **Run**.
+**Step 6:** Set the Input Layer to **BIA_Sanctuary_Erase** and Save the output in your ArcGIS Pro project geodatabase and nname the output file **BIA_Multipart** and click **Run**.
 
 ```{r 05-multi-sinlge, out.width= "50%", echo = FALSE}
     knitr::include_graphics("images/05-multi-sinlge.png")
 ```
-
 
 ##### Q4. How many individual polygons now exist? {.unnumbered}
 
@@ -235,15 +212,13 @@ To solve this, we will use **Multipart to Singlepart** tool. This tool will spli
 
 **Note:** Uncheck the option **Keep all Target Features**. This will remove any polygons that do not contain cetacean sightings within their boundaries. 
 
-Name the output file **BIA_Sightings_Multipart** and click **Run**.
+Save the output in your ArcGIS Pro project geodatabase and name the output file **BIA_Sightings_Multipart** and click **Run**.
 
 ```{r 05-spatial-join-keep-all-target, out.width= "50%", echo = FALSE}
     knitr::include_graphics("images/05-spatial-join-keep-all-target.png")
 ```
 
 **Step 8:** Use symbology to display the BIA polygons and by number of cetacean sightings.
-
-
 
 ##### Q5. What is the Target_FID of the polygon with the most cetacean sightings? {.unnumbered}
 
@@ -269,12 +244,11 @@ Take a moment to observe what changes have occurred.
 
 **Step 4:** Once the features are selected, we will export them by right clicking on the **Ocean_Uses** layer, selecting **Data**, and then **Export Features**.
 
-In the pop-up window, leave Input Features set to your **Ocean_Uses** layer, and for the Output Feature Class, name it **Boat_Uses** and click **OK**.
+In the pop-up window, leave Input Features set to your **Ocean_Uses** layer, and save the output in your ArcGIS Pro project geodatabase and name it **Boat_Uses** and click **OK**.
 
 ```{r images/05-boat-uses, out.width= "50%", echo = FALSE}
     knitr::include_graphics("images/05-boat-uses.png")
 ```
-
 
 Now, we would like to combine the data on vessel usage with the BIA polygons using the Overlay Layers tool. This is important to visualize the spatial overlap between areas where humpback whales reproduce and rear their young, and locations where vessels are classified as Dominant Use, indicating a higher risk of boat strikes in these areas. 
 
@@ -282,17 +256,15 @@ For this process we will use again the **Overlay Layer** tool.
 
 **Step 5:** Go to the Geoprocessing tab and open the **Overlay Layers** tool.
 
-**Step 6:** In the tool window, set the Input Layer to be the **BIA_Sightings_Multipart**. The Overlay Layer should be **Boat_Uses**. For Overlay Type, select **Identity**. 
+**Step 6:** In the tool window, set the Input Layer to be the **BIA_Sightings_Multipart**. The Overlay Layer should be **Boat_Uses**. For Overlay Type, select **Identity**.
 
-**Step 7:** Name the output file **BIA_Sightings_Boat** and click **Run**.
+**Step 7:** Save the output in your ArcGIS Pro project geodatabase and name the output file **BIA_Sightings_Boat** and click **Run**.
 
 ```{r 05-overlay-layers-identity, out.width= "50%", echo = FALSE}
     knitr::include_graphics("images/05-overlay-layers-identity.png")
 ```
 
-
 ##### Q6. Open the attribute table for the output. What does the 0, 1, and 2 represent in the swimming column? {.unnumbered}
-
 
 ------------------------------------------------------------------------
 
@@ -308,56 +280,43 @@ Before calculating the final suitability score, you need to add new fields to th
 
 **Step 1:** Open the attribute table, select **Add Field**, and create the following fields: Area (float), Sightings (float), and Vessels (float), using Float as the data type.
 
-Once you add these fields and make the changes, close the table and save it. Open the attribute table again, and you will see your new fields at the end of the table.
+Once you add these fields and make the changes, save the changes from the top ribbon Fields > Save. You should now see your new fields at the end of the table.
 
-**Note:** If you do not see the new fields you added in the **BIA_Sightings_Boat** layher, refresh your map and check the attribute table again.
+**Note:** If you do not see the new fields you added in the **BIA_Sightings_Boat** layer, refresh your map and check the attribute table again.
 
 For each of the three fields you just added, you will need to calculate $[F /Fmax]$ for each record (row):
 
 -	$F$ is the value of the attribute for that record 
 -	$Fmax$ is the maximum record value for the field
 
-
 To calculate the values for your new fields (Area, Sightings, and Vessels), you first need to determine the Fmax for each one.
 
-**Step 2:** Find the maximum value for the **Area** by using the **Shape_Area** column. Sort the column to locate the maximum value. 
-
-```{r 05-shape-area, out.width= "50%", echo = FALSE}
-    knitr::include_graphics("images/05-shape-area.png")
-```
-
+**Step 2:** Find the maximum value for the **Area** by using the **Shape_Area** column. Sort the column to locate the maximum value.  Be sure that you have selected the correct Shape_Area column as several columns may have this name from the various overlay operations we did in the past. One thing to check is if the Shape_Area field that you are looking at has any repeating values. If so, then you are looking at the Shape_Area field before we converted multipart to singlepart, this is the wrong one!
 
 Once you have it, open the field calculator. Set the **BIA_Sightings_Boats** layer as the Input. Then, for the **Field Name**, select your **Area** field that you just added. Choose Python as the Expression Type. Now, in the Expression field, find Area, double click on it, and write the following expression:
 
 Shape_Area / Maximum value of **Shape_Area**
 
-
-
-```{r images/05-calculate-field-area, out.width= "50%", echo = FALSE}
-    knitr::include_graphics("images/05-calculate-field-area.png")
-```
-
-
 Repeat this for Sightings, but instead of using Shape_Area, use the **Join_Count** field.
 
-Now that you have the **Area** and **Sightings** values, to calculate Vessels Fmax, you first need to calculate **Vessel_F**, which is the sum of values from five columns representing different types of vessel activities (Motorized Boating, Wildlife Viewing at Sea, Commercial Pelagic Fishing, Cruise Ships, and Shipping).
+Now that you have the **Area** and **Sightings** values, to calculate Vessels Fmax, you first need to calculate **Vessel_F**, which is the sum of values from five columns representing different types of vessel activities (Motorized Boating, Wildlife Viewing at Sea, Commercial Pelagic Fishing, Cruise Ships, and Shipping). 
 
+After you make this calculation, you may get a warning that some calculations are NULL, which is okay to ignore, there were simply some polygons that did not intersect with any boat uses. These areas are of no concern to us because we are only interested in protecting areas that actually have boat uses (i.e., think about the implied capability analysis here).
 
 Open the Field Calculator, select the Vessel field, and in the Expression field, enter the sum of all the Vessel class columns. The result will be your **Vessel_F**.
 
-**_Hint:_** You'll need to create a new field to store these calculated values.
+**_Hint:_** You will need to create a new field to store these calculated values.
 
-Once you have obtained Vessel_F, you will proceed to calculate **Vessel_Fmax**. The vessel suitability score is based on the sum of the 5 vessel uses which can have values of 0,1,2. So the maximum vessel score if every use type = 2 would be 10. The Vessel_Fmax value is 10. Then to get the suitability scores that go into the suitability equation you would divide the sum of the vessel uses for each polygon (ranging from 0-10) by 10. **Vessel_F**/**Vessel_Fmax** (or 10).
-
+Once you have calculated the Vessel_F field, you will proceed to find the maximum value and then calculate the **Vessels** field in the same manner that you calculated **Area** and **Sightings**. 
 
 **Step 3:** Finally, use a weighted suitability calculation by creating a new field, Suitability, and writing the following expression:
  [Area] * 0.4 + [Sightings] * 0.2 + [Vessels] * 0.4.
 
-##### Q7. Write down the $Fmax$ value you used for area to four decimal places.{.unnumbered}
+##### Q7. Write down the maximum value you used for area to four decimal places {.unnumbered}
 
-##### Q8: Write down the $Fmax$ value you used for sightings to four decimal places. {.unnumbered}
+##### Q8. Write down the maximum value you used for sightings {.unnumbered}
 
-##### Q9: Write down the $Fmax$ value you used for vessels to four decimal places {.unnumbered}
+##### Q9. Write down the maximum value you used for vessels {.unnumbered}
 
 To provide a buffer zone protecting the humpback whales within the newly formed sanctuary, we will select the five BIA areas with the highest suitability score and create a five kilometer buffer.
 
