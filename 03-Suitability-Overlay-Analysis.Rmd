@@ -347,14 +347,11 @@ Open the Field Calculator, select the Vessel field, and in the Expression field,
 
 **_Hint:_** You'll need to create a new field to store these calculated values.
 
-Once you have obtained Vessel_F, you will proceed to calculate **Vessel_Fmax**. To do this, sum the maximum values of each Vessel type.
-
-Explore the statistics of each column and sum the maximum values. After obtaining the total sum of the maximum values for each class, reopen the attribute table and, using the field calculator, divide Vessel_F by the total sum of these values. The result will be your **Vessel_Fmax**.
-
+Once you have obtained Vessel_F, you will proceed to calculate **Vessel_Fmax**. The vessel suitability score is based on the sum of the 5 vessel uses which can have values of 0,1,2. So the maximum vessel score if every use type = 2 would be 10. The Vessel_Fmax value is 10. Then to get the suitability scores that go into the suitability equation you would divide the sum of the vessel uses for each polygon (ranging from 0-10) by 10. **Vessel_F**/**Vessel_Fmax** (or 10).
 
 
 **Step 3:** Finally, use a weighted suitability calculation by creating a new field, Suitability, and writing the following expression:
- [Area] * 0.4 + [Sightings] * 0.2 + [Vessels_Fmax] * 0.4.
+ [Area] * 0.4 + [Sightings] * 0.2 + [Vessels] * 0.4.
 
 ##### Q7. Write down the $Fmax$ value you used for area to four decimal places.{.unnumbered}
 
