@@ -12,23 +12,21 @@ cat(author)
 
 ## Lab Overview {.unnumbered}
 
-In this lab, you will be exploring a few different statistical approaches to modelling geographic data, including geographically weighted regression (GWR). GWR is the spatial extension of aspatial regression analysis and much more. Traditional regression analysis assumes that global statistics adequately describe local relationships that might exist in the data. For example, consider looking at the relationship between housing prices and the floor space, lot size, etc., of houses in the city of Vancouver. While we could develop a 'global' model that adequately describes the relationship between those variables, knowing what you do about housing prices in the city of Vancouver (e.g., that a house of similar dimensions, age, lot size, etc., in the east side of Vancouver will sell for hundreds of thousands of dollars less than an identical house in the west side of Vancouver), the utility of such a model when looking at neighborhood-level housing issues would be very doubtful. Nonetheless, for decades such models, such as hedonic models, have been normalized in real estate research.
+In this lab, you will be exploring a two different statistical approaches to modelling geographic data, ordinary least squares regression (OLS) and geographically weighted regression (GWR).
 
-Similarly, consider studying the relationship between rates of crime or diseases to environmental conditions, local conditions can be much more important than any global relationship that might be discovered via a traditional aspatial statistical approach. Using polygon or point data, GWR allows us to explore the local relationships amongst a set of variables and examine the results spatially using ArcGIS Pro. It should be noted that in R you can find more sophisticated approaches to GWR than what is provided by ArcGIS Pro.
+Traditional regression analysis assumes that global statistics adequately describe local relationships that might exist in the data. For example, consider looking at the relationship between housing prices and the floor space of houses in the city of Vancouver. While we could develop a 'global' model that adequately describes the relationship between those variables, knowing whether a house is on the east or west side of Vancouver can dramatically impact the price. (e.g., that a house of similar dimensions, in the east side of Vancouver will sell for hundreds of thousands of dollars less than an identical house in the west), the utility of such a model when looking at neighborhood-level housing issues would be very doubtful. Nonetheless, for decades such models, such as hedonic models, have been normalized in real estate research.
+
+Similarly, consider studying the relationship between rates of crime or diseases to environmental conditions, local conditions can be much more important than any global relationship. GWR is the spatial extension of aspatial regression analysis and allows us to model these local relationships. Using polygon or point data, GWR allows us to explore the local relationships amongst a set of variables and examine the results spatially using ArcGIS Pro. 
 
 In this lab, you will explore the equity of green space for the city of Vancouver using Landsat imagery and demographic data from the 2021 Canadian census.
 
 Why is access to green spaces so important? Human well-being, including physical and psychological well-being increase when residents are exposed to green space and urban forests. In addition, ecosystem services provided from green spaces include improved air quality, urban heat island mitigation, and opportunities for recreation. Yet, there is unequal access to green spaces across urban landscapes. The distribution of green space is often disproportionately present in affluent communities. So, you will test the hypothesis that there is less green space in marginalized communities. We cannot infer any causal relationships, but we can examine the relationship between the location of green spaces and demographic variables.
-
-Vancouver is the most populous city in British Columbia, Canada with a population of 662,248 in 2021. Vancouver is an ideal study site because of the city's high level of heterogeneity among its demographic and green space structure.
 
 ------------------------------------------------------------------------
 
 ## Learning Objectives {.unnumbered}
 
 -   Calculate a vegetation index from Landsat imagery and report summary statistics over census dissemination areas
-
--   Evaluate different models and defend your model selection
 
 -   Interpret charts and statistics of ordinary least squares and geographically weighted regression
 
@@ -46,29 +44,23 @@ Lab report with the following specification:
 
 -   Describe the qualities of the census data and the Landsat image.
 
--   How did you evaluate your models and select your final model? Report any relevant statistics that you used in your judgement.
+-   Describe why you picked each of the 5 independent variables 
 
--   A table with the ordinary least squares and geographically weighted regression results for the models that used the best subsets of your 14 characteristics.
+-   Describe how to interpret model Coefficients, Std.Error, standardized residuals, R2 and AIC.
 
--   Describe all of the terms, coefficients, and explanatory variables of your selected GWR model.
+-   A table with the ordinary least squares and geographically weighted regression results for the models. Include both R\^{2} and AIC.    
 
--   Justify your choice of a final set of independent variables for your GWR model.
+-   Interpret one of your independent variables in the GWR using the Std.Error and Coefficient map. What spatial patterns do you see? What do you think could be influencing this relationship?
 
--   Compare and contrast the different NDVI statistics. Which statistic had the best model? What evidence do you have for that conclusion? Why do you think that relationship was the strongest?
-
--   Interpret one of your independent variables in one of your three NDVI statistics using the Std.Error and Coefficient map. What spatial patterns do you see? What do you think could be influencing this relationship?
-
--   Maps illustrating the standardized residuals and local R\^{2} for each of your three different NDVI statistics.
+-   Maps illustrating the standardized residuals and local R\^{2} for the GWR model.
 
 <input type="checkbox" unchecked> Discussion should address the following questions and requirements (20 points):</input>
 
 -   What other factors (spatial or aspatial) might be contributing or confounding your analysis? In other words, what other data sources might you add/calculate or what methods might you change to improve your results?
 
--   What can you conclude about green equity among dissemnination areas in Vancouver?
+-   What can you conclude about green equity among dissemination areas in Vancouver?
 
 -   What are your final recommendations to city council about green equity in Vancouver?
-
--   Reference to any peer reviewed sources as needed.
 
 ------------------------------------------------------------------------
 
@@ -140,9 +132,11 @@ As you practice visualizing the various characteristics, make some observations 
 
 ------------------------------------------------------------------------
 
-## Task 2: Practice geographically weighted regression {.unnumbered}
+## Task 2: Calculate NDVI from a Landsat satellite image {.unnumbered}
 
-In this task, we are going to calculate the Normalized Difference Vegetation Index (NDVI) of each dissemination area in Vancouver and then select characteristics from the census data that explain the local variation in vegetation greenness, as expressed by NDVI. So the census characteristics are going to be our independent (explanatory) variables $k$ and the calculated statistics of NDVI are going to be the dependent (response) variable $y_i$ for our geographically weighted regression:
+> The Normalized Difference Vegetation Index (NDVI) is one of the most frequently used spectral indices applied to satellite images. It is a measure of plant productivity that uses the Red and Near-Infrared bands of the image. In this lab you will use NDVI from a Landsat image as a proxy for green space. Higher NDVI within a dissemination area indicates more green space! 
+
+In this task, we are going to calculate the Normalized Difference Vegetation Index (NDVI) of each dissemination area in Vancouver and then select characteristics from the census data that explain the local variation in vegetation greenness, as expressed by NDVI. So the census characteristics are going to be our independent (explanatory) variables $k$ and the mean NDVI is going to be the dependent (response) variable $y_i$ for our geographically weighted regression:
 
 $$
 y_i=𝛽_0(u_i,v_i)+\sum_{k}^{}𝛽_𝑘(u_i,v_i) 𝑥_{𝑖𝑘}+ε _𝑖
@@ -168,7 +162,7 @@ $$
     knitr::include_graphics("images/06-arcgis-ndvi.png")
 ```
 
-**Step 2:** Now we need to summarize the NDVI values over the dissemination areas. Open the "Zonal Statistics as Table" tool and use "vancouver_da_characteristics" as the "Input raster or feature zone data", select "alt_geo_co" as the "Zone field", use "ndvi" as the "Input value raster", and name the "Output table" as "ndvi_zonal_statistics". Ensure that "Statistics type" is set to "All", leave the other fields as default and run the tool.
+**Step 2:** Now we need to summarize the NDVI values over the dissemination areas. Open the "Zonal Statistics as Table" tool and use "vancouver_da_characteristics" as the "Input raster or feature zone data", select "alt_geo_co" as the "Zone field", use "ndvi" as the "Input value raster", and name the "Output table" as "ndvi_zonal_statistics". Ensure that "Statistics type" is set to "MEAN", leave the other fields as default and run the tool.
 
 ```{r 06-arcgis-zonal-statistics, out.width= "75%", echo = FALSE}
     knitr::include_graphics("images/06-arcgis-zonal-statistics.png")
@@ -186,45 +180,36 @@ This will produce a table that should look like the image below. The table conta
     knitr::include_graphics("images/06-arcgis-ndvi-mean.png")
 ```
 
-It is important to initially analyze our census characteristics $k$ to determine which independent variables and combination of these variables have the strongest relationship with our dependent variable, NDVI $y$. To conduct the initial analysis, we will use a tool called "Exploratory Regression", which is part of the Spatial Statistics Toolbox.
+------------------------------------------------------------------------
 
-**Step 4:** Open the "Exploratory Regression" tool. Select "vancouver_da_characteristics" as your "Input Features" and "ndvi_zonal_statistics.MEAN" as your dependent variable. Select all of the census characteristics as your "Candidate Explanatory Variables", expand "Search Criteria" and change the "Maximum Number of Explanatory Variables" to 14 then run the tool with other fields as default.
+## Task 3: Model NDVI using census characteristics {.unnumbered}
 
-```{r 06-arcgis-exploratory-regression, out.width= "50%", echo = FALSE}
-    knitr::include_graphics("images/06-arcgis-exploratory-regression.png")
-```
+**Ordinary Least Square Regression**
 
-_NOTE: Some fields were truncated when we saved the "vancouver_da_characteristics" shapefile. It should still be apparent which fields to select, but some of the original names will not perfectly match._
+**Step 1:** Examine the list of census characteristics. Choose **5** independent variables that you think could be useful in explaining differences in green space across Vancouver. Consider socioeconomic relationships between income, housing security and age that might lead to some areas having more greenspace than others. 
 
-**Step 5:** When the tool has finished running, click "View Details" at the bottom and then click "Messages". Under the heading "Highest adjusted R-squared results", you can explore the modeled relationship between one or more independent variables and the dependent variable. You should see the adjusted R-squared plateau at 0.41 when using a model with seven independent variables. We can use the statistics like Akaike's Information Criterion (AICc), Jarque-Bera p-value (JB), and Max Variance Inflation Factor (VIF) to choose between similar models with different sets of independent variables. Be sure to copy-paste this output message to a notepad so that you can reference it later in your report.
-
-```{r 06-arcgis-exploratory-regression-results, out.width= "100%", echo = FALSE}
-    knitr::include_graphics("images/06-arcgis-exploratory-regression-results.png")
-```
-
-**Step 6:** Once you have selected a model, write down the independent variables that are used in the model. Open the "Ordinary Least Squares (OLS)" tool. The "Input Feature Class" is "vancouver_da_characteristics", "Unique ID Field" is "vancouver_da_characteristcs.alt_geo_co", name the "Output Feature Class" as "ols_mean_ndvi", set the "Dependent Variable" to "ndvi_zonal_statistics.MEAN", and then select all of the independent variables that you wrote down from the last step. Run the tool, then click "View Details", select "Messages", and copy-paste the output to a notepad to reference it later in your report.
+**Step 2:** Once you have selected a model, write down the independent variables. Open the "Ordinary Least Squares (OLS)" tool. The "Input Feature Class" is "vancouver_da_characteristics", "Unique ID Field" is "vancouver_da_characteristcs.alt_geo_co", name the "Output Feature Class" as "ols_mean_ndvi", set the "Dependent Variable" to "ndvi_zonal_statistics.MEAN", and then select all of the independent variables that you wrote down from the last step. Run the tool, then click "View Details", select "Messages", and copy-paste the output to a notepad to reference it later in your report.
 
 ```{r 06-arcgis-ols, out.width= "50%", echo = FALSE}
     knitr::include_graphics("images/06-arcgis-ols.png")
 ```
 
-**Step 7:** Open the "Geographically Weighted Regression (GWR)" tool and parameterize it the same as you did in the last step for OLS, but change "Neighborhood Type" to "Number of neighbors", change "Neighborhood Selection Method" to "Golden search", and set "Minimum Number of Neighbors" to 50 and "Maximum Number of Neighbors" to 250. Name the "Output Features" as "gwr_mean_ndvi". Again, select all of the independent variables that you wrote down from earlier then run the tool. The output will automatically be added to your map along with several charts. Doubling-clicking on a chart will open it.
+**Geographically Weighted Regression**
+
+**Step 3:** Open the "Geographically Weighted Regression (GWR)" tool and parameterize it the same as you did in the last step for OLS, but change "Neighborhood Type" to "Number of neighbors", change "Neighborhood Selection Method" to "Golden search", and set "Minimum Number of Neighbors" to 50 and "Maximum Number of Neighbors" to 250. Name the "Output Features" as "gwr_mean_ndvi". Again, select all of the independent variables that you wrote down from earlier then run the tool. The output will automatically be added to your map along with several charts. Doubling-clicking on a chart will open it.
 
 ```{r 06-arcgis-variable-chart, out.width= "100%", echo = FALSE}
     knitr::include_graphics("images/06-arcgis-variable-chart.png")
 ```
 
-**Step 8:** Repeat steps 4-8, but this time choose two NDVI statistics other than MEAN (e.g., minimum, maximum, standard deviation, etc.).
-
-**Step 9:** Explore your GWR results and make maps of the following for each of the three different NDVI statistics that you will reference in your report: 
+**Step 4:** Explore your GWR results and make maps of the following for each of the three different NDVI statistics that you will reference in your report: 
 - Standardized residuals 
 - Local R\^{2}
 
-**Step 10:** Explore your GWR results and make a map of one "Coefficient" and one "Std.Error" for one of your independent variables. Reference these maps when you are explaining your results in your report.
+**Step 5:** Explore your GWR results and make a map of one "Coefficient" and one "Std.Error" for one of your independent variables. Reference these maps when you are explaining your results in your report.
 
-**Step 11:** Answer the following questions in your report and refer to all the maps, tables, and figures you made in the previous steps:
+**Step 6:** Answer the following questions in your report and refer to all the maps, tables, and figures you made in the previous steps:
 
--   Compare and contrast the different NDVI statistics. Which statistic had the best model? What evidence do you have for that conclusion? Why do you think that relationship was the strongest?
 -   Interpret one of your independent variables in one of your three NDVI statistics using the Std.Error and Coefficient map. What spatial patterns do you see? What do you think could be influencing this relationship?
 -   What other factors (spatial or aspatial) might be contributing or confounding your analysis? In other words, what other data sources might you add/calculate or what methods might you change to improve your results?
 -   What can you conclude about green equity among dissemnination areas in Vancouver?
