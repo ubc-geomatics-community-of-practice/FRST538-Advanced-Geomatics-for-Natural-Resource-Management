@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Lab: 4 Analyzing Green Equity Using Geographically Weighted Regression | FRST 538: Advanced Geomatics for Natural Resource Management</title>
   <meta name="description" content="Open Educational Resources for FRST 538 course at the University of British Columbia" />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Lab: 4 Analyzing Green Equity Using Geographically Weighted Regression | FRST 538: Advanced Geomatics for Natural Resource Management" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Paul D. Pickell" />
 
 
-<meta name="date" content="2024-10-10" />
+<meta name="date" content="2024-10-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,7 +56,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -66,7 +66,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -307,17 +307,17 @@ Paul Pickell</p>
 <div id="lab4-deliverables" class="section level2 unnumbered hasAnchor">
 <h2>Deliverables<a href="geographically-weighted-regression.html#lab4-deliverables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Lab report with the following specification:</p>
-<p><input type="checkbox" unchecked> 6 pages maximum PDF including figures, tables and references (3 points). Single-spaced, 12-point Times New Roman font (1 point).</p>
-<p><input type="checkbox" unchecked> Results should address the following questions and requirements (25 points):</input></p>
+<p><input type="checkbox" unchecked> 6 pages maximum PDF including figures, tables and references. Single-spaced, 12-point Times New Roman font. Writing is clear and concise and the report is organized.</p>
+<p><input type="checkbox" unchecked> Results should address the following questions and requirements (55 points):</input></p>
 <ul>
-<li><p>Describe the qualities of the census data and the Landsat image.</p></li>
-<li><p>Describe why you picked each of the 5 independent variables</p></li>
-<li><p>Describe how to interpret model Coefficients, Std.Error, standardized residuals, R2 and AIC.</p></li>
 <li><p>A table with the ordinary least squares and geographically weighted regression results for the models. Include both R<sup>2</sup> and AIC.</p></li>
+<li><p>Maps illustrating standardized residuals, local R<sup>2</sup>and one model coefficient for the GWR model.</p></li>
+<li><p>Provided rationale for 5 variable choices: (2 points each) Describe why you picked each of the 5 independent variables</p></li>
+<li><p>Describe how to interpret standardized residuals, R<sup>2</sup> and AIC. Which model had better performance, OLS or GWR? Use the table of summary statistics and maps of the standardized residuals to support your answer.</p></li>
+<li><p>Describe the qualities of the census data and the Landsat image. Where did the data come from? How was it collected? What is the spatial resolution and date of acquisition for the Landsat image?</p></li>
 <li><p>Interpret one of your independent variables in the GWR using the Std.Error and Coefficient map. What spatial patterns do you see? What do you think could be influencing this relationship?</p></li>
-<li><p>Maps illustrating the standardized residuals and local R<sup>2</sup> for the GWR model.</p></li>
 </ul>
-<p><input type="checkbox" unchecked> Discussion should address the following questions and requirements (20 points):</input></p>
+<p><input type="checkbox" unchecked> Discussion should address the following questions and requirements (35 points):</input></p>
 <ul>
 <li><p>What other factors (spatial or aspatial) might be contributing or confounding your analysis? In other words, what other data sources might you add/calculate or what methods might you change to improve your results?</p></li>
 <li><p>What can you conclude about green equity among dissemination areas in Vancouver?</p></li>
@@ -504,9 +504,9 @@ NDVI=\frac{Band5-Band4}{Band5+Band4}
 <p><strong>Step 5:</strong> Explore your GWR results and make a map of one “Coefficient” and one “Std.Error” for one of your independent variables. Reference these maps when you are explaining your results in your report.</p>
 <p><strong>Step 6:</strong> Answer the following questions in your report and refer to all the maps, tables, and figures you made in the previous steps:</p>
 <ul>
-<li>Interpret one of your independent variables for predicting mean NDVI using the Std.Error and Coefficient map. What spatial patterns do you see? What do you think could be influencing this relationship?</li>
+<li>Interpret one of your independent variables in the GWR using the R2 and Coefficient map. What spatial patterns do you see? What do you think could be influencing this relationship?</li>
 <li>What other factors (spatial or aspatial) might be contributing or confounding your analysis? In other words, what other data sources might you add/calculate or what methods might you change to improve your results?</li>
-<li>What can you conclude about green equity among dissemination areas in Vancouver?</li>
+<li>What can you conclude about green equity among dissemination areas in Vancouver? What are your final recommendations to city council about green equity in Vancouver?</li>
 </ul>
 <hr />
 </div>
