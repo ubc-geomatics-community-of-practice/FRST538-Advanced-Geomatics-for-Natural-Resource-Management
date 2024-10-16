@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Lab: 6 Lidar for Forest Management | FRST 538: Advanced Geomatics for Natural Resource Management</title>
   <meta name="description" content="Open Educational Resources for FRST 538 course at the University of British Columbia" />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Lab: 6 Lidar for Forest Management | FRST 538: Advanced Geomatics for Natural Resource Management" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Paul D. Pickell" />
 
 
-<meta name="date" content="2024-10-10" />
+<meta name="date" content="2024-10-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,7 +56,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -66,7 +66,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -489,7 +489,7 @@ Figure 6.2: Normalized tile 1 from MKRF.
 <span id="cb13-3"><a href="lidar-for-forest-management.html#cb13-3" tabindex="-1"></a><span class="fu">plot</span>(chm_mkrf_1, <span class="at">col =</span> col_1) <span class="co">#plot in 2D</span></span>
 <span id="cb13-4"><a href="lidar-for-forest-management.html#cb13-4" tabindex="-1"></a><span class="fu">plot_dtm3d</span>(chm_mkrf_1) <span class="co">#plot in 3D</span></span></code></pre></div>
 <p>It is clear that the normalization was not perfect as the maximum height of the CHM is well above our expected maximum height. This issue is caused by the outlier visible in the 3D plot. It also looks like there are some points below 0m. To remedy these issues, we can use the LAScatalog options engine to filter out data points below 0 m and above 65 m.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="lidar-for-forest-management.html#cb14-1" tabindex="-1"></a>LAScatalog options engine to filter out data points below 0m and above 65m.</span>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="lidar-for-forest-management.html#cb14-1" tabindex="-1"></a>LAScatalog options engine to filter out data points below <span class="dv">0</span>m and above <span class="dv">65</span>m.</span>
 <span id="cb14-2"><a href="lidar-for-forest-management.html#cb14-2" tabindex="-1"></a><span class="co">#read normalized las into catalog to continue processing</span></span>
 <span id="cb14-3"><a href="lidar-for-forest-management.html#cb14-3" tabindex="-1"></a>norm_cat_mkrf <span class="ot">&lt;-</span> <span class="fu">readLAScatalog</span>(<span class="st">&quot;Normalized&quot;</span>)</span>
 <span id="cb14-4"><a href="lidar-for-forest-management.html#cb14-4" tabindex="-1"></a></span>
