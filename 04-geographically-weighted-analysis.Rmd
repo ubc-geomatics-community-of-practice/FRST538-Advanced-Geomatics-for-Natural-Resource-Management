@@ -188,7 +188,7 @@ This will produce a table that should look like the image below. The table conta
 
 **Step 1:** Examine the list of census characteristics. Choose **5** independent variables that you think could be useful in explaining differences in green space across Vancouver. Consider socioeconomic relationships between income, housing security and age that might lead to some areas having more greenspace than others. 
 
-**Step 2:** Once you have selected a model, write down the independent variables. Open the "Ordinary Least Squares (OLS)" tool. The "Input Feature Class" is "vancouver_da_characteristics", "Unique ID Field" is "vancouver_da_characteristcs.alt_geo_co", name the "Output Feature Class" as "ols_mean_ndvi", set the "Dependent Variable" to "ndvi_zonal_statistics.MEAN", and then select all of the independent variables that you wrote down from the last step. Run the tool, then click "View Details", select "Messages", and copy-paste the output to a notepad to reference it later in your report.
+**Step 2:** Once you have selected a model, write down the independent variables. Open the "Ordinary Least Squares (OLS)" tool. The "Input Feature Class" is "vancouver_da_characteristics", "Unique ID Field" is "vancouver_da_characteristcs.alt_geo_co", name the "Output Feature Class" as "ols_mean_ndvi", set the "Dependent Variable" to "ndvi_zonal_statistics.MEAN", and then select all of the independent variables that you wrote down from the last step. Run the tool, then click "View Details", select "Messages", and inspect the output. You will need to find this output again and reference it later in your report, so you may want to take a screenshot and save it somewhere.
 
 ```{r 06-arcgis-ols, out.width= "50%", echo = FALSE}
     knitr::include_graphics("images/06-arcgis-ols.png")
@@ -202,7 +202,7 @@ This will produce a table that should look like the image below. The table conta
     knitr::include_graphics("images/06-arcgis-variable-chart.png")
 ```
 
-**Step 4:** Explore your GWR results and make maps of the following for each of the three different NDVI statistics that you will reference in your report:
+**Step 4:** Explore your GWR results and make maps of the following for mean NDVI that you will reference in your report:
 
 - Standardized residuals 
 - Local R^2^

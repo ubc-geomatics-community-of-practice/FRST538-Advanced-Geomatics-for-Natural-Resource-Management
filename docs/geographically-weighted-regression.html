@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Lab: 4 Analyzing Green Equity Using Geographically Weighted Regression | FRST 538: Advanced Geomatics for Natural Resource Management</title>
   <meta name="description" content="Open Educational Resources for FRST 538 course at the University of British Columbia" />
-  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Lab: 4 Analyzing Green Equity Using Geographically Weighted Regression | FRST 538: Advanced Geomatics for Natural Resource Management" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Paul D. Pickell" />
 
 
-<meta name="date" content="2024-10-16" />
+<meta name="date" content="2024-10-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,7 +56,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -66,7 +66,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -489,14 +489,14 @@ NDVI=\frac{Band5-Band4}{Band5+Band4}
 <div id="ordinary-least-square-regression" class="section level3 unnumbered hasAnchor">
 <h3>Ordinary Least Square Regression<a href="geographically-weighted-regression.html#ordinary-least-square-regression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>Step 1:</strong> Examine the list of census characteristics. Choose <strong>5</strong> independent variables that you think could be useful in explaining differences in green space across Vancouver. Consider socioeconomic relationships between income, housing security and age that might lead to some areas having more greenspace than others.</p>
-<p><strong>Step 2:</strong> Once you have selected a model, write down the independent variables. Open the “Ordinary Least Squares (OLS)” tool. The “Input Feature Class” is “vancouver_da_characteristics”, “Unique ID Field” is “vancouver_da_characteristcs.alt_geo_co”, name the “Output Feature Class” as “ols_mean_ndvi”, set the “Dependent Variable” to “ndvi_zonal_statistics.MEAN”, and then select all of the independent variables that you wrote down from the last step. Run the tool, then click “View Details”, select “Messages”, and copy-paste the output to a notepad to reference it later in your report.</p>
+<p><strong>Step 2:</strong> Once you have selected a model, write down the independent variables. Open the “Ordinary Least Squares (OLS)” tool. The “Input Feature Class” is “vancouver_da_characteristics”, “Unique ID Field” is “vancouver_da_characteristcs.alt_geo_co”, name the “Output Feature Class” as “ols_mean_ndvi”, set the “Dependent Variable” to “ndvi_zonal_statistics.MEAN”, and then select all of the independent variables that you wrote down from the last step. Run the tool, then click “View Details”, select “Messages”, and inspect the output. You will need to find this output again and reference it later in your report, so you may want to take a screenshot and save it somewhere.</p>
 <p><img src="images/06-arcgis-ols.png" width="50%" /></p>
 </div>
 <div id="geographically-weighted-regression-1" class="section level3 unnumbered hasAnchor">
 <h3>Geographically Weighted Regression<a href="geographically-weighted-regression.html#geographically-weighted-regression-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>Step 3:</strong> Open the “Geographically Weighted Regression (GWR)” tool and parameterize it the same as you did in the last step for OLS, but change “Neighborhood Type” to “Number of neighbors”, change “Neighborhood Selection Method” to “Golden search”, and set “Minimum Number of Neighbors” to 50 and “Maximum Number of Neighbors” to 250. Name the “Output Features” as “gwr_mean_ndvi”. Again, select all of the independent variables that you wrote down from earlier then run the tool. The output will automatically be added to your map along with several charts. Doubling-clicking on a chart will open it.</p>
 <p><img src="images/06-arcgis-variable-chart.png" width="100%" /></p>
-<p><strong>Step 4:</strong> Explore your GWR results and make maps of the following for each of the three different NDVI statistics that you will reference in your report:</p>
+<p><strong>Step 4:</strong> Explore your GWR results and make maps of the following for mean NDVI that you will reference in your report:</p>
 <ul>
 <li>Standardized residuals</li>
 <li>Local R<sup>2</sup></li>
