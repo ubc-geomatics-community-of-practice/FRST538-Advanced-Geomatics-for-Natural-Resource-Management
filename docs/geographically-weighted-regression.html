@@ -23,7 +23,7 @@
 <meta name="author" content="Paul D. Pickell" />
 
 
-<meta name="date" content="2024-10-22" />
+<meta name="date" content="2024-10-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -310,12 +310,12 @@ Paul Pickell</p>
 <p><input type="checkbox" unchecked> 6 pages maximum PDF including figures, tables and references. Single-spaced, 12-point Times New Roman font. Writing is clear and concise and the report is organized.</p>
 <p><input type="checkbox" unchecked> Results should address the following questions and requirements (55 points):</input></p>
 <ul>
-<li><p>A table with the ordinary least squares and geographically weighted regression results for the models. Include both R<sup>2</sup> and AIC.</p></li>
-<li><p>Maps illustrating standardized residuals, local R<sup>2</sup>and one model coefficient for the GWR model.</p></li>
+<li><p>A table with the ordinary least squares and geographically weighted regression results for the models. Include both Adjusted R<sup>2</sup> and AIC.</p></li>
+<li><p>Maps illustrating standardized residuals, local R<sup>2</sup> and one model coefficient for the GWR model.</p></li>
 <li><p>Provided rationale for 5 variable choices: (2 points each) Describe why you picked each of the 5 independent variables</p></li>
-<li><p>Describe how to interpret standardized residuals, R<sup>2</sup> and AIC. Which model had better performance, OLS or GWR? Use the table of summary statistics and maps of the standardized residuals to support your answer.</p></li>
+<li><p>Describe how to interpret standardized residuals, Adjusted R<sup>2</sup> and AIC. Which model had better performance, OLS or GWR? Use the table of summary statistics and maps of the standardized residuals to support your answer.</p></li>
 <li><p>Describe the qualities of the census data and the Landsat image. Where did the data come from? How was it collected? What is the spatial resolution and date of acquisition for the Landsat image?</p></li>
-<li><p>Interpret one of your independent variables in the GWR using the Std.Error and Coefficient map. What spatial patterns do you see? What do you think could be influencing this relationship?</p></li>
+<li><p>Interpret one of your independent variables in the GWR using the R<sup>2</sup> and Coefficient map. What spatial patterns do you see? What do you think could be influencing this relationship?</p></li>
 </ul>
 <p><input type="checkbox" unchecked> Discussion should address the following questions and requirements (35 points):</input></p>
 <ul>
@@ -496,15 +496,16 @@ NDVI=\frac{Band5-Band4}{Band5+Band4}
 <h3>Geographically Weighted Regression<a href="geographically-weighted-regression.html#geographically-weighted-regression-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>Step 3:</strong> Open the “Geographically Weighted Regression (GWR)” tool and parameterize it the same as you did in the last step for OLS, but change “Neighborhood Type” to “Number of neighbors”, change “Neighborhood Selection Method” to “Golden search”, and set “Minimum Number of Neighbors” to 50 and “Maximum Number of Neighbors” to 250. Name the “Output Features” as “gwr_mean_ndvi”. Again, select all of the independent variables that you wrote down from earlier then run the tool. The output will automatically be added to your map along with several charts. Doubling-clicking on a chart will open it.</p>
 <p><img src="images/06-arcgis-variable-chart.png" width="100%" /></p>
-<p><strong>Step 4:</strong> Explore your GWR results and make maps of the following for mean NDVI that you will reference in your report:</p>
+<p><strong>Step 4:</strong> Make some maps to explore your GWR results:</p>
 <ul>
-<li>Standardized residuals</li>
-<li>Local R<sup>2</sup></li>
+<li>Map <strong>one</strong> “Coefficient” for one of your independent variables for all dissemination areas</li>
+<li>Map the “Local R-Squared” for all dissemination areas</li>
+<li>Map the “Std Residual” for all dissemination areas</li>
 </ul>
-<p><strong>Step 5:</strong> Explore your GWR results and make a map of one “Coefficient” and one “Std.Error” for one of your independent variables. Reference these maps when you are explaining your results in your report.</p>
-<p><strong>Step 6:</strong> Answer the following questions in your report and refer to all the maps, tables, and figures you made in the previous steps:</p>
+<p>Reference these maps when you are explaining your results in your report.</p>
+<p><strong>Step 5:</strong> Answer the following questions in your report and refer to all the maps, tables, and figures you made in the previous steps:</p>
 <ul>
-<li>Interpret one of your independent variables in the GWR using the R2 and Coefficient map. What spatial patterns do you see? What do you think could be influencing this relationship?</li>
+<li>Interpret one of your independent variables in the GWR using the R<sup>2</sup> and Coefficient map. What spatial patterns do you see? What do you think could be influencing this relationship?</li>
 <li>What other factors (spatial or aspatial) might be contributing or confounding your analysis? In other words, what other data sources might you add/calculate or what methods might you change to improve your results?</li>
 <li>What can you conclude about green equity among dissemination areas in Vancouver? What are your final recommendations to city council about green equity in Vancouver?</li>
 </ul>

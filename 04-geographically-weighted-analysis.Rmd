@@ -42,17 +42,17 @@ Lab report with the following specification:
 
 <input type="checkbox" unchecked> Results should address the following questions and requirements (55 points):</input>
 
--   A table with the ordinary least squares and geographically weighted regression results for the models. Include both R^2^ and AIC.
+-   A table with the ordinary least squares and geographically weighted regression results for the models. Include both Adjusted R^2^ and AIC.
 
--   Maps illustrating standardized residuals, local R^2^and one model coefficient for the GWR model.
+-   Maps illustrating standardized residuals, local R^2^ and one model coefficient for the GWR model.
 
 -   Provided rationale for 5 variable choices: (2 points each) Describe why you picked each of the 5 independent variables
 
--   Describe how to interpret standardized residuals, R^2^ and AIC. Which model had better performance, OLS or GWR? Use the table of summary statistics and maps of the standardized residuals to support your answer.
+-   Describe how to interpret standardized residuals, Adjusted R^2^ and AIC. Which model had better performance, OLS or GWR? Use the table of summary statistics and maps of the standardized residuals to support your answer.
 
 -   Describe the qualities of the census data and the Landsat image. Where did the data come from? How was it collected? What is the spatial resolution and date of acquisition for the Landsat image?
 
--   Interpret one of your independent variables in the GWR using the Std.Error and Coefficient map. What spatial patterns do you see? What do you think could be influencing this relationship?
+-   Interpret one of your independent variables in the GWR using the R^2^ and Coefficient map. What spatial patterns do you see? What do you think could be influencing this relationship?
 
 <input type="checkbox" unchecked> Discussion should address the following questions and requirements (35 points):</input>
 
@@ -202,16 +202,17 @@ This will produce a table that should look like the image below. The table conta
     knitr::include_graphics("images/06-arcgis-variable-chart.png")
 ```
 
-**Step 4:** Explore your GWR results and make maps of the following for mean NDVI that you will reference in your report:
+**Step 4:** Make some maps to explore your GWR results:
 
-- Standardized residuals 
-- Local R^2^
+- Map **one** "Coefficient" for one of your independent variables for all dissemination areas
+- Map the "Local R-Squared" for all dissemination areas
+- Map the "Std Residual" for all dissemination areas
 
-**Step 5:** Explore your GWR results and make a map of one "Coefficient" and one "Std.Error" for one of your independent variables. Reference these maps when you are explaining your results in your report.
+Reference these maps when you are explaining your results in your report.
 
-**Step 6:** Answer the following questions in your report and refer to all the maps, tables, and figures you made in the previous steps:
+**Step 5:** Answer the following questions in your report and refer to all the maps, tables, and figures you made in the previous steps:
 
--   Interpret one of your independent variables in the GWR using the R2 and Coefficient map. What spatial patterns do you see? What do you think could be influencing this relationship?
+-   Interpret one of your independent variables in the GWR using the R^2^ and Coefficient map. What spatial patterns do you see? What do you think could be influencing this relationship?
 -   What other factors (spatial or aspatial) might be contributing or confounding your analysis? In other words, what other data sources might you add/calculate or what methods might you change to improve your results?
 -   What can you conclude about green equity among dissemination areas in Vancouver? What are your final recommendations to city council about green equity in Vancouver?
 
