@@ -87,33 +87,22 @@ Figure \@ref(fig:01-spectral-reflectance-characteristics) shows the reflective c
 
 ##### Q7. Consider the equation $Q = h * \nu$ where $Q$ is the energy in quanta, $h$ is Plank's constant, and $\nu$ is the frequency. Band 6 is recorded with a coarser resolution because thermal radiation has a very _____ wavelength. Therefore, there is _____ energy available to sense. {.unnumbered}
 
-**Step 1:** To start the lab, Open ArcGIS Pro. You should have window that looks like the screenshot below. The ArcGIS Pro theme used to create this lab is Dark. The default theme is likely Light, but if you are interested in changing themes please follow the instructions at this [link](https://pro.arcgis.com/en/pro-app/latest/get-started/general-options.htm). To open a new project, choose “Map” from the “New Blank Template” list.
+<br>
 
-```{r 01-starting-arcgispro-prompt, out.width= "100%", echo = FALSE, fig.align='center'}
-    knitr::include_graphics("images/01-starting-arcgispro-prompt.png")
-```
+**Step 1:**Create a New Project and Download Data
 
-A prompt will appear requesting you to Name and state the location of your project. It is recommended to name your project “LabXX_yourlastname”. Uncheck the “Create a new folder for this project” box. As usual, save your project on the (C:) drive in the same folder that your downloaded data is located.
+Open ArcGIS Pro and create a new project. 
 
-The next window is the generic start of a new project in ArcGIS Pro. In the centre you will see the standard “Catalog” frame. At the top is the ribbon, which is where the majority of your analysis options can be found. On the left is the standard “Contents” frame, which is similar to that of other Esri products. Tabs can be found on the right-hand side of the window. When using tools or adjusting symbology, be sure to look here for a relevant tab before exploring the ribbon. 
+Go to Canvas and download the **Getting-comfortable-with-remote-sensing-Data.zip** file for your project.
 
-You will also notice that the Catolog frame is also “tabbed”. This means that you can close the frame without closing ArcGIS Pro. It also means that you can have Maps, Catalogs and 3D Scenes all open at the same time. Although this is very cool, be aware that too many tabs are likely to crash ArcGIS Pro. Know your computers processing limits and play within it.  
+**Step 2:** Connect the geodatabase to your project
 
-**Step 2:** Without closing the Catalog window, navigate to the “Insert” tab on the ribbon and click on the “New Map” icon.
+Once you have started your new project, open the Catalog panel. Look for the folder where you downloaded your data. If you don’t see it in the Catalog, go to Computer and navigate to the folder where you saved the Canvas **Getting-comfortable-with-remote-sensing-Data** data.
 
-```{r 01-new-map, out.width= "50%", echo = FALSE, fig.align='center'}
-    knitr::include_graphics("images/01-new-map.png")
-```
+**Step 3:** Add the satellite imagery to your map
 
-A new topographic map will appear in the centre window. Note that it is separate from the Catalog tab. You can switch back and forth between these as you wish, but recall that there is another Catalog tab on the right-hand side of the screen. When analyzing a map or editing a model, this is the easiest tab to use. For the remainder of the lab, when “Catalog” is mentioned it is referring to this side tab. 
+Once you locate your data, you will find the data folder. Select the **L5047026subset_19990922_7B.dat** file and Add to Current Map. At this point, you should see an RGB satellite image of the city of Vancouver (Figure \@ref(fig:01-true-colour-composite-vancouver)). If the mapview does not automatically pan to the image, right click on **L5047026subset_19990922_7B.dat** in the Contents pane and select **Zoom to Layer**.
 
-**Step 3:** To add data to the map, navigate to the Pre-Lab folder using Catalog* ,if you save your project in the same folder as you data it should appear, if not right click **Folders** in the Catalog pane and select: 
-
-```{r 01-add-folder-connection, out.width= "50%", echo = FALSE, fig.align='center'}
-    knitr::include_graphics("images/01-add-folder-connection.png")
-```
-
-**Step 4:** Navigate to where the data is saved and click ok. When you can find the data folder, drag-and-drop the **L5047026subset_19990922_7B.dat**  file into the map window. At this point, you should see an RGB satellite image of the city of Vancouver (Figure \@ref(fig:01-true-colour-composite-vancouver)) if the mapview does not immediately pan to the image right click **L5047026subset_19990922_7B.dat** in the Contents pane and press Zoom to Layer.
 
 _Note: If the catalog pane does not immediately appear in your ArcGIS Pro document use the ribbons at the top to navigate to **View -> Catalog Pane**_
 
@@ -126,21 +115,21 @@ _Note: If the catalog pane does not immediately appear in your ArcGIS Pro docume
     fig_cap <- paste0("True colour composite of Vancouver.")
 ```
 
-**Step 5:** It is now time to explore your imagery. Right-click the L5047026subset_19990922_7B.dat file in the Contents pane and select “Properties”. Use the menu on the left-hand side and select the “Source” page and the Raster Information drop down. 
+**Step 4:** It is now time to explore your imagery. Right-click the L5047026subset_19990922_7B.dat file in the Contents pane and select “Properties”. Use the menu on the left-hand side and select the “Source” page and the Raster Information drop down. 
 
 ```{r 01-raster-information-drop-down, out.width= "50%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/01-raster-information-drop-down.png")
 ```
 
-**Step 6:** After clicking on the **Raster Information**, the tab should open up, and display important information about the image, such as dimensions (number of pixels in the X or Y directions), data types, projection, and resolution (listed as Projection/Pixel). This information can be useful when examining an image!
+**Step 5:** After clicking on the **Raster Information**, the tab should open up, and display important information about the image, such as dimensions (number of pixels in the X or Y directions), data types, projection, and resolution (listed as Projection/Pixel). This information can be useful when examining an image!
 
-**Step 7:** From the **Raster Information** you can see that the spatial resolution of this image is approximately 30 m by 30 m, square. That means that each pixel in the image represents an area of approximately 30 x 30 m on the ground, or 900 square meters. Furthermore, it is a Landsat 5 Thematic Mapper image of Vancouver and its surroundings taken at 22 September 1999 - Wow! Even more details are apparent – its size is 4000 by 3000 pixels, and has seven bands.
+**Step 6:** From the **Raster Information** you can see that the spatial resolution of this image is approximately 30 m by 30 m, square. That means that each pixel in the image represents an area of approximately 30 x 30 m on the ground, or 900 square meters. Furthermore, it is a Landsat 5 Thematic Mapper image of Vancouver and its surroundings taken at 22 September 1999 - Wow! Even more details are apparent – its size is 4000 by 3000 pixels, and has seven bands.
 
-**Step 8:** Scroll down and press on the **Spatial Reference** to see the projection information.
+**Step 7:** Scroll down and press on the **Spatial Reference** to see the projection information.
 
 We will now use ArcGIS Pro to zoom and pan our image. 
 
-**Step 9:** Notice the **Map** ribbon at the top, navigate to it and hover you mouse of the **Explore** tool:
+**Step 8:** Notice the **Map** ribbon at the top, navigate to it and hover you mouse of the **Explore** tool:
 
 ```{r 01-explore-tool, out.width= "50%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/01-explore-tool.png")
@@ -154,13 +143,13 @@ Traditionally, single bands of imagery are shown in greyscale, with dark areas s
     knitr::include_graphics("images/01-grey-scale.png")
 ```
 
-**Step 10:** Right-click on you data in the Contents pane and select “Symbology”. The symbology pane should appear on the side of you window. Press the drop-down menu and select “Stretch”.
+**Step 9:** Right-click on you data in the Contents pane and select “Symbology”. The symbology pane should appear on the side of you window. Press the drop-down menu and select “Stretch”.
 
 ```{r 01-symbology-stretch, out.width= "50%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/01-symbology-stretch.png")
 ```
 
-**Step 11:** In the next dropdown menu labeled “Band” select “Band 4 NIR” you should see the same image as below. 
+**Step 10:** In the next dropdown menu labeled “Band” select “Band 4 NIR” you should see the same image as below. 
 
 ```{r 01-band-4-nir, out.width= "100%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/01-band-4-nir.png")
@@ -178,7 +167,7 @@ Any combination where this is not the case is a ***false color composite***, whe
 
 Visualizing wavelengths outside of the visible spectrum (Landsat bands 4-7) automatically apply as false colour composites. False colour composites are necessary because many remote sensing devices can measure a broader range of wavelengths than humans can see. As a result, in order to display these data visually for humans, they must be displayed using a part of the spectrum that humans can see (Red, Green, Blue). 
 
-**Step 12:** In the **Symbology** pane navigate back to “RGB” in the first dropdown list. Your image should change back into a **True Colour** Landsat image where band3 red is visualised as red, band 2 green is visualised as green and band1 blue is visualised as blue. 
+**Step 11:** In the **Symbology** pane navigate back to “RGB” in the first dropdown list. Your image should change back into a **True Colour** Landsat image where band3 red is visualised as red, band 2 green is visualised as green and band1 blue is visualised as blue. 
 
 ```{r 01-true-colour-landsat-image, out.width= "100%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/01-true-colour-landsat-image.png")
@@ -186,7 +175,7 @@ Visualizing wavelengths outside of the visible spectrum (Landsat bands 4-7) auto
 
 By displaying **false colour composites** it is possible to display many band combinations of the image on our screen. This time you will create a false colour composite by selecting different wavelengths (bands) to be visualized using red, green and blue colours.
 
-**Step 13:** In the **Symbology** pane under their respective drop done lists visualize the following band combination. 
+**Step 12:** In the **Symbology** pane under their respective drop done lists visualize the following band combination. 
 
 Band 4 using Red
 
@@ -220,7 +209,7 @@ Right click the bands in the **Contents** pane, turn different layers on and off
 
 Now it is time to examine your data set more thoroughly. At the beginning of this lab we examined the spectral signatures of different materials. We will now do the same thing for the different sections of our Vancouver Landsat image. 
 
-**Step 14:** Right-click on the **L5047026subset_19990922_7B.dat** file in the Contents pane and select **Create Chart -> Spectral Profile**. The Chart Properties pane should appear on the right side of your screen and the spectral chart on the bottom.
+**Step 13:** Right-click on the **L5047026subset_19990922_7B.dat** file in the Contents pane and select **Create Chart -> Spectral Profile**. The Chart Properties pane should appear on the right side of your screen and the spectral chart on the bottom.
 
 ```{r 01-create-spectral-profile, out.width= "100%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/01-create-spectral-profile.png")
