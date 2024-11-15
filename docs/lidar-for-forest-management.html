@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Lab: 6 Lidar for Forest Management | FRST 538: Advanced Geomatics for Natural Resource Management</title>
   <meta name="description" content="Open Educational Resources for FRST 538 course at the University of British Columbia" />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Lab: 6 Lidar for Forest Management | FRST 538: Advanced Geomatics for Natural Resource Management" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Paul D. Pickell" />
 
 
-<meta name="date" content="2024-11-05" />
+<meta name="date" content="2024-11-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,7 +56,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -66,7 +66,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -230,8 +230,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-4-create-digital-elevation-model-dem"><i class="fa fa-check"></i>Task 4: Create Digital Elevation Model (DEM)</a></li>
 <li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-5-create-a-canopy-height-model"><i class="fa fa-check"></i>Task 5: Create a Canopy Height Model</a></li>
 <li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-6-extract-metrics-from-the-point-clouds"><i class="fa fa-check"></i>Task 6: Extract Metrics From the Point Clouds</a></li>
-<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-7-stem-volume-models-with-lidr"><i class="fa fa-check"></i>Task 7: Stem Volume Models with lidR</a></li>
-<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-8-individual-tree-detection"><i class="fa fa-check"></i>Task 8: Individual Tree Detection</a></li>
+<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-7-individual-tree-detection"><i class="fa fa-check"></i>Task 7: Individual Tree Detection</a></li>
 <li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#summary-5"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html"><i class="fa fa-check"></i><b>7</b> Time Series Analysis</a>
@@ -296,9 +295,7 @@ Nicholas Coops</p>
 <ul>
 <li>Create a DEM from LiDAR point data in both 2D and 3D</li>
 <li>Calculate meaningful metrics from points clouds</li>
-<li>Apply an OLS model to predict forest forest attributes with LiDAR metrics</li>
-<li>Practice variable selection in modeling</li>
-<li>Apply individual tree detection using point and CHM to create a map of tall trees from a LiDAR point cloud</li>
+<li>Apply individual tree detection using point and CHM</li>
 </ul>
 <hr />
 </div>
@@ -489,7 +486,7 @@ Figure 6.2: Normalized tile 1 from MKRF.
 <span id="cb13-3"><a href="lidar-for-forest-management.html#cb13-3" tabindex="-1"></a><span class="fu">plot</span>(chm_mkrf_1, <span class="at">col =</span> col_1) <span class="co">#plot in 2D</span></span>
 <span id="cb13-4"><a href="lidar-for-forest-management.html#cb13-4" tabindex="-1"></a><span class="fu">plot_dtm3d</span>(chm_mkrf_1) <span class="co">#plot in 3D</span></span></code></pre></div>
 <p>It is clear that the normalization was not perfect as the maximum height of the CHM is well above our expected maximum height. This issue is caused by the outlier visible in the 3D plot. It also looks like there are some points below 0m. To remedy these issues, we can use the LAScatalog options engine to filter out data points below 0 m and above 65 m.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="lidar-for-forest-management.html#cb14-1" tabindex="-1"></a>LAScatalog options engine to filter out data points below 0m and above 65m.</span>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="lidar-for-forest-management.html#cb14-1" tabindex="-1"></a>LAScatalog options engine to filter out data points below <span class="dv">0</span>m and above <span class="dv">65</span>m.</span>
 <span id="cb14-2"><a href="lidar-for-forest-management.html#cb14-2" tabindex="-1"></a><span class="co">#read normalized las into catalog to continue processing</span></span>
 <span id="cb14-3"><a href="lidar-for-forest-management.html#cb14-3" tabindex="-1"></a>norm_cat_mkrf <span class="ot">&lt;-</span> <span class="fu">readLAScatalog</span>(<span class="st">&quot;Normalized&quot;</span>)</span>
 <span id="cb14-4"><a href="lidar-for-forest-management.html#cb14-4" tabindex="-1"></a></span>
@@ -571,158 +568,14 @@ Figure 6.2: Normalized tile 1 from MKRF.
 <span id="cb20-6"><a href="lidar-for-forest-management.html#cb20-6" tabindex="-1"></a><span class="fu">write_csv</span>(mkrf_plot_metrics, <span class="st">&quot;Plots/mkrf_plot_metrics.csv&quot;</span>)</span></code></pre></div>
 <div id="q6-why-is-the-50th-heigh-percentile-so-different-between-the-two-plots-while-the-95th-height-percentile-is-so-similar" class="section level5 unnumbered hasAnchor">
 <h5>Q6: Why is the 50th heigh percentile so different between the two plots while the 95th height percentile is so similar?<a href="lidar-for-forest-management.html#q6-why-is-the-50th-heigh-percentile-so-different-between-the-two-plots-while-the-95th-height-percentile-is-so-similar" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+</div>
+<div id="q7-what-are-some-metrics-you-would-use-if-you-were-interested-in-measuring-the-vertical-complexity-of-a-stand-how-would-you-expect-these-metrics-to-vary-between-an-early-successional-stand-and-a-mature-stand-in-this-environment" class="section level5 unnumbered hasAnchor">
+<h5>Q7: What are some metrics you would use if you were interested in measuring the vertical complexity of a stand? How would you expect these metrics to vary between an early successional stand and a mature stand in this environment?<a href="lidar-for-forest-management.html#q7-what-are-some-metrics-you-would-use-if-you-were-interested-in-measuring-the-vertical-complexity-of-a-stand-how-would-you-expect-these-metrics-to-vary-between-an-early-successional-stand-and-a-mature-stand-in-this-environment" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <hr />
 </div>
 </div>
-<div id="task-7-stem-volume-models-with-lidr" class="section level2 unnumbered hasAnchor">
-<h2>Task 7: Stem Volume Models with lidR<a href="lidar-for-forest-management.html#task-7-stem-volume-models-with-lidr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In order to estimate forest attributes across our study area, we must first develop relationships between our lidar metrics and field measured forest attributes. For our 20 plots, we have estimates of net stem volume m<sup>3</sup> · ha<sup>-1</sup> that were measured in the field in 1996. Plot locations were evenly spaced across the study area, and volume was estimated at each plot using a variable-radius approach (basically, the further a tree is from the plot center, the larger it must be to be included in the plot).</p>
-<p>These plot data violate many of our lidar best practices for estimating forest attributes. First, there is a long time lag between our field measurements (1996) and our lidar data collection (2010). Ideally, there would be a maximum of one or two years difference. Changes in forest conditions (growth and mortality) could lead to large differences in net stem volume between 1996 and 2010 at these plot locations. Second, because forest conditions were not used to guide the selection of plot locations, they do not capture the full range of structural variability across our study area. Therefore, our models may only be applicable to a small range in forest conditions. Third, because the plots are variable radius, there is not a fixed plot size that we can extract from our lidar data to associate with each plot.</p>
-<p>All of these issues will influence our ability to develop strong relationships between lidar metrics and forest attributes, which significantly limits the value of this lidar dataset for forest attribute estimation. These issues are sometimes the reality when we work with lidar data, as resources may not be available to collect the proper field data within several years of the lidar flight. Therefore, even with a high quality lidar dataset, the accuracy of our estimates will largely depend on the quality of our plot data. Keep these issues in mind when we begin to develop models.</p>
-<p>There are many statistical approaches to predicting forest attributes with lidar metrics. Here, we will use ordinary least-squares regression. As you work through this section, remember that this is only one approach of many, and there is no single correct approach. In your own research, you should spend time considering the various modelling approaches, and the advantages and disadvantages of each.</p>
-<p>Within ordinary least-squares regression, there are more decisions we must make. Which lidar variables do we want to include in our model? Do we want to transform the variables before developing the model (e.g., log transform)?</p>
-<p>We first select an initial subset of lidar variables that we would like to include in model development. Many lidar metrics are highly correlated with one another, and would therefore provide little unique information for predicting forest attributes. Additionally, with so many variables, some of these metrics are likely to explain noise in our model. This may lead us to conclude that our model performed well, when in fact we simply overfit our data. Therefore, we typically select a small subset of metrics that we feel capture the most important information in the lidar point cloud. Most lidar metrics fall into one of three groups: 1) those that describe vegetation cover, 2) those that describe vegetation height, and 3) those that describe vegetation complexity (e.g., variation in return height). When selecting your subset of metrics, it is important to include at least one metric from each of these classes.</p>
-<p>Once our initial subset of variables is selected, we can begin to develop our model. This may involve transforming our data to improve the relationship between lidar metrics and forest attributes. Various transforms can be tested, including taking the natural log of the X variables (or both X and Y), or squaring the X variables. You may find that no transformation is necessary to establish a strong model.</p>
-<p>Additionally, there are various approaches to determine which of our initial variables should actually be included in our final model. In this section, we will use a simple forward variable selection process to accomplish this. We begin by developing a model with each lidar metric individually. We select the most significant metric (the one with the lowest p-value) as the first variable in our model. Next, we develop a set of models that includes our first variable in combination with each other metric. We select the most significant of these metrics as our second variable in our model. We continue adding variables in this way until no addition to the model is significant (p &lt; 0.05, or a p value of your choosing). Forward selection is a straight forward and simple approach to selecting variables. Again, in your own research, you should explore the advantages and disadvantages of various variable selection approaches before building models.</p>
-<p>Once our model is developed, we can apply the model ‘wall-to-wall’ across our study area. This is accomplished by calculating the lidar metrics on a grid across our entire study area, and applying the relationship we developed.</p>
-<div id="part-a" class="section level4 unnumbered hasAnchor">
-<h4>Part A<a href="lidar-for-forest-management.html#part-a" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>We will begin by exploring our lidar metrics and selecting an initial subset of metrics to include in model development.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="lidar-for-forest-management.html#cb21-1" tabindex="-1"></a><span class="co">#Read in relevant .csvs</span></span>
-<span id="cb21-2"><a href="lidar-for-forest-management.html#cb21-2" tabindex="-1"></a>plot_table <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;Plots/Plot_Table.csv&quot;</span>)</span>
-<span id="cb21-3"><a href="lidar-for-forest-management.html#cb21-3" tabindex="-1"></a>mkrf_plot_metrics <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;Plots/MKRF_Plot_Metrics.csv&quot;</span>)</span>
-<span id="cb21-4"><a href="lidar-for-forest-management.html#cb21-4" tabindex="-1"></a></span>
-<span id="cb21-5"><a href="lidar-for-forest-management.html#cb21-5" tabindex="-1"></a><span class="co">#Add column to &quot;mkrf_plot_metrics&#39; called Plot_ID (join key)</span></span>
-<span id="cb21-6"><a href="lidar-for-forest-management.html#cb21-6" tabindex="-1"></a>mkrf_plot_metrics<span class="sc">$</span>Plot_ID <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span></span>
-<span id="cb21-7"><a href="lidar-for-forest-management.html#cb21-7" tabindex="-1"></a></span>
-<span id="cb21-8"><a href="lidar-for-forest-management.html#cb21-8" tabindex="-1"></a><span class="co">#Join &#39;Plot_Table&#39; and &#39;MKRF_Plot_Metrics&#39; into &#39;data_table&#39;</span></span>
-<span id="cb21-9"><a href="lidar-for-forest-management.html#cb21-9" tabindex="-1"></a>data_table <span class="ot">&lt;-</span> plot_table <span class="sc">%&gt;%</span> </span>
-<span id="cb21-10"><a href="lidar-for-forest-management.html#cb21-10" tabindex="-1"></a>  <span class="fu">full_join</span>(mkrf_plot_metrics)</span></code></pre></div>
-<p>This script is divided into 3 Parts (A - C). Part A contains the required inputs for the script to run correctly. These inputs are filled in, but make any adjustments if your filenames are different. Part B reads in our Plot_Table.csv and MKRF_Plot_Metrics.csv files, and organizes them. The Plot_Table.csv file contains the net stem volume estimates for each plot, while the MKRF_Plot_Metrics.csv file contains our calculated lidar metrics. A number of metrics are not of any interest to us (e.g, intensity metrics), so if you wish an extra challenge you can remove them from dataTable. At the end of Part A, our Plot_Table.csv and MKRF_Plot_Metrics.csv are combined into a single master table called dataTable. Run Part A of the script by highlighting them, and hitting Ctrl + Enter. You should see the commands executed in the Console window in the lower left of the R studio window.</p>
-<p>Once Part A is executed, scroll down to Part B. This section of the script is designed for us to explore our lidar metrics and select a subset of metrics for model development. Begin by highlighting the line colnames (dataTable) and pressing Ctrl + Enter to run it. This will generate a list of the column names in dataTable:</p>
-</div>
-<div id="part-b" class="section level4 unnumbered hasAnchor">
-<h4>Part B<a href="lidar-for-forest-management.html#part-b" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="lidar-for-forest-management.html#cb22-1" tabindex="-1"></a><span class="fu">colnames</span>(data_table)</span>
-<span id="cb22-2"><a href="lidar-for-forest-management.html#cb22-2" tabindex="-1"></a><span class="fu">plot</span>(Net_Volume <span class="sc">~</span> zq50, <span class="at">data =</span> data_table)</span></code></pre></div>
-<p>This table contains the forest attribute we want to predict (Net_Volume) in addition to all of our lidar metrics. Revisit the <code>cloud_metrics</code> Help page to review each metric.</p>
-<p>We will start by exploring the relationship between our lidar metrics and volume. Run the following line to plot the relationship between the 50th height percentile and net stem volume:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="lidar-for-forest-management.html#cb23-1" tabindex="-1"></a><span class="fu">plot</span>(Net_Volume <span class="sc">~</span> zq50, <span class="at">data =</span> data_table)</span></code></pre></div>
-<p>data = data_table tells R to look in dataTable for columns named Net_Volume and zq50.</p>
-<p>Next, we will fit linear models between our lidar metrics and volume. Run the following lines to create the model and display a summary of the model you just fit. Find the value in the summary to assess how much variability in volume the 50th percentile of height percentile could explain.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="lidar-for-forest-management.html#cb24-1" tabindex="-1"></a>model <span class="ot">=</span> <span class="fu">lm</span>(Net_Volume <span class="sc">~</span> zq50, <span class="at">data =</span> data_table)</span>
-<span id="cb24-2"><a href="lidar-for-forest-management.html#cb24-2" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
-<p>We can have two or more predictors in our linear model by adding a + sign between the predictor names. Run the following lines:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="lidar-for-forest-management.html#cb25-1" tabindex="-1"></a>model <span class="ot">=</span> <span class="fu">lm</span>(Net_Volume <span class="sc">~</span> zq50 <span class="sc">+</span> zq90, <span class="at">data =</span> data_table)</span>
-<span id="cb25-2"><a href="lidar-for-forest-management.html#cb25-2" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
-<p>Notice how the R<sup>2</sup> value barely improved. This is because the 50th and the 90th height percentiles are highly correlated with one another, so adding the 90th height percentile does not add much additional information. Run the line model$coefficients. This will display the coefficients of our model. Using these coefficients, we can write our linear model as follows:</p>
-<p><span class="math inline">\({Volume = 48.31 * zq50 - 22.91 * zq90 - 95.39}\)</span></p>
-<p>Notice how there is a negative relationship between volume and the 90th percentile in our model. This means that as the 90th percentile increases, our estimates of volume will decrease (not the relationship we would like to see!). This is a sign that our predictors are highly correlated, and therefore the 90th percentile is just fitting noise. Always check that your models make sense.</p>
-<p>Remember that height, cover, and complexity metrics each provide unique information about the vegetation in the plots. While the relationship might not be strong between a certain metric and volume, that variable might provide unique information to the final model that is not provided by another, stronger variable. Therefore, do not throw out a variable simply because it has a weak relationship on its own. If it turns out that the variable does not explain a significant amount of variation, we will throw it out in the model development stage.</p>
-<p>We can also look at the correlation between our lidar metrics. Run the line:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="lidar-for-forest-management.html#cb26-1" tabindex="-1"></a><span class="fu">pairs</span>(<span class="sc">~</span> zq10 <span class="sc">+</span> zq25 <span class="sc">+</span> zq50 <span class="sc">+</span> zq75 <span class="sc">+</span> zq90, <span class="at">data =</span> data_table)</span></code></pre></div>
-<p>This will generate a matrix of scatterplots between the five height percentiles that are listed (zq10, zq25, zq50, zq75, zq90). Notice how all of these height percentiles are highly correlated with one another. We would not want more than one or two of these in our model, as they basically provide the same information.</p>
-<p>Run the line:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="lidar-for-forest-management.html#cb27-1" tabindex="-1"></a><span class="fu">pairs</span>(<span class="sc">~</span> zq90 <span class="sc">+</span> pzabove2 <span class="sc">+</span> zentropy <span class="sc">+</span> zskew, <span class="at">data =</span> data_table)</span></code></pre></div>
-<p>This will display more scatterplots, but between variables that are less correlated with each other. The goal is to find a set of metrics where each metric provides unique information (i.e., not strongly correlated to any other variable). There may be some correlation between variables, you just don’t want too much of it. Notice how we have at least one cover metric, one height metric, and one complexity metric (i.e., variability metric).</p>
-<div id="screenshot-3-export-the-result-of-pairs-as-an-image-and-insert-into-your-submission." class="section level5 unnumbered hasAnchor">
-<h5>Screenshot 3: Export the result of <code>pairs()</code> as an image and insert into your submission.<a href="lidar-for-forest-management.html#screenshot-3-export-the-result-of-pairs-as-an-image-and-insert-into-your-submission." class="anchor-section" aria-label="Anchor link to header"></a></h5>
-</div>
-<div id="developing-a-statistical-model" class="section level5 unnumbered hasAnchor">
-<h5>Developing a statistical model<a href="lidar-for-forest-management.html#developing-a-statistical-model" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<p>After selecting a handful of initial metrics, we can develop our model to predict net stem volume. We will try two example sets of initial metrics. As noted in the introduction, we will use a forward selection process to develop our final model. We will work through two examples, where different initial variables are selected.</p>
-<p>Go to Example 1 of Part C in the R script. For this example, our initial variables are zq90, pzabove2, zentropy, and zskew. Run through this example line by line in the R script to build our first model using forward selection. Read the comments in the script to understand how this process works.</p>
-</div>
-</div>
-<div id="part-c" class="section level4 unnumbered hasAnchor">
-<h4>Part C<a href="lidar-for-forest-management.html#part-c" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Example 1. Selected variables = zq90, pzabove2, zentropy, zskew.</p>
-<p>We start with no variables in our model:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="lidar-for-forest-management.html#cb28-1" tabindex="-1"></a>model1 <span class="ot">=</span> <span class="fu">lm</span>(Net_Volume <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> data_table)</span>
-<span id="cb28-2"><a href="lidar-for-forest-management.html#cb28-2" tabindex="-1"></a><span class="co">#Now, we add each selected variable to our model one by one, to see which variable is the most significant</span></span>
-<span id="cb28-3"><a href="lidar-for-forest-management.html#cb28-3" tabindex="-1"></a><span class="co">#predictor of volume</span></span>
-<span id="cb28-4"><a href="lidar-for-forest-management.html#cb28-4" tabindex="-1"></a><span class="fu">add1</span>(model1,<span class="sc">~</span>  zq90 <span class="sc">+</span> pzabove2 <span class="sc">+</span> zentropy <span class="sc">+</span> zskew, <span class="at">test =</span> <span class="st">&#39;F&#39;</span>)</span>
-<span id="cb28-5"><a href="lidar-for-forest-management.html#cb28-5" tabindex="-1"></a></span>
-<span id="cb28-6"><a href="lidar-for-forest-management.html#cb28-6" tabindex="-1"></a><span class="co">#Elev.P90 was the most significant (lowest Pr(&gt;F)), so we add it to our model</span></span>
-<span id="cb28-7"><a href="lidar-for-forest-management.html#cb28-7" tabindex="-1"></a>model1 <span class="ot">=</span> <span class="fu">lm</span>(Net_Volume <span class="sc">~</span> zq90, <span class="at">data =</span> data_table)</span>
-<span id="cb28-8"><a href="lidar-for-forest-management.html#cb28-8" tabindex="-1"></a><span class="co">#Now, We add each remaining variable to the new model one by one, to see </span></span>
-<span id="cb28-9"><a href="lidar-for-forest-management.html#cb28-9" tabindex="-1"></a><span class="co">#if any variable is a significant addition</span></span>
-<span id="cb28-10"><a href="lidar-for-forest-management.html#cb28-10" tabindex="-1"></a><span class="fu">add1</span>(model1,<span class="sc">~</span>  zq90 <span class="sc">+</span> pzabove2 <span class="sc">+</span> zentropy <span class="sc">+</span> zskew, <span class="at">test =</span> <span class="st">&#39;F&#39;</span>)</span>
-<span id="cb28-11"><a href="lidar-for-forest-management.html#cb28-11" tabindex="-1"></a></span>
-<span id="cb28-12"><a href="lidar-for-forest-management.html#cb28-12" tabindex="-1"></a><span class="co">#pzabove2 was the most significant addition (lowest Pr(&gt;F)), so we add it to our model</span></span>
-<span id="cb28-13"><a href="lidar-for-forest-management.html#cb28-13" tabindex="-1"></a>model1 <span class="ot">=</span> <span class="fu">lm</span>(Net_Volume <span class="sc">~</span> zq90 <span class="sc">+</span> pzabove2, <span class="at">data =</span> data_table)</span>
-<span id="cb28-14"><a href="lidar-for-forest-management.html#cb28-14" tabindex="-1"></a></span>
-<span id="cb28-15"><a href="lidar-for-forest-management.html#cb28-15" tabindex="-1"></a><span class="co">#Again, we test all the remaining variables one by one</span></span>
-<span id="cb28-16"><a href="lidar-for-forest-management.html#cb28-16" tabindex="-1"></a><span class="fu">add1</span>(model1,<span class="sc">~</span> zq90 <span class="sc">+</span> pzabove2 <span class="sc">+</span> zentropy <span class="sc">+</span> zskew, <span class="at">test =</span> <span class="st">&#39;F&#39;</span>)</span></code></pre></div>
-<p>No additional variables were significant, so we can stop building our model</p>
-<p>Get the summary of the final model.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="lidar-for-forest-management.html#cb29-1" tabindex="-1"></a><span class="fu">summary</span>(model1)</span></code></pre></div>
-<p>Plot our predicted volume against our measured volume</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="lidar-for-forest-management.html#cb30-1" tabindex="-1"></a>{<span class="fu">plot</span>(Net_Volume <span class="sc">~</span> model1<span class="sc">$</span>fitted,<span class="at">data =</span> data_table,<span class="at">xlab =</span> <span class="st">&#39;Predicted&#39;</span>,<span class="at">ylab =</span> <span class="st">&#39;Measured&#39;</span>)</span>
-<span id="cb30-2"><a href="lidar-for-forest-management.html#cb30-2" tabindex="-1"></a><span class="fu">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>)} <span class="co">#Adds a one to one line</span></span></code></pre></div>
-<p>Get the coefficients to our model</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="lidar-for-forest-management.html#cb31-1" tabindex="-1"></a>model1<span class="sc">$</span>coefficients</span></code></pre></div>
-<p>Once you complete Example 1, move on to Example 2. The only change here is that zq90 has been replaced by zq25. Run through example 2 line by line.</p>
-<p>You will notice that the small change from Example 1 to Example 2 (Using zq25 instead of zq90) completely changed our final model. Here are the final two developed models below. Look at the model coefficients in R to confirm that these models are correct.</p>
-<p>Example 2 Here is a slightly different selection of metrics (zq25 instead of zq90) Variables to include:zq25, pzabove2, zentropy, zskew Again, we start with no variables in our model.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="lidar-for-forest-management.html#cb32-1" tabindex="-1"></a>model2 <span class="ot">=</span> <span class="fu">lm</span>(Net_Volume <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> data_table)</span>
-<span id="cb32-2"><a href="lidar-for-forest-management.html#cb32-2" tabindex="-1"></a><span class="co">#Now, add in one variable at time, and select the most significant</span></span>
-<span id="cb32-3"><a href="lidar-for-forest-management.html#cb32-3" tabindex="-1"></a><span class="fu">add1</span>(model2,<span class="sc">~</span> zq25 <span class="sc">+</span> pzabove2 <span class="sc">+</span> zentropy <span class="sc">+</span> zskew, <span class="at">test =</span> <span class="st">&#39;F&#39;</span>)</span>
-<span id="cb32-4"><a href="lidar-for-forest-management.html#cb32-4" tabindex="-1"></a></span>
-<span id="cb32-5"><a href="lidar-for-forest-management.html#cb32-5" tabindex="-1"></a><span class="co">#Elev.P25 was the most significant, so we add it to our model</span></span>
-<span id="cb32-6"><a href="lidar-for-forest-management.html#cb32-6" tabindex="-1"></a>model2 <span class="ot">=</span> <span class="fu">lm</span>(Net_Volume <span class="sc">~</span> zq25, <span class="at">data =</span> data_table)</span>
-<span id="cb32-7"><a href="lidar-for-forest-management.html#cb32-7" tabindex="-1"></a><span class="co">#Add each remaining variable one by one</span></span>
-<span id="cb32-8"><a href="lidar-for-forest-management.html#cb32-8" tabindex="-1"></a><span class="fu">add1</span>(model2,<span class="sc">~</span> zq25 <span class="sc">+</span> pzabove2 <span class="sc">+</span> zentropy <span class="sc">+</span> zskew, <span class="at">test =</span> <span class="st">&#39;F&#39;</span>)</span></code></pre></div>
-<p>No additional variable comes out as significant, so our final model only has one variable Get the summary of our model</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="lidar-for-forest-management.html#cb33-1" tabindex="-1"></a><span class="fu">summary</span>(model2)</span></code></pre></div>
-<p>Plot our predicted volume against our measured volume</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="lidar-for-forest-management.html#cb34-1" tabindex="-1"></a><span class="fu">plot.new</span>()</span>
-<span id="cb34-2"><a href="lidar-for-forest-management.html#cb34-2" tabindex="-1"></a>{<span class="fu">plot</span>(Net_Volume <span class="sc">~</span> model2<span class="sc">$</span>fitted,<span class="at">data =</span> data_table,<span class="at">xlab =</span> <span class="st">&#39;Predicted&#39;</span>, <span class="at">ylab =</span> <span class="st">&#39;Measured&#39;</span>)</span>
-<span id="cb34-3"><a href="lidar-for-forest-management.html#cb34-3" tabindex="-1"></a>  <span class="fu">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>)}</span></code></pre></div>
-<p>Get the output coefficients to our model</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="lidar-for-forest-management.html#cb35-1" tabindex="-1"></a>model2<span class="sc">$</span>coefficients</span></code></pre></div>
-<p>We can compare our two models</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="lidar-for-forest-management.html#cb36-1" tabindex="-1"></a><span class="fu">summary</span>(model1)</span>
-<span id="cb36-2"><a href="lidar-for-forest-management.html#cb36-2" tabindex="-1"></a><span class="fu">summary</span>(model2)</span></code></pre></div>
-<p><strong>Model 1:</strong></p>
-<p><span class="math inline">\({Volume = 17.44 * zq90 - 1616.33 * pabove2 - 161799.33}\)</span></p>
-<p><strong>Model 2:</strong></p>
-<p><span class="math inline">\({Volume = 24.96 * zq25 - 139.45}\)</span></p>
-<p>The models explain the same amount of variance in volume (similar R2 values). However, model 2 is the stronger candidate as it uses only one predictor (the less complicated the model, the better).</p>
-<p>Now that we have developed a model, we will apply the model over our entire study area. To do this, we must calculate lidar metrics over the entire study area on a grid. If we use model 2, we only have to calculate the 25th percentile.</p>
-<p>We will use the <code>grid_metrics</code> function in lidR and the <code>calc</code> function in raster to do this. Explore the details of <code>grid_metrics</code> and <code>calc</code> before beginning this step. Notice that <code>grid_metrics</code> calls for an internal function to be applied to each pixel in the raster. It seems intuitive to apply a function created directly from the coefficients of Model 2, but we first need to calculate zq25 for each pixel. To do this we will calculate the standard metrics for the entire study site using <code>.stdmetrics_z</code> as our function. For the sake of time, the spatial resolution is set to 10 m.</p>
-<p>Once the processing is complete, we should plot <code>grid_metrics</code>.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="lidar-for-forest-management.html#cb37-1" tabindex="-1"></a>grid_metrics_mkrf <span class="ot">&lt;-</span> <span class="fu">grid_metrics</span>(norm_cat_mkrf, .stdmetrics_z, <span class="dv">10</span>)</span>
-<span id="cb37-2"><a href="lidar-for-forest-management.html#cb37-2" tabindex="-1"></a><span class="fu">plot</span>(grid_metrics_mkrf)</span></code></pre></div>
-<p>Wow! Look at all the rasters we have created. We can plot individual rasters using <code>plot(grid_metrics_mkrf, "zentropy")</code>. For this lab, we want to extract the zq25 raster from this RasterBrick. We can do that by using the subset function in the raster package. Let us plot the extracted RasterLayer to confirm it was successful.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="lidar-for-forest-management.html#cb38-1" tabindex="-1"></a>zq25_mkrf <span class="ot">&lt;-</span> <span class="fu">subset</span>(grid_metrics_mkrf, <span class="st">&quot;zq_25&quot;</span>)</span>
-<span id="cb38-2"><a href="lidar-for-forest-management.html#cb38-2" tabindex="-1"></a><span class="fu">plot</span>(zq25_mkrf)</span></code></pre></div>
-<p>Excellent. Now that we have the value of the 25th percentile for each pixel across the study area we can apply Model 2. To do this, we first need to write a function that will apply this equation to all pixels in zq25_mkrf. The function we will create is based on the coefficents derived from Model 2:</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="lidar-for-forest-management.html#cb39-1" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb39-2"><a href="lidar-for-forest-management.html#cb39-2" tabindex="-1"></a><span class="fl">24.96</span><span class="sc">*</span>x <span class="sc">-</span><span class="fl">139.45</span></span>
-<span id="cb39-3"><a href="lidar-for-forest-management.html#cb39-3" tabindex="-1"></a>}</span></code></pre></div>
-<p>Now, use <code>calc</code> to apply the model to the entire study area. Add this Figure into your PDF as Screenshot 4.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="lidar-for-forest-management.html#cb40-1" tabindex="-1"></a><span class="co">#Apply function to raster</span></span>
-<span id="cb40-2"><a href="lidar-for-forest-management.html#cb40-2" tabindex="-1"></a>net_volume_mkrf <span class="ot">&lt;-</span> <span class="fu">calc</span>(zq25_mkrf_r, f)</span>
-<span id="cb40-3"><a href="lidar-for-forest-management.html#cb40-3" tabindex="-1"></a></span>
-<span id="cb40-4"><a href="lidar-for-forest-management.html#cb40-4" tabindex="-1"></a><span class="fu">plot</span>(net_volume_mkrf, <span class="at">col =</span> col_1)</span>
-<span id="cb40-5"><a href="lidar-for-forest-management.html#cb40-5" tabindex="-1"></a></span>
-<span id="cb40-6"><a href="lidar-for-forest-management.html#cb40-6" tabindex="-1"></a><span class="co">#to help answer Q8</span></span>
-<span id="cb40-7"><a href="lidar-for-forest-management.html#cb40-7" tabindex="-1"></a><span class="fu">plot</span>(Net_Volume <span class="sc">~</span> pzabove2, <span class="at">data =</span> data_table)</span></code></pre></div>
-<p>Done! You have successfully developed and applied a model to predict net stem volume at Malcolm Knapp. Hooray!</p>
-<p>Done! You have successfully developed and applied a model to predict net stem volume at Malcolm Knapp Research Forest. Hooray!</p>
-<div id="q7-does-a-reasonable-high-r2-value-necessarily-mean-this-is-a-good-model-do-you-think-our-estimates-of-volume-are-accurate-how-could-we-test-the-accuracy-of-our-model" class="section level5 unnumbered hasAnchor">
-<h5>Q7: Does a reasonable high <span class="math inline">\({R^2}\)</span> value necessarily mean this is a good model? Do you think our estimates of volume are accurate? How could we test the accuracy of our model?<a href="lidar-for-forest-management.html#q7-does-a-reasonable-high-r2-value-necessarily-mean-this-is-a-good-model-do-you-think-our-estimates-of-volume-are-accurate-how-could-we-test-the-accuracy-of-our-model" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-</div>
-<div id="q8-cover-is-typically-an-important-metric-for-predicting-forest-attributes-such-as-volume-the-higher-the-cover-the-higher-the-volume.-why-do-you-think-cover-was-not-an-important-variable-in-our-model-consider-the-location-of-the-plots-in-your-answer.-use-the-following-line-to-view-a-scatterplot-between-cover-and-volume-in-r." class="section level5 unnumbered hasAnchor">
-<h5>Q8: Cover is typically an important metric for predicting forest attributes such as volume (the higher the cover, the higher the volume). Why do you think cover was not an important variable in our model? Consider the location of the plots in your answer. Use the following line to view a scatterplot between cover and volume in R.<a href="lidar-for-forest-management.html#q8-cover-is-typically-an-important-metric-for-predicting-forest-attributes-such-as-volume-the-higher-the-cover-the-higher-the-volume.-why-do-you-think-cover-was-not-an-important-variable-in-our-model-consider-the-location-of-the-plots-in-your-answer.-use-the-following-line-to-view-a-scatterplot-between-cover-and-volume-in-r." class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="lidar-for-forest-management.html#cb41-1" tabindex="-1"></a><span class="fu">plot</span>(Net_Volume <span class="sc">~</span> pabove2, <span class="at">data =</span> data_table)</span></code></pre></div>
-<hr />
-</div>
-</div>
-</div>
-<div id="task-8-individual-tree-detection" class="section level2 unnumbered hasAnchor">
-<h2>Task 8: Individual Tree Detection<a href="lidar-for-forest-management.html#task-8-individual-tree-detection" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="task-7-individual-tree-detection" class="section level2 unnumbered hasAnchor">
+<h2>Task 7: Individual Tree Detection<a href="lidar-for-forest-management.html#task-7-individual-tree-detection" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="part-a-detect-individual-trees-from-a-point-cloud" class="section level4 unnumbered hasAnchor">
 <h4>Part A) Detect individual trees from a point cloud<a href="lidar-for-forest-management.html#part-a-detect-individual-trees-from-a-point-cloud" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>For the first part of this task, we will detect individual trees using only the lidar point cloud data. To start, we will focus on Plot 1. This plot is located in a clearcut, where a number of trees were left standing. The crowns of these trees are clearly separated, so this plot is a good place to test our individual tree detection (i.e., we can compare detected trees against those we can see in the plot).</p>
@@ -732,42 +585,45 @@ Figure 6.2: Normalized tile 1 from MKRF.
 The argument Zu determines which threshold is used by evaluating the height of the seed point. If Zu = 15 , then any seed point higher than 15m will use dt2 . Any seed point lower than 15m will use dt1. Li et al., 2012 have determined default values through trial and error: dt1 = 1.5 , dt2 = 2 , Zu = 15 , and R = 2</p>
 <p>For this lab, we will use the default values determined by Li et al., 2012 for all arguments: dt1 = 1.5 , dt2 = 2 , R = 2 , Zu = 15 and speed_up = 10 . We will also use the default value for hmin , which is 2m, as it follows with previous labs in excluding points below 2m from our analyses.</p>
 <p>Run <strong>Part A</strong> of the script now.</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="lidar-for-forest-management.html#cb42-1" tabindex="-1"></a><span class="co">#Part A) Point Cloud based </span></span>
-<span id="cb42-2"><a href="lidar-for-forest-management.html#cb42-2" tabindex="-1"></a>norm_mkrf <span class="ot">&lt;-</span> <span class="fu">readLAScatalog</span>(<span class="st">&quot;Normalized&quot;</span>)</span>
-<span id="cb42-3"><a href="lidar-for-forest-management.html#cb42-3" tabindex="-1"></a><span class="fu">opt_filter</span>(norm_mkrf) <span class="ot">&lt;-</span> <span class="st">&quot;-keep_z_above 2 -drop_z_above 65&quot;</span></span>
-<span id="cb42-4"><a href="lidar-for-forest-management.html#cb42-4" tabindex="-1"></a><span class="fu">plot</span>(norm_mkrf)</span>
-<span id="cb42-5"><a href="lidar-for-forest-management.html#cb42-5" tabindex="-1"></a></span>
-<span id="cb42-6"><a href="lidar-for-forest-management.html#cb42-6" tabindex="-1"></a><span class="co">#Plot Extraction</span></span>
-<span id="cb42-7"><a href="lidar-for-forest-management.html#cb42-7" tabindex="-1"></a><span class="co">#load csv</span></span>
-<span id="cb42-8"><a href="lidar-for-forest-management.html#cb42-8" tabindex="-1"></a>tree_meas <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;Tree_Measurements.csv&quot;</span>)</span>
-<span id="cb42-9"><a href="lidar-for-forest-management.html#cb42-9" tabindex="-1"></a>plots <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;Lab6_Plots.csv&quot;</span>)</span>
-<span id="cb42-10"><a href="lidar-for-forest-management.html#cb42-10" tabindex="-1"></a></span>
-<span id="cb42-11"><a href="lidar-for-forest-management.html#cb42-11" tabindex="-1"></a><span class="co">#extract plots</span></span>
-<span id="cb42-12"><a href="lidar-for-forest-management.html#cb42-12" tabindex="-1"></a>radius <span class="ot">&lt;-</span> <span class="dv">77</span> <span class="co">#the radius for clip_ircle()</span></span>
-<span id="cb42-13"><a href="lidar-for-forest-management.html#cb42-13" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(plots)){ <span class="co">#run the loop until i = the number of rows in &#39;plot_table&#39; (20)</span></span>
-<span id="cb42-14"><a href="lidar-for-forest-management.html#cb42-14" tabindex="-1"></a>  plot_cent <span class="ot">&lt;-</span> <span class="fu">c</span>(plots<span class="sc">$</span>X[i], plots<span class="sc">$</span>Y[i]) <span class="co">#extract plot center</span></span>
-<span id="cb42-15"><a href="lidar-for-forest-management.html#cb42-15" tabindex="-1"></a>  plot_las <span class="ot">&lt;-</span> <span class="fu">clip_circle</span>(norm_mkrf, plot_cent[<span class="dv">1</span>], plot_cent[<span class="dv">2</span>], radius) <span class="co">#clip plot from norm_cat_las</span></span>
-<span id="cb42-16"><a href="lidar-for-forest-management.html#cb42-16" tabindex="-1"></a>  output_file <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;Plots_ITD/Plot_&quot;</span>, i, <span class="st">&quot;.las&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>) <span class="co">#output directory as string</span></span>
-<span id="cb42-17"><a href="lidar-for-forest-management.html#cb42-17" tabindex="-1"></a>  <span class="fu">writeLAS</span>(<span class="fu">assign</span>(<span class="fu">paste</span>(<span class="st">&quot;Plot_&quot;</span>, i, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>), plot_las), output_file) <span class="co">#write&#39;MKRF_Plot_i&#39; to output dir.</span></span>
-<span id="cb42-18"><a href="lidar-for-forest-management.html#cb42-18" tabindex="-1"></a>}</span>
-<span id="cb42-19"><a href="lidar-for-forest-management.html#cb42-19" tabindex="-1"></a><span class="co">#calculate `cloud_metrics` for each plot</span></span>
-<span id="cb42-20"><a href="lidar-for-forest-management.html#cb42-20" tabindex="-1"></a>ITD_plot_metrics <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
-<span id="cb42-21"><a href="lidar-for-forest-management.html#cb42-21" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(plots)){ <span class="co">#for loop == number of rowns in plot_table (20)</span></span>
-<span id="cb42-22"><a href="lidar-for-forest-management.html#cb42-22" tabindex="-1"></a>  plot <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="fu">paste</span>(<span class="st">&quot;Plots_ITD/Plot_&quot;</span>, i, <span class="st">&quot;.las&quot;</span>, <span class="at">sep=</span> <span class="st">&quot;&quot;</span>), <span class="at">filter =</span> <span class="st">&quot;-keep_first -drop_z_below 2&quot;</span>) <span class="co">#keep only first returns and (65m &gt; points &gt; 2m)</span></span>
-<span id="cb42-23"><a href="lidar-for-forest-management.html#cb42-23" tabindex="-1"></a>  metrics <span class="ot">&lt;-</span> <span class="fu">cloud_metrics</span>(plot, .stdmetrics) <span class="co">#compute metrics only on first return. Why?</span></span>
-<span id="cb42-24"><a href="lidar-for-forest-management.html#cb42-24" tabindex="-1"></a>  ITD_plot_metrics <span class="ot">&lt;-</span> <span class="fu">rbind</span>(ITD_plot_metrics, metrics)</span>
-<span id="cb42-25"><a href="lidar-for-forest-management.html#cb42-25" tabindex="-1"></a>}</span>
-<span id="cb42-26"><a href="lidar-for-forest-management.html#cb42-26" tabindex="-1"></a><span class="co">#segment each plot using li2012</span></span>
-<span id="cb42-27"><a href="lidar-for-forest-management.html#cb42-27" tabindex="-1"></a>p1_li <span class="ot">=</span> <span class="fu">segment_trees</span>(Plot_1, <span class="fu">li2012</span>())</span>
-<span id="cb42-28"><a href="lidar-for-forest-management.html#cb42-28" tabindex="-1"></a><span class="fu">plot</span>(p1_li, <span class="at">color =</span> <span class="st">&#39;treeID&#39;</span>)</span>
-<span id="cb42-29"><a href="lidar-for-forest-management.html#cb42-29" tabindex="-1"></a><span class="co">#segment each plot</span></span>
-<span id="cb42-30"><a href="lidar-for-forest-management.html#cb42-30" tabindex="-1"></a>p2_li <span class="ot">=</span> <span class="fu">segment_trees</span>(Plot_2, <span class="fu">li2012</span>())</span>
-<span id="cb42-31"><a href="lidar-for-forest-management.html#cb42-31" tabindex="-1"></a><span class="fu">plot</span>(p2_li, <span class="at">color =</span> <span class="st">&#39;treeID&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="lidar-for-forest-management.html#cb21-1" tabindex="-1"></a><span class="co">#Part A) Point Cloud based </span></span>
+<span id="cb21-2"><a href="lidar-for-forest-management.html#cb21-2" tabindex="-1"></a>norm_mkrf <span class="ot">&lt;-</span> <span class="fu">readLAScatalog</span>(<span class="st">&quot;Normalized&quot;</span>)</span>
+<span id="cb21-3"><a href="lidar-for-forest-management.html#cb21-3" tabindex="-1"></a><span class="fu">opt_filter</span>(norm_mkrf) <span class="ot">&lt;-</span> <span class="st">&quot;-keep_z_above 2 -drop_z_above 65&quot;</span></span>
+<span id="cb21-4"><a href="lidar-for-forest-management.html#cb21-4" tabindex="-1"></a><span class="fu">plot</span>(norm_mkrf)</span>
+<span id="cb21-5"><a href="lidar-for-forest-management.html#cb21-5" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="lidar-for-forest-management.html#cb21-6" tabindex="-1"></a><span class="co">#Plot Extraction</span></span>
+<span id="cb21-7"><a href="lidar-for-forest-management.html#cb21-7" tabindex="-1"></a><span class="co">#load csv</span></span>
+<span id="cb21-8"><a href="lidar-for-forest-management.html#cb21-8" tabindex="-1"></a>tree_meas <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;Tree_Measurements.csv&quot;</span>)</span>
+<span id="cb21-9"><a href="lidar-for-forest-management.html#cb21-9" tabindex="-1"></a>plots <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;Lab6_Plots.csv&quot;</span>)</span>
+<span id="cb21-10"><a href="lidar-for-forest-management.html#cb21-10" tabindex="-1"></a></span>
+<span id="cb21-11"><a href="lidar-for-forest-management.html#cb21-11" tabindex="-1"></a><span class="co">#extract plots</span></span>
+<span id="cb21-12"><a href="lidar-for-forest-management.html#cb21-12" tabindex="-1"></a>radius <span class="ot">&lt;-</span> <span class="dv">77</span> <span class="co">#the radius for clip_ircle()</span></span>
+<span id="cb21-13"><a href="lidar-for-forest-management.html#cb21-13" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(plots)){ <span class="co">#run the loop until i = the number of rows in &#39;plot_table&#39; (20)</span></span>
+<span id="cb21-14"><a href="lidar-for-forest-management.html#cb21-14" tabindex="-1"></a>  plot_cent <span class="ot">&lt;-</span> <span class="fu">c</span>(plots<span class="sc">$</span>X[i], plots<span class="sc">$</span>Y[i]) <span class="co">#extract plot center</span></span>
+<span id="cb21-15"><a href="lidar-for-forest-management.html#cb21-15" tabindex="-1"></a>  plot_las <span class="ot">&lt;-</span> <span class="fu">clip_circle</span>(norm_mkrf, plot_cent[<span class="dv">1</span>], plot_cent[<span class="dv">2</span>], radius) <span class="co">#clip plot from norm_cat_las</span></span>
+<span id="cb21-16"><a href="lidar-for-forest-management.html#cb21-16" tabindex="-1"></a>  output_file <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;Plots_ITD/Plot_&quot;</span>, i, <span class="st">&quot;.las&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>) <span class="co">#output directory as string</span></span>
+<span id="cb21-17"><a href="lidar-for-forest-management.html#cb21-17" tabindex="-1"></a>  <span class="fu">writeLAS</span>(<span class="fu">assign</span>(<span class="fu">paste</span>(<span class="st">&quot;Plot_&quot;</span>, i, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>), plot_las), output_file) <span class="co">#write&#39;MKRF_Plot_i&#39; to output dir.</span></span>
+<span id="cb21-18"><a href="lidar-for-forest-management.html#cb21-18" tabindex="-1"></a>}</span>
+<span id="cb21-19"><a href="lidar-for-forest-management.html#cb21-19" tabindex="-1"></a><span class="co">#calculate `cloud_metrics` for each plot</span></span>
+<span id="cb21-20"><a href="lidar-for-forest-management.html#cb21-20" tabindex="-1"></a>ITD_plot_metrics <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb21-21"><a href="lidar-for-forest-management.html#cb21-21" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(plots)){ <span class="co">#for loop == number of rowns in plot_table (20)</span></span>
+<span id="cb21-22"><a href="lidar-for-forest-management.html#cb21-22" tabindex="-1"></a>  plot <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="fu">paste</span>(<span class="st">&quot;Plots_ITD/Plot_&quot;</span>, i, <span class="st">&quot;.las&quot;</span>, <span class="at">sep=</span> <span class="st">&quot;&quot;</span>), <span class="at">filter =</span> <span class="st">&quot;-keep_first -drop_z_below 2&quot;</span>) <span class="co">#keep only first returns and (65m &gt; points &gt; 2m)</span></span>
+<span id="cb21-23"><a href="lidar-for-forest-management.html#cb21-23" tabindex="-1"></a>  metrics <span class="ot">&lt;-</span> <span class="fu">cloud_metrics</span>(plot, .stdmetrics) <span class="co">#compute metrics only on first return. Why?</span></span>
+<span id="cb21-24"><a href="lidar-for-forest-management.html#cb21-24" tabindex="-1"></a>  ITD_plot_metrics <span class="ot">&lt;-</span> <span class="fu">rbind</span>(ITD_plot_metrics, metrics)</span>
+<span id="cb21-25"><a href="lidar-for-forest-management.html#cb21-25" tabindex="-1"></a>}</span>
+<span id="cb21-26"><a href="lidar-for-forest-management.html#cb21-26" tabindex="-1"></a><span class="co">#segment each plot using li2012</span></span>
+<span id="cb21-27"><a href="lidar-for-forest-management.html#cb21-27" tabindex="-1"></a>p1_li <span class="ot">=</span> <span class="fu">segment_trees</span>(Plot_1, <span class="fu">li2012</span>())</span>
+<span id="cb21-28"><a href="lidar-for-forest-management.html#cb21-28" tabindex="-1"></a><span class="fu">plot</span>(p1_li, <span class="at">color =</span> <span class="st">&#39;treeID&#39;</span>)</span>
+<span id="cb21-29"><a href="lidar-for-forest-management.html#cb21-29" tabindex="-1"></a><span class="co">#segment each plot</span></span>
+<span id="cb21-30"><a href="lidar-for-forest-management.html#cb21-30" tabindex="-1"></a>p2_li <span class="ot">=</span> <span class="fu">segment_trees</span>(Plot_2, <span class="fu">li2012</span>())</span>
+<span id="cb21-31"><a href="lidar-for-forest-management.html#cb21-31" tabindex="-1"></a><span class="fu">plot</span>(p2_li, <span class="at">color =</span> <span class="st">&#39;treeID&#39;</span>)</span></code></pre></div>
 <div id="q9-describe-a-use-case-for-delineating-individual-trees-within-a-raw-point-cloud." class="section level5 unnumbered hasAnchor">
 <h5>Q9: Describe a use case for delineating individual trees within a raw point cloud.<a href="lidar-for-forest-management.html#q9-describe-a-use-case-for-delineating-individual-trees-within-a-raw-point-cloud." class="anchor-section" aria-label="Anchor link to header"></a></h5>
 </div>
-<div id="screenshot-4-include-a-figure-of-the-output-from-segmenting-each-plot-p1-p2" class="section level5 unnumbered hasAnchor">
-<h5>Screenshot 4: Include a figure of the output from segmenting each plot (p1, p2)<a href="lidar-for-forest-management.html#screenshot-4-include-a-figure-of-the-output-from-segmenting-each-plot-p1-p2" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div id="screenshot-3-include-a-figure-of-the-output-from-segmenting-each-plot-p1-p2" class="section level5 unnumbered hasAnchor">
+<h5>Screenshot 3: Include a figure of the output from segmenting each plot (p1, p2)<a href="lidar-for-forest-management.html#screenshot-3-include-a-figure-of-the-output-from-segmenting-each-plot-p1-p2" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+</div>
+<div id="table-1-choose-3-of-the-cloud-metrics-from-the-itd_plot_metrics-that-indicate-structural-differences-between-the-two-stands.-include-a-table-showing-these-metrics-to-accompany-screenshot-3." class="section level5 unnumbered hasAnchor">
+<h5>Table 1: Choose 3 of the cloud metrics from the ITD_plot_metrics that indicate structural differences between the two stands. Include a table showing these metrics to accompany Screenshot 3.<a href="lidar-for-forest-management.html#table-1-choose-3-of-the-cloud-metrics-from-the-itd_plot_metrics-that-indicate-structural-differences-between-the-two-stands.-include-a-table-showing-these-metrics-to-accompany-screenshot-3." class="anchor-section" aria-label="Anchor link to header"></a></h5>
 </div>
 </div>
 <div id="part-b-detect-individual-trees-using-a-chm" class="section level4 unnumbered hasAnchor">
@@ -782,78 +638,50 @@ treetops refers to the spatial location of individual trees determined by find_t
 <p>max_cr refers to the maximum value of the crown diameter of a detected tree (default = 10)</p>
 <p>ID individual identification number of each tree.</p>
 <p>Run <strong>Part B</strong> of the script now.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="lidar-for-forest-management.html#cb43-1" tabindex="-1"></a><span class="do">### Part b) CHM based</span></span>
-<span id="cb43-2"><a href="lidar-for-forest-management.html#cb43-2" tabindex="-1"></a></span>
-<span id="cb43-3"><a href="lidar-for-forest-management.html#cb43-3" tabindex="-1"></a><span class="co">#Dalponte et al., 2016 CHM-based </span></span>
-<span id="cb43-4"><a href="lidar-for-forest-management.html#cb43-4" tabindex="-1"></a><span class="co">#create CHM with 0.5m res</span></span>
-<span id="cb43-5"><a href="lidar-for-forest-management.html#cb43-5" tabindex="-1"></a>algo <span class="ot">=</span> <span class="fu">pitfree</span>(<span class="at">thresholds =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>), <span class="at">max_edge =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">subcircle =</span> <span class="fl">0.2</span>)</span>
-<span id="cb43-6"><a href="lidar-for-forest-management.html#cb43-6" tabindex="-1"></a>chm_1_0<span class="fl">.5</span>  <span class="ot">=</span> <span class="fu">grid_canopy</span>(Plot_1, <span class="fl">0.5</span>, algo)</span>
-<span id="cb43-7"><a href="lidar-for-forest-management.html#cb43-7" tabindex="-1"></a><span class="fu">plot</span>(chm_1_0<span class="fl">.5</span>, <span class="at">col =</span> <span class="fu">height.colors</span>(<span class="dv">50</span>))</span>
-<span id="cb43-8"><a href="lidar-for-forest-management.html#cb43-8" tabindex="-1"></a></span>
-<span id="cb43-9"><a href="lidar-for-forest-management.html#cb43-9" tabindex="-1"></a><span class="co">#find treetops</span></span>
-<span id="cb43-10"><a href="lidar-for-forest-management.html#cb43-10" tabindex="-1"></a>ttops_1 <span class="ot">&lt;-</span> <span class="fu">find_trees</span>(Plot_1, <span class="at">algorithm =</span> <span class="fu">lmf</span>(<span class="dv">5</span>, <span class="at">shape =</span> <span class="st">&quot;circular&quot;</span>))</span>
-<span id="cb43-11"><a href="lidar-for-forest-management.html#cb43-11" tabindex="-1"></a><span class="co">#add ttops_1 to chm</span></span>
-<span id="cb43-12"><a href="lidar-for-forest-management.html#cb43-12" tabindex="-1"></a><span class="fu">plot</span>(ttops_1, <span class="at">add =</span> <span class="cn">TRUE</span>) <span class="co">#adds ttops_1 to chm_1_0.5 plot; notice the variety of non-tree tops</span></span>
-<span id="cb43-13"><a href="lidar-for-forest-management.html#cb43-13" tabindex="-1"></a></span>
-<span id="cb43-14"><a href="lidar-for-forest-management.html#cb43-14" tabindex="-1"></a>dalponte_1_0<span class="fl">.5</span> <span class="ot">&lt;-</span> Plot_1 <span class="sc">%&gt;%</span> </span>
-<span id="cb43-15"><a href="lidar-for-forest-management.html#cb43-15" tabindex="-1"></a>  <span class="fu">segment_trees</span>(<span class="fu">dalponte2016</span>(chm_1_0<span class="fl">.5</span>, ttops_1)) <span class="sc">%&gt;%</span> </span>
-<span id="cb43-16"><a href="lidar-for-forest-management.html#cb43-16" tabindex="-1"></a>  <span class="fu">filter_poi</span>(<span class="sc">!</span><span class="fu">is.na</span>(treeID))</span>
-<span id="cb43-17"><a href="lidar-for-forest-management.html#cb43-17" tabindex="-1"></a></span>
-<span id="cb43-18"><a href="lidar-for-forest-management.html#cb43-18" tabindex="-1"></a>crowns1 <span class="ot">&lt;-</span> <span class="fu">delineate_crowns</span>(dalponte_1_0<span class="fl">.5</span>)</span>
-<span id="cb43-19"><a href="lidar-for-forest-management.html#cb43-19" tabindex="-1"></a><span class="fu">plot</span>(crowns1, <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb43-20"><a href="lidar-for-forest-management.html#cb43-20" tabindex="-1"></a></span>
-<span id="cb43-21"><a href="lidar-for-forest-management.html#cb43-21" tabindex="-1"></a><span class="do">####  PLOT 2</span></span>
-<span id="cb43-22"><a href="lidar-for-forest-management.html#cb43-22" tabindex="-1"></a></span>
-<span id="cb43-23"><a href="lidar-for-forest-management.html#cb43-23" tabindex="-1"></a><span class="co">#use dalponte with CHM for plot 2 at 0.5m resolution </span></span>
-<span id="cb43-24"><a href="lidar-for-forest-management.html#cb43-24" tabindex="-1"></a>chm_2_0<span class="fl">.5</span> <span class="ot">&lt;-</span> <span class="fu">grid_canopy</span>(Plot_2, <span class="fl">0.5</span>, algo)</span>
-<span id="cb43-25"><a href="lidar-for-forest-management.html#cb43-25" tabindex="-1"></a><span class="fu">plot</span>(chm_2_0<span class="fl">.5</span>, <span class="at">col =</span> <span class="fu">height.colors</span>(<span class="dv">50</span>))</span>
-<span id="cb43-26"><a href="lidar-for-forest-management.html#cb43-26" tabindex="-1"></a></span>
-<span id="cb43-27"><a href="lidar-for-forest-management.html#cb43-27" tabindex="-1"></a>ttops_2 <span class="ot">&lt;-</span> <span class="fu">find_trees</span>(Plot_2, <span class="at">algorithm =</span> <span class="fu">lmf</span>(<span class="dv">5</span>, <span class="at">shape =</span> <span class="st">&quot;circular&quot;</span>))</span>
-<span id="cb43-28"><a href="lidar-for-forest-management.html#cb43-28" tabindex="-1"></a><span class="co">#add ttops_2 to chm2</span></span>
-<span id="cb43-29"><a href="lidar-for-forest-management.html#cb43-29" tabindex="-1"></a><span class="fu">plot</span>(ttops_2, <span class="at">add =</span> <span class="cn">TRUE</span>) <span class="co">#adds ttops_2 to chm_2_0.5 plot; notice the variety of non-tree tops</span></span>
-<span id="cb43-30"><a href="lidar-for-forest-management.html#cb43-30" tabindex="-1"></a></span>
-<span id="cb43-31"><a href="lidar-for-forest-management.html#cb43-31" tabindex="-1"></a><span class="co">#apply to point cloud</span></span>
-<span id="cb43-32"><a href="lidar-for-forest-management.html#cb43-32" tabindex="-1"></a>dalponte_2_0<span class="fl">.5</span> <span class="ot">&lt;-</span> Plot_2 <span class="sc">%&gt;%</span> </span>
-<span id="cb43-33"><a href="lidar-for-forest-management.html#cb43-33" tabindex="-1"></a>  <span class="fu">segment_trees</span>(<span class="fu">dalponte2016</span>(chm_2_0<span class="fl">.5</span>, ttops_2)) <span class="sc">%&gt;%</span> </span>
-<span id="cb43-34"><a href="lidar-for-forest-management.html#cb43-34" tabindex="-1"></a>  <span class="fu">filter_poi</span>(<span class="sc">!</span><span class="fu">is.na</span>(treeID))</span>
-<span id="cb43-35"><a href="lidar-for-forest-management.html#cb43-35" tabindex="-1"></a></span>
-<span id="cb43-36"><a href="lidar-for-forest-management.html#cb43-36" tabindex="-1"></a></span>
-<span id="cb43-37"><a href="lidar-for-forest-management.html#cb43-37" tabindex="-1"></a><span class="co">#find crowns</span></span>
-<span id="cb43-38"><a href="lidar-for-forest-management.html#cb43-38" tabindex="-1"></a>crowns2 <span class="ot">&lt;-</span> <span class="fu">delineate_crowns</span>(dalponte_2_0<span class="fl">.5</span>)</span>
-<span id="cb43-39"><a href="lidar-for-forest-management.html#cb43-39" tabindex="-1"></a><span class="fu">plot</span>(crowns2, <span class="at">add =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="lidar-for-forest-management.html#cb22-1" tabindex="-1"></a><span class="do">### Part b) CHM based</span></span>
+<span id="cb22-2"><a href="lidar-for-forest-management.html#cb22-2" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="lidar-for-forest-management.html#cb22-3" tabindex="-1"></a><span class="co">#Dalponte et al., 2016 CHM-based </span></span>
+<span id="cb22-4"><a href="lidar-for-forest-management.html#cb22-4" tabindex="-1"></a><span class="co">#create CHM with 0.5m res</span></span>
+<span id="cb22-5"><a href="lidar-for-forest-management.html#cb22-5" tabindex="-1"></a>algo <span class="ot">=</span> <span class="fu">pitfree</span>(<span class="at">thresholds =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>), <span class="at">max_edge =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">subcircle =</span> <span class="fl">0.2</span>)</span>
+<span id="cb22-6"><a href="lidar-for-forest-management.html#cb22-6" tabindex="-1"></a>chm_1_0<span class="fl">.5</span>  <span class="ot">=</span> <span class="fu">grid_canopy</span>(Plot_1, <span class="fl">0.5</span>, algo)</span>
+<span id="cb22-7"><a href="lidar-for-forest-management.html#cb22-7" tabindex="-1"></a><span class="fu">plot</span>(chm_1_0<span class="fl">.5</span>, <span class="at">col =</span> <span class="fu">height.colors</span>(<span class="dv">50</span>))</span>
+<span id="cb22-8"><a href="lidar-for-forest-management.html#cb22-8" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="lidar-for-forest-management.html#cb22-9" tabindex="-1"></a><span class="co">#find treetops</span></span>
+<span id="cb22-10"><a href="lidar-for-forest-management.html#cb22-10" tabindex="-1"></a>ttops_1 <span class="ot">&lt;-</span> <span class="fu">find_trees</span>(Plot_1, <span class="at">algorithm =</span> <span class="fu">lmf</span>(<span class="dv">5</span>, <span class="at">shape =</span> <span class="st">&quot;circular&quot;</span>))</span>
+<span id="cb22-11"><a href="lidar-for-forest-management.html#cb22-11" tabindex="-1"></a><span class="co">#add ttops_1 to chm</span></span>
+<span id="cb22-12"><a href="lidar-for-forest-management.html#cb22-12" tabindex="-1"></a><span class="fu">plot</span>(ttops_1, <span class="at">add =</span> <span class="cn">TRUE</span>) <span class="co">#adds ttops_1 to chm_1_0.5 plot; notice the variety of non-tree tops</span></span>
+<span id="cb22-13"><a href="lidar-for-forest-management.html#cb22-13" tabindex="-1"></a></span>
+<span id="cb22-14"><a href="lidar-for-forest-management.html#cb22-14" tabindex="-1"></a>dalponte_1_0<span class="fl">.5</span> <span class="ot">&lt;-</span> Plot_1 <span class="sc">%&gt;%</span> </span>
+<span id="cb22-15"><a href="lidar-for-forest-management.html#cb22-15" tabindex="-1"></a>  <span class="fu">segment_trees</span>(<span class="fu">dalponte2016</span>(chm_1_0<span class="fl">.5</span>, ttops_1)) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-16"><a href="lidar-for-forest-management.html#cb22-16" tabindex="-1"></a>  <span class="fu">filter_poi</span>(<span class="sc">!</span><span class="fu">is.na</span>(treeID))</span>
+<span id="cb22-17"><a href="lidar-for-forest-management.html#cb22-17" tabindex="-1"></a></span>
+<span id="cb22-18"><a href="lidar-for-forest-management.html#cb22-18" tabindex="-1"></a>crowns1 <span class="ot">&lt;-</span> <span class="fu">delineate_crowns</span>(dalponte_1_0<span class="fl">.5</span>)</span>
+<span id="cb22-19"><a href="lidar-for-forest-management.html#cb22-19" tabindex="-1"></a><span class="fu">plot</span>(crowns1, <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb22-20"><a href="lidar-for-forest-management.html#cb22-20" tabindex="-1"></a></span>
+<span id="cb22-21"><a href="lidar-for-forest-management.html#cb22-21" tabindex="-1"></a><span class="do">####  PLOT 2</span></span>
+<span id="cb22-22"><a href="lidar-for-forest-management.html#cb22-22" tabindex="-1"></a></span>
+<span id="cb22-23"><a href="lidar-for-forest-management.html#cb22-23" tabindex="-1"></a><span class="co">#use dalponte with CHM for plot 2 at 0.5m resolution </span></span>
+<span id="cb22-24"><a href="lidar-for-forest-management.html#cb22-24" tabindex="-1"></a>chm_2_0<span class="fl">.5</span> <span class="ot">&lt;-</span> <span class="fu">grid_canopy</span>(Plot_2, <span class="fl">0.5</span>, algo)</span>
+<span id="cb22-25"><a href="lidar-for-forest-management.html#cb22-25" tabindex="-1"></a><span class="fu">plot</span>(chm_2_0<span class="fl">.5</span>, <span class="at">col =</span> <span class="fu">height.colors</span>(<span class="dv">50</span>))</span>
+<span id="cb22-26"><a href="lidar-for-forest-management.html#cb22-26" tabindex="-1"></a></span>
+<span id="cb22-27"><a href="lidar-for-forest-management.html#cb22-27" tabindex="-1"></a>ttops_2 <span class="ot">&lt;-</span> <span class="fu">find_trees</span>(Plot_2, <span class="at">algorithm =</span> <span class="fu">lmf</span>(<span class="dv">5</span>, <span class="at">shape =</span> <span class="st">&quot;circular&quot;</span>))</span>
+<span id="cb22-28"><a href="lidar-for-forest-management.html#cb22-28" tabindex="-1"></a><span class="co">#add ttops_2 to chm2</span></span>
+<span id="cb22-29"><a href="lidar-for-forest-management.html#cb22-29" tabindex="-1"></a><span class="fu">plot</span>(ttops_2, <span class="at">add =</span> <span class="cn">TRUE</span>) <span class="co">#adds ttops_2 to chm_2_0.5 plot; notice the variety of non-tree tops</span></span>
+<span id="cb22-30"><a href="lidar-for-forest-management.html#cb22-30" tabindex="-1"></a></span>
+<span id="cb22-31"><a href="lidar-for-forest-management.html#cb22-31" tabindex="-1"></a><span class="co">#apply to point cloud</span></span>
+<span id="cb22-32"><a href="lidar-for-forest-management.html#cb22-32" tabindex="-1"></a>dalponte_2_0<span class="fl">.5</span> <span class="ot">&lt;-</span> Plot_2 <span class="sc">%&gt;%</span> </span>
+<span id="cb22-33"><a href="lidar-for-forest-management.html#cb22-33" tabindex="-1"></a>  <span class="fu">segment_trees</span>(<span class="fu">dalponte2016</span>(chm_2_0<span class="fl">.5</span>, ttops_2)) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-34"><a href="lidar-for-forest-management.html#cb22-34" tabindex="-1"></a>  <span class="fu">filter_poi</span>(<span class="sc">!</span><span class="fu">is.na</span>(treeID))</span>
+<span id="cb22-35"><a href="lidar-for-forest-management.html#cb22-35" tabindex="-1"></a></span>
+<span id="cb22-36"><a href="lidar-for-forest-management.html#cb22-36" tabindex="-1"></a></span>
+<span id="cb22-37"><a href="lidar-for-forest-management.html#cb22-37" tabindex="-1"></a><span class="co">#find crowns</span></span>
+<span id="cb22-38"><a href="lidar-for-forest-management.html#cb22-38" tabindex="-1"></a>crowns2 <span class="ot">&lt;-</span> <span class="fu">delineate_crowns</span>(dalponte_2_0<span class="fl">.5</span>)</span>
+<span id="cb22-39"><a href="lidar-for-forest-management.html#cb22-39" tabindex="-1"></a><span class="fu">plot</span>(crowns2, <span class="at">add =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <div id="screenshot-5-include-a-figure-of-plot-2-showing-the-chm-within-delineated-crowns-and-tree-tops" class="section level5 unnumbered hasAnchor">
 <h5>Screenshot 5: Include a figure of plot 2 showing the CHM within delineated crowns and tree tops<a href="lidar-for-forest-management.html#screenshot-5-include-a-figure-of-plot-2-showing-the-chm-within-delineated-crowns-and-tree-tops" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 </div>
 <div id="q10-compare-the-two-chm-plots.-in-your-opinion-when-does-individual-tree-detection-work-well-and-where-does-it-fall-short.-explain." class="section level5 unnumbered hasAnchor">
 <h5>Q10: Compare the two CHM plots. In your opinion when does individual tree detection work well and where does it fall short. Explain.<a href="lidar-for-forest-management.html#q10-compare-the-two-chm-plots.-in-your-opinion-when-does-individual-tree-detection-work-well-and-where-does-it-fall-short.-explain." class="anchor-section" aria-label="Anchor link to header"></a></h5>
-</div>
-</div>
-<div id="part-c-find-tall-trees-using-point-cloud" class="section level4 unnumbered hasAnchor">
-<h4>Part C) Find tall trees using Point Cloud<a href="lidar-for-forest-management.html#part-c-find-tall-trees-using-point-cloud" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><code>tree_metrics()</code> gives the ID of trees and associated metrics. We can use these data to filter the scene and isolate only the tallest trees.</p>
-<p>In this section we will isolate the largest of trees in plot 2.</p>
-<p>Run <strong>Part C</strong> of the script now.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="lidar-for-forest-management.html#cb44-1" tabindex="-1"></a><span class="do">### Part C finding Tall Trees in Point Clouds</span></span>
-<span id="cb44-2"><a href="lidar-for-forest-management.html#cb44-2" tabindex="-1"></a>metrics <span class="ot">&lt;-</span> <span class="fu">tree_metrics</span>(p2_li, <span class="sc">~</span><span class="fu">list</span>(<span class="at">Zmax =</span> <span class="fu">max</span>(Z))) <span class="co"># calculate tree height metrics</span></span>
-<span id="cb44-3"><a href="lidar-for-forest-management.html#cb44-3" tabindex="-1"></a>metrics <span class="ot">&lt;-</span> metrics[metrics<span class="sc">$</span>Zmax <span class="sc">&gt;</span> <span class="dv">45</span>, ] <span class="co">#filter for trees taller than 45 m </span></span>
-<span id="cb44-4"><a href="lidar-for-forest-management.html#cb44-4" tabindex="-1"></a></span>
-<span id="cb44-5"><a href="lidar-for-forest-management.html#cb44-5" tabindex="-1"></a>subset <span class="ot">&lt;-</span> <span class="fu">filter_poi</span>(p2_li, treeID <span class="sc">%in%</span> metrics<span class="sc">$</span>treeID) <span class="co">#subset point cloud</span></span>
-<span id="cb44-6"><a href="lidar-for-forest-management.html#cb44-6" tabindex="-1"></a></span>
-<span id="cb44-7"><a href="lidar-for-forest-management.html#cb44-7" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">plot</span>(p2_li, <span class="at">bg =</span> <span class="st">&quot;white&quot;</span>, <span class="at">size =</span> <span class="dv">4</span>)</span>
-<span id="cb44-8"><a href="lidar-for-forest-management.html#cb44-8" tabindex="-1"></a><span class="fu">plot</span>(subset, <span class="at">add =</span> x <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">200</span>, <span class="dv">0</span>), <span class="at">size =</span> <span class="dv">5</span>) <span class="co"># some plotting</span></span>
-<span id="cb44-9"><a href="lidar-for-forest-management.html#cb44-9" tabindex="-1"></a></span>
-<span id="cb44-10"><a href="lidar-for-forest-management.html#cb44-10" tabindex="-1"></a><span class="co">#Extract and plot tallest tree</span></span>
-<span id="cb44-11"><a href="lidar-for-forest-management.html#cb44-11" tabindex="-1"></a>maxZ <span class="ot">=</span> <span class="fu">max</span>(metrics<span class="sc">$</span>Zmax)</span>
-<span id="cb44-12"><a href="lidar-for-forest-management.html#cb44-12" tabindex="-1"></a>metricsmax <span class="ot">&lt;-</span> metrics[metrics<span class="sc">$</span>Zmax <span class="sc">==</span> maxZ, ] <span class="co">#filter for maxZ </span></span>
-<span id="cb44-13"><a href="lidar-for-forest-management.html#cb44-13" tabindex="-1"></a></span>
-<span id="cb44-14"><a href="lidar-for-forest-management.html#cb44-14" tabindex="-1"></a>Subsetmax <span class="ot">&lt;-</span> <span class="fu">filter_poi</span>(p2_li, treeID <span class="sc">%in%</span> metricsmax<span class="sc">$</span>treeID) <span class="co">#subset point cloud</span></span>
-<span id="cb44-15"><a href="lidar-for-forest-management.html#cb44-15" tabindex="-1"></a></span>
-<span id="cb44-16"><a href="lidar-for-forest-management.html#cb44-16" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">plot</span>(p2_li, <span class="at">bg =</span> <span class="st">&quot;white&quot;</span>, <span class="at">size =</span> <span class="dv">4</span>)</span>
-<span id="cb44-17"><a href="lidar-for-forest-management.html#cb44-17" tabindex="-1"></a><span class="fu">plot</span>(Subsetmax, <span class="at">add =</span> x <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">200</span>, <span class="dv">0</span>), <span class="at">size =</span> <span class="dv">5</span>) <span class="co"># some plotting</span></span>
-<span id="cb44-18"><a href="lidar-for-forest-management.html#cb44-18" tabindex="-1"></a></span>
-<span id="cb44-19"><a href="lidar-for-forest-management.html#cb44-19" tabindex="-1"></a><span class="fu">plot</span>(Subsetmax, <span class="at">bg =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
-<div id="screenshot-6-include-an-image-of-the-subsetmax-plot" class="section level5 unnumbered hasAnchor">
-<h5>Screenshot 6: Include an image of the subsetmax plot<a href="lidar-for-forest-management.html#screenshot-6-include-an-image-of-the-subsetmax-plot" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <hr />
 </div>
 </div>
@@ -913,7 +741,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["open-geomatics-community-of-practice.pdf"],
 "search": {
 "engine": "fuse",
 "options": null
