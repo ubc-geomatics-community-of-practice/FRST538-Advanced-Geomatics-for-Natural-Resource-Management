@@ -452,11 +452,11 @@ p2_li = segment_trees(Plot_2, li2012())
 plot(p2_li, color = 'treeID')
 ```
 
-##### Q9: Describe a use case for delineating individual trees within a raw point cloud. {.unnumbered}
+##### Q8: Describe a use case for delineating individual trees within a raw point cloud. {.unnumbered}
 
 ##### Screenshot 3: Include a figure of the output from segmenting each plot (p1, p2) {.unnumbered}
 
-##### Table 1: Choose 3 of the cloud metrics from the ITD_plot_metrics that indicate structural differences between the two stands. Include a table showing these metrics to accompany Screenshot 3. {.unnumbered}
+##### Q9: Running the code ```length(unique(p1_li$treeID))``` counts the number of unique treeID's in plot 1. There are 94 unique "trees" within this plot. Based on Screenshot 3, does this seem reasonable? What could be causing discrepancies between the tree segmentation and the number of actual trees in the plot? {.unnumbered}
 
 #### Part B) Detect individual trees using a CHM {.unnumbered}
 
@@ -521,7 +521,7 @@ crowns2 <- delineate_crowns(dalponte_2_0.5)
 plot(crowns2, add = TRUE)
 ```
 
-##### Screenshot 5: Include a figure of plot 2 showing the CHM within delineated crowns and tree tops {.unnumbered}
+##### Screenshot 4: Include a figure of plot 2 showing the CHM within delineated crowns and tree tops {.unnumbered}
 
 ##### Q10: Compare the two CHM plots. In your opinion when does individual tree detection work well and where does it fall short. Explain. {.unnumbered}
 

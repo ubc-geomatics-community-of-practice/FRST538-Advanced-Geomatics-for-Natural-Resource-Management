@@ -23,7 +23,7 @@
 <meta name="author" content="Paul D. Pickell" />
 
 
-<meta name="date" content="2024-11-14" />
+<meta name="date" content="2024-11-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -616,14 +616,14 @@ The argument Zu determines which threshold is used by evaluating the height of t
 <span id="cb21-29"><a href="lidar-for-forest-management.html#cb21-29" tabindex="-1"></a><span class="co">#segment each plot</span></span>
 <span id="cb21-30"><a href="lidar-for-forest-management.html#cb21-30" tabindex="-1"></a>p2_li <span class="ot">=</span> <span class="fu">segment_trees</span>(Plot_2, <span class="fu">li2012</span>())</span>
 <span id="cb21-31"><a href="lidar-for-forest-management.html#cb21-31" tabindex="-1"></a><span class="fu">plot</span>(p2_li, <span class="at">color =</span> <span class="st">&#39;treeID&#39;</span>)</span></code></pre></div>
-<div id="q9-describe-a-use-case-for-delineating-individual-trees-within-a-raw-point-cloud." class="section level5 unnumbered hasAnchor">
-<h5>Q9: Describe a use case for delineating individual trees within a raw point cloud.<a href="lidar-for-forest-management.html#q9-describe-a-use-case-for-delineating-individual-trees-within-a-raw-point-cloud." class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div id="q8-describe-a-use-case-for-delineating-individual-trees-within-a-raw-point-cloud." class="section level5 unnumbered hasAnchor">
+<h5>Q8: Describe a use case for delineating individual trees within a raw point cloud.<a href="lidar-for-forest-management.html#q8-describe-a-use-case-for-delineating-individual-trees-within-a-raw-point-cloud." class="anchor-section" aria-label="Anchor link to header"></a></h5>
 </div>
 <div id="screenshot-3-include-a-figure-of-the-output-from-segmenting-each-plot-p1-p2" class="section level5 unnumbered hasAnchor">
 <h5>Screenshot 3: Include a figure of the output from segmenting each plot (p1, p2)<a href="lidar-for-forest-management.html#screenshot-3-include-a-figure-of-the-output-from-segmenting-each-plot-p1-p2" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 </div>
-<div id="table-1-choose-3-of-the-cloud-metrics-from-the-itd_plot_metrics-that-indicate-structural-differences-between-the-two-stands.-include-a-table-showing-these-metrics-to-accompany-screenshot-3." class="section level5 unnumbered hasAnchor">
-<h5>Table 1: Choose 3 of the cloud metrics from the ITD_plot_metrics that indicate structural differences between the two stands. Include a table showing these metrics to accompany Screenshot 3.<a href="lidar-for-forest-management.html#table-1-choose-3-of-the-cloud-metrics-from-the-itd_plot_metrics-that-indicate-structural-differences-between-the-two-stands.-include-a-table-showing-these-metrics-to-accompany-screenshot-3." class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div id="q9-running-the-code-lengthuniquep1_litreeid-counts-the-number-of-unique-treeids-in-plot-1.-there-are-94-unique-trees-within-this-plot.-based-on-screenshot-3-does-this-seem-reasonable-what-could-be-causing-discrepancies-between-the-tree-segmentation-and-the-number-of-actual-trees-in-the-plot" class="section level5 unnumbered hasAnchor">
+<h5>Q9: Running the code <code>length(unique(p1_li$treeID))</code> counts the number of unique treeID’s in plot 1. There are 94 unique “trees” within this plot. Based on Screenshot 3, does this seem reasonable? What could be causing discrepancies between the tree segmentation and the number of actual trees in the plot?<a href="lidar-for-forest-management.html#q9-running-the-code-lengthuniquep1_litreeid-counts-the-number-of-unique-treeids-in-plot-1.-there-are-94-unique-trees-within-this-plot.-based-on-screenshot-3-does-this-seem-reasonable-what-could-be-causing-discrepancies-between-the-tree-segmentation-and-the-number-of-actual-trees-in-the-plot" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 </div>
 </div>
 <div id="part-b-detect-individual-trees-using-a-chm" class="section level4 unnumbered hasAnchor">
@@ -677,8 +677,8 @@ treetops refers to the spatial location of individual trees determined by find_t
 <span id="cb22-37"><a href="lidar-for-forest-management.html#cb22-37" tabindex="-1"></a><span class="co">#find crowns</span></span>
 <span id="cb22-38"><a href="lidar-for-forest-management.html#cb22-38" tabindex="-1"></a>crowns2 <span class="ot">&lt;-</span> <span class="fu">delineate_crowns</span>(dalponte_2_0<span class="fl">.5</span>)</span>
 <span id="cb22-39"><a href="lidar-for-forest-management.html#cb22-39" tabindex="-1"></a><span class="fu">plot</span>(crowns2, <span class="at">add =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div id="screenshot-5-include-a-figure-of-plot-2-showing-the-chm-within-delineated-crowns-and-tree-tops" class="section level5 unnumbered hasAnchor">
-<h5>Screenshot 5: Include a figure of plot 2 showing the CHM within delineated crowns and tree tops<a href="lidar-for-forest-management.html#screenshot-5-include-a-figure-of-plot-2-showing-the-chm-within-delineated-crowns-and-tree-tops" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div id="screenshot-4-include-a-figure-of-plot-2-showing-the-chm-within-delineated-crowns-and-tree-tops" class="section level5 unnumbered hasAnchor">
+<h5>Screenshot 4: Include a figure of plot 2 showing the CHM within delineated crowns and tree tops<a href="lidar-for-forest-management.html#screenshot-4-include-a-figure-of-plot-2-showing-the-chm-within-delineated-crowns-and-tree-tops" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 </div>
 <div id="q10-compare-the-two-chm-plots.-in-your-opinion-when-does-individual-tree-detection-work-well-and-where-does-it-fall-short.-explain." class="section level5 unnumbered hasAnchor">
 <h5>Q10: Compare the two CHM plots. In your opinion when does individual tree detection work well and where does it fall short. Explain.<a href="lidar-for-forest-management.html#q10-compare-the-two-chm-plots.-in-your-opinion-when-does-individual-tree-detection-work-well-and-where-does-it-fall-short.-explain." class="anchor-section" aria-label="Anchor link to header"></a></h5>
