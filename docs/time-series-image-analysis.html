@@ -23,7 +23,7 @@
 <meta name="author" content="Paul D. Pickell" />
 
 
-<meta name="date" content="2024-11-18" />
+<meta name="date" content="2024-11-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -239,14 +239,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#learning-objectives-6"><i class="fa fa-check"></i>Learning Objectives</a></li>
 <li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#lab7-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
 <li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#data-4"><i class="fa fa-check"></i>Data</a></li>
-<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#task-1-starting-arcgis-pro"><i class="fa fa-check"></i>Task 1: Starting ArcGIS Pro</a></li>
-<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#toggling-extentions"><i class="fa fa-check"></i>Toggling Extentions</a></li>
-<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#inserting-a-new-map"><i class="fa fa-check"></i>Inserting a New Map</a></li>
-<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#adding-data-to-the-map"><i class="fa fa-check"></i>Adding Data to the Map</a></li>
-<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#task-1-calculating-ndvi"><i class="fa fa-check"></i>Task 1: Calculating NDVI</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#task-1-calcualting-ndvi-from-a-landsat-image"><i class="fa fa-check"></i>Task 1: Calcualting NDVI from a Landsat image</a></li>
 <li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#task-2-time-series-analysis"><i class="fa fa-check"></i>Task 2: Time Series Analysis</a></li>
 <li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#task-3-change-detection"><i class="fa fa-check"></i>Task 3: Change Detection</a></li>
-<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#task-4-map-creation"><i class="fa fa-check"></i>Task 4: Map Creation</a></li>
 <li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#summary-6"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html"><i class="fa fa-check"></i><b>8</b> Machine Learning for Classification</a>
@@ -287,7 +282,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Nicholas Coops</p>
 <div id="lab-overview-6" class="section level2 unnumbered hasAnchor">
 <h2>Lab Overview<a href="time-series-image-analysis.html#lab-overview-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In this lab, we will be using Landsat derived Best Available Pixel (BAP) imagery to examine changes in the Malcom Knapp Research Forest over a 19-year time span. In Task 1 you will use the “raster calculator” to calculate NDVI across the study area. In Task 2, you will use ArcPro to visualize a multidimensional NDVI data set and create a temporal profile. In task 3, you will conduct a change detection between two NDVI layers. For task 4 you will create a map showing this change.</p>
+<p>In this lab, we will be using Landsat derived Best Available Pixel (BAP) imagery to examine changes in the Malcom Knapp Research Forest over a 19-year time span. In Task 1 you will use the “raster calculator” to calculate NDVI across the study area. In Task 2, you will use ArcPro to visualize a multidimensional NDVI data set and create a temporal profile. In task 3, you will conduct a change detection between two NDVI layers.</p>
 <hr />
 </div>
 <div id="learning-objectives-6" class="section level2 unnumbered hasAnchor">
@@ -298,16 +293,14 @@ Nicholas Coops</p>
 <li>Visualize temporal NDVI data in ArcGIS</li>
 <li>Create a temporal profile to help quantify changes in the image</li>
 <li>Use the change detection wizard to determine the difference in NDVI from 2000-2019</li>
-<li>Create a map showing change in NDVI</li>
 </ul>
 <hr />
 </div>
 <div id="lab7-deliverables" class="section level2 unnumbered hasAnchor">
 <h2>Deliverables<a href="time-series-image-analysis.html#lab7-deliverables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>After you have completed the lab you will submit a pdf on Canvas with:</p>
-<p><input type="checkbox" unchecked> 1. Answer to lab questions.</input></p>
-<p><input type="checkbox" unchecked> 2. Screen Shots.</input></p>
-<p><input type="checkbox" unchecked> 3. Full page map showing the True Colour BAP image and the NDVI file you created.</input></p>
+<p><input type="checkbox" unchecked> Answer to 6 lab questions.</input></p>
+<p><input type="checkbox" unchecked> 2 Screenshots.</input></p>
 <hr />
 </div>
 <div id="data-4" class="section level2 unnumbered hasAnchor">
@@ -317,29 +310,9 @@ Nicholas Coops</p>
 <p><a href="https://github.com/saveriofrancini/bap">https://github.com/saveriofrancini/bap</a></p>
 <hr />
 </div>
-<div id="task-1-starting-arcgis-pro" class="section level2 unnumbered hasAnchor">
-<h2>Task 1: Starting ArcGIS Pro<a href="time-series-image-analysis.html#task-1-starting-arcgis-pro" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>To start the lab, Open ArcPro. You should have window that looks like the screenshot below. The ArcPro theme used to create this lab is Dark. The default theme is likely Light, but if you are interested in changing themes please follow the instructions at this <a href="https://pro.arcgis.com/en/pro-app/latest/get-started/general-options.htm">link</a>. To open a new project, choose “Map” from the “New Blank Template” list.</p>
-<p><img src="images/01-starting-arcgispro-prompt.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>A prompt will appear requesting you to Name and state the location of your project. It is recommended to name your project “LabXX_yourlastname”. Uncheck the “Create a new folder for this project” box. As usual, save your project on the (C:) drive in the same folder that your downloaded data is located.</p>
-<p>The next window is the generic start of a new project in ArcPro. In the centre you will see the standard “Catalog” frame. At the top is the ribbon, which is where the majority of your analysis options can be found. On the left is the standard “Contents” frame, which is similar to that of other Esri products. Tabs, similar to those found in ArcMap, can be found on the right-hand side of the window. When using tools or adjusting symbology, be sure to look here for a relevant tab before exploring the ribbon.</p>
-<p>You will also notice that the Catolog frame is also “tabbed”. This means that you can close the frame without closing ArcPro. It also means that you can have Maps, Catalogs and 3D Scenes all open at the same time. Although this is very cool, be aware that too many tabs are likely to crash ArcPro. Know your computers processing limits and play within it.</p>
-</div>
-<div id="toggling-extentions" class="section level2 unnumbered hasAnchor">
-<h2>Toggling Extentions<a href="time-series-image-analysis.html#toggling-extentions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>With your ArcGIS pro student licence you have access to the full suite of Esri Extensions. In this lab we will be using the “Spatial Analyst” and “Image Analyst” extensions. If you do not toggle these some of the tools you are required to use will be grayed out. In the top ribbon navigate to <strong>Project</strong>. Select “Licensing” and press the “Configure your licening options” button. In the Licensing window press the check mark beside “Image Analyst” and “Spatial Analyst” and select OK and navigate back to the map view. ’</p>
-</div>
-<div id="inserting-a-new-map" class="section level2 unnumbered hasAnchor">
-<h2>Inserting a New Map<a href="time-series-image-analysis.html#inserting-a-new-map" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Without closing the Catalog window, navigate to the “Insert” tab on the ribbon and click on the “New Map” icon.</p>
-<p><img src="images/01-new-map.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>A new topographic map will appear in the centre window. Note that it is separate from the Catalog tab. You can switch back and forth between these as you wish, but recall that there is another Catalog tab on the right-hand side of the screen. When analyzing a map or editing a model, this is the easiest tab to use. For the remainder of the lab, when “Catalog” is mentioned it is referring to this side tab.</p>
-</div>
-<div id="adding-data-to-the-map" class="section level2 unnumbered hasAnchor">
-<h2>Adding Data to the Map<a href="time-series-image-analysis.html#adding-data-to-the-map" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>This process is the exact same as in ArcMap. To add data to the map, navigate to the Pre-Lab folder using Catalog* ,if you save your project in the same folder as you data it should appear, if not right click <strong>Folders</strong> in the Catalog pane and select:</p>
-<p><img src="images/01-add-folder-connection.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>Navigate to where the data is saved and click ok. When you can find the data folder, drag-and-drop the <strong>MKRF_UTM10S_2019_BAP.tif</strong> file into the map window. At this point, you should see an RGB satellite image of the Malcom Knapp Research Forest (Figure <a href="time-series-image-analysis.html#fig:07-true-colour-composite-mkrf">7.1</a>) if the mapview does not immediately pan to the image right click <strong>MKRF_UTM10S_2019_BAP.tif </strong> in the Contents pane and press Zoom to Layer.</p>
+<div id="task-1-calcualting-ndvi-from-a-landsat-image" class="section level2 unnumbered hasAnchor">
+<h2>Task 1: Calcualting NDVI from a Landsat image<a href="time-series-image-analysis.html#task-1-calcualting-ndvi-from-a-landsat-image" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Step 1:</strong> Start a new ArcGIS Pro Map project and drag-and-drop the <strong>MKRF_UTM10S_2019_BAP.tif</strong> file into the map window. At this point, you should see an RGB satellite image of the Malcom Knapp Research Forest (Figure <a href="time-series-image-analysis.html#fig:07-true-colour-composite-mkrf">7.1</a>) if the mapview does not immediately pan to the image right click <strong>MKRF_UTM10S_2019_BAP.tif </strong> in the Contents pane and press Zoom to Layer.</p>
 <p><em>Note: If the catalog pane does not immediately appear in your ArcGIS Pro document use the ribbons at the top to navigate to <strong>View -&gt; Catalog Pane</strong></em></p>
 <p><img src="images/01-catalog-pane.png" width="50%" style="display: block; margin: auto;" /></p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:07-true-colour-composite-mkrf"></span>
@@ -348,61 +321,23 @@ Nicholas Coops</p>
 Figure 7.1: True colour composite of Malcom Knapp Research Forest (MKRF).
 </p>
 </div>
-</div>
-<div id="task-1-calculating-ndvi" class="section level2 unnumbered hasAnchor">
-<h2>Task 1: Calculating NDVI<a href="time-series-image-analysis.html#task-1-calculating-ndvi" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Spectral indices are mathematical equations containing spectral reflectance values from two or more wavelengths used to highlight areas of spectral importance in an image. There are a wide variety of spectral indices used to highlight a variety of different land covers and image properties including burned Areas (Normalized Burn Ratio), urban/ built up areas (Normalized Difference Built-Up Index), and water (Normalized Difference Water Index) to name a few. The Normalized Difference Vegetation Index (NDVI) is a frequently used spectral index that takes advantage of the high near-infrared reflectance and high red absorption properties of healthy vegetation and is therefore often used to quantify vegetation in a remotely sensed multispectral image.</p>
+<p><strong>Best Avaialble Pixel Composites</strong>: To date, you have worked with single Landsat images acquired at one time. Oftentimes, there can be clouds or haze that obstruct parts of an image and reduce the amount of usable data from a single image acquisition. Best Available Pixel Composites address this issue by combining multiple images taken at different times into an “image stack” and creating a new image using only the best cloud-free pixels from the image stack. For this lab you are using a <strong>BAP composite</strong> created from images taken over the <strong>2019 peak growing season</strong>.</p>
+<div id="q1-why-do-you-think-bap-composites-only-use-peak-growing-season-imagery-july-august" class="section level5 unnumbered hasAnchor">
+<h5>Q1: Why do you think BAP composites only use peak growing season imagery (July-August)?<a href="time-series-image-analysis.html#q1-why-do-you-think-bap-composites-only-use-peak-growing-season-imagery-july-august" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p><strong>Step 2:</strong> Spectral indices are mathematical equations containing spectral reflectance values from two or more wavelengths used to highlight areas of spectral importance in an image. There are a wide variety of spectral indices used to highlight a variety of different land covers and image properties including burned Areas (Normalized Burn Ratio), urban/ built up areas (Normalized Difference Built-Up Index), and water (Normalized Difference Water Index) to name a few. The Normalized Difference Vegetation Index (NDVI) is a frequently used spectral index that takes advantage of the high near-infrared reflectance and high red absorption properties of healthy vegetation and is therefore often used to quantify vegetation in a remotely sensed multispectral image.</p>
 <p>NDVI is calculated with the below formula:</p>
 <p><span class="math display">\[
 NDVI=\frac{NIR-Red}{NIR+Red}
 \]</span>
 Where NIR is the near-infrared band (Landsat 7 Band 4) and Red is the red band (Landsat 7 Band 3). The results of this equation should be between -1 and 1 with values less than 0 representing water and values between 0-1 representing different levels of green vegetation.</p>
-<p>ArcGIS Pro contains a built-in tool to calculate NDVI and a series of other spectral indices. To solidify your knowledge of NDVI metric this lab uses the “band arithmetic” function and the above equation to create our own NDVI tool. This is useful because many things we want to calculate with rasters are not built-in to ArcGIS Pro.</p>
 <p>Navigate to the <strong>Imagery</strong> ribbon at the top of your ArcPro window and click the <strong>Raster Function</strong> button.</p>
 <p><img src="images/07-raster-functions.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>The Raster Functions pane should appear, you can either navigate the drop-down menus to <strong>Math-&gt; Band Arithmetic</strong> or use the search function to find the <strong>Band Arithmetic Tool</strong> and click to open.</p>
 <p><img src="images/07-band-arithmetic.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>The “Band Arithmetic Properties” dialogue should appear. Under <strong>“Raster”</strong> use the drop-down menu and select the <strong>MKRF_UTM10s_2019_BAP.tif</strong> layer. If it is not currently in your map view and can use the folder button and navigate to your lab data folder and select the file. Under <strong>“Method”</strong> select <strong>User Defined</strong>. It should look like the screen shot below.</p>
 <p><img src="images/07-band-arithmetic-properties.png" width="60%" style="display: block; margin: auto;" /></p>
-<p>Use your knowledge of spectral indices, the NDVI formula given above and the table below fill in the NDVI calculation for your data.</p>
-<div id="screenshot-1-take-a-screen-shot-of-your-band-arithmetic-equation-and-submit-it-in-your-lab-report." class="section level5 unnumbered hasAnchor">
-<h5>Screenshot 1: Take a screen shot of your band arithmetic equation and submit it in your lab report.<a href="time-series-image-analysis.html#screenshot-1-take-a-screen-shot-of-your-band-arithmetic-equation-and-submit-it-in-your-lab-report." class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<table>
-<thead>
-<tr class="header">
-<th>Band Name</th>
-<th>Bandwidth (<span class="math inline">\(\mu\)</span>m)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Band 1</td>
-<td>0.45 - 0.52</td>
-</tr>
-<tr class="even">
-<td>Band 2</td>
-<td>0.52 - 0.60</td>
-</tr>
-<tr class="odd">
-<td>Band 3</td>
-<td>0.63 - 0.69</td>
-</tr>
-<tr class="even">
-<td>Band 4</td>
-<td>0.77 - 0.90</td>
-</tr>
-<tr class="odd">
-<td>Band 5</td>
-<td>1.55 - 1.75</td>
-</tr>
-<tr class="even">
-<td>Band 6</td>
-<td>2.09 - 2.35</td>
-</tr>
-</tbody>
-</table>
-<p>Table 1: Landsat BAP Composite Band Information</p>
-<p>After taking a screen shot select <strong>“Create new layer”</strong> at the bottom of the window. The output should look something like Figure <a href="time-series-image-analysis.html#fig:07-example-output-ndvi-calculation">7.2</a>.</p>
+<p>Use your knowledge of spectral indices and the NDVI formula given above to fill in the NDVI calculation for your data.</p>
+<p><strong>“Create new layer”</strong> at the bottom of the window. The output should look something like Figure <a href="time-series-image-analysis.html#fig:07-example-output-ndvi-calculation">7.2</a>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:07-example-output-ndvi-calculation"></span>
 <img src="images/07-example-output-ndvi-calculation.png" alt="Example output for the 2019 NDVI raster calculation for MKRF " width="70%" />
 <p class="caption">
@@ -410,11 +345,8 @@ Figure 7.2: Example output for the 2019 NDVI raster calculation for MKRF
 </p>
 </div>
 </div>
-<div id="q1.-what-are-the-minimum-and-maximum-values-of-your-new-2019-ndvi-layer" class="section level5 unnumbered hasAnchor">
-<h5>Q1. What are the minimum and maximum values of your new 2019 NDVI layer?<a href="time-series-image-analysis.html#q1.-what-are-the-minimum-and-maximum-values-of-your-new-2019-ndvi-layer" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-</div>
-<div id="q2.-what-do-the-dark-areas-in-the-image-represent-the-gray-areas-the-white" class="section level5 unnumbered hasAnchor">
-<h5>Q2. What do the dark areas in the image represent? The gray areas? the white?<a href="time-series-image-analysis.html#q2.-what-do-the-dark-areas-in-the-image-represent-the-gray-areas-the-white" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div id="q2.-what-are-the-minimum-and-maximum-values-of-your-new-2019-ndvi-layer" class="section level5 unnumbered hasAnchor">
+<h5>Q2. What are the minimum and maximum values of your new 2019 NDVI layer?<a href="time-series-image-analysis.html#q2.-what-are-the-minimum-and-maximum-values-of-your-new-2019-ndvi-layer" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 </div>
 <div id="q3.-what-information-does-this-type-of-analysis-give-us-when-and-why-might-this-type-of-analysis-be-used" class="section level5 unnumbered hasAnchor">
 <h5>Q3. What information does this type of analysis give us? When and why might this type of analysis be used?<a href="time-series-image-analysis.html#q3.-what-information-does-this-type-of-analysis-give-us-when-and-why-might-this-type-of-analysis-be-used" class="anchor-section" aria-label="Anchor link to header"></a></h5>
@@ -439,8 +371,8 @@ Figure 7.2: Example output for the 2019 NDVI raster calculation for MKRF
 <p><img src="images/07-example-of-aois-for-temporal-profile.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Click on <strong>Export</strong> in the Temporal profile pane and save your chart as a jpeg and submit it in your final report.</p>
 </div>
-<div id="screenshot2-exported-version-of-temporal-profile" class="section level5 unnumbered hasAnchor">
-<h5>Screenshot2: Exported version of temporal profile<a href="time-series-image-analysis.html#screenshot2-exported-version-of-temporal-profile" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div id="screenshot-1-exported-version-of-temporal-profile" class="section level5 unnumbered hasAnchor">
+<h5>Screenshot 1: Exported version of temporal profile<a href="time-series-image-analysis.html#screenshot-1-exported-version-of-temporal-profile" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 </div>
 <div id="q5-examine-your-graph-and-provide-some-comments-on-the-general-trends-you-notice.-hypothesize-on-why-different-points-take-longer-to-recover-or-have-smaller-changes-in-ndvi-values." class="section level5 unnumbered hasAnchor">
 <h5>Q5: Examine your graph and provide some comments on the general trends you notice. Hypothesize on why different points take longer to recover or have smaller changes in NDVI values.<a href="time-series-image-analysis.html#q5-examine-your-graph-and-provide-some-comments-on-the-general-trends-you-notice.-hypothesize-on-why-different-points-take-longer-to-recover-or-have-smaller-changes-in-ndvi-values." class="anchor-section" aria-label="Anchor link to header"></a></h5>
@@ -455,49 +387,18 @@ Figure 7.2: Example output for the 2019 NDVI raster calculation for MKRF
 <p>Select the NDVI layer in the Contents pane, navigate to the Imagery ribbon and select <strong>Change Detection Wizard</strong>. A new pane should appear, under “Change Detection Method” select <strong>Pixel Value Change</strong>. Choose your NDVI multidimensional dataset as the “Input Raster”. “Variable” and “Dimension” should auto fill to NDVI and StdTime. Under “From Slice” select the year 2000 for “To Slice” select 2019 and press next. In the next window select <strong>Absolute</strong> under “Difference Type” and leave the remainder as default and press the Next button at the bottom. The “Classify Difference” pane should appear and you should see a histogram. Uncheck the “Classify the difference in values” button and then press next. Under “Smoothing Neighborhood” select <strong>3x3</strong> and set the “Statistics Fill Method” to <strong>median</strong>. Save your result as a raster dataset and under “Output Dataset” write “ChangeDetection_2000_2019” and press finish.</p>
 <p>Your results should appear in your map area. If you see a gray box right click the layer in the Contents pane and select “Symbology”. Under Primary symbology use the drop down menu and select <strong>Classify</strong>. You should now see an image on your screen that looks something like this:</p>
 <p><img src="images/07-difference-in-ndvi.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>This output shows the difference in NDVI values between the 2000 and 2019 values close to zero mean that no change occurred while negative values represent a decrease in NDVI and positive values an increase in NDVI. In our case we are trying to extract the cut blocks and are therefore looking for decreases in NDVI representing clear-cuts.</p>
-<div id="q7-using-what-you-know-about-ndvi-what-would-cause-an-increase-in-ndvi-values-over-time" class="section level5 unnumbered hasAnchor">
-<h5>Q7: Using what you know about NDVI, what would cause an increase in NDVI values over time?<a href="time-series-image-analysis.html#q7-using-what-you-know-about-ndvi-what-would-cause-an-increase-in-ndvi-values-over-time" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<p>We are now going to use Geoprocessing tools to extract only the areas that have been identified. Navigate to the <strong>Analysis</strong> tab and select <strong>Tools</strong>.</p>
-<p><img src="images/07-analysis-tools.png" width="60%" style="display: block; margin: auto;" /></p>
-<p>The “Geoprocessing” window should appear, in the search bar type “Reclassify” and select the second option <strong>Reclassify (Spatial Analyst Tools)</strong>. The “Reclassify Window” should appear. Under the reclassification table press the <strong>Classify</strong> button and under “Number of Classes” write 2. The table should change and look like this:</p>
+<p><strong>This output shows the difference in NDVI values between the 2000 and 2019 values close to zero mean that no change occurred while negative values represent a decrease in NDVI and positive values an increase in NDVI.</strong></p>
+<p>Next, we will use the NDVI change layer to identify decreases in NDVI representing <strong>cut blocks</strong>.</p>
+<p>We are now going to use Geoprocessing tools to extract only the areas that have been identified. Navigate to the <strong>Analysis</strong> tab and select Tools &gt; <strong>Reclassify (Spatial Analyst Tools)</strong>.</p>
+<p>The “Reclassify Window” should appear. Under the reclassification table press the <strong>Classify</strong> button and under “Number of Classes” write 2. The table should change and look like this:</p>
 <p><img src="images/07-classify-table.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>Change the “End” value in the first class to <strong>-0.05</strong> and the “Start” value in the second class to <strong>-0.049999</strong> and change the new field from 2 to <strong>NODATA</strong>. Run the tool. Your output should be a layer containing only pixels that had a negative change between the year 2000 NDVI image and the year 2019 NDVI image.</p>
-<p>Notice that some of the pixels you have retained are above lakes. Since we are principally concerned with terrestrial vegetation it is common practice to remove pixels that represent water using a water mask. Masking can either be done as a pre-processing step or at the end of our analysis.</p>
+<p><strong>Notice that some of the pixels you have retained are lakes</strong>. Since we are principally concerned with terrestrial vegetation it is common practice to remove pixels that represent water using a water mask. Masking can either be done as a pre-processing step or at the end of our analysis.</p>
 <p>Navigate to the “Analysis” ribbon and select <strong>Tools</strong>. Search for the tool “Extract by Mask”. Under “Input Raster” select your cutblock raster and under feature mask data navigate to the data folder and select the “LakeMask” file. Save your output as “NDVICutblocks” select run.</p>
+<div id="screenshot-2-take-a-screenshot-showing-the-bap-true-color-composite-with-the-cut-blocks-identified-from-the-ndvi-image-overlaid-on-top" class="section level5 unnumbered hasAnchor">
+<h5>Screenshot 2: Take a screenshot showing the BAP true-color composite with the cut blocks identified from the NDVI image overlaid on top<a href="time-series-image-analysis.html#screenshot-2-take-a-screenshot-showing-the-bap-true-color-composite-with-the-cut-blocks-identified-from-the-ndvi-image-overlaid-on-top" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <hr />
 </div>
-</div>
-<div id="task-4-map-creation" class="section level2 unnumbered hasAnchor">
-<h2>Task 4: Map Creation<a href="time-series-image-analysis.html#task-4-map-creation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In this section you will create a map showing the location of NDVI derived cut blocks overtop of your 2019 BAP true colour composite.</p>
-<p>In order to map your NDVI Cutblocks and true colour composite you will need to create a layout, using symbology and ensuring that the map communicates the purpose of your analysis. This process is both a strategic, but also artistic showcase of your data.</p>
-<p>In ArcPro, the process of creating and stylizing a map is slightly different than ArcMap. To create a new layout, navigate to the “Insert” ribbon tab and click “New Layout”.</p>
-<p><img src="images/07-new-layout.png" width="20%" style="display: block; margin: auto;" /></p>
-<p>When the page size and orientation options appear, select the one you wish to use. Be sure to follow lab guidelines when making this selection (ie. 11” x 17” in portrait or landscape).</p>
-<p>To insert your map, select “Map Frame -&gt; Default” under the Insert ribbon tab.</p>
-<p><img src="images/07-map-frame-default.png" width="30%" style="display: block; margin: auto;" /></p>
-<p>A map frame will appear, but it is not active yet. To alter the extent of this frame, select <strong>“Activate”</strong> under the Layout ribbon tab.</p>
-<p><img src="images/07-activate-map-frame.png" width="30%" style="display: block; margin: auto;" /></p>
-<p>You should now be able to Zoom In and Out in the map frame. “Full Extent” is located beside the “Activate” button. If it isn’t acting as you expect, remove any topographic baselayers from your Contents pane.</p>
-<p>To access a particular layer’s symbology or properties, follow standard Arc protocol by right-clicking on the desired layer. Alternatively, you can select the layer in the Contents pane with a single left-click and access the newly activated “Symbology” tab on the left-hand side of the screen. Compared to ArcMap, the symbology options in ArcPro are more intuitive, so please explore.</p>
-<p>Now is the time for your cartographic skills to shine. To design a map of the highest quality you will need to draw on all of you GIS skills. Ensure you include all the standard components of a map along with your artistic flair.</p>
-<p>If you need some inspiration a quick google search for “Design principles for cartography” or browsing through some of the maps featured <a href="https://www.esri.com/en-us/maps-we-love/gallery">here</a> should do the trick.</p>
-<p>Also, be sure to include important data, but also make sure the map is not too cluttered.
-The physical requirements are as follows:</p>
-<ul>
-<li><p>Map should be 11”x17” either as a landscape or portrait layout</p></li>
-<li><p>You should export the map as a pdf</p></li>
-<li><p>Your map should incorporate the suite of standard map element:</p>
-<ul>
-<li>Title</li>
-<li>Scale bar</li>
-<li>Compass</li>
-<li>Legend</li>
-</ul></li>
-<li><p>ONE map showing both NDVIcutblocks and true colour BAP scene.</p></li>
-</ul>
-<hr />
 </div>
 <div id="summary-6" class="section level2 unnumbered hasAnchor">
 <h2>Summary<a href="time-series-image-analysis.html#summary-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
