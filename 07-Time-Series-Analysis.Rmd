@@ -12,7 +12,7 @@ cat(author)
 
 ## Lab Overview {.unnumbered}
 
-In this lab, we will be using Landsat derived Best Available Pixel (BAP) imagery to examine changes in the Malcom Knapp Research Forest over a 19-year time span. In Task 1 you will use the “raster calculator” to calculate NDVI across the study area. In Task 2, you will use ArcPro to visualize a multidimensional NDVI data set and create a temporal profile. In task 3, you will conduct a change detection between two NDVI layers.
+In this lab, we will be using Landsat derived Best Available Pixel (BAP) imagery to examine changes in the Malcom Knapp Research Forest over a 19-year time span. In Task 1 you will use the "raster calculator" to calculate NDVI across the study area. In Task 2, you will use ArcPro to visualize a multidimensional NDVI data set and create a temporal profile. In task 3, you will conduct a change detection between two NDVI layers.
 
 ------------------------------------------------------------------------
 
@@ -24,16 +24,13 @@ In this lab, we will be using Landsat derived Best Available Pixel (BAP) imagery
 - Create a temporal profile to help quantify changes in the image
 - Use the change detection wizard to determine the difference in NDVI from 2000-2019
 
-
 ------------------------------------------------------------------------
 
 ## Deliverables {#lab7-deliverables .unnumbered}
 
-After you have completed the lab you will submit a pdf on Canvas with: 
+<input type="checkbox" unchecked> Answers to the questions posed throughout the lab</input>
 
-<input type="checkbox" unchecked> Answer to 6 lab questions.</input>
-
-<input type="checkbox" unchecked> 2 Screenshots.</input>
+<input type="checkbox" unchecked> 2 Screenshots</input>
 
 ------------------------------------------------------------------------
 
@@ -49,22 +46,16 @@ White, J.C.; Wulder, M.A.; Hobart, G.W.; Luther, J.E.; Hermosilla, T.; Griffiths
 
 ## Task 1: Calcualting NDVI from a Landsat image {.unnumbered}
 
-**Step 1:** Start a new ArcGIS Pro Map project and drag-and-drop the **MKRF_UTM10S_2019_BAP.tif**  file into the map window. At this point, you should see an RGB satellite image of the Malcom Knapp Research Forest (Figure \@ref(fig:07-true-colour-composite-mkrf)) if the mapview does not immediately pan to the image right click **MKRF_UTM10S_2019_BAP.tif ** in the Contents pane and press Zoom to Layer.
-
-_Note: If the catalog pane does not immediately appear in your ArcGIS Pro document use the ribbons at the top to navigate to **View -> Catalog Pane**_
-
-```{r 07-catalog-pane, out.width= "50%", echo = FALSE, fig.align='center'}
-    knitr::include_graphics("images/01-catalog-pane.png")
-```
+**Step 1:** Start a new ArcGIS Pro Map project and drag-and-drop the **MKRF_UTM10S_2019_BAP.tif** file into the map window. At this point, you should see an RGB satellite image of the Malcolm Knapp Research Forest (Figure \@ref(fig:07-true-colour-composite-mkrf)) if the map view does not immediately pan to the image right click **MKRF_UTM10S_2019_BAP.tif ** in the Contents pane and press Zoom to Layer.
 
 ```{r 07-true-colour-composite-mkrf, out.width= "100%", echo = FALSE, fig.align='center', fig.cap=fig_cap}
     knitr::include_graphics("images/07-true-colour-composite-mkrf.png")
     fig_cap <- paste0("True colour composite of Malcom Knapp Research Forest (MKRF).")
 ```
 
-**Best Avaialble Pixel Composites**: To date, you have worked with single Landsat images acquired at one time. Oftentimes, there can be clouds or haze that obstruct parts of an image and reduce the amount of usable data from a single image acquisition. Best Available Pixel Composites address this issue by combining multiple images taken at different times into an "image stack" and creating a new image using only the best cloud-free pixels from the image stack. For this lab you are using a **BAP composite** created from images taken over the **2019 peak growing season**.
+**Best Available Pixel Composites**: To date, you have worked with single Landsat images acquired at one time. Oftentimes, there can be clouds or haze that obstruct parts of an image and reduce the amount of usable data from a single image acquisition. Best Available Pixel Composites address this issue by combining multiple images taken at different times into an "image stack" and creating a new image using only the best cloud-free pixels from the image stack. For this lab you are using a **BAP composite** created from images taken over the **2019 peak growing season**.
 
-##### Q1: Why do you think BAP composites only use peak growing season imagery (July-August)? {.unnumbered}
+##### Q1. Why do you think BAP composites only use peak growing season imagery (July-August)? (5 points) {.unnumbered}
 
 **Step 2:** Spectral indices are mathematical equations containing spectral reflectance values from two or more wavelengths used to highlight areas of spectral importance in an image. There are a wide variety of spectral indices used to highlight a variety of different land covers and image properties including burned Areas (Normalized Burn Ratio), urban/ built up areas (Normalized Difference Built-Up Index), and water (Normalized Difference Water Index) to name a few. The Normalized Difference Vegetation Index (NDVI) is a frequently used spectral index that takes advantage of the high near-infrared reflectance and high red absorption properties of healthy vegetation and is therefore often used to quantify vegetation in a remotely sensed multispectral image. 
 
@@ -87,7 +78,7 @@ The Raster Functions pane should appear, you can either navigate the drop-down m
     knitr::include_graphics("images/07-band-arithmetic.png")
 ```
 
-The “Band Arithmetic Properties” dialogue should appear. Under **“Raster”** use the drop-down menu and select the **MKRF_UTM10s_2019_BAP.tif** layer. If it is not currently in your map view and can use the folder button and navigate to your lab data folder and select the file. Under **“Method”** select **User Defined**. It should look like the screen shot below. 
+The "Band Arithmetic Properties" dialogue should appear. Under **"Raster"** use the drop-down menu and select the **MKRF_UTM10s_2019_BAP.tif** layer. If it is not currently in your map view and can use the folder button and navigate to your lab data folder and select the file. Under **"Method"** select **User Defined**. It should look like the screen shot below. 
 
 ```{r 07-band-arithmetic-properties, out.width= "60%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/07-band-arithmetic-properties.png")
@@ -95,16 +86,16 @@ The “Band Arithmetic Properties” dialogue should appear. Under **“Raster�
 
 Use your knowledge of spectral indices and the NDVI formula given above to fill in the NDVI calculation for your data. 
 
-**“Create new layer”** at the bottom of the window. The output should look something like Figure \@ref(fig:07-example-output-ndvi-calculation). 
+**"Create new layer"** at the bottom of the window. The output should look something like Figure \@ref(fig:07-example-output-ndvi-calculation). 
 
 ```{r 07-example-output-ndvi-calculation, out.width= "70%", echo = FALSE, fig.align='center', fig.cap=fig_cap}
     knitr::include_graphics("images/07-example-output-ndvi-calculation.png")
     fig_cap <- paste0("Example output for the 2019 NDVI raster calculation for MKRF ")
 ```
 
-##### Q2. What are the minimum and maximum values of your new 2019 NDVI layer? {.unnumbered}
+##### Q2. What are the minimum and maximum values of your new 2019 NDVI layer? (5 points) {.unnumbered}
 
-##### Q3. What information does this type of analysis give us? When and why might this type of analysis be used? {.unnumbered}
+##### Q3. What information does this type of analysis give us? When and why might this type of analysis be used? (15 points) {.unnumbered}
 
 ------------------------------------------------------------------------
 
@@ -126,15 +117,15 @@ After opening the multidimensional dataset a new ribbon should appear at the top
 
 Press the play button on the slider to start an animation of NDVI change over time. You can also click and drag the slider to view individual years.
 
-##### Q4: Hypothesize on what is causing the changes in NDVI? Why might the pattern in the south west corner of the timelapse look different from other changes? {.unnumbered}
+##### Q4. Hypothesize on what is causing the changes in NDVI? Why might the pattern in the south west corner of the timelapse look different from other changes? (15 points) {.unnumbered}
 
-Now that you have visualized the imagery, it is time to create a temporal profile help quantify the changes in the images. Right Click on the NDVI layer in the Contents pane and hover over “Create Chart” and select **Temporal Profile**. 
+Now that you have visualized the imagery, it is time to create a temporal profile help quantify the changes in the images. Right Click on the NDVI layer in the Contents pane and hover over "Create Chart" and select **Temporal Profile**. 
 
 ```{r 07-temporal-profile, out.width= "50%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/07-temporal-profile.png")
 ```
 
-The “Temporal Profile” pane should appear on your screen, select “Properties” at the top of this pane. The “Chart Properties” pane should appear. Under “Time series” select “Multiple Locations with one variable” and select “Point” under area of interest. 
+The "Temporal Profile" pane should appear on your screen, select "Properties" at the top of this pane. The "Chart Properties" pane should appear. Under "Time series" select "Multiple Locations with one variable" and select "Point" under area of interest. 
 
 ```{r 07-chart-properties-ndvi, out.width= "50%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/07-chart-properties-ndvi.png")
@@ -148,19 +139,19 @@ Your cursor should change into a coloured dot when hovering over the map pane. C
 
 Click on **Export** in the Temporal profile pane and save your chart as a jpeg and submit it in your final report. 
 
-##### Screenshot 1: Exported version of temporal profile {.unnumbered}
+##### Screenshot 1: Upload a screenshot of your temporal profile. (15 points) {.unnumbered}
 
-##### Q5: Examine your graph and provide some comments on the general trends you notice. Hypothesize on why different points take longer to recover or have smaller changes in NDVI values. {.unnumbered}
+##### Q5. Examine your graph and provide some comments on the general trends you notice. Hypothesize on why different points take longer to recover or have smaller changes in NDVI values. (30 points) {.unnumbered}
 
-##### Q6: Examnine the line representing a water pixel. Does it have a consistant NDVI value? Explain why or why not? {.unnumbered}
+##### Q6. Examnine the line representing a water pixel. Does it have a consistant NDVI value? Explain why or why not? (15 points) {.unnumbered}
 
 ------------------------------------------------------------------------
 
 ## Task 3: Change Detection {.unnumbered}
 
-Select the NDVI layer in the Contents pane, navigate to the Imagery ribbon and select **Change Detection Wizard**. A new pane should appear, under “Change Detection Method” select **Pixel Value Change**.  Choose your NDVI multidimensional dataset as the “Input Raster”. “Variable” and “Dimension” should auto fill to NDVI and StdTime. Under “From Slice” select the year 2000 for “To Slice” select 2019 and press next. In the next window select **Absolute** under “Difference Type” and leave the remainder as default and press the Next button at the bottom. The “Classify Difference” pane should appear and you should see a histogram. Uncheck the “Classify the difference in values” button and then press next.  Under “Smoothing Neighborhood” select **3x3** and set the “Statistics Fill Method” to **median**. Save your result as a raster dataset and under “Output Dataset” write “ChangeDetection_2000_2019” and press finish.
+Select the NDVI layer in the Contents pane, navigate to the Imagery ribbon and select **Change Detection Wizard**. A new pane should appear, under "Change Detection Method" select **Pixel Value Change**.  Choose your NDVI multidimensional dataset as the "Input Raster". "Variable" and "Dimension" should auto fill to NDVI and StdTime. Under "From Slice" select the year 2000 for "To Slice" select 2019 and press next. In the next window select **Absolute** under "Difference Type" and leave the remainder as default and press the Next button at the bottom. The "Classify Difference" pane should appear and you should see a histogram. Uncheck the "Classify the difference in values" button and then press next.  Under "Smoothing Neighborhood" select **3x3** and set the "Statistics Fill Method" to **median**. Save your result as a raster dataset and under "Output Dataset" write "ChangeDetection_2000_2019" and press finish.
 
-Your results should appear in your map area. If you see a gray box right click the layer in the Contents pane and select “Symbology”. Under Primary symbology use the drop down menu and select **Classify**. You should now see an image on your screen that looks something like this:
+Your results should appear in your map area. If you see a gray box right click the layer in the Contents pane and select "Symbology". Under Primary symbology use the drop down menu and select **Classify**. You should now see an image on your screen that looks something like this:
 
 ```{r 07-difference-in-ndvi, out.width= "50%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/07-difference-in-ndvi.png")
@@ -172,19 +163,19 @@ Next, we will use the NDVI change layer to identify decreases in NDVI representi
 
 We are now going to use Geoprocessing tools to extract only the areas that have been identified. Navigate to the **Analysis** tab and select Tools > **Reclassify (Spatial Analyst Tools)**. 
 
-The “Reclassify Window” should appear. Under the reclassification table press the **Classify** button and under “Number of Classes” write 2. The table should change and look like this: 
+The "Reclassify Window" should appear. Under the reclassification table press the **Classify** button and under "Number of Classes" write 2. The table should change and look like this: 
 
 ```{r 07-classify-table, out.width= "50%", echo = FALSE, fig.align='center'}
     knitr::include_graphics("images/07-classify-table.png")
 ```
 
-Change the “End” value in the first class to **-0.05** and the “Start” value in the second class to **-0.049999** and change the new field from 2 to **NODATA**. Run the tool. Your output should be a layer containing only pixels that had a negative change between the year 2000 NDVI image and the year 2019 NDVI image. 
+Change the "End" value in the first class to **-0.05** and the "Start" value in the second class to **-0.049999** and change the new field from 2 to **NODATA**. Run the tool. Your output should be a layer containing only pixels that had a negative change between the year 2000 NDVI image and the year 2019 NDVI image. 
 
 **Notice that some of the pixels you have retained are lakes**. Since we are principally concerned with terrestrial vegetation it is common practice to remove pixels that represent water using a water mask. Masking can either be done as a pre-processing step or at the end of our analysis. 
 
-Navigate to the “Analysis” ribbon and select **Tools**.  Search for the tool “Extract by Mask”. Under “Input Raster” select your cutblock raster and under feature mask data navigate to the data folder and select the “LakeMask” file. Save your output as “NDVICutblocks” select run. 
+Navigate to the "Analysis" ribbon and select **Tools**.  Search for the tool "Extract by Mask". Under "Input Raster" select your cutblock raster and under feature mask data navigate to the data folder and select the "LakeMask" file. Save your output as "NDVICutblocks" select run. 
 
-##### Screenshot 2: Take a screenshot showing the BAP true-color composite with the cut blocks identified from the NDVI image overlaid on top {.unnumbered}
+##### Screenshot 2: Upload a screenshot showing the BAP true-color composite with the cut blocks identified from the NDVI image overlaid on top. (15 points) {.unnumbered}
 
 ------------------------------------------------------------------------
 
