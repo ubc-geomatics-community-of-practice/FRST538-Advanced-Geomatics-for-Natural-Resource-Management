@@ -126,17 +126,17 @@ You will need either an Android or iOS smartphone capable of installing the Aven
 Next, we will set the units to metric. In Settings, navigate to "Units of Measurement" and select "Metric" at the top. Under "Coordinates", ensure that the "Format" is set to a workable coordinate system.
 
 ```{r 02-avenza, out.width= "75%", echo = FALSE}
-    knitr::include_graphics("images/02-avenza.PNG")
+    knitr::include_graphics("images/02-avenza.png")
 ```
 
 ```{r 02-avenza2, out.width= "75%", echo = FALSE}
-    knitr::include_graphics("images/02-avenza2.PNG")
+    knitr::include_graphics("images/02-avenza2.png")
 ```
 
 **Step 4:** Ensure that the Avenza Maps App is allowed to access your location, camera, and photos in your *phone’s settings*.
 
 ```{r 02-phone, out.width= "75%", echo = FALSE}
-    knitr::include_graphics("images/02-phone.PNG")
+    knitr::include_graphics("images/02-phone.png")
 ```
 
 *Important: Personal location is very sensitive information. You should not undertake this exercise at your home or share the coordinates or screenshots of your home location in Avenza Maps with anyone, including the instructor, TA, or other students in this course. Treat personal location information as any other private sensitive information and handle with respect and care.*
