@@ -80,7 +80,7 @@ Click Run. You should now have something like the image below:
 
 ```{r 06-flow-direction, fig.cap=fig_cap, out.width= "100%", echo = FALSE}
   fig_cap <- paste0("Flow Direction.")
-  knitr::include_graphics("images/06-flow-direction.JPG")
+  knitr::include_graphics("images/06-flow-direction.jpg")
 ```
 What direction is water flowing at points A and B? You will need to interpret this raster in your Results and Discussion. Use the ArcGIS Pro documentation to understand the output if necessary.  
 
@@ -100,7 +100,7 @@ To see how different thresholds impact stream identification, change the symbolo
 ##### Q1. What flow accumulation threshold value did you use to create Stream_reclass? (4 points) {.unnumbered}
 
 ```{r 06-streams, out.width= "100%", echo = FALSE}
-  knitr::include_graphics("images/06-streams.JPG")
+  knitr::include_graphics("images/06-streams.jpg")
 ```
 
 Compare your stream network to the streams visible in the ArcGIS satellite basemap and the filled DEM (use the shaded relief symbology for a better visualization). Experiment with different flow accumulation thresholds. What other features could be misclassified as a stream using this method? Find a threshold that captures a realisitc stream network visible in the basemap and DEM, without too many misclassified features.
@@ -110,7 +110,7 @@ Once you have selected a threshold, open the "Reclassify (Spatial Analyst Tools)
 Use the threshold you have selected as the Start and End values. Set the cells representing streams to a "New value" of 1 and all other cells to `NODATA`. Save the new raster as "Stream_reclass".
 
 ```{r 06-reclassify, out.width= "50%", echo = FALSE}
-  knitr::include_graphics("images/06-reclassify.JPG")
+  knitr::include_graphics("images/06-reclassify.jpg")
 ```
 
 Zoom into the reclassified flow accumulation raster to see your stream network.
@@ -166,7 +166,7 @@ Streams with a gradient \<20% are considered "fish bearing" in the absence of ot
 **Step 2:** Open the "Zonal Statistics" tool. This tool calculates summary statistics in one raster layer within "zones" or groups defined in another layer. This is a very useful tool for many applications! We will use the unique IDs from the "StreamLinks" layer as "zones" to calculate the change in elevation within each stream segment.
 
 ```{r 06-zonal-statistics, out.width= "50%", echo = FALSE}
-  knitr::include_graphics("images/06-zonal-statistics.JPG")
+  knitr::include_graphics("images/06-zonal-statistics.jpg")
 ```
 
 The resulting raster shows the gain in elevation within each stream segment.
@@ -194,17 +194,17 @@ Create a new field called "PercentGradient" and use the "Calculate Field" tool t
 Stream width is defined using the entire channel width, not just the part with water currently flowing through it. Use the examples below to guide you with your mapping. You should be able to see channels for streams in orders 2-4, but order 1 streams will likely not be visible. We will assign these streams an average width of 1 m. Note that there are more sophisticated methods to calculate stream width from a DEM!
 
 ```{r 06-s4-stream, out.width= "100%", echo = FALSE}
-  knitr::include_graphics("images/06-s4-stream.JPG")
+  knitr::include_graphics("images/06-s4-stream.jpg")
 ```
 S4 Stream
 
 ```{r 06-s3-stream, out.width= "100%", echo = FALSE}
-knitr::include_graphics("images/06-s3-stream.JPG")
+knitr::include_graphics("images/06-s3-stream.jpg")
 ```
 S3 Stream
 
 ```{r 06-s2-stream, out.width= "100%", echo = FALSE}
-knitr::include_graphics("images/06-s2-stream.JPG")
+knitr::include_graphics("images/06-s2-stream.jpg")
 ```
 S2 Stream (it is barely visible)
 
@@ -247,7 +247,7 @@ If you get an "Invalid Field" error it is because the variable in the "Expressio
 **Step 1:** Use the following table to assign a stream class (S1-S6) based on average channel width and fish bearing potential. Once a stream class is assigned, the Reserve Zone defines the region around the stream where harvest is prohibited and the Management Zone defines the region where limited harvest is permitted. Note that not all stream classes may be present in the dataset. (We do not have the S1 large rivers class in the study area so no need to include it.)
 
 ```{r 06-stream-class, out.width= "100%", echo = FALSE}
-  knitr::include_graphics("images/06-stream-class.PNG")
+  knitr::include_graphics("images/06-stream-class.png")
 ```
 
 In the "StreamNetwork_join" layer, create a new attribute called "Reserve_BufferDist" and set the "Number Format" to "Numeric".
@@ -261,7 +261,7 @@ The Reserve Zones and Management Zones are typically measured from the edge of t
 Your code should look something like the following. Make sure the highlighted attribute names in the Expression field match the names in your table, depending on how you named your columns they may look slightly different than this screenshot!:
 
 ```{r 06-stream-network-python, out.width= "100%", echo = FALSE}
-  knitr::include_graphics("images/06-stream-network-python.JPG")
+  knitr::include_graphics("images/06-stream-network-python.jpg")
 ```
 
 Use the following template in the "Code Block" to calculate the buffer distance for the remaining Reserve Zones (S1-S6). For classes with a width of 0 set the buffer distance to 0.
@@ -305,7 +305,7 @@ Open the "Watershed" tool and parameterize it as follows:
 The output will be a new raster where the cell values correspond to each unique watershed catchment. You should have something like the following (do not worry if it is not exactly the same as the screenshot):
 
 ```{r 06-map-layers, out.width= "100%", echo = FALSE}
-  knitr::include_graphics("images/06-map-layers.JPG")
+  knitr::include_graphics("images/06-map-layers.jpg")
 ```
 
 **Step 4:** Finally, we will create contour lines to help interpret the the DEM. Open the "Contour" tool and parameterize it as follows:

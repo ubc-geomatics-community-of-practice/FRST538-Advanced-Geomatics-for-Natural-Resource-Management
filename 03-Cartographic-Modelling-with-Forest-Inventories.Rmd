@@ -9,6 +9,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Cartographic Modelling with Forest Inventories {#cartographic-modelling-with-forest-inventories}
 
+Written by
+```{r results='asis', echo=FALSE}
+cat(author)
+```
+
 ## Lab Overview {.unnumbered}
 
 Old growth forests are an important feature found in many types of forested ecosystems. They are characterized not only by their age but also by their complex composition and structure. (LePage & Banner, 2014) Old growth stands boast the highest rates of biodiversity and provide critical habitat for rare, threatened, or endangered species. Additionally, they contribute to soil fertility by supporting intricate soil structures formed by micro-organisms, fungi, and plants.
@@ -37,13 +42,13 @@ By the end of this lab, you will be able to:
 
 ## Deliverables {#lab3-deliverables .unnumbered}
 
-<input type="checkbox" unchecked> A map showing the study area and the distribution of difference in calculated old-growth percentage and targets, by polygon (20 points)</input>
+<input type="checkbox" unchecked> Responses to the questions posed throughout the lab on the course management system (60 points)</input>
 
 <input type="checkbox" unchecked> A table with fields for total area, old-growth area, and percentage old growth (10 points)</input>
 
-<input type="checkbox" unchecked> A screenshot of the python expression created for Task 2 Step 8 (10 points)</input>
+<input type="checkbox" unchecked> A screenshot of the python expression created for Task 2 (10 points)</input>
 
-<input type="checkbox" unchecked> Responses to the questions posed throughout the lab on the course management system (60 points)</input>
+<input type="checkbox" unchecked> A map showing the study area and the distribution of difference in calculated old-growth percentage and targets, by polygon (20 points)</input>
 
 ------------------------------------------------------------------------
 
@@ -53,14 +58,14 @@ All data for this lab are accessible via the UBC PostgreSQL server. Instructions
 
 | Layer Name | File Name | Reference Link |
 |----|----|----|
-| Vegetation Resource Inventory 2024 | `veg_comp_lyr_r1_poly_2024` | <https://catalogue.data.gov.bc.ca/dataset/vri-2024-forest-vegetation-composite-layer-1-l1-> |
-| Generalized Forest Cover Ownership | `f_own` | <https://catalogue.data.gov.bc.ca/dataset/generalized-forest-cover-ownership> |
-| Cumulative Effects Framework: Human Disturbance (current) | `bc_cef_human_disturbance_2023` | <https://catalogue.data.gov.bc.ca/dataset/bc-cumulative-effects-framework-human-disturbance-current> |
-| Landscape Units (current) | `landscape_units` | <https://catalogue.data.gov.bc.ca/dataset/landscape-units-of-british-columbia-current> |
+| Vegetation Resource Inventory 2024 | `vancouver_island_vri` | <https://catalogue.data.gov.bc.ca/dataset/vri-2024-forest-vegetation-composite-layer-1-l1-> |
+| Generalized Forest Cover Ownership | `vancouver_island_own` | <https://catalogue.data.gov.bc.ca/dataset/generalized-forest-cover-ownership> |
+| Cumulative Effects Framework: Human Disturbance (current) | `vancouver_island_human_disturbance` | <https://catalogue.data.gov.bc.ca/dataset/bc-cumulative-effects-framework-human-disturbance-current> |
+| Landscape Units (current) | `vancouver_island_landscape_units` | <https://catalogue.data.gov.bc.ca/dataset/landscape-units-of-british-columbia-current> |
 
 ------------------------------------------------------------------------
 
-## Task 1: Query and export data from UBC PostgreSQL server
+## Task 1: Query and export data from UBC PostgreSQL server {.unnumbered}
 
 **Step 1:** Ensure that you are authenticated through UBC myVPN. If you are at UBC, use your dedicated ethernet port or connect via the ubcsecure wireless network. If you are away from campus, you will need to first connect to the UBC myVPN service using Cisco AnyConnect Secure Mobility Client. Only authenticated users with a Campus Wide Login (CWL) who are connected to the UBC myVPN may access the UBC PostgreSQL server. However, if you are not a UBC student, then you can just download the data directly from the BC Data Catalogue.
 
@@ -277,7 +282,7 @@ Open the **Pairwise Intersect** tool again:
 
 ## Task 2: Calculate Percentage of Old Growth Forests {.unnumbered}
 
-**Step 1:** Now that we have prepared our layers, we will calculate the percentage of old growth forest within each land unit. To do this we’ll create a key that uniquely identifies each Landscape Unit + BEC zone + BEC subzone combination. This is a good opportunity to close any unneeded attribute tables or turn off layer visibility.
+**Step 1:** Now that we have prepared our layers, we will calculate the percentage of old growth forest within each land unit. To do this we will create a key that uniquely identifies each Landscape Unit + BEC zone + BEC subzone combination. This is a good opportunity to close any unneeded attribute tables or turn off layer visibility.
 
 Add a new field to CrownForest_LU attribute table:
 
@@ -291,9 +296,9 @@ In the `LU_BEC =` textbox, paste:
 str(!landscape_unit_code!) + "_" + str(bec_zone_c!) + str(!bec_subzone!)
 ```
 
-The str() function ensures that the attribute values are treated as text strings rather than numeric values for addition. The result should be a new string of landscape unit, bec zone and subzone.
+The `str()` function ensures that the attribute values are treated as text strings rather than numeric values for addition. The result should be a new string of landscape unit, BEC zone and subzone.
 
-**Step 2:** We will now calculate the total amount of forested area in each of these landscape unit/bec zone combination. With the **Dissolve** tool, we can create new polygons from the landscape identifier:
+**Step 2:** We will now calculate the total amount of forested area in each of these landscape unit/BEC zone combination. With the **Dissolve** tool, we can create new polygons from the landscape identifier:
 
 -   Input Table: `CrownForest_LU`
 -   Dissolve Fields: LU_BEC
@@ -356,7 +361,7 @@ def calcPercent(old, total):
     return (old / total) * 100
 ```
 
-**Step 7:** Classify Percent Compared to Provincial Targets.
+**Step 6:** Classify Percent Compared to Provincial Targets.
 
 The target percentages of old growth forests are dependent on the BEC subzone. Instead of assigning each LU–BEC to a discrete class (Low / Intermediate / High), in this step you will create a numeric field representing the difference between the calculated percent old growth and the subzone-specific “high” threshold. You will do this by writing your own python expression to calculate the difference. Refer to the code in step 10 for a guideline on how to build the function. This difference (PercentOld - HighThreshold) is what you will visualize as a continuous gradient:
 
@@ -393,6 +398,8 @@ diff_from_high(!LU_BEC!, !PercentOld!)
 
 Now write your own expression to calculate the difference between the old growth target and the calculate old growth percentage.
 
+##### Screenshot 1. Upload a screenshot of your python expression (10 points) {.unnumbered}
+
 **Pro Tip:** The subzone code can be isolated by removing the first 5 characters with a slice. This would look something like this:
 
 ``` python
@@ -401,13 +408,13 @@ bec = lu_bec[5:]
 
 We read this as _give me all the elements from position 5 to the end of the string_, where the colon `:` separates the "from" and "to" values. If we leave one side of the colon blank, then we are saying we want whatever the minimum (left side of colon) or maximum (right side of colon) number of elements is. Python indexing starts at zero, so if I want to return the letter "g" from the alphabet string `abcdefghijklmnopqrstuvwxyz`, then I would write something like `alphabet[6]` or if I want all letters before "g", then `alphabet[:5]`.
 
-**Step 8:** Visualize Results
+**Step 7:** Visualize Results
 
 In the **Contents** pane, right-click the `Total_Forest_Area` layer and select **Symbology**. In the Symbology panel, set the **Field** to `DiffFromHigh`. This will display the data based on the values in that field. Under **Primary symbology**, choose **Graduated Colors** (a gradient).
 
 Select a **color ramp** that makes sense for your data. For values that represent *low to high* differences, use a single-hue light-to-dark ramp (e.g., light yellow → dark green). Avoid using colors that are difficult to interpret (e.g., bright rainbow colors). - Think about your audience—pick colors that clearly show the trend and are readable to someone with color-vision deficiencies.Adjust the **classification method and number of classes** if needed (e.g., Natural Breaks, Quantile). This determines how your data values are grouped into color ranges.
 
-**Step 9:** Create the Layout Map
+**Step 8:** Create the Layout Map
 
 From the top ribbon, go to the **Insert** tab and select **New Layout**. Choose an appropriate page size (e.g., Letter 8.5x11 or A4). Use the **Map Frame** tool to insert your map view into the layout. Resize and position it so it fills most of the page. - Add essential map elements: - **Title**: Insert a descriptive map title (e.g., *“Difference from High Threshold in Total Forest Area”*).
 
@@ -421,7 +428,7 @@ From the top ribbon, go to the **Insert** tab and select **New Layout**. Choose 
 
 Rearrange and resize elements so the layout looks clean, balanced, and easy to read. Avoid cluttering the map with overlapping items.
 
-**Step 10:** Create the Layout Map
+**Step 9:** Create the Layout Map
 
 When you are satisfied with the layout, go to **Share → Export Layout**. Choose **PNG** as the file format.
 
@@ -433,7 +440,9 @@ When you are satisfied with the layout, go to **Share → Export Layout**. Choos
 
 ##### Q6. How might the scale and resolution of GIS data affect the accuracy of old growth assessments? (10 points) {.unnumbered}
 
-##### Map 1. Upload your map that shows the 
+##### Table 1. A table with fields for total area, old-growth area, and percentage old growth. (10 points) {.unnumbered}
+
+##### Map 1. A map showing the study area and the distribution of difference in calculated old-growth percentage and targets, by polygon. (20 points) {.unnumbered}
 
 ------------------------------------------------------------------------
 

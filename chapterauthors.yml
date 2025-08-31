@@ -1,16 +1,20 @@
-spectral-signatures:
-  author: Nicholas Coops
-network-analysis:
-  author: Paul Pickell
+exploring-spatial-data:
+  author: Paul D. Pickell
+
+collecting-and-processing-gnss-data:
+  author: Paul D. Pickell
+  
+cartographic-modelling-with-forest-inventories:
+  author: Sadie Russell
+
+remote-sensing-image-analysis:
+  author: Paul D. Pickell 
+  
 lidar-for-forest-management:
-  author: Spencer Dakin-Kuiper
-lidar-terrain:
-  author: Spencer Dakin-Kuiper
-suitability-overlay-analysis:
-  author: Annie Mejaes
-geographically-weighted-analysis:
-  author: Paul Pickell
+  author: Hana Travers-Smith
+
+terrain-and-riparian-area-management:
+  author: Hana Travers-Smith
+
 time-series-image-analysis:
   author: Nicholas Coops
-machine-learning-for-classification:
-  author: Claire Armour

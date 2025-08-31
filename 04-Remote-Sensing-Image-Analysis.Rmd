@@ -55,7 +55,7 @@ Note: It is important to recognize that the visible part of the EMS is the only 
 Figure 1 shows the reflective characteristics of various features of the earth's surface. Use this figure to answer **Q1 -- Q4.**
 
 ```{r 04-em, out.width= "60%", echo = FALSE}
-    knitr::include_graphics("images/04-em.PNG")
+    knitr::include_graphics("images/04-em.png")
 ```
 
 Figure 1: Reflectance characteristics of various features at different wavelengths.
@@ -69,7 +69,7 @@ Figure 1: Reflectance characteristics of various features at different wavelengt
 ##### Q4. Broadleaf and needle leaf vegetation reflect the same amount at 0.7 microns. What causes this? Is there something contained in the foliage of both types of vegetation which causes identical spectral signatures? How does this pattern in spectral reflectance affect how we see live vegetation? (4 points) {.unnumbered}
 
 ```{r 04-em2, out.width= "60%", echo = FALSE}
-    knitr::include_graphics("images/04-em2.PNG")
+    knitr::include_graphics("images/04-em2.png")
 ```
 
 Figure 2: Reflectance characteristics of unknown features.
@@ -106,7 +106,7 @@ kable(df, align = 'c')
 To start the lab, Open a new ArcPro map project and open the the L5047026subset_19990922_7B.dat  file into the map window. At this point, you should see an RGB satellite image of the city of Vancouver (Figure 3) if the mapview does not immediately pan to the image right click "L5047026subset_19990922_7B.dat" in the Contents pane and press Zoom to Layer.  
 
 ```{r 04-sat, out.width= "75%", echo = FALSE}
-    knitr::include_graphics("images/04-sat.PNG")
+    knitr::include_graphics("images/04-sat.png")
 ```
 
 Figure 3: True colour composite of Vancouver. 
@@ -116,7 +116,7 @@ Figure 3: True colour composite of Vancouver.
 It is now time to explore your imagery. Right click the box beside the "L5047026subset_19990922_7B.dat"  file in the Contents pane and select "Properties". Use the menu on the left-hand side and select the Source page and the Raster Information drop down. 
 
 ```{r 04-source, out.width= "75%", echo = FALSE}
-    knitr::include_graphics("images/04-source.PNG")
+    knitr::include_graphics("images/04-source.png")
 ```
 
 After clicking on the Raster Information, the tab should open up, and display important information about the image, such as dimensions (number of pixels in the X or Y directions), data types, projection, and resolution (listed as Projection/Pixel). This information can be useful when examining an image!
@@ -130,7 +130,7 @@ We will now use ArcGIS pro to zoom and pan our image.
 Navigate to the "Map" tab in the top ribbon and hover you mouse of the "Explore" tool:
 
 ```{r 04-explore, out.width= "75%", echo = FALSE}
-    knitr::include_graphics("images/04-explore.PNG")
+    knitr::include_graphics("images/04-explore.png")
 ```
 
 Use these controls to zoom in and out of the image and to pan around, try to zoom into the Fraser estuary and navigate upriver. Included in the Navigate pane there are also the fixed zoom tools the previous extent arrows and the small globe which will zoom to the full extent of your data. 
@@ -140,19 +140,19 @@ Use these controls to zoom in and out of the image and to pan around, try to zoo
 Traditionally, single bands of imagery are shown in greyscale, with dark areas shown in black, and light areas shown in white, with anything else shown in shades of grey. Think of each pixel representing a number between 0-255 (byte data type range, the same one of this very imagery!), with areas colored pure black representing the number 0, and areas colored pure white representing the number 255, and everything else is a shade of grey increasing in lightness from 1-254. The figure below displays this concept. 
 
 ```{r 04-grey, out.width= "75%", echo = FALSE}
-    knitr::include_graphics("images/04-grey.PNG")
+    knitr::include_graphics("images/04-grey.png")
 ```
 
 Right click on you data in the Contents pane and select "Symbology". The symbology pane should appear on the side of you window. Press the drop down menu and select "Stretch".
 
 ```{r 04-strech, out.width= "75%", echo = FALSE}
-    knitr::include_graphics("images/04-strech.PNG")
+    knitr::include_graphics("images/04-strech.png")
 ```
 
 In the next dropdown menu labeled "Band" select "Band 4 NIR" you should see the same image as below. 
 
 ```{r 04-gorge, out.width= "75%", echo = FALSE}
-    knitr::include_graphics("images/04-gorge.PNG")
+    knitr::include_graphics("images/04-gorge.png")
 ```
 
 You have now displayed a single band of greyscale imagery. Pixels that are bright/light/white have high amounts of light being reflected back to the sensor in this section of the EMS. Pixels that are dark/black have high amounts of absorption in this section of the EMS. Behind the shades of grey are actual numeric values indicating how much reflected light the sensor detected (from 0-255), that indicate what shade of black/grey/white should be shown. This is a critical component to understand about remote sensing data sets.
@@ -168,7 +168,7 @@ Any combination where this is not the case is a false color composite, where the
 In the Symbology pane navigate back to "RGB" in the first dropdown list. Your image should change back into a True Colour Landsat image where band3 red is visualised as red, band 2 green is visualised as green and band1 blue is visualised as blue. 
 
 ```{r 04-sat2, out.width= "75%", echo = FALSE}
-    knitr::include_graphics("images/04-sat.PNG")
+    knitr::include_graphics("images/04-sat.png")
 ```
 
 By displaying false colour composites it is possible to display many band combinations of the image on our screen. This time you will create a false colour composite by selecting different wavelengths (bands) to be visualized using red, green and blue colours.
@@ -181,13 +181,13 @@ Band 7 using Blue
 You should see the following:
 
 ```{r 04-fc1, out.width= "75%", echo = FALSE}
-    knitr::include_graphics("images/04-fc1.PNG")
+    knitr::include_graphics("images/04-fc1.png")
 ```
 
 You can experiment with different band combinations by visualizing different bands using Red, Green and Blue. A standard false colour composite, for instance, has Band 4 visualized using Red, Band 3 visualized using Green and Band 2 visualized using Blue, as shown below:
 
 ```{r 04-fc2, out.width= "75%", echo = FALSE}
-    knitr::include_graphics("images/04-fc1.PNG")
+    knitr::include_graphics("images/04-fc1.png")
 ```
 
 Right click the bands in the Contents pane, turn different layers on and off by clicking the check mark off and on in the IsVisible section. Zoom and pan around and investigate different areas of Vancouver that you may know. Feel free to use google maps or google earth to help you orient yourself. 
@@ -209,19 +209,19 @@ Now it is time to examine your data set more thoroughly. At the beginning of thi
 Right click on the "L5047026subset_19990922_7B.dat" file in the Contents pane and select Create Chart -> Spectral Profile. The Chart Properties pane should appear on the right side of your screen and the spectral chart on the bottom.
 
 ```{r 04-chart, out.width= "75%", echo = FALSE}
-    knitr::include_graphics("images/04-chart.PNG")
+    knitr::include_graphics("images/04-chart.png")
 ```
 
 In the Chart properties pane under "Define an Area of Interest" select "point" and then click a pixel on your map. Change the colour and select a variety of different points representing different land cover types (Urban, forest, water, crops, snow). 
 
 ```{r 04-points, out.width= "75%", echo = FALSE}
-    knitr::include_graphics("images/04-points.PNG")
+    knitr::include_graphics("images/04-points.png")
 ```
 
 You might have to resize the spectral chart at the bottom of your screen in order to see the different profiles. Your chart should look something like this.
 
 ```{r 04-spectral, out.width= "75%", echo = FALSE}
-    knitr::include_graphics("images/04-spectral.PNG")
+    knitr::include_graphics("images/04-spectral.png")
 ```
 
 ##### Q13. Examine your new spectral profile chart, compare the different profiles you created to the spectral profiles in figures 1 and 2. What is different between them? Why might your spectral curves look different than the ones above? (4 points) {.unnumbered}
@@ -245,19 +245,19 @@ While ArcGIS Pro contains a built-in tool to calculate NDVI and a series of othe
 Navigate to the Imagery ribbon at the top of your ArcPro window and click the "Raster Function" button.
 
 ```{r 04-raster, out.width= "40%", echo = FALSE}
-    knitr::include_graphics("images/04-raster.PNG")
+    knitr::include_graphics("images/04-raster.png")
 ```
 
 The Raster Functions pane should appear, you can either navigate the drop down menus to "Math", "Band Arithmetic" or use the search function to find the "Band Arithmetic Tool" and click to open. 
 
 ```{r 04-raster-func, out.width= "75%", echo = FALSE}
-    knitr::include_graphics("images/04-raster-func.PNG")
+    knitr::include_graphics("images/04-raster-func.png")
 ```
 
 The "Band Arithmetic Properties" dialogue should appear. Under "Raster" use the drop down menu and select the "L5047026subset_19990922_7B.dat" layer. If it is not currently in your map view and can use the folder button and navigate to  your lab data folder and select the file. Under "Method" select "User Defined". It should look like the screen shot below. 
 
 ```{r 04-band-math, out.width= "75%", echo = FALSE}
-    knitr::include_graphics("images/04-band-math.PNG")
+    knitr::include_graphics("images/04-band-math.png")
 ```
 
 Use your knowledge of spectral indices, the NDVI formula given above and the table below fill in the NDVI calculation for your data. 
@@ -285,13 +285,13 @@ In the section you will use a technique called Thresholding and the reclassify t
 Under the "Analysis" ribbon select the "Tools" option. The geoprocessing window should appear in the search box type "Reclassify" and select the option with (Spatial Analyst Tools) beside it. 
 
 ```{r 04-reclass, out.width= "75%", echo = FALSE}
-    knitr::include_graphics("images/04-reclass.PNG")
+    knitr::include_graphics("images/04-reclass.png")
 ```
 
 Under "Input Raster" select the NDVI layer you created earlier. The "Reclass field" should automatically become completed and a "Reclassification" table should appear below. 
 
 ```{r 04-class-tab, out.width= "75%", echo = FALSE}
-    knitr::include_graphics("images/04-class-tab.PNG")
+    knitr::include_graphics("images/04-class-tab.png")
 ```
 
 Select the Classify button at the bottom of the table and enter "2" for number of classes. For the first row leave "Start" as is and enter 0.49999 under "End", change "New" to "NODATA". For the second row change "Start" to "0.5" and leave "End" as 1 and change "New" to "1".  The Reclassify tool takes the old values from a raster and creates a new raster layer with updated values based on the Reclassification table. In this case we as saying take all pixels with values less than 0.5 and make them NODATA or blank and take all pixels with values greater than 0.5 and make their value 1. Under "Output Raster" save the file as "High_Vegetation_Areas" and press "Run" at the bottom of the window. 
