@@ -1,7 +1,3 @@
-------------------------------------------------------------------------
-
-------------------------------------------------------------------------
-
 ```{r echo=FALSE}
 yml_content <- yaml::read_yaml("chapterauthors.yml")
 author <- yml_content[["cartographic-modelling-with-forest-inventories"]][["author"]]
