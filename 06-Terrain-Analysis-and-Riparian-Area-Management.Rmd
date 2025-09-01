@@ -39,9 +39,9 @@ More background information on riparian forest management in British Columbia ca
 
 ## Deliverables {#lab6-deliverables .unnumbered}
 
-<input type="checkbox" unchecked> Answers to the questions posed throughout the lab</input>
+<input type="checkbox" unchecked> Answers to the questions posed throughout the lab. (75 points)</input>
 
-<input type="checkbox" unchecked> Map that shows the stream network polylines (symbolized by stream class), watersheds, contours, an inset map showing example stream network and Riparian Management Areas, and text showing the total area in the Reserve and Management Zone and the length of the stream network.</input>
+<input type="checkbox" unchecked> Map that shows the stream network polylines (symbolized by stream class), watersheds, contours, an inset map showing example stream network and Riparian Management Areas, and text showing the total area in the Reserve and Management Zone and the length of the stream network. (25 points)</input>
 
 ------------------------------------------------------------------------
 

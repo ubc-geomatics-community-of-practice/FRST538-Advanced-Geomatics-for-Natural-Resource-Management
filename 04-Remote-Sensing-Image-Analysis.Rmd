@@ -26,15 +26,15 @@ The aim of this lab is to learn about the electromagnetic spectrum (EMS), unders
 
 ### Deliverables {#lab4-deliverables .unnumbered}
 
-<input type="checkbox" unchecked> Answers to the questions posed throughout the lab</input>
+<input type="checkbox" unchecked> Answers to the questions posed throughout the lab. (31 points)</input>
 
-<input type="checkbox" unchecked> Screenshot of your spectral plot</input>
+<input type="checkbox" unchecked> Screenshot of your spectral plot. (2 points)</input>
 
-<input type="checkbox" unchecked> Screenshot of you band arithmetic equation for NDVI</input>
+<input type="checkbox" unchecked> Screenshot of you band arithmetic equation for NDVI. (2 points)</input>
 
-<input type="checkbox" unchecked> Four screenshots of your false-colour composites</input>
+<input type="checkbox" unchecked> Four screenshots of your false-colour composites. (40 points)</input>
 
-<input type="checkbox" unchecked> Map that shows your High_Vegetation_Areas and Urban_area layers overtop the provided Landsat Imagery. Pick appropriate colours and transparency for each layer.</input>
+<input type="checkbox" unchecked> Map that shows your High_Vegetation_Areas and Urban_area layers overtop the provided Landsat Imagery. Pick appropriate colours and transparency for each layer. (25 points)</input>
  
 ------------------------------------------------------------------------
 

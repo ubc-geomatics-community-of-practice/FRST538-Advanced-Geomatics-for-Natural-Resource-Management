@@ -27,17 +27,13 @@ Oftentimes, you will need to collect and display your own data. There are many p
 
 ### Deliverables {#lab2-deliverables .unnumbered}
 
-<input type="checkbox" unchecked> Answers to the questions posed throughout the lab</input>
+<input type="checkbox" unchecked> Responses to the questions posed throughout the lab on the course management system. (57 points)</input>
 
-<input type="checkbox" unchecked> Screenshots of your Trimble GNSS Planning tool charts (your settings must be visible in all the screenshots):</input>
-- Number of Satellites
-- DOPs
-- Iono Information
-- Sky Plot
+<input type="checkbox" unchecked> Screenshots of your Trimble GNSS Planning tool charts (your settings must be visible in all the screenshots): Number of Satellites, DOPs, Iono Information, Sky Plot. (8 points)</input>
 
-<input type="checkbox" unchecked> Map of the "True" and "Observed" points</input>
+<input type="checkbox" unchecked> Map of the "True" and "Observed" points. (25 points)</input>
 
-<input type="checkbox" unchecked> Table of accuracy and precision calculated values</input>
+<input type="checkbox" unchecked> Table of accuracy and precision calculated values. (10 points)</input>
 
 ------------------------------------------------------------------------
 

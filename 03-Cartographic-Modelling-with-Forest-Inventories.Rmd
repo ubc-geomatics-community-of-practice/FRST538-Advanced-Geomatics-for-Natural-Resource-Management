@@ -42,13 +42,13 @@ By the end of this lab, you will be able to:
 
 ## Deliverables {#lab3-deliverables .unnumbered}
 
-<input type="checkbox" unchecked> Responses to the questions posed throughout the lab on the course management system (60 points)</input>
+<input type="checkbox" unchecked> Responses to the questions posed throughout the lab on the course management system. (60 points)</input>
 
-<input type="checkbox" unchecked> A table with fields for total area, old-growth area, and percentage old growth (10 points)</input>
+<input type="checkbox" unchecked> A table with fields for total area, old-growth area, and percentage old growth. (10 points)</input>
 
-<input type="checkbox" unchecked> A screenshot of the python expression created for Task 2 (10 points)</input>
+<input type="checkbox" unchecked> A screenshot of the python expression created for Task 2. (10 points)</input>
 
-<input type="checkbox" unchecked> A map showing the study area and the distribution of difference in calculated old-growth percentage and targets, by polygon (20 points)</input>
+<input type="checkbox" unchecked> A map showing the study area and the distribution of difference in calculated old-growth percentage and targets, by polygon. (20 points)</input>
 
 ------------------------------------------------------------------------
 

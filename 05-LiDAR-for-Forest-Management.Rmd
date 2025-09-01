@@ -33,9 +33,11 @@ knitr::include_graphics('images/05-river_pointcloud.png')
 
 ### Deliverables {#lab5-deliverables .unnumbered}
 
-<input type="checkbox" unchecked> Answers to the questions posed throughout the lab</input>
+<input type="checkbox" unchecked> Answers to the questions posed throughout the lab. (60 points) </input>
 
-<input type="checkbox" unchecked> Screenshots of CHM and final 3D scene</input>
+<input type="checkbox" unchecked> Screenshot of your Canopy Height Model (CHM). (15 points)</input>
+
+<input type="checkbox" unchecked> Screenshot of final 3D ArcGIS Pro Scene. (15 points)</input>
 
 ------------------------------------------------------------------------
 
