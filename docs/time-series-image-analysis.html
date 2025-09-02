@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Lab: 7 Time Series Analysis | FRST 538: Advanced Geomatics for Natural Resource Management</title>
   <meta name="description" content="Open Educational Resources for FRST 538 course at the University of British Columbia" />
-  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.44 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Lab: 7 Time Series Analysis | FRST 538: Advanced Geomatics for Natural Resource Management" />
   <meta property="og:type" content="book" />
@@ -23,15 +23,15 @@
 <meta name="author" content="Paul D. Pickell" />
 
 
-<meta name="date" content="2024-11-22" />
+<meta name="date" content="2025-09-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="lidar-for-forest-management.html"/>
-<link rel="next" href="machine-learning-for-classification.html"/>
+<link rel="prev" href="terrain-and-riparian-area-management.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -144,117 +144,91 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-use-these-resources"><i class="fa fa-check"></i>How to use these resources</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-get-involved"><i class="fa fa-check"></i>How to get involved</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="network-analysis.html"><a href="network-analysis.html"><i class="fa fa-check"></i><b>1</b> Salmon Stream Network Analysis</a>
+<li class="chapter" data-level="1" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html"><i class="fa fa-check"></i><b>1</b> Exploring Spatial Data</a>
 <ul>
-<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#lab-overview"><i class="fa fa-check"></i>Lab Overview</a></li>
-<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#learning-objectives"><i class="fa fa-check"></i>Learning Objectives</a></li>
-<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#lab1-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
-<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#data"><i class="fa fa-check"></i>Data</a></li>
-<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#task-1-create-stream-segments"><i class="fa fa-check"></i>Task 1: Create stream segments</a></li>
-<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#task-2-create-routes-and-apply-topology"><i class="fa fa-check"></i>Task 2: Create routes and apply topology</a></li>
-<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#task-3-record-stream-attributes-with-linear-referencing"><i class="fa fa-check"></i>Task 3: Record stream attributes with linear referencing</a></li>
-<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#task-4-trace-the-network"><i class="fa fa-check"></i>Task 4: Trace the network</a></li>
-<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#task-5-overlay-and-query-the-network"><i class="fa fa-check"></i>Task 5: Overlay and query the network</a></li>
-<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#final-report"><i class="fa fa-check"></i>Final Report</a></li>
-<li class="chapter" data-level="" data-path="network-analysis.html"><a href="network-analysis.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#lab-overview"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#learning-objectives"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#lab1-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#data"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#task-1-create-an-arcgis-pro-project"><i class="fa fa-check"></i>Task 1: Create an ArcGIS Pro Project</a></li>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#task-2-find-your-own-spatial-datasets"><i class="fa fa-check"></i>Task 2: Find your own spatial datasets</a></li>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#task-3-inspect-and-examine-your-spatial-data-in-arcgis-pro"><i class="fa fa-check"></i>Task 3: Inspect and Examine your Spatial Data in ArcGIS Pro</a></li>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#task-4-visualize-your-spatial-data-in-arcgis-pro"><i class="fa fa-check"></i>Task 4: Visualize your Spatial Data in ArcGIS Pro</a></li>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#summary"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="lidar-terrain.html"><a href="lidar-terrain.html"><i class="fa fa-check"></i><b>2</b> LiDAR, terrain models and geovisualization</a>
+<li class="chapter" data-level="2" data-path="collecting-and-processing-gnss-data.html"><a href="collecting-and-processing-gnss-data.html"><i class="fa fa-check"></i><b>2</b> Collecting and processing GNSS data</a>
 <ul>
-<li class="chapter" data-level="" data-path="lidar-terrain.html"><a href="lidar-terrain.html#lab-overview-1"><i class="fa fa-check"></i>Lab Overview</a></li>
-<li class="chapter" data-level="" data-path="lidar-terrain.html"><a href="lidar-terrain.html#learning-objectives-1"><i class="fa fa-check"></i>Learning Objectives</a></li>
-<li class="chapter" data-level="" data-path="lidar-terrain.html"><a href="lidar-terrain.html#lab2-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
-<li class="chapter" data-level="" data-path="lidar-terrain.html"><a href="lidar-terrain.html#lab2-data"><i class="fa fa-check"></i>Data</a></li>
-<li class="chapter" data-level="" data-path="lidar-terrain.html"><a href="lidar-terrain.html#task-1-load-and-explore-the-lidar-data"><i class="fa fa-check"></i>Task 1: Load and explore the LiDAR data</a></li>
-<li class="chapter" data-level="" data-path="lidar-terrain.html"><a href="lidar-terrain.html#task-2-create-a-dtm-using-built-in-arcgis-functions"><i class="fa fa-check"></i>Task 2: Create a DTM using built-in ArcGIS functions</a></li>
-<li class="chapter" data-level="" data-path="lidar-terrain.html"><a href="lidar-terrain.html#task-3-pre-process-data-for-interpolation"><i class="fa fa-check"></i>Task 3: Pre-process data for interpolation</a></li>
-<li class="chapter" data-level="" data-path="lidar-terrain.html"><a href="lidar-terrain.html#task-4-raster-interpolation"><i class="fa fa-check"></i>Task 4: Raster interpolation</a></li>
-<li class="chapter" data-level="" data-path="lidar-terrain.html"><a href="lidar-terrain.html#task-5-visually-interpret-differences"><i class="fa fa-check"></i>Task 5: Visually interpret differences</a></li>
-<li class="chapter" data-level="" data-path="lidar-terrain.html"><a href="lidar-terrain.html#task-6-quantitatively-interpret-the-differences-and-calculate-statistics-for-each-zone"><i class="fa fa-check"></i>Task 6: Quantitatively interpret the differences and calculate statistics for each zone</a></li>
-<li class="chapter" data-level="" data-path="lidar-terrain.html"><a href="lidar-terrain.html#task-7-create-a-map-document"><i class="fa fa-check"></i>Task 7: Create a map document</a></li>
-<li class="chapter" data-level="" data-path="lidar-terrain.html"><a href="lidar-terrain.html#task-8-exploring-scenes"><i class="fa fa-check"></i>Task 8: Exploring Scenes</a></li>
-<li class="chapter" data-level="" data-path="lidar-terrain.html"><a href="lidar-terrain.html#summary-1"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="collecting-and-processing-gnss-data.html"><a href="collecting-and-processing-gnss-data.html#lab-overview-1"><i class="fa fa-check"></i>Lab Overview</a>
+<ul>
+<li class="chapter" data-level="" data-path="collecting-and-processing-gnss-data.html"><a href="collecting-and-processing-gnss-data.html#learning-objectives-1"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="collecting-and-processing-gnss-data.html"><a href="collecting-and-processing-gnss-data.html#lab2-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html"><i class="fa fa-check"></i><b>3</b> Suitability and Overlay Analysis</a>
-<ul>
-<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#lab-overview-2"><i class="fa fa-check"></i>Lab Overview</a></li>
-<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#learning-objectives-2"><i class="fa fa-check"></i>Learning Objectives</a></li>
-<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#lab3-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
-<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#data-1"><i class="fa fa-check"></i>Data</a>
-<ul>
-<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#data-organization"><i class="fa fa-check"></i>Data Organization</a></li>
-<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#files-to-create"><i class="fa fa-check"></i>Files to Create</a></li>
+<li class="chapter" data-level="" data-path="collecting-and-processing-gnss-data.html"><a href="collecting-and-processing-gnss-data.html#task-1-preparing-for-gnss-data-collection"><i class="fa fa-check"></i>Task 1: Preparing for GNSS Data Collection</a></li>
+<li class="chapter" data-level="" data-path="collecting-and-processing-gnss-data.html"><a href="collecting-and-processing-gnss-data.html#task-2-collect-gnss-data"><i class="fa fa-check"></i>Task 2: Collect GNSS Data</a></li>
+<li class="chapter" data-level="" data-path="collecting-and-processing-gnss-data.html"><a href="collecting-and-processing-gnss-data.html#task-3-assess-precision-accuracy-and-possible-errors"><i class="fa fa-check"></i>Task 3: Assess Precision, Accuracy, and Possible Errors</a></li>
+<li class="chapter" data-level="" data-path="collecting-and-processing-gnss-data.html"><a href="collecting-and-processing-gnss-data.html#summary-1"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-1-export-relevant-data-from-biologically-important-areas"><i class="fa fa-check"></i>Task 1: Export Relevant Data from Biologically Important Areas</a></li>
-<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-2-identify-the-bia-of-the-humpback-whale-that-is-not-within-the-established-marine-sanctuary"><i class="fa fa-check"></i>Task 2: Identify the BIA of the Humpback Whale that is not within the established Marine Sanctuary</a></li>
-<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-3-calculate-the-density-of-cetacean-sightings-using-the-bia-for-humpback-whales"><i class="fa fa-check"></i>Task 3: Calculate the Density of Cetacean Sightings using the BIA for Humpback Whales</a></li>
-<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-4-extract-the-boats-from-ocean-uses-and-identity-the-vessels-within-the-bia-polygons"><i class="fa fa-check"></i>Task 4: Extract the Boats from Ocean Uses and Identity the Vessels within the BIA Polygons</a></li>
-<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#task-5-calculate-suitability-and-identify-most-suitable-locations-for-the-marine-sanctuary"><i class="fa fa-check"></i>Task 5: Calculate Suitability and Identify Most Suitable Locations for the Marine Sanctuary</a></li>
-<li class="chapter" data-level="" data-path="suitability-overlay-analysis.html"><a href="suitability-overlay-analysis.html#summary-2"><i class="fa fa-check"></i>Summary</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html"><i class="fa fa-check"></i><b>4</b> Analyzing Green Equity Using Geographically Weighted Regression</a>
+<li class="chapter" data-level="3" data-path="cartographic-modelling-with-forest-inventories.html"><a href="cartographic-modelling-with-forest-inventories.html"><i class="fa fa-check"></i><b>3</b> Cartographic Modelling with Forest Inventories</a>
 <ul>
-<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#lab-overview-3"><i class="fa fa-check"></i>Lab Overview</a></li>
-<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#learning-objectives-3"><i class="fa fa-check"></i>Learning Objectives</a></li>
-<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#lab4-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
-<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#lab4-data"><i class="fa fa-check"></i>Data</a></li>
-<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#task-1-visualize-census-data"><i class="fa fa-check"></i>Task 1: Visualize census data</a></li>
-<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#task-2-calculate-ndvi-from-a-landsat-satellite-image"><i class="fa fa-check"></i>Task 2: Calculate NDVI from a Landsat satellite image</a></li>
-<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#task-3-model-ndvi-using-census-characteristics"><i class="fa fa-check"></i>Task 3: Model NDVI using census characteristics</a>
-<ul>
-<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#ordinary-least-square-regression"><i class="fa fa-check"></i>Ordinary Least Square Regression</a></li>
-<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#geographically-weighted-regression-1"><i class="fa fa-check"></i>Geographically Weighted Regression</a></li>
+<li class="chapter" data-level="" data-path="cartographic-modelling-with-forest-inventories.html"><a href="cartographic-modelling-with-forest-inventories.html#lab-overview-2"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="cartographic-modelling-with-forest-inventories.html"><a href="cartographic-modelling-with-forest-inventories.html#learning-objectives-2"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="cartographic-modelling-with-forest-inventories.html"><a href="cartographic-modelling-with-forest-inventories.html#lab3-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="cartographic-modelling-with-forest-inventories.html"><a href="cartographic-modelling-with-forest-inventories.html#data-1"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="cartographic-modelling-with-forest-inventories.html"><a href="cartographic-modelling-with-forest-inventories.html#task-1-query-and-export-data-from-ubc-postgresql-server"><i class="fa fa-check"></i>Task 1: Query and export data from UBC PostgreSQL server</a></li>
+<li class="chapter" data-level="" data-path="cartographic-modelling-with-forest-inventories.html"><a href="cartographic-modelling-with-forest-inventories.html#task-2-calculate-percentage-of-old-growth-forests"><i class="fa fa-check"></i>Task 2: Calculate Percentage of Old Growth Forests</a></li>
+<li class="chapter" data-level="" data-path="cartographic-modelling-with-forest-inventories.html"><a href="cartographic-modelling-with-forest-inventories.html#references"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="" data-path="cartographic-modelling-with-forest-inventories.html"><a href="cartographic-modelling-with-forest-inventories.html#summary-2"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="geographically-weighted-regression.html"><a href="geographically-weighted-regression.html#summary-3"><i class="fa fa-check"></i>Summary</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="spectral-signatures.html"><a href="spectral-signatures.html"><i class="fa fa-check"></i><b>5</b> Getting to know Remote Sensing and spectral signatures</a>
+<li class="chapter" data-level="4" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html"><i class="fa fa-check"></i><b>4</b> Remote Sensing Imagery Analysis</a>
 <ul>
-<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#lab-overview-4"><i class="fa fa-check"></i>Lab Overview</a></li>
-<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#learning-objectives-4"><i class="fa fa-check"></i>Learning Objectives</a></li>
-<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#lab5-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
-<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#data-2"><i class="fa fa-check"></i>Data</a></li>
-<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#task-1-the-electromagnetic-spectrum"><i class="fa fa-check"></i>Task 1: The Electromagnetic Spectrum</a></li>
-<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#task-2-landsat-5-bands-the-ems-arcgis-pro-software"><i class="fa fa-check"></i>Task 2: Landsat 5 Bands, the EMS, &amp; ArcGIS Pro Software</a></li>
-<li class="chapter" data-level="" data-path="spectral-signatures.html"><a href="spectral-signatures.html#summary-4"><i class="fa fa-check"></i>Summary</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html"><i class="fa fa-check"></i><b>6</b> Lidar for Forest Management</a>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#lab-overview-3"><i class="fa fa-check"></i>Lab Overview</a>
 <ul>
-<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#lab-overview-5"><i class="fa fa-check"></i>Lab Overview</a></li>
-<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#learning-objectives-5"><i class="fa fa-check"></i>Learning Objectives</a></li>
-<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#lab6-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
-<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#data-3"><i class="fa fa-check"></i>Data</a></li>
-<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#software"><i class="fa fa-check"></i>Software</a></li>
-<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#lab-set-up"><i class="fa fa-check"></i>Lab Set up</a></li>
-<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-1-load-rgb-imagery"><i class="fa fa-check"></i>Task 1: Load RGB Imagery</a></li>
-<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-2-load-and-explore-the-lidar-data"><i class="fa fa-check"></i>Task 2: Load and Explore the LiDAR Data</a></li>
-<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-3-read-multiple-las-files-into-lascatolog-object"><i class="fa fa-check"></i>Task 3: Read Multiple LAS Files into LAScatolog object</a></li>
-<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-4-create-digital-elevation-model-dem"><i class="fa fa-check"></i>Task 4: Create Digital Elevation Model (DEM)</a></li>
-<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-5-create-a-canopy-height-model"><i class="fa fa-check"></i>Task 5: Create a Canopy Height Model</a></li>
-<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-6-extract-metrics-from-the-point-clouds"><i class="fa fa-check"></i>Task 6: Extract Metrics From the Point Clouds</a></li>
-<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#task-7-individual-tree-detection"><i class="fa fa-check"></i>Task 7: Individual Tree Detection</a></li>
-<li class="chapter" data-level="" data-path="lidar-for-forest-management.html"><a href="lidar-for-forest-management.html#summary-5"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#learning-objectives-3"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#lab4-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#data-2"><i class="fa fa-check"></i>Data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#task-1-the-ems"><i class="fa fa-check"></i>Task 1: The EMS</a></li>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#task-2-landsat-5-bands-the-ems-arcpro-software"><i class="fa fa-check"></i>Task 2: Landsat 5 Bands, the EMS &amp; ArcPro Software</a></li>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#task-3-calculating-ndvi-and-built-up-index"><i class="fa fa-check"></i>Task 3: Calculating NDVI and Built Up Index</a></li>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#task-4-reclassifying-spectral-indices-and-map-making"><i class="fa fa-check"></i>Task 4: Reclassifying Spectral Indices and Map Making</a></li>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#summary-3"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html"><i class="fa fa-check"></i><b>5</b> LiDAR for Forest Management</a>
+<ul>
+<li class="chapter" data-level="" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html#lab-overview-4"><i class="fa fa-check"></i>Lab Overview</a>
+<ul>
+<li class="chapter" data-level="" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html#learning-objectives-4"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html#lab5-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html#data-3"><i class="fa fa-check"></i>Data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html#task-1-load-and-understand-lidar-data-in-a-map-project"><i class="fa fa-check"></i>Task 1: Load and understand LiDAR data in a Map Project</a></li>
+<li class="chapter" data-level="" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html#task-2-create-a-dem-dsm-and-chm"><i class="fa fa-check"></i>Task 2: Create a DEM, DSM and CHM</a></li>
+<li class="chapter" data-level="" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html#task-3-mapping-tree-tops"><i class="fa fa-check"></i>Task 3: Mapping Tree Tops</a></li>
+<li class="chapter" data-level="" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html#task-4-visualization-in-3d"><i class="fa fa-check"></i>Task 4: Visualization in 3D</a></li>
+<li class="chapter" data-level="" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html#summary-4"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html"><i class="fa fa-check"></i><b>6</b> Terrain Analysis and Riparian Area Management</a>
+<ul>
+<li class="chapter" data-level="" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html#lab-overview-5"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html#learning-objectives-5"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html#lab-background"><i class="fa fa-check"></i>Lab Background</a></li>
+<li class="chapter" data-level="" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html#lab6-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html#data-4"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html#task-1-prepare-the-dem-and-map-stream-networks"><i class="fa fa-check"></i>Task 1: Prepare the DEM and Map Stream Networks</a></li>
+<li class="chapter" data-level="" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html#task-2-extract-stream-characteristics"><i class="fa fa-check"></i>Task 2: Extract Stream Characteristics</a></li>
+<li class="chapter" data-level="" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html#task-3-mapping-watersheds-and-riparian-management-areas"><i class="fa fa-check"></i>Task 3: Mapping Watersheds and Riparian Management Areas</a></li>
+<li class="chapter" data-level="" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html#summary-5"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html"><i class="fa fa-check"></i><b>7</b> Time Series Analysis</a>
 <ul>
 <li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#lab-overview-6"><i class="fa fa-check"></i>Lab Overview</a></li>
 <li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#learning-objectives-6"><i class="fa fa-check"></i>Learning Objectives</a></li>
 <li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#lab7-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
-<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#data-4"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#data-5"><i class="fa fa-check"></i>Data</a></li>
 <li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#task-1-calcualting-ndvi-from-a-landsat-image"><i class="fa fa-check"></i>Task 1: Calcualting NDVI from a Landsat image</a></li>
 <li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#task-2-time-series-analysis"><i class="fa fa-check"></i>Task 2: Time Series Analysis</a></li>
 <li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#task-3-change-detection"><i class="fa fa-check"></i>Task 3: Change Detection</a></li>
 <li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#summary-6"><i class="fa fa-check"></i>Summary</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html"><i class="fa fa-check"></i><b>8</b> Machine Learning for Classification</a>
-<ul>
-<li class="chapter" data-level="" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html#lab-overview-7"><i class="fa fa-check"></i>Lab Overview</a></li>
-<li class="chapter" data-level="" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html#learning-objectives-7"><i class="fa fa-check"></i>Learning Objectives</a></li>
-<li class="chapter" data-level="" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html#lab8-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
-<li class="chapter" data-level="" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html#data-5"><i class="fa fa-check"></i>Data</a></li>
-<li class="chapter" data-level="" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html#task-1-creating-training-data"><i class="fa fa-check"></i>Task 1: Creating training data</a></li>
-<li class="chapter" data-level="" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html#task-2-training-a-random-forest-random-forest-algorithm"><i class="fa fa-check"></i>Task 2: Training a Random Forest (Random Forest Algorithm)</a></li>
-<li class="chapter" data-level="" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html#task-3-interpreting-classification-results"><i class="fa fa-check"></i>Task 3: Interpreting Classification Results</a></li>
-<li class="chapter" data-level="" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html#task-4-making-a-map"><i class="fa fa-check"></i>Task 4: Making a Map</a></li>
-<li class="chapter" data-level="" data-path="machine-learning-for-classification.html"><a href="machine-learning-for-classification.html#summary-7"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -298,13 +272,12 @@ Nicholas Coops</p>
 </div>
 <div id="lab7-deliverables" class="section level2 unnumbered hasAnchor">
 <h2>Deliverables<a href="time-series-image-analysis.html#lab7-deliverables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>After you have completed the lab you will submit a pdf on Canvas with:</p>
-<p><input type="checkbox" unchecked> Answer to 6 lab questions.</input></p>
-<p><input type="checkbox" unchecked> 2 Screenshots.</input></p>
+<p><input type="checkbox" unchecked> Answers to the questions posed throughout the lab</input></p>
+<p><input type="checkbox" unchecked> 2 Screenshots</input></p>
 <hr />
 </div>
-<div id="data-4" class="section level2 unnumbered hasAnchor">
-<h2>Data<a href="time-series-image-analysis.html#data-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="data-5" class="section level2 unnumbered hasAnchor">
+<h2>Data<a href="time-series-image-analysis.html#data-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The data for this lab consists of a Landsat derived BAP imagery from the year 2000 – 2019. Information on this dataset and direction for downloading similar datasets can be found here:</p>
 <p>White, J.C.; Wulder, M.A.; Hobart, G.W.; Luther, J.E.; Hermosilla, T.; Griffiths, P.; Coops, N.C.; Hall, R.J.; Hostert, P.; Dyk, A.; et al. Pixel-based image compositing for large-area dense time series applications and science. Can. J. Remote Sens. 2014, 40, 192–212, <a href="doi:10.1080/07038992.2014.945827" class="uri">doi:10.1080/07038992.2014.945827</a>.</p>
 <p><a href="https://github.com/saveriofrancini/bap">https://github.com/saveriofrancini/bap</a></p>
@@ -312,18 +285,16 @@ Nicholas Coops</p>
 </div>
 <div id="task-1-calcualting-ndvi-from-a-landsat-image" class="section level2 unnumbered hasAnchor">
 <h2>Task 1: Calcualting NDVI from a Landsat image<a href="time-series-image-analysis.html#task-1-calcualting-ndvi-from-a-landsat-image" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Step 1:</strong> Start a new ArcGIS Pro Map project and drag-and-drop the <strong>MKRF_UTM10S_2019_BAP.tif</strong> file into the map window. At this point, you should see an RGB satellite image of the Malcom Knapp Research Forest (Figure <a href="time-series-image-analysis.html#fig:07-true-colour-composite-mkrf">7.1</a>) if the mapview does not immediately pan to the image right click <strong>MKRF_UTM10S_2019_BAP.tif </strong> in the Contents pane and press Zoom to Layer.</p>
-<p><em>Note: If the catalog pane does not immediately appear in your ArcGIS Pro document use the ribbons at the top to navigate to <strong>View -&gt; Catalog Pane</strong></em></p>
-<p><img src="images/01-catalog-pane.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><strong>Step 1:</strong> Start a new ArcGIS Pro Map project and drag-and-drop the <strong>MKRF_UTM10S_2019_BAP.tif</strong> file into the map window. At this point, you should see an RGB satellite image of the Malcolm Knapp Research Forest (Figure <a href="time-series-image-analysis.html#fig:07-true-colour-composite-mkrf">7.1</a>) if the map view does not immediately pan to the image right click <strong>MKRF_UTM10S_2019_BAP.tif </strong> in the Contents pane and press Zoom to Layer.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:07-true-colour-composite-mkrf"></span>
 <img src="images/07-true-colour-composite-mkrf.png" alt="True colour composite of Malcom Knapp Research Forest (MKRF)." width="100%" />
 <p class="caption">
 Figure 7.1: True colour composite of Malcom Knapp Research Forest (MKRF).
 </p>
 </div>
-<p><strong>Best Avaialble Pixel Composites</strong>: To date, you have worked with single Landsat images acquired at one time. Oftentimes, there can be clouds or haze that obstruct parts of an image and reduce the amount of usable data from a single image acquisition. Best Available Pixel Composites address this issue by combining multiple images taken at different times into an “image stack” and creating a new image using only the best cloud-free pixels from the image stack. For this lab you are using a <strong>BAP composite</strong> created from images taken over the <strong>2019 peak growing season</strong>.</p>
-<div id="q1-why-do-you-think-bap-composites-only-use-peak-growing-season-imagery-july-august" class="section level5 unnumbered hasAnchor">
-<h5>Q1: Why do you think BAP composites only use peak growing season imagery (July-August)?<a href="time-series-image-analysis.html#q1-why-do-you-think-bap-composites-only-use-peak-growing-season-imagery-july-august" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p><strong>Best Available Pixel Composites</strong>: To date, you have worked with single Landsat images acquired at one time. Oftentimes, there can be clouds or haze that obstruct parts of an image and reduce the amount of usable data from a single image acquisition. Best Available Pixel Composites address this issue by combining multiple images taken at different times into an “image stack” and creating a new image using only the best cloud-free pixels from the image stack. For this lab you are using a <strong>BAP composite</strong> created from images taken over the <strong>2019 peak growing season</strong>.</p>
+<div id="q1.-why-do-you-think-bap-composites-only-use-peak-growing-season-imagery-july-august-5-points" class="section level5 unnumbered hasAnchor">
+<h5>Q1. Why do you think BAP composites only use peak growing season imagery (July-August)? (5 points)<a href="time-series-image-analysis.html#q1.-why-do-you-think-bap-composites-only-use-peak-growing-season-imagery-july-august-5-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p><strong>Step 2:</strong> Spectral indices are mathematical equations containing spectral reflectance values from two or more wavelengths used to highlight areas of spectral importance in an image. There are a wide variety of spectral indices used to highlight a variety of different land covers and image properties including burned Areas (Normalized Burn Ratio), urban/ built up areas (Normalized Difference Built-Up Index), and water (Normalized Difference Water Index) to name a few. The Normalized Difference Vegetation Index (NDVI) is a frequently used spectral index that takes advantage of the high near-infrared reflectance and high red absorption properties of healthy vegetation and is therefore often used to quantify vegetation in a remotely sensed multispectral image.</p>
 <p>NDVI is calculated with the below formula:</p>
 <p><span class="math display">\[
@@ -345,11 +316,11 @@ Figure 7.2: Example output for the 2019 NDVI raster calculation for MKRF
 </p>
 </div>
 </div>
-<div id="q2.-what-are-the-minimum-and-maximum-values-of-your-new-2019-ndvi-layer" class="section level5 unnumbered hasAnchor">
-<h5>Q2. What are the minimum and maximum values of your new 2019 NDVI layer?<a href="time-series-image-analysis.html#q2.-what-are-the-minimum-and-maximum-values-of-your-new-2019-ndvi-layer" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div id="q2.-what-are-the-minimum-and-maximum-values-of-your-new-2019-ndvi-layer-5-points" class="section level5 unnumbered hasAnchor">
+<h5>Q2. What are the minimum and maximum values of your new 2019 NDVI layer? (5 points)<a href="time-series-image-analysis.html#q2.-what-are-the-minimum-and-maximum-values-of-your-new-2019-ndvi-layer-5-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 </div>
-<div id="q3.-what-information-does-this-type-of-analysis-give-us-when-and-why-might-this-type-of-analysis-be-used" class="section level5 unnumbered hasAnchor">
-<h5>Q3. What information does this type of analysis give us? When and why might this type of analysis be used?<a href="time-series-image-analysis.html#q3.-what-information-does-this-type-of-analysis-give-us-when-and-why-might-this-type-of-analysis-be-used" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div id="q3.-what-information-does-this-type-of-analysis-give-us-when-and-why-might-this-type-of-analysis-be-used-15-points" class="section level5 unnumbered hasAnchor">
+<h5>Q3. What information does this type of analysis give us? When and why might this type of analysis be used? (15 points)<a href="time-series-image-analysis.html#q3.-what-information-does-this-type-of-analysis-give-us-when-and-why-might-this-type-of-analysis-be-used-15-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <hr />
 </div>
 </div>
@@ -361,8 +332,8 @@ Figure 7.2: Example output for the 2019 NDVI raster calculation for MKRF
 <p>After opening the multidimensional dataset a new ribbon should appear at the top called Time along with a slider at the top of the map pane.</p>
 <p><img src="images/07-slider.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Press the play button on the slider to start an animation of NDVI change over time. You can also click and drag the slider to view individual years.</p>
-<div id="q4-hypothesize-on-what-is-causing-the-changes-in-ndvi-why-might-the-pattern-in-the-south-west-corner-of-the-timelapse-look-different-from-other-changes" class="section level5 unnumbered hasAnchor">
-<h5>Q4: Hypothesize on what is causing the changes in NDVI? Why might the pattern in the south west corner of the timelapse look different from other changes?<a href="time-series-image-analysis.html#q4-hypothesize-on-what-is-causing-the-changes-in-ndvi-why-might-the-pattern-in-the-south-west-corner-of-the-timelapse-look-different-from-other-changes" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div id="q4.-hypothesize-on-what-is-causing-the-changes-in-ndvi-why-might-the-pattern-in-the-south-west-corner-of-the-timelapse-look-different-from-other-changes-15-points" class="section level5 unnumbered hasAnchor">
+<h5>Q4. Hypothesize on what is causing the changes in NDVI? Why might the pattern in the south west corner of the timelapse look different from other changes? (15 points)<a href="time-series-image-analysis.html#q4.-hypothesize-on-what-is-causing-the-changes-in-ndvi-why-might-the-pattern-in-the-south-west-corner-of-the-timelapse-look-different-from-other-changes-15-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Now that you have visualized the imagery, it is time to create a temporal profile help quantify the changes in the images. Right Click on the NDVI layer in the Contents pane and hover over “Create Chart” and select <strong>Temporal Profile</strong>.</p>
 <p><img src="images/07-temporal-profile.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>The “Temporal Profile” pane should appear on your screen, select “Properties” at the top of this pane. The “Chart Properties” pane should appear. Under “Time series” select “Multiple Locations with one variable” and select “Point” under area of interest.</p>
@@ -371,14 +342,14 @@ Figure 7.2: Example output for the 2019 NDVI raster calculation for MKRF
 <p><img src="images/07-example-of-aois-for-temporal-profile.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Click on <strong>Export</strong> in the Temporal profile pane and save your chart as a jpeg and submit it in your final report.</p>
 </div>
-<div id="screenshot-1-exported-version-of-temporal-profile" class="section level5 unnumbered hasAnchor">
-<h5>Screenshot 1: Exported version of temporal profile<a href="time-series-image-analysis.html#screenshot-1-exported-version-of-temporal-profile" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div id="screenshot-1-upload-a-screenshot-of-your-temporal-profile.-15-points" class="section level5 unnumbered hasAnchor">
+<h5>Screenshot 1: Upload a screenshot of your temporal profile. (15 points)<a href="time-series-image-analysis.html#screenshot-1-upload-a-screenshot-of-your-temporal-profile.-15-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 </div>
-<div id="q5-examine-your-graph-and-provide-some-comments-on-the-general-trends-you-notice.-hypothesize-on-why-different-points-take-longer-to-recover-or-have-smaller-changes-in-ndvi-values." class="section level5 unnumbered hasAnchor">
-<h5>Q5: Examine your graph and provide some comments on the general trends you notice. Hypothesize on why different points take longer to recover or have smaller changes in NDVI values.<a href="time-series-image-analysis.html#q5-examine-your-graph-and-provide-some-comments-on-the-general-trends-you-notice.-hypothesize-on-why-different-points-take-longer-to-recover-or-have-smaller-changes-in-ndvi-values." class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div id="q5.-examine-your-graph-and-provide-some-comments-on-the-general-trends-you-notice.-hypothesize-on-why-different-points-take-longer-to-recover-or-have-smaller-changes-in-ndvi-values.-30-points" class="section level5 unnumbered hasAnchor">
+<h5>Q5. Examine your graph and provide some comments on the general trends you notice. Hypothesize on why different points take longer to recover or have smaller changes in NDVI values. (30 points)<a href="time-series-image-analysis.html#q5.-examine-your-graph-and-provide-some-comments-on-the-general-trends-you-notice.-hypothesize-on-why-different-points-take-longer-to-recover-or-have-smaller-changes-in-ndvi-values.-30-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 </div>
-<div id="q6-examnine-the-line-representing-a-water-pixel.-does-it-have-a-consistant-ndvi-value-explain-why-or-why-not" class="section level5 unnumbered hasAnchor">
-<h5>Q6: Examnine the line representing a water pixel. Does it have a consistant NDVI value? Explain why or why not?<a href="time-series-image-analysis.html#q6-examnine-the-line-representing-a-water-pixel.-does-it-have-a-consistant-ndvi-value-explain-why-or-why-not" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div id="q6.-examnine-the-line-representing-a-water-pixel.-does-it-have-a-consistant-ndvi-value-explain-why-or-why-not-15-points" class="section level5 unnumbered hasAnchor">
+<h5>Q6. Examnine the line representing a water pixel. Does it have a consistant NDVI value? Explain why or why not? (15 points)<a href="time-series-image-analysis.html#q6.-examnine-the-line-representing-a-water-pixel.-does-it-have-a-consistant-ndvi-value-explain-why-or-why-not-15-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <hr />
 </div>
 </div>
@@ -395,8 +366,8 @@ Figure 7.2: Example output for the 2019 NDVI raster calculation for MKRF
 <p>Change the “End” value in the first class to <strong>-0.05</strong> and the “Start” value in the second class to <strong>-0.049999</strong> and change the new field from 2 to <strong>NODATA</strong>. Run the tool. Your output should be a layer containing only pixels that had a negative change between the year 2000 NDVI image and the year 2019 NDVI image.</p>
 <p><strong>Notice that some of the pixels you have retained are lakes</strong>. Since we are principally concerned with terrestrial vegetation it is common practice to remove pixels that represent water using a water mask. Masking can either be done as a pre-processing step or at the end of our analysis.</p>
 <p>Navigate to the “Analysis” ribbon and select <strong>Tools</strong>. Search for the tool “Extract by Mask”. Under “Input Raster” select your cutblock raster and under feature mask data navigate to the data folder and select the “LakeMask” file. Save your output as “NDVICutblocks” select run.</p>
-<div id="screenshot-2-take-a-screenshot-showing-the-bap-true-color-composite-with-the-cut-blocks-identified-from-the-ndvi-image-overlaid-on-top" class="section level5 unnumbered hasAnchor">
-<h5>Screenshot 2: Take a screenshot showing the BAP true-color composite with the cut blocks identified from the NDVI image overlaid on top<a href="time-series-image-analysis.html#screenshot-2-take-a-screenshot-showing-the-bap-true-color-composite-with-the-cut-blocks-identified-from-the-ndvi-image-overlaid-on-top" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div id="screenshot-2-upload-a-screenshot-showing-the-bap-true-color-composite-with-the-cut-blocks-identified-from-the-ndvi-image-overlaid-on-top.-15-points" class="section level5 unnumbered hasAnchor">
+<h5>Screenshot 2: Upload a screenshot showing the BAP true-color composite with the cut blocks identified from the NDVI image overlaid on top. (15 points)<a href="time-series-image-analysis.html#screenshot-2-upload-a-screenshot-showing-the-bap-true-color-composite-with-the-cut-blocks-identified-from-the-ndvi-image-overlaid-on-top.-15-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <hr />
 </div>
 </div>
@@ -412,8 +383,8 @@ Figure 7.2: Example output for the 2019 NDVI raster calculation for MKRF
           </div>
         </div>
       </div>
-<a href="lidar-for-forest-management.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="machine-learning-for-classification.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="terrain-and-riparian-area-management.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -427,42 +398,42 @@ Figure 7.2: Example output for the 2019 NDVI raster calculation for MKRF
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["open-geomatics-community-of-practice.pdf"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["open-geomatics-community-of-practice.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>
