@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lab: 3 Cartographic Modelling with Forest Inventories | FRST 538: Advanced Geomatics for Natural Resource Management</title>
+  <meta name="description" content="Open Educational Resources for FRST 538 course at the University of British Columbia" />
+  <meta name="generator" content="bookdown 0.44 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lab: 3 Cartographic Modelling with Forest Inventories | FRST 538: Advanced Geomatics for Natural Resource Management" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Open Educational Resources for FRST 538 course at the University of British Columbia" />
+  <meta name="github-repo" content="github.com/ubc-geomatics-community-of-practice/FRST538-Advanced-Geomatics-for-Natural-Resource-Management/book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lab: 3 Cartographic Modelling with Forest Inventories | FRST 538: Advanced Geomatics for Natural Resource Management" />
+  
+  <meta name="twitter:description" content="Open Educational Resources for FRST 538 course at the University of British Columbia" />
+  
+
+<meta name="author" content="Paul D. Pickell" />
+
+
+<meta name="date" content="2025-09-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="collecting-and-processing-gnss-data.html"/>
+<link rel="next" href="remote-sensing-image-analysis.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">An Open Geomatics Community of Practice</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-use-these-resources"><i class="fa fa-check"></i>How to use these resources</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-get-involved"><i class="fa fa-check"></i>How to get involved</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html"><i class="fa fa-check"></i><b>1</b> Exploring Spatial Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#lab-overview"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#learning-objectives"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#lab1-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#data"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#task-1-create-an-arcgis-pro-project"><i class="fa fa-check"></i>Task 1: Create an ArcGIS Pro Project</a></li>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#task-2-find-your-own-spatial-datasets"><i class="fa fa-check"></i>Task 2: Find your own spatial datasets</a></li>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#task-3-inspect-and-examine-your-spatial-data-in-arcgis-pro"><i class="fa fa-check"></i>Task 3: Inspect and Examine your Spatial Data in ArcGIS Pro</a></li>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#task-4-visualize-your-spatial-data-in-arcgis-pro"><i class="fa fa-check"></i>Task 4: Visualize your Spatial Data in ArcGIS Pro</a></li>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="collecting-and-processing-gnss-data.html"><a href="collecting-and-processing-gnss-data.html"><i class="fa fa-check"></i><b>2</b> Collecting and processing GNSS data</a>
+<ul>
+<li class="chapter" data-level="" data-path="collecting-and-processing-gnss-data.html"><a href="collecting-and-processing-gnss-data.html#lab-overview-1"><i class="fa fa-check"></i>Lab Overview</a>
+<ul>
+<li class="chapter" data-level="" data-path="collecting-and-processing-gnss-data.html"><a href="collecting-and-processing-gnss-data.html#learning-objectives-1"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="collecting-and-processing-gnss-data.html"><a href="collecting-and-processing-gnss-data.html#lab2-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="collecting-and-processing-gnss-data.html"><a href="collecting-and-processing-gnss-data.html#task-1-preparing-for-gnss-data-collection"><i class="fa fa-check"></i>Task 1: Preparing for GNSS Data Collection</a></li>
+<li class="chapter" data-level="" data-path="collecting-and-processing-gnss-data.html"><a href="collecting-and-processing-gnss-data.html#task-2-collect-gnss-data"><i class="fa fa-check"></i>Task 2: Collect GNSS Data</a></li>
+<li class="chapter" data-level="" data-path="collecting-and-processing-gnss-data.html"><a href="collecting-and-processing-gnss-data.html#task-3-assess-precision-accuracy-and-possible-errors"><i class="fa fa-check"></i>Task 3: Assess Precision, Accuracy, and Possible Errors</a></li>
+<li class="chapter" data-level="" data-path="collecting-and-processing-gnss-data.html"><a href="collecting-and-processing-gnss-data.html#summary-1"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="cartographic-modelling-with-forest-inventories.html"><a href="cartographic-modelling-with-forest-inventories.html"><i class="fa fa-check"></i><b>3</b> Cartographic Modelling with Forest Inventories</a>
+<ul>
+<li class="chapter" data-level="" data-path="cartographic-modelling-with-forest-inventories.html"><a href="cartographic-modelling-with-forest-inventories.html#lab-overview-2"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="cartographic-modelling-with-forest-inventories.html"><a href="cartographic-modelling-with-forest-inventories.html#learning-objectives-2"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="cartographic-modelling-with-forest-inventories.html"><a href="cartographic-modelling-with-forest-inventories.html#lab3-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="cartographic-modelling-with-forest-inventories.html"><a href="cartographic-modelling-with-forest-inventories.html#data-1"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="cartographic-modelling-with-forest-inventories.html"><a href="cartographic-modelling-with-forest-inventories.html#task-1-query-and-export-data-from-ubc-postgresql-server"><i class="fa fa-check"></i>Task 1: Query and export data from UBC PostgreSQL server</a></li>
+<li class="chapter" data-level="" data-path="cartographic-modelling-with-forest-inventories.html"><a href="cartographic-modelling-with-forest-inventories.html#task-2-calculate-percentage-of-old-growth-forests"><i class="fa fa-check"></i>Task 2: Calculate Percentage of Old Growth Forests</a></li>
+<li class="chapter" data-level="" data-path="cartographic-modelling-with-forest-inventories.html"><a href="cartographic-modelling-with-forest-inventories.html#references"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="" data-path="cartographic-modelling-with-forest-inventories.html"><a href="cartographic-modelling-with-forest-inventories.html#summary-2"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html"><i class="fa fa-check"></i><b>4</b> Remote Sensing Imagery Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#lab-overview-3"><i class="fa fa-check"></i>Lab Overview</a>
+<ul>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#learning-objectives-3"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#lab4-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#data-2"><i class="fa fa-check"></i>Data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#task-1-the-ems"><i class="fa fa-check"></i>Task 1: The EMS</a></li>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#task-2-landsat-5-bands-the-ems-arcpro-software"><i class="fa fa-check"></i>Task 2: Landsat 5 Bands, the EMS &amp; ArcPro Software</a></li>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#task-3-calculating-ndvi-and-built-up-index"><i class="fa fa-check"></i>Task 3: Calculating NDVI and Built Up Index</a></li>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#task-4-reclassifying-spectral-indices-and-map-making"><i class="fa fa-check"></i>Task 4: Reclassifying Spectral Indices and Map Making</a></li>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#summary-3"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html"><i class="fa fa-check"></i><b>5</b> LiDAR for Forest Management</a>
+<ul>
+<li class="chapter" data-level="" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html#lab-overview-4"><i class="fa fa-check"></i>Lab Overview</a>
+<ul>
+<li class="chapter" data-level="" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html#learning-objectives-4"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html#lab5-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html#data-3"><i class="fa fa-check"></i>Data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html#task-1-load-and-understand-lidar-data-in-a-map-project"><i class="fa fa-check"></i>Task 1: Load and understand LiDAR data in a Map Project</a></li>
+<li class="chapter" data-level="" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html#task-2-create-a-dem-dsm-and-chm"><i class="fa fa-check"></i>Task 2: Create a DEM, DSM and CHM</a></li>
+<li class="chapter" data-level="" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html#task-3-mapping-tree-tops"><i class="fa fa-check"></i>Task 3: Mapping Tree Tops</a></li>
+<li class="chapter" data-level="" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html#task-4-visualization-in-3d"><i class="fa fa-check"></i>Task 4: Visualization in 3D</a></li>
+<li class="chapter" data-level="" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html#summary-4"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html"><i class="fa fa-check"></i><b>6</b> Terrain Analysis and Riparian Area Management</a>
+<ul>
+<li class="chapter" data-level="" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html#lab-overview-5"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html#learning-objectives-5"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html#lab-background"><i class="fa fa-check"></i>Lab Background</a></li>
+<li class="chapter" data-level="" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html#lab6-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html#data-4"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html#task-1-prepare-the-dem-and-map-stream-networks"><i class="fa fa-check"></i>Task 1: Prepare the DEM and Map Stream Networks</a></li>
+<li class="chapter" data-level="" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html#task-2-extract-stream-characteristics"><i class="fa fa-check"></i>Task 2: Extract Stream Characteristics</a></li>
+<li class="chapter" data-level="" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html#task-3-mapping-watersheds-and-riparian-management-areas"><i class="fa fa-check"></i>Task 3: Mapping Watersheds and Riparian Management Areas</a></li>
+<li class="chapter" data-level="" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html#summary-5"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html"><i class="fa fa-check"></i><b>7</b> Time Series Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#lab-overview-6"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#learning-objectives-6"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#lab7-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#data-5"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#task-1-calcualting-ndvi-from-a-landsat-image"><i class="fa fa-check"></i>Task 1: Calcualting NDVI from a Landsat image</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#task-2-time-series-analysis"><i class="fa fa-check"></i>Task 2: Time Series Analysis</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#task-3-change-detection"><i class="fa fa-check"></i>Task 3: Change Detection</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#summary-6"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">FRST 538: Advanced Geomatics for Natural Resource Management</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="cartographic-modelling-with-forest-inventories" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Lab: 3</span> Cartographic Modelling with Forest Inventories<a href="cartographic-modelling-with-forest-inventories.html#cartographic-modelling-with-forest-inventories" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Written by
+Sadie Russell</p>
+<div id="lab-overview-2" class="section level2 unnumbered hasAnchor">
+<h2>Lab Overview<a href="cartographic-modelling-with-forest-inventories.html#lab-overview-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Old growth forests are an important feature found in many types of forested ecosystems. They are characterized not only by their age but also by their complex composition and structure. (LePage &amp; Banner, 2014) Old growth stands boast the highest rates of biodiversity and provide critical habitat for rare, threatened, or endangered species. Additionally, they contribute to soil fertility by supporting intricate soil structures formed by micro-organisms, fungi, and plants.</p>
+<p>It is generally assumed that the structural complexity desired in a forest develops over time. As such, a stand is designated as old growth once it has reached a certain age without experiencing major disturbance. The length of time required for this designation varies by Biogeoclimatic Ecosystem Classification (<a href="https://cfcg.forestry.ubc.ca/resources/cataloguing-in-situ-genetic-resources/about-bec-and-bgc-units/">BEC</a>) zone.</p>
+<p>Old growth forests are also highly valued for timber production due to their superior qualities. (Canadian Institute of Forestry, 2022) These trees have had the opportunity to grow slowly over long periods, resulting in denser wood grain and stronger lumber. Furthermore, their tall, straight trunks are ideal for producing a wide range of wood products.</p>
+<p>To balance the benefits of both logging and preserving old growth forests, frameworks and guidelines are put in place to manage Old Growth sites. In BC, Old Growth Forests are assessed using the Cumulative Effects Framework (CEF). This framework was put in place to provide guidelines on assessing the effects of human activities and natural processes on the provinces forested ecosystems. The province’s old growth and mature-plus-old targets are outlined in the Biodiversity Guidebook (Province of B.C., 1995).</p>
+<p>Vancouver Island, British Columbia, has been an area of highly contentious Old Growth logging. Conflicting interests between logging companies, First Nations, Provincial and Federal Governments, and the general public came into the spotlight during the Fairy Creek protests of 2020. Over two years of protest, more than 1,000 protesters were arrested at the site (CBC, 2022). The events at Fairy Creek, and many others like it, have brought the issues of Old Growth conservation to the forefront of timber production relations.</p>
+<hr />
+</div>
+<div id="learning-objectives-2" class="section level2 unnumbered hasAnchor">
+<h2>Learning Objectives<a href="cartographic-modelling-with-forest-inventories.html#learning-objectives-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>By the end of this lab, you will be able to:</p>
+<ul>
+<li>Prepare and clean a forest inventory dataset and related layers for analysis</li>
+<li>Perform attribute/select-by-expression filtering to isolate old-growth candidate polygons</li>
+<li>Calculate old-growth area and percentages by polygon using field calculations</li>
+<li>Produce a cartographic summary (map + table) that communicates old-growth distribution</li>
+<li>Reflect on limitations and assumptions of VRI-derived old-growth estimates</li>
+</ul>
+<hr />
+</div>
+<div id="lab3-deliverables" class="section level2 unnumbered hasAnchor">
+<h2>Deliverables<a href="cartographic-modelling-with-forest-inventories.html#lab3-deliverables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><input type="checkbox" unchecked> Responses to the questions posed throughout the lab on the course management system. (60 points)</input></p>
+<p><input type="checkbox" unchecked> A table with fields for total area, old-growth area, and percentage old growth. (10 points)</input></p>
+<p><input type="checkbox" unchecked> A screenshot of the python expression created for Task 2. (10 points)</input></p>
+<p><input type="checkbox" unchecked> A map showing the study area and the distribution of difference in calculated old-growth percentage and targets, by polygon. (20 points)</input></p>
+<hr />
+</div>
+<div id="data-1" class="section level2 unnumbered hasAnchor">
+<h2>Data<a href="cartographic-modelling-with-forest-inventories.html#data-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>All data for this lab are accessible via the UBC PostgreSQL server. Instructions for connecting to the server are given in the tasks below. These are very large datasets that come from the BC Data Catalog and are described in the table below. Accessing these data from the UBC PostgreSQL server allows us to extract only the data we need for this lab, which is the extent of Vancouver Island.</p>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Layer Name</th>
+<th>File Name</th>
+<th>Reference Link</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Vegetation Resource Inventory 2024</td>
+<td><code>vancouver_island_vri</code></td>
+<td><a href="https://catalogue.data.gov.bc.ca/dataset/vri-2024-forest-vegetation-composite-layer-1-l1-" class="uri">https://catalogue.data.gov.bc.ca/dataset/vri-2024-forest-vegetation-composite-layer-1-l1-</a></td>
+</tr>
+<tr class="even">
+<td>Generalized Forest Cover Ownership</td>
+<td><code>vancouver_island_own</code></td>
+<td><a href="https://catalogue.data.gov.bc.ca/dataset/generalized-forest-cover-ownership" class="uri">https://catalogue.data.gov.bc.ca/dataset/generalized-forest-cover-ownership</a></td>
+</tr>
+<tr class="odd">
+<td>Cumulative Effects Framework: Human Disturbance (current)</td>
+<td><code>vancouver_island_human_disturbance</code></td>
+<td><a href="https://catalogue.data.gov.bc.ca/dataset/bc-cumulative-effects-framework-human-disturbance-current" class="uri">https://catalogue.data.gov.bc.ca/dataset/bc-cumulative-effects-framework-human-disturbance-current</a></td>
+</tr>
+<tr class="even">
+<td>Landscape Units (current)</td>
+<td><code>vancouver_island_landscape_units</code></td>
+<td><a href="https://catalogue.data.gov.bc.ca/dataset/landscape-units-of-british-columbia-current" class="uri">https://catalogue.data.gov.bc.ca/dataset/landscape-units-of-british-columbia-current</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+<div id="task-1-query-and-export-data-from-ubc-postgresql-server" class="section level2 unnumbered hasAnchor">
+<h2>Task 1: Query and export data from UBC PostgreSQL server<a href="cartographic-modelling-with-forest-inventories.html#task-1-query-and-export-data-from-ubc-postgresql-server" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Step 1:</strong> Ensure that you are authenticated through UBC myVPN. If you are at UBC, use your dedicated ethernet port or connect via the ubcsecure wireless network. If you are away from campus, you will need to first connect to the UBC myVPN service using Cisco AnyConnect Secure Mobility Client. Only authenticated users with a Campus Wide Login (CWL) who are connected to the UBC myVPN may access the UBC PostgreSQL server. However, if you are not a UBC student, then you can just download the data directly from the BC Data Catalogue.</p>
+<p><strong>Step 2:</strong> Start ArcGIS Pro and create a new Map project.</p>
+<p><strong>Step 3:</strong> From the top ribbon, navigate to the “Insert” tab, then click “Connections”, and from the drop-down menu, select “New Database Connection”.</p>
+<p><img src="images/03-arcgispro-postgres-connection-1.png" width="75%" /></p>
+<p>You can name it “UBC PostgreSQL Server” and for the host enter “FRST-PostgreSQL.ead.ubc.ca”. The username and password will be provided to students enrolled in the course. Once you have correctly entered the correct credentials, ArcGIS Pro will do a “soft” connection to the server to retrieve the available databases. From the “Database” drop-down menu, select “vri” and then click “OK”.</p>
+<p><img src="images/03-arcgispro-postgres-connection-2.png" width="50%" /></p>
+<p>The database connection has now been added to your ArcGIS Pro project, and you can view the tables inside the database from the Catalog Pane (“View” tab &gt; “Catalog Pane” &gt; expand “Databases” &gt; expand “PostgreSQL-FRST-PostgreSQL-vri(student)” &gt; now you can see all the tables in the <code>vri</code> database). You can drag and drop any of the layers of the database directly into your map to visualize them if you want. Though be aware that these are large layers and they may take a while to draw on your map. We do not actually need all of these data, so instead, we are going to use the power of SQL (Structured Query Language) to write a query that will return to us the tiny fraction that we need to use for this lab. First, let us break down what a generic SQL SELECT query looks like:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="cartographic-modelling-with-forest-inventories.html#cb1-1" tabindex="-1"></a><span class="kw">SELECT</span> gid, site_index, species_cd_1, species_pct_1, geom</span>
+<span id="cb1-2"><a href="cartographic-modelling-with-forest-inventories.html#cb1-2" tabindex="-1"></a><span class="kw">FROM</span> veg_comp_lyr_r1_poly_2024</span>
+<span id="cb1-3"><a href="cartographic-modelling-with-forest-inventories.html#cb1-3" tabindex="-1"></a><span class="kw">WHERE</span> bec_zone_code <span class="op">=</span> <span class="st">&#39;CWH&#39;</span>;</span></code></pre></div>
+<p>The <code>SELECT</code> keyword is the most common database operation and the only one that we will use for this lab, but understand that there are keywords for other tasks in the database like creating tables, inserting data, updating data, and deleting data, to name a few. By convention, SQL keywords are capitalized, but most software including ArcGIS Pro do not require this.</p>
+<p>What follows the <code>SELECT</code> keyword is a comma-separated list of column names that we want to retrieve from the table, <code>gid, site_index, species_cd_1, species_pct_1, geom</code>. You could also replace these with <code>*</code> to return all of the column names and this is generally the default behavior across ArcGIS Pro, so for most tasks in ArcGIS Pro you generally will not need to specify any column names.</p>
+<ul>
+<li><p><code>gid</code> is the primary key of the VRI table, this uniquely identifies all of the polygons from each other. When we select any subset of a table, we always want to grab the primary key because this allows us to keep track of which polygon we are dealing with from the originating table.</p></li>
+<li><p><code>site_index</code> is the estimate of site productivity for tree growth for the polygon; the values are recorded as decimal numbers.</p></li>
+<li><p><code>species_cd_1</code> is the leading tree species code for the polygon; the values are recorded as text strings.</p></li>
+<li><p><code>species_pct_1</code> is the percentage of the polygon occupied by the leading species represented by the <code>species_cd_1</code>; the values are recorded as integers. Note that “occupy” here is defined differently, depending on whether the stand is young or mature.</p></li>
+<li><p><code>geom</code> is the geometry column, which is where the coordinates of the polygons are actually stored. We need this column if we want to map the results of our query.</p></li>
+</ul>
+<p>There are 190 other attributes (columns) in the VRI table for each polygon, so this is just a small subset. You should review the <a href="https://www2.gov.bc.ca/assets/gov/farming-natural-resources-and-industry/forestry/stewardship/forest-analysis-inventory/data-management/standards/vegcomp_poly_rank1_data_dictionaryv5_2019.pdf">VRI Relational Data Dictionary</a> if you have any doubts about what a particular field refers to.</p>
+<p>Next, the statement describes the table name in the database that these columns are being selected from, <code>FROM veg_comp_lyr_r1_poly_2024</code>.</p>
+<p>The <code>WHERE bec_zone_code = 'CWH'</code> clause is a conditional statement, which limits the rows (features) returned from the originating table. Note here that we can refer to any column names from the originating table, even if they do not appear in the list of column names that we want to return, as long as they exist in the originating table. Finally, all SQL queries are always concluded with a semicolon <code>;</code>.</p>
+<p>You should think of <code>SELECT</code> as <em>subsetting columns of a table</em> (along the x-axis) and <code>WHERE</code> as <em>subsetting rows of a table</em> (along the y-axis). When used together, we are reducing both dimensions of the originating table simultaneously, which substantially reduces the total data that we are retrieving. We will use this principle and expand the SQL statement above in the next step in order to retrieve only the tiny fraction of the VRI data that we need.</p>
+<p><strong>Step 4:</strong> From the top ribbon in ArcGIS Pro, navigate to the “Map” tab, then click the down arrow under “Add Data” and select “Query Layer…” from the drop-down menu. In the “New Query Layer” dialogue window that appears, click the “Datasource” drop-down menu at the top and you should see the UBC PostgreSQL server connection to the <code>vri</code> database listed there that you added at the beginning of this task. It should look something like “PostgreSQL-FRST-PostgreSQL-vri(student).sde”.</p>
+<p>If not, then click the little database connection button next to the drop-down menu in the dialogue window to add the database connection. (Note: in this specific case, you will need to add the port number to the path string like <code>FRST-PostgreSQL.ead.ubc.ca,5432</code>)</p>
+<p>We are going to write a select query to retrieve these data from the server, but we do not need all the columns, nor all the rows. We only need polygons that are managed forests and for those polygons, we only need a few attributes that we are going to use later in the lab (“bec_zone_code”, “bec_subzone”, and “proj_age_1”).</p>
+<p><strong>Step 5:</strong> Toggle on “List of Tables” to see the table names and then click on the VRI table in the list “vri.public.vancouver_island_vri” to show the list of columns. (If you get an error message here, then save your project, restart ArcGIS Pro and try again). We are going to write a SQL query to select the polygons that meet some of our initial criteria and then return the values of the columns (attributes) that we will need later. In the “Name” field, name the new query layer “vancouver_island_vri_select”.</p>
+<p>The VRI data include descriptions about both forested and non-forested lands in British Columbia. Since we are only concerned with forests, we are going to only find polygons that are managed forests. We can do this simply with <code>SELECT * FROM vancouver_island_vri WHERE for_mgmt_land_base_ind = 'Y'</code>. See here that we have not defined any specific column names to return, <code>SELECT *</code> means <em>give me all the columns</em>, so in this example, we are only subsetting on the rows with <code>WHERE for_mgmt_land_base_ind = 'Y'</code>, but not the columns. If instead we used <code>SELECT for_mgmt_land_base_ind FROM vancouver_island_vri</code>, then we would get all the polygon values for only the <code>for_mgmt_land_base_ind</code> column name (subset columns, but not rows). You can test this SQL query but do not complete it as a new layer.</p>
+<div id="q1.-what-does-for_mgmt_land_base_ind-select-for-what-parameters-are-required-to-receive-a-yes-value-hint-take-a-look-at-the-vri-relational-data-dictionary.-10-points" class="section level5 unnumbered hasAnchor">
+<h5>Q1. What does for_mgmt_land_base_ind select for? What parameters are required to receive a “Yes” value? Hint: take a look at the VRI Relational Data Dictionary. (10 points)<a href="cartographic-modelling-with-forest-inventories.html#q1.-what-does-for_mgmt_land_base_ind-select-for-what-parameters-are-required-to-receive-a-yes-value-hint-take-a-look-at-the-vri-relational-data-dictionary.-10-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p><strong>Pro tip:</strong> When a column value stores a text string, we use single quotation marks in SQL <code>'abc'</code> around the values that we are searching for, double quotation marks <code>"abc"</code> will fail for a SQL query.</p>
+<p><strong>Step 6:</strong> Using what you just learned, draft a select statement that limits the VRI polygons to only managed forests and return only the column names <code>gid</code>, <code>bec_zone_code</code>, <code>bec_subzone</code>, <code>proj_age_1</code>, and <code>geom</code>. Do not run this just yet in ArcGIS Pro, but have it validated by the instructor then press the “Validate” button on the bottom of the dialogue window. If the statement validates successfully, then the “Next” button will allow you to proceed.</p>
+<p><strong>Pro tip:</strong> If you are working from a laptop, be sure to plug into your power source as your computer power options may significantly slow down your ArcGIS Pro performance to conserve battery.</p>
+<p><strong>Step 7:</strong> In the next dialogue, toggle <code>gid</code> as the field that uniquely identifies all features in the table, “Unique Identifier Field(s)” (i.e., the primary key), leave the other fields toggled off. Once you click “Finish”, your select statement will be applied and sent to the server. You will see a small dialogue window that indicates that the extent is being calculated, and this should take about 3-5 minutes before you will see a layer appear in your Table of Contents. Read on to understand the next steps while the server processes your query.</p>
+<p><strong>Pro tip:</strong> It will take another 3-5 minutes before you will see any polygons drawn on your map. You can speed some steps up if you “Pause” the map drawing mode by pressing the pause button at the very bottom of your map. In general, try to keep large layers toggled off so that they are not drawing in the background.</p>
+<p>Save your ArcGIS Pro project now.</p>
+<p>Our goal here is not necessarily to visualize the results, though you should see you map automatically pan to Vancouver Island. You can toggle the layer off and visualize it later. If you open the attribute table, you should see the five columns we requested and there should be 275,246 polygons. (Click the “Load All” button at the bottom of the attribute table to verify, which will take some additional time).</p>
+<p>The query layer that you just created is persistent between ArcGIS Pro sessions if you saved and re-open the project later, but the query layer does not actually contain any data because it just provides the instructions to apply the query to the remote database. It will re-run the query each time you re-open your ArcGIS Pro project, which will take some time to retrieve the data. To avoid this, we are going to actually download the data to our local computer.</p>
+<p><strong>Step 8:</strong> Export the selection you have made your ArcGIS Pro project geodatabase by right-clicking the “vancouver_island_vri_select” layer in your Table of Contents, select “Data”, then select “Export Features”. In the dialogue window that opens, change the output filename to “forest_land_base” (Note: layers stored in geodatabases do not have file extensions), the default location is already the geodatabase for your ArcGIS Pro project. Click “Ok”. This should take about 5 minutes to complete.</p>
+<p>Next, we are going to export the other layers and download them directly to our ArcGIS Pro project geodatabase.</p>
+<p><strong>Step 9:</strong> From the “Catalog Pane”, export the “vancouver_island_own” layer to your ArcGIS Pro project geodatabase by right-clicking the “vancouver_island_own” layer, select “Export”, then select “Export Features…”. In the dialogue window that opens, change the output filename to “vancouver_island_own” (Note: layers stored in geodatabases do not have file extensions), the default location is already the geodatabase for your ArcGIS Pro project. Click “Ok”. This should take a few minutes to complete.</p>
+<p>Repeat the last step for “vancouver_island_human_disturbance” and “vancouver_island_landscape_units”. Altogether, this is about 600 MB of data, so be sure you have sufficient disk space and be patient as the data transfer completes. When finished, you can drag the layers into ArcGIS Pro to visualize them on the map. If you paused drawing mode earlier, then unpause it now.</p>
+<p>The cumulative effects framework only considers forests located on crown land. Next, we will use the forest ownership layer “vancouver_island_own” to select for land ownership types. The <code>ownership_description</code> field describes whether the polygon is private or crown land in a text format. There are lots of different types of crown ownership categories, but for our purpose we need all of them. To do this quickly, we can use <code>LIKE</code>, which is a pattern-matching operator for strings. We need to use the <code>%</code> wildcard to partially-match some pattern. For example, we can search for any row in “vancouver_island_own” with a description of “Crown” using the following statement: <code>SELECT * FROM vancouver_island_own WHERE ownership_description LIKE 'Crown%'</code>. Basically <code>%</code> is a wildcard for zero or more characters, so when we construct the pattern <code>'Crown%'</code>, we are saying <em>match any string that starts with “Crown” and has any number of characters after it</em>.</p>
+<p><strong>Step 10:</strong> Open the attribute table of “vancouver_island_own” by right-clicking the layer in the contents pane. Then click the “Select by Attributes” button then toggle the SQL Editor button to show the SQL codeblock. Write a query to select all the polygons that are crown land. Note that in this particular interface, you only need to give the conditions for selection, so you can omit <code>SELECT * FROM table WHERE</code>. Export the features to your ArcGIS Pro project geodatabase as you did with the the vancouver_island_vri_select, naming the new layer “crown_land” and ensuring that “Use the selected records” is toggled on.</p>
+<p>CEF human disturbance layer reference methodology document: <a href="https://catalogue.data.gov.bc.ca/dataset/7d61ff12-b85f-4aeb-ac8b-7b10e84b046c/resource/7b5789ad-7571-4216-a359-79fd722335f5/download/human-distrubance-description-for-bcdc-archived-and-current.pdf" class="uri">https://catalogue.data.gov.bc.ca/dataset/7d61ff12-b85f-4aeb-ac8b-7b10e84b046c/resource/7b5789ad-7571-4216-a359-79fd722335f5/download/human-distrubance-description-for-bcdc-archived-and-current.pdf</a></p>
+<p><strong>Step 11:</strong> Next, we will select the areas where crown land overlaps with potentially forested areas.</p>
+<p>Use the <strong>Pairwise Intersect tool</strong>. You can search for it by clicking the toolbox on the top ribbon (“Analysis” tab &gt; “Tools”).</p>
+<ul>
+<li><p>Input: <code>forest_land_base</code>, <code>crown_land</code></p></li>
+<li><p>Output: <code>Crown_Forest</code></p></li>
+</ul>
+<p>Once the tool has finished running, open the new Crown_Forest attribute table to ensure that ‘bec_zone_code’ and ‘bec_subzone’ attributes have been preserved.</p>
+<p><strong>Step 12:</strong> Turn off visibility for other layers in the contents pane on the left side. If the contents pane has been closed, it can be reopened from the ribbon at the top of the screen. Visualize the <code>Crown_Forest</code> layer by <code>BEC_ZONE_CODE</code> or <code>BEC_SUBZONE</code>. To do this, right-click the layer in the contents pane and select ‘Symbology’. Change the primary symbology to ‘Unique Values’ and ‘field 1’ to the attribute of your choice.</p>
+<p><strong>Pro tip:</strong> Polygon outlines can be removed by clicking the symbol of each row in the ‘Classes’ table of the symbology layer. When given the option, select a symbol that does not have an outline. This makes it easier to see the area of many smaller polygons combined.</p>
+<p><img src="images/03-VRI_BecSubZones.png" width="75%" /></p>
+<p><strong>Step 13:</strong> In BC forestry standards, the age of a forest stand is categorized by “Seral Stage.” Since the required ages for mature or old growth forests varies depending on the BEC zone, seral stages are used to denote the relative age class of a stand; “Early”, “Mid”, “Mature”, and “Old”. We will create a new field and classify each polygon depending on it’s estimated age.</p>
+<p>Open the <code>Crown_Forest</code> attribute table and select ‘Add’ in the table ribbon. This will take you to the field view. At the bottom, create a new field using:</p>
+<ul>
+<li>Name: ‘Seral_Stage’</li>
+<li>Data Type: Text</li>
+</ul>
+<p>To save this new field, click ‘Save’ on the Ribbon at the top of the window. Once it is saved you can close the field view and return to the <code>Crown_Forest</code> attribute table. Once it is saved you can close the field view and return to the <code>Crown_Forest</code> attribute table.</p>
+<p><strong>Step 14:</strong> Right-click the new field and select <code>Calculate Field</code>. The age categories for each seral stage depend on which BEC zone the stand falls within. These age categories correspond with the growth rate and productivity of different eco-zones. The provided code defines the breakdown of Early, Mid, Mature and Old for the three BEC zones found on Vancouver Island.</p>
+<p>In the expression field paste the following code. This take the BEC zone code and estimated age as inputs into a function that we will define.</p>
+<p>In the code block under ‘Seral_stage =’, paste:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="cartographic-modelling-with-forest-inventories.html#cb2-1" tabindex="-1"></a>getSeralStage(<span class="op">!</span>BEC_ZONE_CODE<span class="op">!</span>, <span class="op">!</span>PROJ_AGE_1<span class="op">!</span>)</span></code></pre></div>
+<p>In the ‘Code Block’ paste:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="cartographic-modelling-with-forest-inventories.html#cb3-1" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="cartographic-modelling-with-forest-inventories.html#cb3-2" tabindex="-1"></a><span class="kw">def</span> getSeralStage(bec, age): </span>
+<span id="cb3-3"><a href="cartographic-modelling-with-forest-inventories.html#cb3-3" tabindex="-1"></a>  </span>
+<span id="cb3-4"><a href="cartographic-modelling-with-forest-inventories.html#cb3-4" tabindex="-1"></a>  <span class="cf">if</span> bec <span class="op">==</span> <span class="st">&#39;CWH&#39;</span>: </span>
+<span id="cb3-5"><a href="cartographic-modelling-with-forest-inventories.html#cb3-5" tabindex="-1"></a>    <span class="cf">if</span> age <span class="op">&lt;=</span> <span class="dv">40</span>: </span>
+<span id="cb3-6"><a href="cartographic-modelling-with-forest-inventories.html#cb3-6" tabindex="-1"></a>      <span class="cf">return</span> <span class="st">&#39;Early&#39;</span> </span>
+<span id="cb3-7"><a href="cartographic-modelling-with-forest-inventories.html#cb3-7" tabindex="-1"></a>    <span class="cf">elif</span> age <span class="op">&lt;=</span> <span class="dv">80</span>: </span>
+<span id="cb3-8"><a href="cartographic-modelling-with-forest-inventories.html#cb3-8" tabindex="-1"></a>      <span class="cf">return</span> <span class="st">&#39;Mid&#39;</span> </span>
+<span id="cb3-9"><a href="cartographic-modelling-with-forest-inventories.html#cb3-9" tabindex="-1"></a>    <span class="cf">elif</span> age <span class="op">&lt;=</span> <span class="dv">250</span>: </span>
+<span id="cb3-10"><a href="cartographic-modelling-with-forest-inventories.html#cb3-10" tabindex="-1"></a>      <span class="cf">return</span> <span class="st">&#39;Mature&#39;</span> </span>
+<span id="cb3-11"><a href="cartographic-modelling-with-forest-inventories.html#cb3-11" tabindex="-1"></a>    <span class="cf">else</span>: <span class="cf">return</span> <span class="st">&#39;Old&#39;</span> </span>
+<span id="cb3-12"><a href="cartographic-modelling-with-forest-inventories.html#cb3-12" tabindex="-1"></a>  </span>
+<span id="cb3-13"><a href="cartographic-modelling-with-forest-inventories.html#cb3-13" tabindex="-1"></a>  <span class="cf">elif</span> bec <span class="op">==</span> <span class="st">&#39;MH&#39;</span>: </span>
+<span id="cb3-14"><a href="cartographic-modelling-with-forest-inventories.html#cb3-14" tabindex="-1"></a>    <span class="cf">if</span> age <span class="op">&lt;=</span> <span class="dv">40</span>: </span>
+<span id="cb3-15"><a href="cartographic-modelling-with-forest-inventories.html#cb3-15" tabindex="-1"></a>      <span class="cf">return</span> <span class="st">&#39;Early&#39;</span> </span>
+<span id="cb3-16"><a href="cartographic-modelling-with-forest-inventories.html#cb3-16" tabindex="-1"></a>    <span class="cf">elif</span> age <span class="op">&lt;=</span> <span class="dv">120</span>: </span>
+<span id="cb3-17"><a href="cartographic-modelling-with-forest-inventories.html#cb3-17" tabindex="-1"></a>      <span class="cf">return</span> <span class="st">&#39;Mid&#39;</span> </span>
+<span id="cb3-18"><a href="cartographic-modelling-with-forest-inventories.html#cb3-18" tabindex="-1"></a>    <span class="cf">elif</span> age <span class="op">&lt;=</span> <span class="dv">250</span>: </span>
+<span id="cb3-19"><a href="cartographic-modelling-with-forest-inventories.html#cb3-19" tabindex="-1"></a>      <span class="cf">return</span> <span class="st">&#39;Mature&#39;</span> </span>
+<span id="cb3-20"><a href="cartographic-modelling-with-forest-inventories.html#cb3-20" tabindex="-1"></a>    <span class="cf">else</span>: <span class="cf">return</span> <span class="st">&#39;Old&#39;</span> </span>
+<span id="cb3-21"><a href="cartographic-modelling-with-forest-inventories.html#cb3-21" tabindex="-1"></a>  </span>
+<span id="cb3-22"><a href="cartographic-modelling-with-forest-inventories.html#cb3-22" tabindex="-1"></a>  <span class="cf">elif</span> bec <span class="op">==</span> <span class="st">&#39;CDF&#39;</span>: </span>
+<span id="cb3-23"><a href="cartographic-modelling-with-forest-inventories.html#cb3-23" tabindex="-1"></a>    <span class="cf">if</span> age <span class="op">&lt;=</span> <span class="dv">40</span>: </span>
+<span id="cb3-24"><a href="cartographic-modelling-with-forest-inventories.html#cb3-24" tabindex="-1"></a>      <span class="cf">return</span> <span class="st">&#39;Early&#39;</span> </span>
+<span id="cb3-25"><a href="cartographic-modelling-with-forest-inventories.html#cb3-25" tabindex="-1"></a>    <span class="cf">elif</span> age <span class="op">&lt;=</span> <span class="dv">80</span>: </span>
+<span id="cb3-26"><a href="cartographic-modelling-with-forest-inventories.html#cb3-26" tabindex="-1"></a>      <span class="cf">return</span> <span class="st">&#39;Mid&#39;</span> </span>
+<span id="cb3-27"><a href="cartographic-modelling-with-forest-inventories.html#cb3-27" tabindex="-1"></a>    <span class="cf">elif</span> age <span class="op">&lt;=</span> <span class="dv">250</span>: </span>
+<span id="cb3-28"><a href="cartographic-modelling-with-forest-inventories.html#cb3-28" tabindex="-1"></a>      <span class="cf">return</span> <span class="st">&#39;Mature&#39;</span> </span>
+<span id="cb3-29"><a href="cartographic-modelling-with-forest-inventories.html#cb3-29" tabindex="-1"></a>    <span class="cf">else</span>: <span class="cf">return</span> <span class="st">&#39;Old&#39;</span> </span>
+<span id="cb3-30"><a href="cartographic-modelling-with-forest-inventories.html#cb3-30" tabindex="-1"></a>  </span>
+<span id="cb3-31"><a href="cartographic-modelling-with-forest-inventories.html#cb3-31" tabindex="-1"></a>  <span class="cf">else</span>: </span>
+<span id="cb3-32"><a href="cartographic-modelling-with-forest-inventories.html#cb3-32" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span></code></pre></div>
+<ul>
+<li><em>Note: Ignore the warning message that appears.</em></li>
+</ul>
+<p>To better understand what is being done in this code chunk, the syntax is described below.</p>
+<p><img src="images/03-PythonSyntax.jpg" width="75%" /></p>
+<p>Review that all the rows have been populated in the <code>Seral_stage</code> field.</p>
+</div>
+<div id="q2.-define-old-growth-and-cite-at-least-one-primary-source.-what-characteristics-might-be-overlooked-by-a-definition-of-old-growth-that-only-accounts-for-stand-age-10-points" class="section level5 unnumbered hasAnchor">
+<h5>Q2. Define “old growth” and cite at least one primary source. What characteristics might be overlooked by a definition of “old growth” that only accounts for stand age? (10 points)<a href="cartographic-modelling-with-forest-inventories.html#q2.-define-old-growth-and-cite-at-least-one-primary-source.-what-characteristics-might-be-overlooked-by-a-definition-of-old-growth-that-only-accounts-for-stand-age-10-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p><strong>Step 15:</strong> Our current layers only depict where crown forests could possibly be. In this step we will remove any areas that have experienced human disturbance in the forms of roads, buildings, and logging. We will use <code>vancouver_island_human_disturbance</code> to do so. Select by attribute where <code>cef_human_disturb_flag</code> is equal to <code>Human Disturb Current 20yr</code>. Export the selected attributes as a new feature named <code>Disturbed_areas</code>.</p>
+<p>Then, use <code>Select By Location</code> in the top ribbon to identify areas of overlap between potential crown forest stands and areas of disturbance.</p>
+<ul>
+<li><p><strong>Input Feature</strong>: Crown_Forest</p></li>
+<li><p><strong>Selecting Feature</strong>: Disturbed_areas</p></li>
+<li><p><strong>Relationship</strong>: Intersect - Leave the rest at default</p></li>
+<li><p>This may take a few moments to run</p></li>
+</ul>
+<p><strong>Step 16:</strong> In the Crown_Forest attribute table:</p>
+<ul>
+<li>Click ‘Show Selected Records’</li>
+</ul>
+<p><img src="images/03-VRI_ShowSelected.png" width="75%" /></p>
+<ul>
+<li><p>Right-click <code>Seral_Stage</code> field &gt; Calculate Field</p></li>
+<li><p>Expression: <code>"Early"</code></p></li>
+<li><p>Ensure that <code>Use the selected records</code> is toggled on</p></li>
+<li><p>Remove your previous code text if it still remains. Type “Early” (with quotes) into the expression box and leave the Code Block empty.</p></li>
+<li><p>Click Apply</p></li>
+<li><p>Click ‘Clear’ to remove selection</p></li>
+</ul>
+<p><strong>Step 17:</strong> Old growth forest quantities are assessed in terms of Land Units and BEC Subzones. Land Units are land parcels pre-determined by the BC Government for ease of land management and assessment. We will need to divide our current Crown Forest Landbase by the pre-determined Landscape Units.</p>
+<p>Open the <strong>Pairwise Intersect</strong> tool again:</p>
+<ul>
+<li>Input: <code>Crown_Forest</code>, <code>vancouver_island_landscape_units</code></li>
+<li>Output Name: <code>CrownForest_LU</code></li>
+</ul>
+</div>
+</div>
+<div id="task-2-calculate-percentage-of-old-growth-forests" class="section level2 unnumbered hasAnchor">
+<h2>Task 2: Calculate Percentage of Old Growth Forests<a href="cartographic-modelling-with-forest-inventories.html#task-2-calculate-percentage-of-old-growth-forests" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Step 1:</strong> Now that we have prepared our layers, we will calculate the percentage of old growth forest within each land unit. To do this we will create a key that uniquely identifies each Landscape Unit + BEC zone + BEC subzone combination. This is a good opportunity to close any unneeded attribute tables or turn off layer visibility.</p>
+<p>Add a new field to CrownForest_LU attribute table:</p>
+<ul>
+<li>Add a new field to <code>CrownForest_LU</code></li>
+<li>Name: LU_BEC</li>
+<li>Type: Text</li>
+</ul>
+<p>In the <code>LU_BEC =</code> textbox, paste:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="cartographic-modelling-with-forest-inventories.html#cb4-1" tabindex="-1"></a><span class="bu">str</span>(<span class="op">!</span>landscape_unit_code<span class="op">!</span>) <span class="op">+</span> <span class="st">&quot;_&quot;</span> <span class="op">+</span> <span class="bu">str</span>(bec_zone_c<span class="op">!</span>) <span class="op">+</span> <span class="bu">str</span>(<span class="op">!</span>bec_subzone<span class="op">!</span>)</span></code></pre></div>
+<p>The <code>str()</code> function ensures that the attribute values are treated as text strings rather than numeric values for addition. The result should be a new string of landscape unit, BEC zone and subzone.</p>
+<p><strong>Step 2:</strong> We will now calculate the total amount of forested area in each of these landscape unit/BEC zone combination. With the <strong>Dissolve</strong> tool, we can create new polygons from the landscape identifier:</p>
+<ul>
+<li>Input Table: <code>CrownForest_LU</code></li>
+<li>Dissolve Fields: LU_BEC</li>
+<li>Statistics Fields: <code>Shape_Area</code> → SUM, <code>BEC_SUBZON</code> → FIRST</li>
+<li>Output Table: <code>Total_Forest_Area</code></li>
+<li>Check “Create Multipart Features”</li>
+</ul>
+<p>This creates a polygon layer where each feature is one LU_BEC area with total crown forest area as an attribute.</p>
+<p><strong>Step 3:</strong> To identify areas of assumed old growth, we will calculate the area of only forests with “Seral_stage” = old. We can select for old forest by using <strong>Select by Attributes on CrownForest_LU</strong> before using the <strong>Dissolve</strong> tool. Ensure that the “use the selected records” option is switched on.</p>
+<ul>
+<li>Select by Attribute: <code>Seral_Stage = 'Old'</code></li>
+<li>Dissolve Fields: LU_BEC</li>
+<li>Statistics Fields: <code>Shape_Area</code> → SUM</li>
+<li>Output Table: <code>Old_Forest_Area</code></li>
+<li>Ensure <code>Use the selected records</code> is on</li>
+<li>Check “Create Multipart Features”</li>
+</ul>
+<p>Now we have created a table of total crown forest area and a table of old growth crown forest area, each by landscape unit.</p>
+<p><strong>Step 4:</strong> We can join these tables back together using a</p>
+<p>Use <strong>Join Field</strong> with the following expression:</p>
+<ul>
+<li>Input Table: Total_Forest_Area</li>
+<li>Input Field: LU_BEC</li>
+<li>Join Table: Old_Forest_Area</li>
+<li>Join Field: LU_BEC</li>
+<li>Transfer Field: Shape_Area (from Old_Forest_Area)</li>
+</ul>
+<p><img src="images/03-VRI_FieldJoin.png" width="50%" /></p>
+<p>We now have two fields in <code>Total_forest_area</code> named <code>Shape_Area</code> which could lead to some confusion. We can assume that the column with the smaller numbers is the old growth forest area. This should be the last column in the attribute table. Right-click the attribute name to open the field view. Rename the alias of <code>Shape_Area</code> to <code>Total_Area</code> and the alias of <code>Shape_Area_1</code> to <code>Old_Area</code>. Save your changes.</p>
+<p><strong>Step 5:</strong> Calculate Percent Old Growth</p>
+<p>Add a new field to <code>Total_Forest_Area</code>:</p>
+<ul>
+<li><strong>Name</strong>: <code>PercentOld</code></li>
+<li><strong>Type</strong>: Double</li>
+</ul>
+<p>Use <strong>Calculate Field</strong> with:</p>
+<ul>
+<li><strong>Expression</strong>:</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="cartographic-modelling-with-forest-inventories.html#cb5-1" tabindex="-1"></a>calcPercent(<span class="op">!</span>Shape_Area_1<span class="op">!</span>, <span class="op">!</span>Shape_Area<span class="op">!</span>)</span></code></pre></div>
+<p><strong>Note:</strong> the expression still uses the column name rather than the alias.</p>
+<ul>
+<li><strong>Code Block</strong>:</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="cartographic-modelling-with-forest-inventories.html#cb6-1" tabindex="-1"></a><span class="kw">def</span> calcPercent(old, total):</span>
+<span id="cb6-2"><a href="cartographic-modelling-with-forest-inventories.html#cb6-2" tabindex="-1"></a>    <span class="cf">if</span> old <span class="kw">is</span> <span class="va">None</span> <span class="kw">or</span> total <span class="kw">is</span> <span class="va">None</span> <span class="kw">or</span> total <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb6-3"><a href="cartographic-modelling-with-forest-inventories.html#cb6-3" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb6-4"><a href="cartographic-modelling-with-forest-inventories.html#cb6-4" tabindex="-1"></a>    <span class="cf">return</span> (old <span class="op">/</span> total) <span class="op">*</span> <span class="dv">100</span></span></code></pre></div>
+<p><strong>Step 6:</strong> Classify Percent Compared to Provincial Targets.</p>
+<p>The target percentages of old growth forests are dependent on the BEC subzone. Instead of assigning each LU–BEC to a discrete class (Low / Intermediate / High), in this step you will create a numeric field representing the difference between the calculated percent old growth and the subzone-specific “high” threshold. You will do this by writing your own python expression to calculate the difference. Refer to the code in step 10 for a guideline on how to build the function. This difference (PercentOld - HighThreshold) is what you will visualize as a continuous gradient:</p>
+<ul>
+<li><p>Positive → exceeds the high target,</p></li>
+<li><p>Negative → falls short of the high target,</p></li>
+<li><p>Zero → meets the high target exactly.</p></li>
+</ul>
+<p>Begin by adding a new field to <code>Total_Forest_Area</code>:</p>
+<ul>
+<li><p>Name: DiffFromHigh</p></li>
+<li><p>Type: Double</p></li>
+</ul>
+<p>The percentage thresholds for each class is as follows:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Subzone Code</th>
+<th>Name</th>
+<th>Low (less than):</th>
+<th>High (greater than):</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CDFmm</td>
+<td>Coastal Douglas-fir</td>
+<td>9</td>
+<td>13</td>
+</tr>
+<tr class="even">
+<td>CWHmm</td>
+<td>Coastal Western Hemlock Moist Maritime</td>
+<td>9</td>
+<td>13</td>
+</tr>
+<tr class="odd">
+<td>CWHvh</td>
+<td>Coastal Western Hemlock Very Wet Hypermaritime</td>
+<td>13</td>
+<td>19</td>
+</tr>
+<tr class="even">
+<td>CWHvm</td>
+<td>Coastal Western Hemlock Wet Hypermaritime</td>
+<td>13</td>
+<td>19</td>
+</tr>
+<tr class="odd">
+<td>CWHxm</td>
+<td>Coastal Western Hemlock Very dry maritime</td>
+<td>9</td>
+<td>13</td>
+</tr>
+<tr class="even">
+<td>MHmm</td>
+<td>Mountain Hemlock Moist Maritime</td>
+<td>19</td>
+<td>28</td>
+</tr>
+</tbody>
+</table>
+<p>Use <strong>Calculate Field</strong> with:</p>
+<ul>
+<li>Expression:</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="cartographic-modelling-with-forest-inventories.html#cb7-1" tabindex="-1"></a>diff_from_high(<span class="op">!</span>LU_BEC<span class="op">!</span>, <span class="op">!</span>PercentOld<span class="op">!</span>)</span></code></pre></div>
+<p>Now write your own expression to calculate the difference between the old growth target and the calculate old growth percentage.</p>
+<div id="screenshot-1.-upload-a-screenshot-of-your-python-expression-10-points" class="section level5 unnumbered hasAnchor">
+<h5>Screenshot 1. Upload a screenshot of your python expression (10 points)<a href="cartographic-modelling-with-forest-inventories.html#screenshot-1.-upload-a-screenshot-of-your-python-expression-10-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p><strong>Pro Tip:</strong> The subzone code can be isolated by removing the first 5 characters with a slice. This would look something like this:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="cartographic-modelling-with-forest-inventories.html#cb8-1" tabindex="-1"></a>bec <span class="op">=</span> lu_bec[<span class="dv">5</span>:] </span></code></pre></div>
+<p>We read this as <em>give me all the elements from position 5 to the end of the string</em>, where the colon <code>:</code> separates the “from” and “to” values. If we leave one side of the colon blank, then we are saying we want whatever the minimum (left side of colon) or maximum (right side of colon) number of elements is. Python indexing starts at zero, so if I want to return the letter “g” from the alphabet string <code>abcdefghijklmnopqrstuvwxyz</code>, then I would write something like <code>alphabet[6]</code> or if I want all letters before “g”, then <code>alphabet[:5]</code>.</p>
+<p><strong>Step 7:</strong> Visualize Results</p>
+<p>In the <strong>Contents</strong> pane, right-click the <code>Total_Forest_Area</code> layer and select <strong>Symbology</strong>. In the Symbology panel, set the <strong>Field</strong> to <code>DiffFromHigh</code>. This will display the data based on the values in that field. Under <strong>Primary symbology</strong>, choose <strong>Graduated Colors</strong> (a gradient).</p>
+<p>Select a <strong>color ramp</strong> that makes sense for your data. For values that represent <em>low to high</em> differences, use a single-hue light-to-dark ramp (e.g., light yellow → dark green). Avoid using colors that are difficult to interpret (e.g., bright rainbow colors). - Think about your audience—pick colors that clearly show the trend and are readable to someone with color-vision deficiencies.Adjust the <strong>classification method and number of classes</strong> if needed (e.g., Natural Breaks, Quantile). This determines how your data values are grouped into color ranges.</p>
+<p><strong>Step 8:</strong> Create the Layout Map</p>
+<p>From the top ribbon, go to the <strong>Insert</strong> tab and select <strong>New Layout</strong>. Choose an appropriate page size (e.g., Letter 8.5x11 or A4). Use the <strong>Map Frame</strong> tool to insert your map view into the layout. Resize and position it so it fills most of the page. - Add essential map elements: - <strong>Title</strong>: Insert a descriptive map title (e.g., <em>“Difference from High Threshold in Total Forest Area”</em>).</p>
+<ul>
+<li><p><strong>North Arrow</strong>: Insert → North Arrow. Place it in a corner where it does not overlap important data.</p></li>
+<li><p><strong>Legend</strong>: Insert → Legend. This should explain the symbology of your <code>DiffFromHigh</code> values.</p></li>
+<li><p><strong>Scale Bar</strong>: Insert → Scale Bar. A useful addition if map distance matters.</p></li>
+<li><p><strong>Author/Date/Text</strong>: Add your name and date for documentation.</p></li>
+</ul>
+<p>Rearrange and resize elements so the layout looks clean, balanced, and easy to read. Avoid cluttering the map with overlapping items.</p>
+<p><strong>Step 9:</strong> Create the Layout Map</p>
+<p>When you are satisfied with the layout, go to <strong>Share → Export Layout</strong>. Choose <strong>PNG</strong> as the file format.</p>
+</div>
+<div id="q3.-describe-the-results-of-your-final-output.-what-is-the-distribution-of-old-growth-targets-met-across-vancouver-island-10-points" class="section level5 unnumbered hasAnchor">
+<h5>Q3. Describe the results of your final output. What is the distribution of old growth targets met across Vancouver Island? (10 points)<a href="cartographic-modelling-with-forest-inventories.html#q3.-describe-the-results-of-your-final-output.-what-is-the-distribution-of-old-growth-targets-met-across-vancouver-island-10-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+</div>
+<div id="q4.-select-3-other-fields-in-the-vri-layer-and-briefly-discuss-how-they-could-provide-further-insight-into-current-old-growth-status.-10-points" class="section level5 unnumbered hasAnchor">
+<h5>Q4. Select 3 other fields in the VRI layer and briefly discuss how they could provide further insight into current old growth status. (10 points)<a href="cartographic-modelling-with-forest-inventories.html#q4.-select-3-other-fields-in-the-vri-layer-and-briefly-discuss-how-they-could-provide-further-insight-into-current-old-growth-status.-10-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+</div>
+<div id="q5.-how-is-vri-data-collected-and-what-limitations-does-it-pose-10-points" class="section level5 unnumbered hasAnchor">
+<h5>Q5. How is VRI data collected and what limitations does it pose? (10 points)<a href="cartographic-modelling-with-forest-inventories.html#q5.-how-is-vri-data-collected-and-what-limitations-does-it-pose-10-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+</div>
+<div id="q6.-how-might-the-scale-and-resolution-of-gis-data-affect-the-accuracy-of-old-growth-assessments-10-points" class="section level5 unnumbered hasAnchor">
+<h5>Q6. How might the scale and resolution of GIS data affect the accuracy of old growth assessments? (10 points)<a href="cartographic-modelling-with-forest-inventories.html#q6.-how-might-the-scale-and-resolution-of-gis-data-affect-the-accuracy-of-old-growth-assessments-10-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+</div>
+<div id="table-1.-a-table-with-fields-for-total-area-old-growth-area-and-percentage-old-growth.-10-points" class="section level5 unnumbered hasAnchor">
+<h5>Table 1. A table with fields for total area, old-growth area, and percentage old growth. (10 points)<a href="cartographic-modelling-with-forest-inventories.html#table-1.-a-table-with-fields-for-total-area-old-growth-area-and-percentage-old-growth.-10-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+</div>
+<div id="map-1.-a-map-showing-the-study-area-and-the-distribution-of-difference-in-calculated-old-growth-percentage-and-targets-by-polygon.-20-points" class="section level5 unnumbered hasAnchor">
+<h5>Map 1. A map showing the study area and the distribution of difference in calculated old-growth percentage and targets, by polygon. (20 points)<a href="cartographic-modelling-with-forest-inventories.html#map-1.-a-map-showing-the-study-area-and-the-distribution-of-difference-in-calculated-old-growth-percentage-and-targets-by-polygon.-20-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<hr />
+</div>
+</div>
+<div id="references" class="section level2 unnumbered hasAnchor">
+<h2>References<a href="cartographic-modelling-with-forest-inventories.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>British Columbia &amp; BC Environment (Eds.). (1995). <em>Biodiversity guidebook</em>. Forest Service, British Columbia: BC Environment.</p>
+<p>Canadian Institute of Forestry (2022). <em>Old Growth Information bulletin</em>. March, 2022</p>
+<p>CBC. (2022, February 11). Fairy Creek protesters’ bid to have charges stayed is ‘simply not the way justice is done’: Crown lawyer. <em>CBC News</em>. <a href="https://www.cbc.ca/news/canada/british-columbia/protest-court-proceedings-1.6348014" class="uri">https://www.cbc.ca/news/canada/british-columbia/protest-court-proceedings-1.6348014</a></p>
+<p>Forest Analysis and Inventory Branch (2024). VRI - 2024 - Forest Vegetation Composite Rank 1 Layer (R1). British Columbia Data Catalogue.<a href="https://catalogue.data.gov.bc.ca/dataset/2ebb35d8-c82f-4a17-9c96-612ac3532d55" class="uri">https://catalogue.data.gov.bc.ca/dataset/2ebb35d8-c82f-4a17-9c96-612ac3532d55</a></p>
+<p>LePage, P., &amp; Banner, A. (2014). Long-term recovery of forest structure and composition after harvesting in the coastal temperate rainforests of northern British Columbia. <em>Forest Ecology and Management</em>, <em>318</em>, 250–260. <a href="https://doi.org/10.1016/j.foreco.2014.01.031" class="uri">https://doi.org/10.1016/j.foreco.2014.01.031</a></p>
+<p>Ministry of Water, Land and Resource Stewardship (WLRS). (2024). Old Growth Forests in British Columbia: Cumulative Effects Assessment Backgrounder. Victoria, British Columbia.</p>
+<p>Ministry of Water, Land and Resource Stewardship. 2024. Old Growth Forest Management in British Columbia: Provincial Backgrounder. Victoria, British Columbia.</p>
+<hr />
+</div>
+<div id="summary-2" class="section level2 unnumbered hasAnchor">
+<h2>Summary<a href="cartographic-modelling-with-forest-inventories.html#summary-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this lab you standardized VRI layers, filtered the Forest Management Landbase, calculated old-growth areas, and derived percentages to compare across polygons. You then produced a map and exportable table to communicate your findings. The key skills reinforced were: consistent data preparation, careful attribute logic for inventory fields, transparent calculation workflows, and interpreting results within an ecological and management context.</p>
+<p>Return to the <a href="cartographic-modelling-with-forest-inventories.html#lab3-deliverables"><strong>Deliverables</strong></a> section to check off everything you need to submit for credit in the course management system.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="collecting-and-processing-gnss-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="remote-sensing-image-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

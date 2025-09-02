@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lab: 1 Exploring Spatial Data | FRST 538: Advanced Geomatics for Natural Resource Management</title>
+  <meta name="description" content="Open Educational Resources for FRST 538 course at the University of British Columbia" />
+  <meta name="generator" content="bookdown 0.44 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lab: 1 Exploring Spatial Data | FRST 538: Advanced Geomatics for Natural Resource Management" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Open Educational Resources for FRST 538 course at the University of British Columbia" />
+  <meta name="github-repo" content="github.com/ubc-geomatics-community-of-practice/FRST538-Advanced-Geomatics-for-Natural-Resource-Management/book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lab: 1 Exploring Spatial Data | FRST 538: Advanced Geomatics for Natural Resource Management" />
+  
+  <meta name="twitter:description" content="Open Educational Resources for FRST 538 course at the University of British Columbia" />
+  
+
+<meta name="author" content="Paul D. Pickell" />
+
+
+<meta name="date" content="2025-09-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="collecting-and-processing-gnss-data.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">An Open Geomatics Community of Practice</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-use-these-resources"><i class="fa fa-check"></i>How to use these resources</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-get-involved"><i class="fa fa-check"></i>How to get involved</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html"><i class="fa fa-check"></i><b>1</b> Exploring Spatial Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#lab-overview"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#learning-objectives"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#lab1-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#data"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#task-1-create-an-arcgis-pro-project"><i class="fa fa-check"></i>Task 1: Create an ArcGIS Pro Project</a></li>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#task-2-find-your-own-spatial-datasets"><i class="fa fa-check"></i>Task 2: Find your own spatial datasets</a></li>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#task-3-inspect-and-examine-your-spatial-data-in-arcgis-pro"><i class="fa fa-check"></i>Task 3: Inspect and Examine your Spatial Data in ArcGIS Pro</a></li>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#task-4-visualize-your-spatial-data-in-arcgis-pro"><i class="fa fa-check"></i>Task 4: Visualize your Spatial Data in ArcGIS Pro</a></li>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="collecting-and-processing-gnss-data.html"><a href="collecting-and-processing-gnss-data.html"><i class="fa fa-check"></i><b>2</b> Collecting and processing GNSS data</a>
+<ul>
+<li class="chapter" data-level="" data-path="collecting-and-processing-gnss-data.html"><a href="collecting-and-processing-gnss-data.html#lab-overview-1"><i class="fa fa-check"></i>Lab Overview</a>
+<ul>
+<li class="chapter" data-level="" data-path="collecting-and-processing-gnss-data.html"><a href="collecting-and-processing-gnss-data.html#learning-objectives-1"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="collecting-and-processing-gnss-data.html"><a href="collecting-and-processing-gnss-data.html#lab2-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="collecting-and-processing-gnss-data.html"><a href="collecting-and-processing-gnss-data.html#task-1-preparing-for-gnss-data-collection"><i class="fa fa-check"></i>Task 1: Preparing for GNSS Data Collection</a></li>
+<li class="chapter" data-level="" data-path="collecting-and-processing-gnss-data.html"><a href="collecting-and-processing-gnss-data.html#task-2-collect-gnss-data"><i class="fa fa-check"></i>Task 2: Collect GNSS Data</a></li>
+<li class="chapter" data-level="" data-path="collecting-and-processing-gnss-data.html"><a href="collecting-and-processing-gnss-data.html#task-3-assess-precision-accuracy-and-possible-errors"><i class="fa fa-check"></i>Task 3: Assess Precision, Accuracy, and Possible Errors</a></li>
+<li class="chapter" data-level="" data-path="collecting-and-processing-gnss-data.html"><a href="collecting-and-processing-gnss-data.html#summary-1"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="cartographic-modelling-with-forest-inventories.html"><a href="cartographic-modelling-with-forest-inventories.html"><i class="fa fa-check"></i><b>3</b> Cartographic Modelling with Forest Inventories</a>
+<ul>
+<li class="chapter" data-level="" data-path="cartographic-modelling-with-forest-inventories.html"><a href="cartographic-modelling-with-forest-inventories.html#lab-overview-2"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="cartographic-modelling-with-forest-inventories.html"><a href="cartographic-modelling-with-forest-inventories.html#learning-objectives-2"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="cartographic-modelling-with-forest-inventories.html"><a href="cartographic-modelling-with-forest-inventories.html#lab3-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="cartographic-modelling-with-forest-inventories.html"><a href="cartographic-modelling-with-forest-inventories.html#data-1"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="cartographic-modelling-with-forest-inventories.html"><a href="cartographic-modelling-with-forest-inventories.html#task-1-query-and-export-data-from-ubc-postgresql-server"><i class="fa fa-check"></i>Task 1: Query and export data from UBC PostgreSQL server</a></li>
+<li class="chapter" data-level="" data-path="cartographic-modelling-with-forest-inventories.html"><a href="cartographic-modelling-with-forest-inventories.html#task-2-calculate-percentage-of-old-growth-forests"><i class="fa fa-check"></i>Task 2: Calculate Percentage of Old Growth Forests</a></li>
+<li class="chapter" data-level="" data-path="cartographic-modelling-with-forest-inventories.html"><a href="cartographic-modelling-with-forest-inventories.html#references"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="" data-path="cartographic-modelling-with-forest-inventories.html"><a href="cartographic-modelling-with-forest-inventories.html#summary-2"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html"><i class="fa fa-check"></i><b>4</b> Remote Sensing Imagery Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#lab-overview-3"><i class="fa fa-check"></i>Lab Overview</a>
+<ul>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#learning-objectives-3"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#lab4-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#data-2"><i class="fa fa-check"></i>Data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#task-1-the-ems"><i class="fa fa-check"></i>Task 1: The EMS</a></li>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#task-2-landsat-5-bands-the-ems-arcpro-software"><i class="fa fa-check"></i>Task 2: Landsat 5 Bands, the EMS &amp; ArcPro Software</a></li>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#task-3-calculating-ndvi-and-built-up-index"><i class="fa fa-check"></i>Task 3: Calculating NDVI and Built Up Index</a></li>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#task-4-reclassifying-spectral-indices-and-map-making"><i class="fa fa-check"></i>Task 4: Reclassifying Spectral Indices and Map Making</a></li>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#summary-3"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html"><i class="fa fa-check"></i><b>5</b> LiDAR for Forest Management</a>
+<ul>
+<li class="chapter" data-level="" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html#lab-overview-4"><i class="fa fa-check"></i>Lab Overview</a>
+<ul>
+<li class="chapter" data-level="" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html#learning-objectives-4"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html#lab5-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html#data-3"><i class="fa fa-check"></i>Data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html#task-1-load-and-understand-lidar-data-in-a-map-project"><i class="fa fa-check"></i>Task 1: Load and understand LiDAR data in a Map Project</a></li>
+<li class="chapter" data-level="" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html#task-2-create-a-dem-dsm-and-chm"><i class="fa fa-check"></i>Task 2: Create a DEM, DSM and CHM</a></li>
+<li class="chapter" data-level="" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html#task-3-mapping-tree-tops"><i class="fa fa-check"></i>Task 3: Mapping Tree Tops</a></li>
+<li class="chapter" data-level="" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html#task-4-visualization-in-3d"><i class="fa fa-check"></i>Task 4: Visualization in 3D</a></li>
+<li class="chapter" data-level="" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html#summary-4"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html"><i class="fa fa-check"></i><b>6</b> Terrain Analysis and Riparian Area Management</a>
+<ul>
+<li class="chapter" data-level="" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html#lab-overview-5"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html#learning-objectives-5"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html#lab-background"><i class="fa fa-check"></i>Lab Background</a></li>
+<li class="chapter" data-level="" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html#lab6-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html#data-4"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html#task-1-prepare-the-dem-and-map-stream-networks"><i class="fa fa-check"></i>Task 1: Prepare the DEM and Map Stream Networks</a></li>
+<li class="chapter" data-level="" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html#task-2-extract-stream-characteristics"><i class="fa fa-check"></i>Task 2: Extract Stream Characteristics</a></li>
+<li class="chapter" data-level="" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html#task-3-mapping-watersheds-and-riparian-management-areas"><i class="fa fa-check"></i>Task 3: Mapping Watersheds and Riparian Management Areas</a></li>
+<li class="chapter" data-level="" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html#summary-5"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html"><i class="fa fa-check"></i><b>7</b> Time Series Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#lab-overview-6"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#learning-objectives-6"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#lab7-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#data-5"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#task-1-calcualting-ndvi-from-a-landsat-image"><i class="fa fa-check"></i>Task 1: Calcualting NDVI from a Landsat image</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#task-2-time-series-analysis"><i class="fa fa-check"></i>Task 2: Time Series Analysis</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#task-3-change-detection"><i class="fa fa-check"></i>Task 3: Change Detection</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#summary-6"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">FRST 538: Advanced Geomatics for Natural Resource Management</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="exploring-spatial-data" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Lab: 1</span> Exploring Spatial Data<a href="exploring-spatial-data.html#exploring-spatial-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Written by
+Paul D. Pickell</p>
+<div id="lab-overview" class="section level2 unnumbered hasAnchor">
+<h2>Lab Overview<a href="exploring-spatial-data.html#lab-overview" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this lab you will learn how to find, evaluate, and visualize vector spatial data. You are encouraged to select datasets for a geography that is meaningful to you, such as the area where you are planning to do your project or capstone. This will help you begin to build a library of data that may be directly useful later. As you work through the lab, you will explore some of the basic capabilities of the ArcGIS Pro software that we will continue to build upon throughout the course. You will look at a variety of different spatial data file formats and data types. Y</p>
+<hr />
+</div>
+<div id="learning-objectives" class="section level2 unnumbered hasAnchor">
+<h2>Learning Objectives<a href="exploring-spatial-data.html#learning-objectives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Locate and download relevant datasets from open data portals</li>
+<li>Identify spatial data file formats and attribute field data types</li>
+<li>Inspect metadata (coordinate reference system, extent, file type, data type) within ArcGIS Pro</li>
+<li>Choose the most appropriate coordinate reference system for your study area</li>
+<li>Examine attribute tables to understand data content, codes, and field data types</li>
+<li>Create a simple map that visualizes multiple vector spatial datasets</li>
+</ul>
+</div>
+<div id="lab1-deliverables" class="section level2 unnumbered hasAnchor">
+<h2>Deliverables<a href="exploring-spatial-data.html#lab1-deliverables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><input type="checkbox" unchecked> Responses to the questions posed throughout the lab on the course management system. (75 points)</input></p>
+<p><input type="checkbox" unchecked> Upload your final map that shows your three selected datasets. At least one dataset must be symbolized by a field in the attribute table. You can pick the colors/symbols to use for each layer. Layers that appear to use the default random color/weight assignment by ArcGIS Pro will not be accepted for credit. You must show that you manipulated the symbology for each layer. Your map must also contain a title, north arrow, scale bar, and a legend that contains the symbologies of all the layers. (25 points)</input></p>
+<hr />
+</div>
+<div id="data" class="section level2 unnumbered hasAnchor">
+<h2>Data<a href="exploring-spatial-data.html#data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For this lab, you will explore different publicly available spatial data portals.</p>
+<hr />
+</div>
+<div id="task-1-create-an-arcgis-pro-project" class="section level2 unnumbered hasAnchor">
+<h2>Task 1: Create an ArcGIS Pro Project<a href="exploring-spatial-data.html#task-1-create-an-arcgis-pro-project" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Step 1</strong>: Start ArcGIS Pro. On the start-up screen, you will be prompted to select the type of project. Select “Map” and give your project a meaningful name, something like <code>FRST538_Lab1</code> is a good choice. When you create a project, ArcGIS Pro will create a folder with your project name in <code>C:\Users\[your username]\Documents\ArcGIS\Projects\[your project name]\</code>.</p>
+<p><img src="images/01-arcgis-create-project.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>Inside this folder, you will find ArcGIS Pro has generated a bunch of files and folders. Importantly, there is the <code>.aprx</code> file, which is the file you can use to open your project in ArcGIS Pro. The other important folder is <code>FRST538_Lab1.gdb</code>, which is the default geodatabase for your project. When you start running different tools in ArcGIS Pro, this is where the outputs will automatically be stored. If you navigate to this folder in Windows Explorer, it will just look like a bunch of random files, so you can only view the contents of your geodatabase through GIS software like ArcGIS Pro.</p>
+<p><img src="images/01-arcgis-project-folder.png" width="25%" style="display: block; margin: auto;" /></p>
+<p>Take note of your project location because this is where you will be saving the spatial data files that you download so that you can view them in ArcGIS Pro.</p>
+<p>In ArcGIS Pro, you should take note of four areas: - The map in the middle; this is where your spatial layers will be mapped, right now you are looking at the default basemap. - The navigation ribbon at the top (Project, Map, Insert, Analysis, View, Edit, Imagery, Share, Help); this is where you can add data and find tools. - The “Contents” pane on the left; this is like a table of contents where your spatial data layers will be listed in the “top-down” that they are drawn/appear on the map. - The “Catalog” pane on the right; this lists sources for data and if you expand “Databases”, you will see your default geodatabase listed there that has the same name as your project.</p>
+<p><img src="images/01-arcgis-panes.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>If you do not see the “Contents” and/or “Catalog” panes, then navigate to the “View” tab from the top ribbon, “Set Panes”, then select “Mapping” to return to the default configuration.</p>
+<p><strong>Step 2:</strong> Navigate to the “Map” tab from the top ribbon. This will be the most useful tab for this lab as it allows you to navigate around the map, add data, and select/query the spatial data.</p>
+<p><img src="images/01-arcgis-navigation.png" width="25%" style="display: block; margin: auto;" /></p>
+<p>The “Navigation” group has methods for panning around and zooming in/out of the the map. If you click “Explore” then you can pan freely around the map. Using your mouse scroll wheel or trackpad scroll gesture on your computer, you can zoom in/out. the other buttons with the arrows allow you to zoom in/out of the centre point of your current map view at fixed intervals. “Bookmarks” allow you to return to the current view of the map after you have navigated away. These can be really handy for returning to the extent/scale that you previously viewed something or maybe for re-locating a feature that you found interesting. If you have a specific coordinate, you can use “Go To XY” to automatically pan to that location.</p>
+<p><img src="images/01-arcgis-layer.png" width="25%" style="display: block; margin: auto;" /></p>
+<p>The “Layer” group allows you to change the basemap and add spatial data as layers from various sources. An important concept to understand in GIS is the distinction between “layer” and “data”. “Layers” are exactly that, they are what we <em>see</em> in the map. We can change the colours and symbology of layers in ArcGIS Pro, and these <em>visual</em> choices are stored as part of the <code>.aprx</code> project file. When you add spatial data to your map, they <em>appear</em> as “layers” in the “Contents Pane”. On the other hand, “data” are the spatial data files that are being read from your project folder or some other source. When you change the symbology of a layer, we are not editing or changing the data in any way. Even if remove the layer from your map, you are not deleting the data file, rather you are removing the <em>reference</em> to that file from your project that is used to display the layer.</p>
+<div id="q1.-what-are-the-names-of-the-current-layers-in-your-map-4-points" class="section level5 unnumbered hasAnchor">
+<h5>Q1. What are the names of the current layers in your map? (4 points)<a href="exploring-spatial-data.html#q1.-what-are-the-names-of-the-current-layers-in-your-map-4-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p><img src="images/01-arcgis-bottom-toolbar.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>We will explore the other tool groups in later tasks and other labs. For now, the last feature that you should be aware of is the information toolbar at the very bottom of the application. Here you will find the current scale of your map (<code>1:52,074,088</code> in the image above), and you can also type any number directly into the box and press Enter to change to a different, set scale. In the middle of the toolbar you can see the location of your cursor with the default units in decimal degrees. On the far right, there is a pause button and a refresh button. These are used to stop loading or re-load the layers in your map. These can be very useful later when it might take your computer a long time to re-draw thousands of features in the layers in your map. In this case, you can pause drawing mode momentarily while you configure the layer symbology.</p>
+<p><strong>Step 3:</strong> From the “Contents” pane, right-click on “Map”, and select “Properties”. Here you can find and set various properties about your map. Navigate to the “Coordinate Systems” from the list on the left and you will see the current Coordinate Reference System (CRS) that is being used by your map.</p>
+<p><img src="images/01-arcgis-map-properties.png" width="75%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="q2.-what-is-the-datum-of-the-current-crs-for-your-map-2-points" class="section level5 unnumbered hasAnchor">
+<h5>Q2. What is the datum of the current CRS for your map? (2 points)<a href="exploring-spatial-data.html#q2.-what-is-the-datum-of-the-current-crs-for-your-map-2-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+</div>
+<div id="q3.-what-is-the-projection-of-the-current-crs-for-your-map-2-points" class="section level5 unnumbered hasAnchor">
+<h5>Q3. What is the projection of the current CRS for your map? (2 points)<a href="exploring-spatial-data.html#q3.-what-is-the-projection-of-the-current-crs-for-your-map-2-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>We can change the CRS of the map to any CRS that we want. Notice that there are separate lists for “Geographic Coordinate Systems” and “Projected Coordinate Systems”.</p>
+</div>
+<div id="q4.-what-is-the-difference-between-a-geographic-coordinate-system-and-a-projected-coordinate-system-10-points" class="section level5 unnumbered hasAnchor">
+<h5>Q4. What is the difference between a geographic coordinate system and a projected coordinate system? (10 points)<a href="exploring-spatial-data.html#q4.-what-is-the-difference-between-a-geographic-coordinate-system-and-a-projected-coordinate-system-10-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p><strong>Step 4:</strong> Select or search for “North Pole Azimuthal Equidistant” and double-click it or select it and click “Apply”. Inspect the result. We can also modify CRS definitions to create a custom map projection. For example, notice how Canada is rotated in this azimuthal projection because the default central meridian is 0° longitude. Open the map properties again, but this time right-click on “North Pole Azimuthal Equidistant” and select “Copy and Modify”. In the dialogue window that appears, find the value for “Central Meridian” and change it from <code>0</code> to <code>-123</code>, then click “Save”, then click “Apply”. Inspect the result. Notice that we have now rotated the map projection over Vancouver, Canada. Feel free to explore other projections, if you want, but before proceeding to the following steps, be sure to change your map CRS back to “WGS 1984 Web Mercator (auxillary sphere)”.</p>
+<p><img src="images/01-arcgis-custom-projection.png" width="75%" style="display: block; margin: auto;" /></p>
+<p>What we just explored is that your ArcGIS Pro Map has its own CRS defined. This is an important concept because a map can only have one coordinate system, whether we are talking about a digital map in ArcGIS Pro or an historical paper map. It will be very important for you to understand that your ArcGIS Map can have a different CRS than the data that you want to map. ArcGIS Pro and other modern GIS software solve this issue by re-projecting your spatial data “on-the-fly” using the current CRS of your map. You see the illusion that everything is “mapped” in the same coordinate system, but in fact, your underlying data can be in completely different coordinate systems, even different datums. For our purposes in this lab, this is okay because we will only be visualizing the data as layers, but this issue becomes very problematic when we start to run data through tools and rely on the calculations of position, area, and perimeter/length of features, which can be very inaccurate when working between different CRS. Therefore, it is best practice to choose the CRS that is most appropriate for your study area and purpose and then change your map to that CRS.</p>
+</div>
+<div id="q5.-what-crs-would-be-most-appropriate-for-your-study-area-and-why-justify-your-reasoning.-15-points" class="section level5 unnumbered hasAnchor">
+<h5>Q5. What CRS would be most appropriate for your study area and why? Justify your reasoning. (15 points)<a href="exploring-spatial-data.html#q5.-what-crs-would-be-most-appropriate-for-your-study-area-and-why-justify-your-reasoning.-15-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>As you will discover in the next task, spatial data are distributed in a wide variety of coordinate systems, and you are not always guaranteed the CRS that matches your project. So you may need to manually re-project your data before undertaking any analysis beyond simple visualization. Below is a table of three commonly used CRS in British Columbia and Canada:</p>
+<table>
+<colgroup>
+<col width="46%" />
+<col width="53%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Coordinate Reference System (CRS)</th>
+<th>Uses</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>NAD 1983 UTM Zone 10N</strong></td>
+<td>Mapping within Universal Transverse Mercator (UTM) Zone 10 North around Vancouver</td>
+</tr>
+<tr class="even">
+<td><strong>NAD 1983 BC Environment Albers</strong></td>
+<td>Mapping across all of British Columbia</td>
+</tr>
+<tr class="odd">
+<td><strong>Canada Albers Equal Area Conic</strong></td>
+<td>Mapping across all of Canada</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+</div>
+<div id="task-2-find-your-own-spatial-datasets" class="section level2 unnumbered hasAnchor">
+<h2>Task 2: Find your own spatial datasets<a href="exploring-spatial-data.html#task-2-find-your-own-spatial-datasets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Spatial data are everywhere. For this task, you will begin to explore different kinds of spatial data portals and also the variety of data formats that you might come across. In later tasks, we will dive further into examining, assessing, and visualizing the datasets that you find.</p>
+<p>The table below lists a few places to start your search:</p>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Portal</th>
+<th>URL</th>
+<th>Focus / Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>BC Data Catalogue</td>
+<td><a href="https://catalogue.data.gov.bc.ca/" class="uri">https://catalogue.data.gov.bc.ca/</a></td>
+<td>Provincial datasets: forestry, land cover, cadastral, climate, transportation, natural resources</td>
+</tr>
+<tr class="even">
+<td>City of Vancouver Open Data Portal</td>
+<td><a href="https://opendata.vancouver.ca/" class="uri">https://opendata.vancouver.ca/</a></td>
+<td>Municipal datasets: zoning, land use, parks, trees, utilities, transportation, planning</td>
+</tr>
+<tr class="odd">
+<td>Government of Canada Geoportal</td>
+<td><a href="https://geo.ca/home/" class="uri">https://geo.ca/home/</a></td>
+<td>Federal datasets: topography, land cover, soils, administrative boundaries</td>
+</tr>
+<tr class="even">
+<td>Lunaris</td>
+<td><a href="https://www.lunaris.ca/" class="uri">https://www.lunaris.ca/</a></td>
+<td>National discovery service for research data across Canadian institutions</td>
+</tr>
+<tr class="odd">
+<td>UBC Geospatial Open Data</td>
+<td><a href="https://github.com/UBCGeodata/ubc-geospatial-opendata" class="uri">https://github.com/UBCGeodata/ubc-geospatial-opendata</a></td>
+<td>UBC-hosted geospatial datasets, campus and research related</td>
+</tr>
+<tr class="even">
+<td>Natural Resources Canada</td>
+<td><a href="https://maps.canada.ca/" class="uri">https://maps.canada.ca/</a></td>
+<td>Federal geospatial data: topographic maps, forests, geology, hydrography</td>
+</tr>
+<tr class="odd">
+<td>Metro Vancouver Data Portal</td>
+<td><a href="http://www.metrovancouver.org/data" class="uri">http://www.metrovancouver.org/data</a></td>
+<td>Regional planning: air quality, utilities, infrastructure, parks</td>
+</tr>
+<tr class="even">
+<td>Natural Earth</td>
+<td><a href="https://www.naturalearthdata.com/" class="uri">https://www.naturalearthdata.com/</a></td>
+<td>Global vector and raster datasets at multiple scales</td>
+</tr>
+<tr class="odd">
+<td>UN FAO GeoNetwork</td>
+<td><a href="https://data.apps.fao.org" class="uri">https://data.apps.fao.org</a></td>
+<td>Global agriculture, land cover, and environmental datasets</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 1:</strong> Navigate to one or more of the portals linked above and search for three vector datasets that might be relevant to your project. You can select data of any themes that you are interested in, but you must follow these guidelines to receive credit:</p>
+<ul>
+<li>You must select one dataset each of points, lines, and polygons (i.e., 2D vector data only, and one of each type)</li>
+<li>You must select datasets from at least two different sources</li>
+<li>You must only use the sources listed above</li>
+<li>You must properly cite the source of your dataset</li>
+</ul>
+<p><strong>Step 2:</strong> Once you have found a dataset, download the file into your ArcGIS Pro project folder location that you noted from Task 1. Do not download files directly into your project’s default geodatabase. Most likely the files that you will find will be zipped (compressed), so you will also need to unzip (uncompress) the files into your project folder so that ArcGIS Pro can read them.</p>
+<p>Pay attention to the metadata on the portal that describe what you are downloading. Metadata are data about data. They describe data and help to make them findable through portals and library indexes. For example, you might come across metadata that describes who the author of the data is, when the data were created/collected/updated, how large the files are and what formats they are, codes for understanding the attribute table, licensing, and more. Rather than provide detailed instructions here for each portal, just ask the instructor or TA if you have any doubts or questions about what you are looking at.</p>
+<p><strong>Step 3:</strong> For each dataset that you download, check the file type and then bring it into ArcGIS Pro using the instructions in the table below. For many file types, you can just drag and drop the file into ArcGIS Pro. You can also navigate to your project folder in the “Catalog” pane (expand “Folders”, expand “FRST538_Lab1”) and drag files from there or right-click files and select “Add To Project” (you may need to right-click the project folder and select “Refresh” to see recently added files from this method).</p>
+<table>
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Format</th>
+<th>File Extension(s)</th>
+<th>Notes</th>
+<th>Opening in ArcGIS Pro</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Shapefile</strong></td>
+<td><code>.shp</code> (+ <code>.dbf</code>, <code>.shx</code>, etc.)</td>
+<td>Legacy, widely used, multiple files</td>
+<td><em>Add Data</em> → select <code>.shp</code></td>
+</tr>
+<tr class="even">
+<td><strong>GeoPackage</strong></td>
+<td><code>.gpkg</code></td>
+<td>Modern OGC standard, single file, may contain many layers</td>
+<td><em>Add Data</em> → select <code>.gpkg</code> then choose layer</td>
+</tr>
+<tr class="odd">
+<td><strong>File Geodatabase</strong></td>
+<td><code>.gdb</code> (folder)</td>
+<td>ESRI native format, may contain many layers</td>
+<td><em>Add Data</em> → browse into folder, select layer</td>
+</tr>
+<tr class="even">
+<td><strong>GeoJSON</strong></td>
+<td><code>.geojson</code></td>
+<td>Web-mapping format</td>
+<td><em>Add Data</em> → select <code>.geojson</code></td>
+</tr>
+<tr class="odd">
+<td><strong>FlatGeobuf</strong></td>
+<td><code>.fgb</code></td>
+<td>Fast modern format</td>
+<td><em>Add Data</em> → select <code>.fgb</code></td>
+</tr>
+<tr class="even">
+<td><strong>KML/KMZ</strong></td>
+<td><code>.kml</code>, <code>.kmz</code></td>
+<td>Google Earth</td>
+<td><em>Add Data</em> → ArcGIS Pro converts to feature class</td>
+</tr>
+<tr class="odd">
+<td><strong>CSV with coordinates</strong></td>
+<td><code>.csv</code></td>
+<td>Tabular data with X/Y columns</td>
+<td><em>Add Data</em> → XY Table, set fields</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 4:</strong> Import you data into your project’s geodatabase. This will vary depending on the file formats that you encounter, but generally you can right-click the geodatabase in the project folder, select “Import”, then select “Feature Class(es)”. In the “Feature Class to Geodatabase” tool that appears, select your three datasets from the drop down menus (if you added them to your ArcGIS Pro Map already) or navigate to the location of the files in your project folder then click “Run”. When it completes, be sure to remove the old layers from your map (right-click the layer, “Remove”) and then add the three feature classes in your geodatabase to your map.</p>
+<p>Note that ArcGIS Pro refers to vector data (i.e., points, lines, polygons) as a “feature class”. You will see this language throughout various tools in ArcGIS Pro (e.g., “Input Feature Class”, “Output Feature Class”).</p>
+<p><img src="images/01-arcgis-import-geodatabase.png" width="75%" style="display: block; margin: auto;" /></p>
+<p>Up to this point, you have primarily been manipulating data directly through ArcGIS Pro, but you have not really changed much about your actual project. So there is no project state to really save. For example, if ArcGIS Pro crashed right now, you should still be able to find the feature classes that you imported into your project geodatabase. That said, it is good practice to save your project file moving forward as you work through this lab and later assignments.</p>
+<div id="q6.-what-are-the-three-datasets-you-chose-and-what-sources-did-they-come-from-provide-the-url-to-the-data-source-and-report-the-file-format-that-the-data-were-provided-in.-15-points" class="section level5 unnumbered hasAnchor">
+<h5>Q6. What are the three datasets you chose and what sources did they come from? Provide the URL to the data source and report the file format that the data were provided in. (15 points)<a href="exploring-spatial-data.html#q6.-what-are-the-three-datasets-you-chose-and-what-sources-did-they-come-from-provide-the-url-to-the-data-source-and-report-the-file-format-that-the-data-were-provided-in.-15-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<hr />
+</div>
+</div>
+<div id="task-3-inspect-and-examine-your-spatial-data-in-arcgis-pro" class="section level2 unnumbered hasAnchor">
+<h2>Task 3: Inspect and Examine your Spatial Data in ArcGIS Pro<a href="exploring-spatial-data.html#task-3-inspect-and-examine-your-spatial-data-in-arcgis-pro" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Ensure that you have added your three datasets as layers in your ArcGIS Pro Map.</p>
+<p><strong>Step 1:</strong> Right-click on each layer in the “Contents” pane and select “Properties”. From here, you can view a lot of important metadata for your layers. Navigate to the “Source” tab from the list on the left and then expand “Extent” and “Spatial Reference”.</p>
+<p><img src="images/01-arcgis-layer-properties.png" width="75%" style="display: block; margin: auto;" /></p>
+<p>The extent represents the extreme spatial limits of the dataset, as if you drew a rectangle around all the features, what we call a bounding box. In the image above, the units of the extent for the buildings on UBC Vancouver campus are given in decimal degrees (“deg”). Below that, we see the CRS for these data is WGS 1984, a geographic coordinate system. In other words, these data are mapped purely in latitude/longitude values and are not projected. Remember that the CRS of our data can be different than the CRS of our ArcGIS Pro Map.</p>
+<div id="q7.-what-is-the-crs-and-extent-for-each-of-your-three-datasets-paste-the-values-from-arcgis-pro-and-be-sure-to-indicate-which-value-cooresponds-to-which-dataset.-15-points" class="section level5 unnumbered hasAnchor">
+<h5>Q7. What is the CRS and extent for each of your three datasets? Paste the values from ArcGIS Pro and be sure to indicate which value cooresponds to which dataset. (15 points)<a href="exploring-spatial-data.html#q7.-what-is-the-crs-and-extent-for-each-of-your-three-datasets-paste-the-values-from-arcgis-pro-and-be-sure-to-indicate-which-value-cooresponds-to-which-dataset.-15-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>Close the layer properties.</p>
+<p><strong>Step 2:</strong> For each of your layers, right-click the layer in the “Contents” pane and select “Attribute Table”. Inspect the attributes. Are there any acronyms or codes that you are not familiar with? To decode those, you might need to refer to the metadata from the portal. From the top ribbon, click “Table”, then select “Fields”. Here we can see a quick overview of all the data types in the attribute table. Each field must contain values that are in the same data type.</p>
+<p><img src="images/01-arcgis-attribute-table.png" width="75%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="q8.-for-each-of-your-three-datasets-pick-one-field-and-report-the-field-name-the-data-type-of-the-field-and-one-example-of-a-value-stored-in-that-field.-9-points" class="section level5 unnumbered hasAnchor">
+<h5>Q8. For each of your three datasets, pick one field and report the field name, the data type of the field, and one example of a value stored in that field. (9 points)<a href="exploring-spatial-data.html#q8.-for-each-of-your-three-datasets-pick-one-field-and-report-the-field-name-the-data-type-of-the-field-and-one-example-of-a-value-stored-in-that-field.-9-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>At the bottom of the attribute table you can quickly see how many features there are.</p>
+</div>
+<div id="q9.-how-many-features-are-in-each-of-your-three-datasets-3-points" class="section level5 unnumbered hasAnchor">
+<h5>Q9. How many features are in each of your three datasets? (3 points)<a href="exploring-spatial-data.html#q9.-how-many-features-are-in-each-of-your-three-datasets-3-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>From the attribute table, you can right-click on any row and select “Zoom To” and the map pan and zoom to that feature in the map.</p>
+<p><img src="images/01-arcgis-zoom-to-feature.png" width="75%" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+</div>
+<div id="task-4-visualize-your-spatial-data-in-arcgis-pro" class="section level2 unnumbered hasAnchor">
+<h2>Task 4: Visualize your Spatial Data in ArcGIS Pro<a href="exploring-spatial-data.html#task-4-visualize-your-spatial-data-in-arcgis-pro" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this last task, we will look at some simple ways to manipulate the symbology of your layers and produce and export a final map.</p>
+<p><strong>Step 1:</strong> Right-click one of your layers and select “Symbology”. Note that ArcGIS Pro randomly assigns a colour/symbology to a layer when it is added to the map. Very rarely do data have a pre-defined symbology that come with the data. The default symbology is typically a random colour that is applied to all features, this is called “Single Symbol”. For something like polygons, you can change the fill and the border by clicking the icon next to “Symbol”. From here, you can select any of a number of preset symbologies provided by ArcGIS Pro or you can select the “Properties” tab at the top and customize with whatever features you want.</p>
+<p><img src="images/01-arcgis-single-symbology.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><strong>Step 2:</strong> From the “Symbology” pane, click the drop-down menu under “Primary Symbology” and select “Graduated Colors”. From here, you can select any numeric field to serve as the basis for applying color to your features. In the example below, I have selected “max_floors” as the field to symbolize and chosen the blue-yellow color palette. ArcGIS Pro will update the layer and also show the classes in the “Contents” pane.</p>
+<p><img src="images/01-arcgis-graduated-colors.png" width="75%" style="display: block; margin: auto;" /></p>
+<p>Experiment with the different symbology types for your layers and attributes until you arrive at something you like. Be sure to change the smybology of each of your layers.</p>
+<p>You can also change the basemap to something more neutral like “Light Gray” to make your chosen colour palette more visible (“Map” tab on the top ribbon, select “Basemap”).</p>
+<p><img src="images/01-arcgis-basemap.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><strong>Step 3:</strong> When you are satisfied with your layer symbologies, you can enter the map layout mode to begin the final layout and export process. From the top ribbon, select “Insert”, and then “New Layout”. We are not actually printing the map, so you can select a regular letter size layout in either portrait or landscape mode. This will open a new blank Layout tab in your project and expose a bunch of new options specific to exporting a professional map.</p>
+<p><strong>Step 4:</strong> Add your ArcGIS Pro Map to your Layout by selecting “Map Frame” from the top ribbon under the “Insert” tab. From there, you can select any Maps that you have created in your project. When you select your Map, your cursor will switch to a cross hairs and you just click and drag a rectangle where you want the map to appear on the layout.</p>
+<p><strong>Step 5:</strong> Add a North Arrow, Scale Bar, and Legend from the top ribbon under the “Insert” tab. Pick your favourite styles for these features and experiment with the large number of customization options until you achieve something you like. You can directly rename the layers in your “Contents” pane to update how they appear in the legend. You may need to go back to your individual layer symbologies to adjust how the values are grouped and displayed.</p>
+<p><strong>Step 6:</strong> Add a title to your map by select the text icon in the “Graphics and Text” grouping on the top ribbon under the “Insert” tab. Here you will need to adjust the size and position of the text.</p>
+<p>Note that there are too many options here to provide detailed instructions for. If you want to know how to do something specifically, just ask your instructor or TA.</p>
+<div id="map-1.-upload-your-final-map-that-shows-your-three-selected-datasets.-at-least-one-dataset-must-be-symbolized-by-a-field-in-the-attribute-table.-you-can-pick-the-colorssymbols-to-use-for-each-layer.-layers-that-appear-to-use-the-default-random-colorweight-assignment-by-arcgis-pro-will-not-be-accepted-for-credit.-you-must-show-that-you-manipulated-the-symbology-for-each-layer.-your-map-must-also-contain-a-title-north-arrow-scale-bar-and-a-legend-that-contains-the-symbologies-of-all-the-layers.-25-points" class="section level5 unnumbered hasAnchor">
+<h5>Map 1. Upload your final map that shows your three selected datasets. At least one dataset must be symbolized by a field in the attribute table. You can pick the colors/symbols to use for each layer. Layers that appear to use the default random color/weight assignment by ArcGIS Pro will not be accepted for credit. You must show that you manipulated the symbology for each layer. Your map must also contain a title, north arrow, scale bar, and a legend that contains the symbologies of all the layers. (25 points)<a href="exploring-spatial-data.html#map-1.-upload-your-final-map-that-shows-your-three-selected-datasets.-at-least-one-dataset-must-be-symbolized-by-a-field-in-the-attribute-table.-you-can-pick-the-colorssymbols-to-use-for-each-layer.-layers-that-appear-to-use-the-default-random-colorweight-assignment-by-arcgis-pro-will-not-be-accepted-for-credit.-you-must-show-that-you-manipulated-the-symbology-for-each-layer.-your-map-must-also-contain-a-title-north-arrow-scale-bar-and-a-legend-that-contains-the-symbologies-of-all-the-layers.-25-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<hr />
+</div>
+</div>
+<div id="summary" class="section level2 unnumbered hasAnchor">
+<h2>Summary<a href="exploring-spatial-data.html#summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this lab, you learned how to find, evaluate, and visualize vector spatial data for a study area that matters to you. You searched multiple open data portals, chose relevant vector spatial data, and practiced importing external files into your project geodatabase. You inspected metadata to identify each dataset’s coordinate reference system, extent, and field data types; distinguished geographic vs. projected coordinate systems; and justified an appropriate CRS for your study area. You also examined attribute tables to interpret codes and data types, then customized symbology (single symbol, graduated colors, etc.) so each dataset communicates something meaningful. Finally, you assembled a clean map layout and exported a finished map showing all three datasets. You will likely repeat nearly all of these tasks for almost every GIS project you undertake in the future, and we will continue to build on this foundation in later labs.</p>
+<p>Return to the <a href="exploring-spatial-data.html#lab1-deliverables"><strong>Deliverables</strong></a> section to check off everything you need to submit for credit in the course management system.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="collecting-and-processing-gnss-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lab: 2 Collecting and processing GNSS data | FRST 538: Advanced Geomatics for Natural Resource Management</title>
+  <meta name="description" content="Open Educational Resources for FRST 538 course at the University of British Columbia" />
+  <meta name="generator" content="bookdown 0.44 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lab: 2 Collecting and processing GNSS data | FRST 538: Advanced Geomatics for Natural Resource Management" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Open Educational Resources for FRST 538 course at the University of British Columbia" />
+  <meta name="github-repo" content="github.com/ubc-geomatics-community-of-practice/FRST538-Advanced-Geomatics-for-Natural-Resource-Management/book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lab: 2 Collecting and processing GNSS data | FRST 538: Advanced Geomatics for Natural Resource Management" />
+  
+  <meta name="twitter:description" content="Open Educational Resources for FRST 538 course at the University of British Columbia" />
+  
+
+<meta name="author" content="Paul D. Pickell" />
+
+
+<meta name="date" content="2025-09-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="exploring-spatial-data.html"/>
+<link rel="next" href="cartographic-modelling-with-forest-inventories.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">An Open Geomatics Community of Practice</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-use-these-resources"><i class="fa fa-check"></i>How to use these resources</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-get-involved"><i class="fa fa-check"></i>How to get involved</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html"><i class="fa fa-check"></i><b>1</b> Exploring Spatial Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#lab-overview"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#learning-objectives"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#lab1-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#data"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#task-1-create-an-arcgis-pro-project"><i class="fa fa-check"></i>Task 1: Create an ArcGIS Pro Project</a></li>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#task-2-find-your-own-spatial-datasets"><i class="fa fa-check"></i>Task 2: Find your own spatial datasets</a></li>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#task-3-inspect-and-examine-your-spatial-data-in-arcgis-pro"><i class="fa fa-check"></i>Task 3: Inspect and Examine your Spatial Data in ArcGIS Pro</a></li>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#task-4-visualize-your-spatial-data-in-arcgis-pro"><i class="fa fa-check"></i>Task 4: Visualize your Spatial Data in ArcGIS Pro</a></li>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="collecting-and-processing-gnss-data.html"><a href="collecting-and-processing-gnss-data.html"><i class="fa fa-check"></i><b>2</b> Collecting and processing GNSS data</a>
+<ul>
+<li class="chapter" data-level="" data-path="collecting-and-processing-gnss-data.html"><a href="collecting-and-processing-gnss-data.html#lab-overview-1"><i class="fa fa-check"></i>Lab Overview</a>
+<ul>
+<li class="chapter" data-level="" data-path="collecting-and-processing-gnss-data.html"><a href="collecting-and-processing-gnss-data.html#learning-objectives-1"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="collecting-and-processing-gnss-data.html"><a href="collecting-and-processing-gnss-data.html#lab2-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="collecting-and-processing-gnss-data.html"><a href="collecting-and-processing-gnss-data.html#task-1-preparing-for-gnss-data-collection"><i class="fa fa-check"></i>Task 1: Preparing for GNSS Data Collection</a></li>
+<li class="chapter" data-level="" data-path="collecting-and-processing-gnss-data.html"><a href="collecting-and-processing-gnss-data.html#task-2-collect-gnss-data"><i class="fa fa-check"></i>Task 2: Collect GNSS Data</a></li>
+<li class="chapter" data-level="" data-path="collecting-and-processing-gnss-data.html"><a href="collecting-and-processing-gnss-data.html#task-3-assess-precision-accuracy-and-possible-errors"><i class="fa fa-check"></i>Task 3: Assess Precision, Accuracy, and Possible Errors</a></li>
+<li class="chapter" data-level="" data-path="collecting-and-processing-gnss-data.html"><a href="collecting-and-processing-gnss-data.html#summary-1"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="cartographic-modelling-with-forest-inventories.html"><a href="cartographic-modelling-with-forest-inventories.html"><i class="fa fa-check"></i><b>3</b> Cartographic Modelling with Forest Inventories</a>
+<ul>
+<li class="chapter" data-level="" data-path="cartographic-modelling-with-forest-inventories.html"><a href="cartographic-modelling-with-forest-inventories.html#lab-overview-2"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="cartographic-modelling-with-forest-inventories.html"><a href="cartographic-modelling-with-forest-inventories.html#learning-objectives-2"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="cartographic-modelling-with-forest-inventories.html"><a href="cartographic-modelling-with-forest-inventories.html#lab3-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="cartographic-modelling-with-forest-inventories.html"><a href="cartographic-modelling-with-forest-inventories.html#data-1"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="cartographic-modelling-with-forest-inventories.html"><a href="cartographic-modelling-with-forest-inventories.html#task-1-query-and-export-data-from-ubc-postgresql-server"><i class="fa fa-check"></i>Task 1: Query and export data from UBC PostgreSQL server</a></li>
+<li class="chapter" data-level="" data-path="cartographic-modelling-with-forest-inventories.html"><a href="cartographic-modelling-with-forest-inventories.html#task-2-calculate-percentage-of-old-growth-forests"><i class="fa fa-check"></i>Task 2: Calculate Percentage of Old Growth Forests</a></li>
+<li class="chapter" data-level="" data-path="cartographic-modelling-with-forest-inventories.html"><a href="cartographic-modelling-with-forest-inventories.html#references"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="" data-path="cartographic-modelling-with-forest-inventories.html"><a href="cartographic-modelling-with-forest-inventories.html#summary-2"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html"><i class="fa fa-check"></i><b>4</b> Remote Sensing Imagery Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#lab-overview-3"><i class="fa fa-check"></i>Lab Overview</a>
+<ul>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#learning-objectives-3"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#lab4-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#data-2"><i class="fa fa-check"></i>Data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#task-1-the-ems"><i class="fa fa-check"></i>Task 1: The EMS</a></li>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#task-2-landsat-5-bands-the-ems-arcpro-software"><i class="fa fa-check"></i>Task 2: Landsat 5 Bands, the EMS &amp; ArcPro Software</a></li>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#task-3-calculating-ndvi-and-built-up-index"><i class="fa fa-check"></i>Task 3: Calculating NDVI and Built Up Index</a></li>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#task-4-reclassifying-spectral-indices-and-map-making"><i class="fa fa-check"></i>Task 4: Reclassifying Spectral Indices and Map Making</a></li>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#summary-3"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html"><i class="fa fa-check"></i><b>5</b> LiDAR for Forest Management</a>
+<ul>
+<li class="chapter" data-level="" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html#lab-overview-4"><i class="fa fa-check"></i>Lab Overview</a>
+<ul>
+<li class="chapter" data-level="" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html#learning-objectives-4"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html#lab5-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html#data-3"><i class="fa fa-check"></i>Data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html#task-1-load-and-understand-lidar-data-in-a-map-project"><i class="fa fa-check"></i>Task 1: Load and understand LiDAR data in a Map Project</a></li>
+<li class="chapter" data-level="" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html#task-2-create-a-dem-dsm-and-chm"><i class="fa fa-check"></i>Task 2: Create a DEM, DSM and CHM</a></li>
+<li class="chapter" data-level="" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html#task-3-mapping-tree-tops"><i class="fa fa-check"></i>Task 3: Mapping Tree Tops</a></li>
+<li class="chapter" data-level="" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html#task-4-visualization-in-3d"><i class="fa fa-check"></i>Task 4: Visualization in 3D</a></li>
+<li class="chapter" data-level="" data-path="lidar-forest-management.html"><a href="lidar-forest-management.html#summary-4"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html"><i class="fa fa-check"></i><b>6</b> Terrain Analysis and Riparian Area Management</a>
+<ul>
+<li class="chapter" data-level="" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html#lab-overview-5"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html#learning-objectives-5"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html#lab-background"><i class="fa fa-check"></i>Lab Background</a></li>
+<li class="chapter" data-level="" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html#lab6-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html#data-4"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html#task-1-prepare-the-dem-and-map-stream-networks"><i class="fa fa-check"></i>Task 1: Prepare the DEM and Map Stream Networks</a></li>
+<li class="chapter" data-level="" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html#task-2-extract-stream-characteristics"><i class="fa fa-check"></i>Task 2: Extract Stream Characteristics</a></li>
+<li class="chapter" data-level="" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html#task-3-mapping-watersheds-and-riparian-management-areas"><i class="fa fa-check"></i>Task 3: Mapping Watersheds and Riparian Management Areas</a></li>
+<li class="chapter" data-level="" data-path="terrain-and-riparian-area-management.html"><a href="terrain-and-riparian-area-management.html#summary-5"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html"><i class="fa fa-check"></i><b>7</b> Time Series Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#lab-overview-6"><i class="fa fa-check"></i>Lab Overview</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#learning-objectives-6"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#lab7-deliverables"><i class="fa fa-check"></i>Deliverables</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#data-5"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#task-1-calcualting-ndvi-from-a-landsat-image"><i class="fa fa-check"></i>Task 1: Calcualting NDVI from a Landsat image</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#task-2-time-series-analysis"><i class="fa fa-check"></i>Task 2: Time Series Analysis</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#task-3-change-detection"><i class="fa fa-check"></i>Task 3: Change Detection</a></li>
+<li class="chapter" data-level="" data-path="time-series-image-analysis.html"><a href="time-series-image-analysis.html#summary-6"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">FRST 538: Advanced Geomatics for Natural Resource Management</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="collecting-and-processing-gnss-data" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Lab: 2</span> Collecting and processing GNSS data<a href="collecting-and-processing-gnss-data.html#collecting-and-processing-gnss-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Written by
+Paul D. Pickell</p>
+<div id="lab-overview-1" class="section level2 unnumbered hasAnchor">
+<h2>Lab Overview<a href="collecting-and-processing-gnss-data.html#lab-overview-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Oftentimes, you will need to collect and display your own data. There are many phone applications to collect your own GNSS data. In this lab, you will plan your own GNSS collection, collect data, and process the data.</p>
+<hr />
+<div id="learning-objectives-1" class="section level3 unnumbered hasAnchor">
+<h3>Learning Objectives<a href="collecting-and-processing-gnss-data.html#learning-objectives-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Plan for field data collection</li>
+<li>Use AvenzaMaps to collect GNSS readings</li>
+<li>Evaluate the accuracy and precision of GNSS coordinates</li>
+</ul>
+<hr />
+</div>
+<div id="lab2-deliverables" class="section level3 unnumbered hasAnchor">
+<h3>Deliverables<a href="collecting-and-processing-gnss-data.html#lab2-deliverables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><input type="checkbox" unchecked> Responses to the questions posed throughout the lab on the course management system. (57 points)</input></p>
+<p><input type="checkbox" unchecked> Screenshots of your Trimble GNSS Planning tool charts (your settings must be visible in all the screenshots): Number of Satellites, DOPs, Iono Information, Sky Plot. (8 points)</input></p>
+<p><input type="checkbox" unchecked> Map of the “True” and “Observed” points. (25 points)</input></p>
+<p><input type="checkbox" unchecked> Table of accuracy and precision calculated values. (10 points)</input></p>
+<hr />
+</div>
+</div>
+<div id="task-1-preparing-for-gnss-data-collection" class="section level2 unnumbered hasAnchor">
+<h2>Task 1: Preparing for GNSS Data Collection<a href="collecting-and-processing-gnss-data.html#task-1-preparing-for-gnss-data-collection" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Field data collection is an important skill set to learn and practice. In this task, you will plan the collection of your GNSS data in a public park. The task for collecting GNSS data in a public park has nearly the same risks as if you collected the data on campus and you are expected to take similar precautions. This section is meant to inform you of the likely hazards and how to stay safe.</p>
+<p><strong>Planning Your Data Collection</strong>
+Safety starts at the planning stage. When planning which park you will visit, consider somewhere nearby that is easily accessible by transit or walking. Avoid going somewhere that is unfamiliar to you. Ensure that you are visiting a public park and stay off of private or restricted property. You should only visit the park during daylight hours and plan to go out in sunny weather only. Check government websites for any recent animal sightings before you commit to going to your desired park. Do not plan to collect your GNSS data near bodies of water (e.g., oceans, lakes, ponds, rivers, streams). Do not plan to collect your GNSS data near cliffs or on steep terrain. Finally, ensure that you will have good cell phone coverage in case of an emergency.</p>
+<p><strong>Likely Hazards</strong>
+At all times, you must be aware of possible hazards both overhead and underfoot. The main overhead hazard in a public park is going to be trees and falling branches. Do not collect your GNSS data during windy or stormy weather, which may cause tree branches to fall. Wet and slippery surfaces, steep angles, holes, logs, debris, and loose soil all pose fall hazards. Many of these hazards can be avoided with careful planning before you even step outside. Speaking of stepping, make sure you wear appropriate footwear, closed toed shoes are best for this work. Fauna are natural inhabitants of parks. Do not visit parks with recent sightings for large, predatory fauna such as bears or cougars. Even urban parks like Stanley Park in downtown Vancouver are known to have coyotes who have attacked people. As well, avoid areas with hazardous flora that may be thorny or poisonous. You may need to cross or transit streets to reach your park. Always follow local traffic laws and look for moving vehicles in and around your park. Always use designated crosswalks and do not look at your phone when walking near stopped or moving vehicles.</p>
+<p><em>Do not collect your GNSS data while walking and looking at your phone. Always be aware of your surroundings.</em></p>
+<p><em>Important: If you feel uncomfortable undertaking this task, please contact the instructor for alternative arrangements or accommodations for this particular assignment</em></p>
+<p>For this lab, you will decide on your own study area through your own knowledge and simple remote sensing.</p>
+<p>Your study area must:</p>
+<ul>
+<li>Be somewhere that you can legally and safely visit</li>
+<li>Be a park or a greenspace</li>
+<li>Have at least a portion of its ground visible using aerial imagery (e.g. Google Earth or an ArcGIS Pro basemap)</li>
+</ul>
+<div id="q1.-describe-your-study-area.-where-is-it-located-what-features-are-around-why-did-you-choose-this-location-5-points" class="section level5 unnumbered hasAnchor">
+<h5>Q1. Describe your study area. Where is it located? What features are around? Why did you choose this location? (5 points)<a href="collecting-and-processing-gnss-data.html#q1.-describe-your-study-area.-where-is-it-located-what-features-are-around-why-did-you-choose-this-location-5-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p><strong>Step 1:</strong> Open ArcGIS Pro and turn on an imagery basemap (Map &gt; Basemap &gt; Imagery). Navigate to your proposed study area. You can do this by (a) dragging around your map, (b) putting coordinates into Go To XY, (c) typing in an address or park name into the Locate tool.</p>
+<p>Before physically visiting your study area, you will need to verify that there are usable reference points in your chosen park. The reference points should be immovable, viewable from the sky and ground, and not tall (not trees or buildings). Additionally, you will be walking to your points – so they should be somewhere safely accessible and not too close or too far from each other.</p>
+<p><strong>Step 2:</strong> Find at least five possible reference points (all at least 10 m from each other). You will create a new feature class and populate it with these reference points. In “Geoprocessing”, find the “Create Feature Class” tool by searching for “Create Feature Class”. Save it to your ArcGIS Pro project geodatabase and give it a meaningful name (for this lab, it will be called “refpoints”). For the other options:</p>
+<ul>
+<li><strong>Geometry Type:</strong> Point</li>
+<li><strong>Has M:</strong> No</li>
+<li><strong>Has Z:</strong> No</li>
+<li><strong>Coordinate System:</strong> –Local UTM–</li>
+<li>Click <strong>“Run”</strong></li>
+</ul>
+<p>Your new feature class should now be in the “Contents” Pane, but it has no points.</p>
+</div>
+<div id="q2.-describe-each-of-your-five-reference-points.-what-features-do-they-represent-5-points" class="section level5 unnumbered hasAnchor">
+<h5>Q2. Describe each of your five reference points. What features do they represent? (5 points)<a href="collecting-and-processing-gnss-data.html#q2.-describe-each-of-your-five-reference-points.-what-features-do-they-represent-5-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>Choose “Edit” from the top ribbon, then select “Create”. On the right, a “Create Features” pane will appear. In there, click refpoints, then select “Create a Point Feature”. Zoom in closely on the basemap before creating point features so that the points are more accurate. Click on (at least) four reference points, then select “Save” from the Edit ribbon. If you need to Move a reference point, you can select Move from the Edit Tools.</p>
+<p>Open the attribute table of refpoints and add three new columns: Name, East, North. Populate the columns for each reference point: Name – a unique name. East – Easting. North – Northing. Easting and Northing can be populated using “Calculate Geometry.” For more relatable measurements in your precision and accuracy assessment (Task 3), use your local UTM for the geometry. Be sure to save your edits.</p>
+<p><strong>Step 3:</strong> You will be exporting a georeferenced map of your study area. Zoom in (or out) to an extent that contains at least the entire park.</p>
+<p>Using the top ribbon, select Share &gt; Export Map. A pane will pop up on the right-hand side of your screen. The file type is PDF, and make sure that it is saved somewhere you will be able to find it. Toward the bottom of the pane, make sure that the box under “PDF Settings” that says “Export georeference information” is selected. Then select export. This will be used when you are collecting data with Avenza.</p>
+<p><strong>Step 4:</strong> Now that you have established a study area, you need to decide when you will be collecting your data. There are times in the day where you are more likely to get accurate GNSS readings. Find the coordinates of your study area so that you can use them in the Trimble GNSS Planning Online website (<a href="http://www.gnssplanning.com/" class="uri">http://www.gnssplanning.com/</a>).</p>
+<p>Go to the Trimble GNSS Planning Online website and enter your study area’s coordinates (one set of coordinates from anywhere within the study area) and elevation. If your coordinates are not in the proper units, either convert them to the proper units. Choose the day that you plan to visit your field site and collect data.</p>
+<p>After you have input your information into Settings, click “Apply” and look through the other tabs (Satellite Library, Charts, Sky Plot, World View). Using the information on the website, determine the ideal time to collect your GNSS points. Justify your chosen time using the data on the website (this justification should be included on your report, along with screenshots from the webpage).</p>
+</div>
+<div id="screenshot-1.-upload-a-screenshot-of-the-number-of-satellites-chart-from-the-trimble-gnss-planning-tool.-the-settings-that-you-used-must-be-visible-in-the-screenshot.-2-points" class="section level5 unnumbered hasAnchor">
+<h5>Screenshot 1. Upload a screenshot of the Number of Satellites chart from the Trimble GNSS Planning Tool. The settings that you used must be visible in the screenshot. (2 points)<a href="collecting-and-processing-gnss-data.html#screenshot-1.-upload-a-screenshot-of-the-number-of-satellites-chart-from-the-trimble-gnss-planning-tool.-the-settings-that-you-used-must-be-visible-in-the-screenshot.-2-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+</div>
+<div id="screenshot-2.-upload-a-screenshot-of-the-dops-chart-from-the-trimble-gnss-planning-tool.-the-settings-that-you-used-must-be-visible-in-the-screenshot.-2-points" class="section level5 unnumbered hasAnchor">
+<h5>Screenshot 2. Upload a screenshot of the DOPs chart from the Trimble GNSS Planning Tool. The settings that you used must be visible in the screenshot. (2 points)<a href="collecting-and-processing-gnss-data.html#screenshot-2.-upload-a-screenshot-of-the-dops-chart-from-the-trimble-gnss-planning-tool.-the-settings-that-you-used-must-be-visible-in-the-screenshot.-2-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+</div>
+<div id="screenshot-3.-upload-a-screenshot-of-the-iono-information-chart-from-the-trimble-gnss-planning-tool.-the-settings-that-you-used-must-be-visible-in-the-screenshot.-2-points" class="section level5 unnumbered hasAnchor">
+<h5>Screenshot 3. Upload a screenshot of the Iono Information chart from the Trimble GNSS Planning Tool. The settings that you used must be visible in the screenshot. (2 points)<a href="collecting-and-processing-gnss-data.html#screenshot-3.-upload-a-screenshot-of-the-iono-information-chart-from-the-trimble-gnss-planning-tool.-the-settings-that-you-used-must-be-visible-in-the-screenshot.-2-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+</div>
+<div id="screenshot-4.-upload-a-screenshot-of-the-sky-plot-from-the-trimble-gnss-planning-tool.-the-settings-that-you-used-must-be-visible-in-the-screenshot.-2-points" class="section level5 unnumbered hasAnchor">
+<h5>Screenshot 4. Upload a screenshot of the Sky Plot from the Trimble GNSS Planning Tool. The settings that you used must be visible in the screenshot. (2 points)<a href="collecting-and-processing-gnss-data.html#screenshot-4.-upload-a-screenshot-of-the-sky-plot-from-the-trimble-gnss-planning-tool.-the-settings-that-you-used-must-be-visible-in-the-screenshot.-2-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+</div>
+<div id="q3.-interpret-the-trimble-gnss-planning-tool-charts-and-sky-plot-with-1-2-sentences-each.-when-is-the-ideal-time-to-collect-data-at-your-study-area-when-did-you-actually-collect-data-at-your-study-area-15-points" class="section level5 unnumbered hasAnchor">
+<h5>Q3. Interpret the Trimble GNSS Planning Tool charts and sky plot with 1-2 sentences each. When is the ideal time to collect data at your study area? When did you actually collect data at your study area? (15 points)<a href="collecting-and-processing-gnss-data.html#q3.-interpret-the-trimble-gnss-planning-tool-charts-and-sky-plot-with-1-2-sentences-each.-when-is-the-ideal-time-to-collect-data-at-your-study-area-when-did-you-actually-collect-data-at-your-study-area-15-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<hr />
+</div>
+</div>
+<div id="task-2-collect-gnss-data" class="section level2 unnumbered hasAnchor">
+<h2>Task 2: Collect GNSS Data<a href="collecting-and-processing-gnss-data.html#task-2-collect-gnss-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You will need either an Android or iOS smartphone capable of installing the Avenza Maps App. If you do not have an Android or iOS smartphone, then please contact the instructor for alternative arrangements or accommodations</p>
+<p><strong>Step 1:</strong> To start you will need to install Avenza Maps App on your phone. There is an Android version as well as an iOS version so just go to your app store and download it. It’s free!</p>
+<p><strong>Step 2:</strong> Once you have the app installed on your phone, you need to sign up for a free account. If you have concerns about your privacy, you can use a pseudonym and your student UBC e-mail address.Avenza Maps is a widely used mobile mapping application, so chances are you might continue to use it in the future for other projects or hobbies. If you want to ensure future access to your Avenza Maps account and assets, then choose an e-mail account that you will continue to have access to (i.e., not your UBC student e-mail).</p>
+<p><strong>Step 3:</strong> Now that you are registered and logged in, you will change some settings in the Avenza Maps app. Navigate to the Settings in the bottom right corner (for iOS) and in the top right corner (for Android). Scroll down and click “GPS settings”. Use the following settings:</p>
+<ul>
+<li><strong>Location Source:</strong> “Use Only Internal Sources”. This ensures that we are only using the phone’s internal GNSS receiver.</li>
+<li><strong>Horizontal Accuracy:</strong> “Keep all fixes”</li>
+<li><strong>Distance Thresholds:</strong> “Keep all fixes”</li>
+<li><strong>Time Threshold:</strong> “Keep all fixes”</li>
+<li><strong>Ignore Suspicious Fixes:</strong> Toggled Off</li>
+</ul>
+<p>Next, we will set the units to metric. In Settings, navigate to “Units of Measurement” and select “Metric” at the top. Under “Coordinates”, ensure that the “Format” is set to a workable coordinate system.</p>
+<p><img src="images/02-avenza.png" width="75%" /></p>
+<p><img src="images/02-avenza2.png" width="75%" /></p>
+<p><strong>Step 4:</strong> Ensure that the Avenza Maps App is allowed to access your location, camera, and photos in your <em>phone’s settings</em>.</p>
+<p><img src="images/02-phone.png" width="75%" /></p>
+<p><em>Important: Personal location is very sensitive information. You should not undertake this exercise at your home or share the coordinates or screenshots of your home location in Avenza Maps with anyone, including the instructor, TA, or other students in this course. Treat personal location information as any other private sensitive information and handle with respect and care.</em></p>
+<p><strong>Step 5:</strong> Avenza Maps requires you to load a map before being able to use the location service of your phone. You will import the georeferenced PDF map that you created in Task 1. There are several ways to do this in Avenza Maps, but probably the easiest is to download the PDF to your phone and then import directly from your phone. <em>Be aware that map size can be large and will consume cellular data if you are not connected to a wifi network.</em></p>
+<p>If you ran into problems creating your georeferenced PDF, then you can use the provided georeferenced PDF on Canvas for the world. In the end, the actual map that you use is not important for collecting your GNSS data, but Avenza Maps requires a georeferenced map be loaded in the app.</p>
+<p><strong>Step 6:</strong> Travel to your study area! Open the Avenza app, and select the Georeferenced PDF under “My Maps.” Go to one of the reference points you selected in ArcGIS. On the bottom right of the app, there is a button that will bring the map to your current area. Press that button, then press the placemark button directly to the right of it. Create a placemark and name it something meaningful (for example: placemark 1, location 1). Stay exactly where you are, and create a placemark every 10 seconds for the next minute by pressing the location button then the placemark. You should have a total of 6 placemarks. Take a picture of the area you are trying to geographically capture. Go to two more of your designated locations and do the same procedure (create 6 placemarks, each 10 seconds apart, and take a picture.</p>
+<p><strong>Step 7:</strong> Now you can return back to your workstation (after taking a nice walk!). In Avenza, go back to “My Maps,” then select Layers (at the bottom). Select the layer you created, then the icon with three lines at the bottom right. Choose export layers. Export the layer as a KML by pressing the EXPORT option at the top right. A list of export applications should pop up—choose whichever one you would prefer.</p>
+<p><strong>Step 8:</strong> Find your exported file and bring it into ArcGIS Pro. You can drag and drop it from the Catalog Pane into the main map. From there, you should export the kml file to layer using the tool “KML to Layer”.</p>
+<div id="screenshot-5.-upload-an-image-from-one-of-your-reference-points.-2-points" class="section level4 unnumbered hasAnchor">
+<h4>Screenshot 5. Upload an image from one of your reference points. (2 points)<a href="collecting-and-processing-gnss-data.html#screenshot-5.-upload-an-image-from-one-of-your-reference-points.-2-points" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="map-1.-upload-a-map-showing-the-true-and-observed-points.-25-points" class="section level4 unnumbered hasAnchor">
+<h4>Map 1. Upload a map showing the True and Observed points. (25 points)<a href="collecting-and-processing-gnss-data.html#map-1.-upload-a-map-showing-the-true-and-observed-points.-25-points" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<hr />
+</div>
+</div>
+<div id="task-3-assess-precision-accuracy-and-possible-errors" class="section level2 unnumbered hasAnchor">
+<h2>Task 3: Assess Precision, Accuracy, and Possible Errors<a href="collecting-and-processing-gnss-data.html#task-3-assess-precision-accuracy-and-possible-errors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For this lab, we will consider the initial ArcGIS-created reference points as the “true” values and perform an accuracy assessment with that in mind.</p>
+<p><strong>Step 1:</strong> Visually compare the Avenza-created Placemarks (called “Observed values” for the rest of the lab) with each other and ArcGIS reference points. How close/far are they from one another? You can use the measure tool to add values to this visual assessment. When you are comparing the observed values to each other, you are assessing precision, when you are comparing them to the “True” locations, you are assessing accuracy.</p>
+<p><strong>Step 2:</strong> Quantitatively determine the accuracy of the points. Add two columns in the Observed attribute table and populate them with the east and north values for each point. You should have the True values from your reference point attribute table. Export both tables and bring them into excel.</p>
+<p>Calculate the horizontal accuracy for each placemark using the following equation:</p>
+<p><span class="math inline">\(\sigma_{H_{acc}} = \sqrt{(\overline{E} - E_{true})^2 + (\overline{N} - N_{true})^2}\)</span></p>
+<p>Excel is a convenient place to use this equation. Breaking down the equation – get the mean observed East value, then subtract the “True” East value. Square this difference. Do the same for North. Add the north and east results, then take the square root of them. In excel, you can do this with the equation:</p>
+<p><code>=SQRT((average(observed east values)-true east value)^2+((average(observed north values)-true north value)^2))</code></p>
+<p>The resulting value represents how accurate the GNSS measurements were – a lower value represents greater accuracy. Is there a noticeable difference in accuracy between your placemarks? Why do you think this is?</p>
+<p>To assess the precision, you will use the following equation:</p>
+<p><span class="math inline">\(\sigma_{H_{pre} = \sqrt{\sigma^2_E + \sigma^2_N}}\)</span></p>
+<p>Calculate the standard deviation of the observed East and North values, square them, then add them and take the square root of the sum. In excel, you can do this with the equation:</p>
+<p><code>=SQRT((STDEV(observed east values)^2 + STDEV(observed values)^2))</code></p>
+<p>The resulting value represents how precise the GNSS measurements were – a lower value represents greater accuracy. Is there a noticeable difference in precision between your placemarks? Why do you think this is?</p>
+<div id="table-1.-submit-a-table-that-shows-the-accuracy-and-precision-calculated-values-for-each-point.-10-points" class="section level4 unnumbered hasAnchor">
+<h4>Table 1. Submit a table that shows the accuracy and precision calculated values for each point. (10 points)<a href="collecting-and-processing-gnss-data.html#table-1.-submit-a-table-that-shows-the-accuracy-and-precision-calculated-values-for-each-point.-10-points" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="q4.-interpret-the-map-and-table.-5-points" class="section level4 unnumbered hasAnchor">
+<h4>Q4. Interpret the map and table. (5 points)<a href="collecting-and-processing-gnss-data.html#q4.-interpret-the-map-and-table.-5-points" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="q5.-discuss-the-potential-errors-in-your-data-collection-and-describe-what-may-have-affected-accuracy-and-precision.-integrate-your-site-observations-with-the-information-from-the-trimble-gnss-planning-tool.-finally-reflect-on-the-validity-of-the-true-points-that-you-derived-from-the-basemap-imagery.-25-points" class="section level4 unnumbered hasAnchor">
+<h4>Q5. Discuss the potential errors in your data collection and describe what may have affected accuracy and precision. Integrate your site observations with the information from the Trimble GNSS Planning tool. Finally, reflect on the validity of the “True” points that you derived from the basemap imagery. (25 points)<a href="collecting-and-processing-gnss-data.html#q5.-discuss-the-potential-errors-in-your-data-collection-and-describe-what-may-have-affected-accuracy-and-precision.-integrate-your-site-observations-with-the-information-from-the-trimble-gnss-planning-tool.-finally-reflect-on-the-validity-of-the-true-points-that-you-derived-from-the-basemap-imagery.-25-points" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<hr />
+</div>
+</div>
+<div id="summary-1" class="section level2 unnumbered hasAnchor">
+<h2>Summary<a href="collecting-and-processing-gnss-data.html#summary-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this lab, you learned how to plan, collect, and process GNSS data using a combination of ArcGIS Pro, Trimble GNSS Planning tools, and the Avenza Maps mobile application. Planning is a critical part of the GNSS collection process for both safety concerns and also to acquire the best satellite signals. Using the Trimble Planning Tool, you evaluated satellite availability, DOPs, and ionospheric conditions to select an ideal collection time. In the field, you practiced recording GNSS coordinates at reference points with Avenza Maps, producing multiple observations to assess variability. Back in the lab, you compared these “observed” values with the ArcGIS “true” reference points to calculate both precision and accuracy. This exercise highlighted the limitations of phone-based GNSS receivers, the effects of environmental conditions on data quality, and the importance of systematic planning and error assessment in field data collection. Overall, this lab showed you not only the technical workflow for GNSS data collection and analysis but also how to critically evaluate results by integrating field observations with planning tools and quantitative measures of accuracy and precision.</p>
+<p>Return to the <a href="collecting-and-processing-gnss-data.html#lab2-deliverables"><strong>Deliverables</strong></a> section to check off everything you need to submit for credit in the course management system.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="exploring-spatial-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="cartographic-modelling-with-forest-inventories.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
