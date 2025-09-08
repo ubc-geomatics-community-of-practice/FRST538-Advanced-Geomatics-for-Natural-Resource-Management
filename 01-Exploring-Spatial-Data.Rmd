@@ -12,7 +12,7 @@ cat(author)
 
 ## Lab Overview {.unnumbered}
 
-In this lab you will learn how to find, evaluate, and visualize vector spatial data. You are encouraged to select datasets for a geography that is meaningful to you, such as the area where you are planning to do your project or capstone. This will help you begin to build a library of data that may be directly useful later. As you work through the lab, you will explore some of the basic capabilities of the ArcGIS Pro software that we will continue to build upon throughout the course. You will look at a variety of different spatial data file formats and data types. Y
+In this lab you will learn how to find, evaluate, and visualize vector spatial data. You are encouraged to select datasets for a geography that is meaningful to you, such as the area where you are planning to do your project or capstone. This will help you begin to build a library of data that may be directly useful later. As you work through the lab, you will explore some of the basic capabilities of the ArcGIS Pro software that we will continue to build upon throughout the course. You will look at a variety of different spatial data file formats and data types.
 
 ------------------------------------------------------------------------
 
@@ -49,7 +49,7 @@ knitr::include_graphics('images/01-arcgis-create-project.png')
 
 Inside this folder, you will find ArcGIS Pro has generated a bunch of files and folders. Importantly, there is the `.aprx` file, which is the file you can use to open your project in ArcGIS Pro. The other important folder is `FRST538_Lab1.gdb`, which is the default geodatabase for your project. When you start running different tools in ArcGIS Pro, this is where the outputs will automatically be stored. If you navigate to this folder in Windows Explorer, it will just look like a bunch of random files, so you can only view the contents of your geodatabase through GIS software like ArcGIS Pro.
 
-```{r 01-arcgis-project-folder, echo=FALSE, fig.align = 'center', out.width = "25%"}
+```{r 01-arcgis-project-folder, echo=FALSE, fig.align = 'center', out.width = "50%"}
 knitr::include_graphics('images/01-arcgis-project-folder.png')
 ```
 
