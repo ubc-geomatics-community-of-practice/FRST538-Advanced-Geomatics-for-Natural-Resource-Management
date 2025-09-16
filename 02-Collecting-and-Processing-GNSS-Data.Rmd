@@ -147,9 +147,9 @@ If you ran into problems creating your georeferenced PDF, then you can use the p
 
 **Step 8:** Find your exported file and bring it into ArcGIS Pro. You can drag and drop it from the Catalog Pane into the main map. From there, you should export the kml file to layer using the tool "KML to Layer".
 
-#### Screenshot 5. Upload an image from one of your reference points. (2 points) {.unnumbered}
+##### Screenshot 5. Upload an image from one of your reference points. (2 points) {.unnumbered}
 
-#### Map 1. Upload a map showing the True and Observed points. (25 points) {.unnumbered}
+##### Map 1. Upload a map showing the True and Observed points. (25 points) {.unnumbered}
 
 ------------------------------------------------------------------------
 
@@ -181,11 +181,11 @@ Calculate the standard deviation of the observed East and North values, square t
 
 The resulting value represents how precise the GNSS measurements were – a lower value represents greater accuracy. Is there a noticeable difference in precision between your placemarks? Why do you think this is?
 
-#### Table 1. Submit a table that shows the accuracy and precision calculated values for each point. (10 points) {.unnumbered}
+##### Table 1. Submit a table that shows the accuracy and precision calculated values for each point. (10 points) {.unnumbered}
 
-#### Q4. Interpret the map and table. (5 points) {.unnumbered}
+##### Q4. Interpret the map and table. (5 points) {.unnumbered}
 
-#### Q5. Discuss the potential errors in your data collection and describe what may have affected accuracy and precision. Integrate your site observations with the information from the Trimble GNSS Planning tool. Finally, reflect on the validity of the "True" points that you derived from the basemap imagery. (25 points) {.unnumbered}
+##### Q5. Discuss the potential errors in your data collection and describe what may have affected accuracy and precision. Integrate your site observations with the information from the Trimble GNSS Planning tool. Finally, reflect on the validity of the "True" points that you derived from the basemap imagery. (25 points) {.unnumbered}
 
 ------------------------------------------------------------------------
 

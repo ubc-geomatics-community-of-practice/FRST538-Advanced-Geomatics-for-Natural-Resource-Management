@@ -23,7 +23,7 @@
 <meta name="author" content="Paul D. Pickell" />
 
 
-<meta name="date" content="2025-09-07" />
+<meta name="date" content="2025-09-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -253,7 +253,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="collecting-and-processing-gnss-data" class="section level1 hasAnchor" number="2">
 <h1><span class="header-section-number">Lab: 2</span> Collecting and processing GNSS data<a href="collecting-and-processing-gnss-data.html#collecting-and-processing-gnss-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Written by
-Paul D. Pickell</p>
+Paul D. Pickell and Amy Blood</p>
 <div id="lab-overview-1" class="section level2 unnumbered hasAnchor">
 <h2>Lab Overview<a href="collecting-and-processing-gnss-data.html#lab-overview-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Oftentimes, you will need to collect and display your own data. There are many phone applications to collect your own GNSS data. In this lab, you will plan your own GNSS collection, collect data, and process the data.</p>
@@ -357,11 +357,11 @@ At all times, you must be aware of possible hazards both overhead and underfoot.
 <p><strong>Step 6:</strong> Travel to your study area! Open the Avenza app, and select the Georeferenced PDF under “My Maps.” Go to one of the reference points you selected in ArcGIS. On the bottom right of the app, there is a button that will bring the map to your current area. Press that button, then press the placemark button directly to the right of it. Create a placemark and name it something meaningful (for example: placemark 1, location 1). Stay exactly where you are, and create a placemark every 10 seconds for the next minute by pressing the location button then the placemark. You should have a total of 6 placemarks. Take a picture of the area you are trying to geographically capture. Go to two more of your designated locations and do the same procedure (create 6 placemarks, each 10 seconds apart, and take a picture.</p>
 <p><strong>Step 7:</strong> Now you can return back to your workstation (after taking a nice walk!). In Avenza, go back to “My Maps,” then select Layers (at the bottom). Select the layer you created, then the icon with three lines at the bottom right. Choose export layers. Export the layer as a KML by pressing the EXPORT option at the top right. A list of export applications should pop up—choose whichever one you would prefer.</p>
 <p><strong>Step 8:</strong> Find your exported file and bring it into ArcGIS Pro. You can drag and drop it from the Catalog Pane into the main map. From there, you should export the kml file to layer using the tool “KML to Layer”.</p>
-<div id="screenshot-5.-upload-an-image-from-one-of-your-reference-points.-2-points" class="section level4 unnumbered hasAnchor">
-<h4>Screenshot 5. Upload an image from one of your reference points. (2 points)<a href="collecting-and-processing-gnss-data.html#screenshot-5.-upload-an-image-from-one-of-your-reference-points.-2-points" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="screenshot-5.-upload-an-image-from-one-of-your-reference-points.-2-points" class="section level5 unnumbered hasAnchor">
+<h5>Screenshot 5. Upload an image from one of your reference points. (2 points)<a href="collecting-and-processing-gnss-data.html#screenshot-5.-upload-an-image-from-one-of-your-reference-points.-2-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 </div>
-<div id="map-1.-upload-a-map-showing-the-true-and-observed-points.-25-points" class="section level4 unnumbered hasAnchor">
-<h4>Map 1. Upload a map showing the True and Observed points. (25 points)<a href="collecting-and-processing-gnss-data.html#map-1.-upload-a-map-showing-the-true-and-observed-points.-25-points" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="map-1.-upload-a-map-showing-the-true-and-observed-points.-25-points" class="section level5 unnumbered hasAnchor">
+<h5>Map 1. Upload a map showing the True and Observed points. (25 points)<a href="collecting-and-processing-gnss-data.html#map-1.-upload-a-map-showing-the-true-and-observed-points.-25-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <hr />
 </div>
 </div>
@@ -380,14 +380,14 @@ At all times, you must be aware of possible hazards both overhead and underfoot.
 <p>Calculate the standard deviation of the observed East and North values, square them, then add them and take the square root of the sum. In excel, you can do this with the equation:</p>
 <p><code>=SQRT((STDEV(observed east values)^2 + STDEV(observed values)^2))</code></p>
 <p>The resulting value represents how precise the GNSS measurements were – a lower value represents greater accuracy. Is there a noticeable difference in precision between your placemarks? Why do you think this is?</p>
-<div id="table-1.-submit-a-table-that-shows-the-accuracy-and-precision-calculated-values-for-each-point.-10-points" class="section level4 unnumbered hasAnchor">
-<h4>Table 1. Submit a table that shows the accuracy and precision calculated values for each point. (10 points)<a href="collecting-and-processing-gnss-data.html#table-1.-submit-a-table-that-shows-the-accuracy-and-precision-calculated-values-for-each-point.-10-points" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="table-1.-submit-a-table-that-shows-the-accuracy-and-precision-calculated-values-for-each-point.-10-points" class="section level5 unnumbered hasAnchor">
+<h5>Table 1. Submit a table that shows the accuracy and precision calculated values for each point. (10 points)<a href="collecting-and-processing-gnss-data.html#table-1.-submit-a-table-that-shows-the-accuracy-and-precision-calculated-values-for-each-point.-10-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 </div>
-<div id="q4.-interpret-the-map-and-table.-5-points" class="section level4 unnumbered hasAnchor">
-<h4>Q4. Interpret the map and table. (5 points)<a href="collecting-and-processing-gnss-data.html#q4.-interpret-the-map-and-table.-5-points" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="q4.-interpret-the-map-and-table.-5-points" class="section level5 unnumbered hasAnchor">
+<h5>Q4. Interpret the map and table. (5 points)<a href="collecting-and-processing-gnss-data.html#q4.-interpret-the-map-and-table.-5-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 </div>
-<div id="q5.-discuss-the-potential-errors-in-your-data-collection-and-describe-what-may-have-affected-accuracy-and-precision.-integrate-your-site-observations-with-the-information-from-the-trimble-gnss-planning-tool.-finally-reflect-on-the-validity-of-the-true-points-that-you-derived-from-the-basemap-imagery.-25-points" class="section level4 unnumbered hasAnchor">
-<h4>Q5. Discuss the potential errors in your data collection and describe what may have affected accuracy and precision. Integrate your site observations with the information from the Trimble GNSS Planning tool. Finally, reflect on the validity of the “True” points that you derived from the basemap imagery. (25 points)<a href="collecting-and-processing-gnss-data.html#q5.-discuss-the-potential-errors-in-your-data-collection-and-describe-what-may-have-affected-accuracy-and-precision.-integrate-your-site-observations-with-the-information-from-the-trimble-gnss-planning-tool.-finally-reflect-on-the-validity-of-the-true-points-that-you-derived-from-the-basemap-imagery.-25-points" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="q5.-discuss-the-potential-errors-in-your-data-collection-and-describe-what-may-have-affected-accuracy-and-precision.-integrate-your-site-observations-with-the-information-from-the-trimble-gnss-planning-tool.-finally-reflect-on-the-validity-of-the-true-points-that-you-derived-from-the-basemap-imagery.-25-points" class="section level5 unnumbered hasAnchor">
+<h5>Q5. Discuss the potential errors in your data collection and describe what may have affected accuracy and precision. Integrate your site observations with the information from the Trimble GNSS Planning tool. Finally, reflect on the validity of the “True” points that you derived from the basemap imagery. (25 points)<a href="collecting-and-processing-gnss-data.html#q5.-discuss-the-potential-errors-in-your-data-collection-and-describe-what-may-have-affected-accuracy-and-precision.-integrate-your-site-observations-with-the-information-from-the-trimble-gnss-planning-tool.-finally-reflect-on-the-validity-of-the-true-points-that-you-derived-from-the-basemap-imagery.-25-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <hr />
 </div>
 </div>
