@@ -86,7 +86,7 @@ Table 2: Parameters of Landsat 5’s Enhanced Thematic Mapper (ETM+) sensor
 Band = 1:7
 wl = c('0.45-0.52', '0.52-0.60', '0.63-0.69', '0.76-0.90', '1.55-1.75', '10.40-12.50', '2.08-2.35')
 sp = c('Blue', 'Green', 'Red', 'Near Infrared', 'Middle Infrared', 'Thermal Infrared', 'Middle Infrared')
-r = c(30, 0, 30 ,3 ,30 ,60, 30)
+r = c(30, 30, 30 ,30 ,30 ,60, 30)
 app = c('Coastal water mapping, differentiation of vegetation and soils.', 'Assessment of vegetation vigor.', 'Chlorophyll absorption for vegetation differentiation.', 'Biomass surveys and delineation of water bodies', 'Vegetation and soil moisture measurements. Differentiation of ice and clouds.', 'Thermal mapping, soil moisture studies, plant heat stress measurement', 'Hydrothermal mapping')
 
 df = data.frame(Band, wl, sp, r, app)
