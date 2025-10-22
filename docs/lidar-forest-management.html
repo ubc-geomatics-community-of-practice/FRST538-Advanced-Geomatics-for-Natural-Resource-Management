@@ -23,7 +23,7 @@
 <meta name="author" content="Paul D. Pickell" />
 
 
-<meta name="date" content="2025-10-01" />
+<meta name="date" content="2025-10-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -368,15 +368,16 @@ Hana Travers-Smith</p>
 </div>
 <div id="q7.-what-features-or-land-cover-types-can-you-idenify-from-the-dsm-5-points" class="section level5 unnumbered hasAnchor">
 <h5>Q7. What features or land cover types can you idenify from the DSM? (5 points)<a href="lidar-forest-management.html#q7.-what-features-or-land-cover-types-can-you-idenify-from-the-dsm-5-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<p><strong>Step 3:</strong> Finally, we will create a CHM using the DEM and DSM. Navigate to Analysis &gt; Tools &gt; Raster Calculator (Image Analyst Tools).This tool allows you to create a new raster by combining multiple rasters using simple mathematical operators (adding, subtracting etc).</p>
+<p><strong>Step 3:</strong> Finally, we will create a CHM using the DEM and DSM. Navigate to Analysis &gt; Tools &gt; Raster Calculator (Image Analyst Tools).This tool allows you to create a new raster by combining multiple rasters using simple mathematical operators (adding, subtracting etc). You double-click the layer names from the list to add them to the calculator window.</p>
 <p>Calculate the CHM as: DSM - DEM</p>
 </div>
 <div id="q8.-explain-why-we-need-to-subtract-the-dem-from-the-dsm-to-calculate-canopy-height.-describe-potential-sources-of-error-in-deriving-a-chm-from-this-method.-10-points" class="section level5 unnumbered hasAnchor">
 <h5>Q8. Explain why we need to subtract the DEM from the DSM to calculate canopy height. Describe potential sources of error in deriving a CHM from this method. (10 points)<a href="lidar-forest-management.html#q8.-explain-why-we-need-to-subtract-the-dem-from-the-dsm-to-calculate-canopy-height.-describe-potential-sources-of-error-in-deriving-a-chm-from-this-method.-10-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p><img src="images/05-RasterCalc.jpg" width="50%" style="display: block; margin: auto;" /></p>
+<p><strong>Step 4:</strong> Once you have the CHM raster in ArcGIS, right-click the layer and open Symbology. From the top, change “Stretch” to “Classify”, then select 3 classes, and change “Method” to “Manual Interval”. Now on the bottom of the Symbology panel, you can adjust the upper values of each class break to separate unvegetated (&lt; 2 m), medium height vegetation (&lt; 30 m), and high vegetation (&gt; 30 m).</p>
 </div>
-<div id="screenshot-1-upload-a-screenshot-of-your-final-chm.-change-the-default-symbology-to-show-unvegetated-areas-medium-vegetation-30m-and-tall-vegetation-30m.-15-points" class="section level5 unnumbered hasAnchor">
-<h5>Screenshot 1: Upload a screenshot of your final CHM. Change the default symbology to show unvegetated areas, medium vegetation &lt;30m and tall vegetation &gt;30m. (15 points)<a href="lidar-forest-management.html#screenshot-1-upload-a-screenshot-of-your-final-chm.-change-the-default-symbology-to-show-unvegetated-areas-medium-vegetation-30m-and-tall-vegetation-30m.-15-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div id="screenshot-1-upload-a-screenshot-of-your-final-chm.-change-the-default-symbology-to-show-unvegetated-areas-2-m-medium-vegetation-30-m-and-tall-vegetation-30-m.-15-points" class="section level5 unnumbered hasAnchor">
+<h5>Screenshot 1: Upload a screenshot of your final CHM. Change the default symbology to show unvegetated areas &lt; 2 m, medium vegetation &lt; 30 m, and tall vegetation &gt; 30 m. (15 points)<a href="lidar-forest-management.html#screenshot-1-upload-a-screenshot-of-your-final-chm.-change-the-default-symbology-to-show-unvegetated-areas-2-m-medium-vegetation-30-m-and-tall-vegetation-30-m.-15-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <hr />
 </div>
 </div>
@@ -406,8 +407,9 @@ Hana Travers-Smith</p>
 <li>Statistic Type: Maximum</li>
 <li>Ignore no data in calculations: Checked</li>
 </ul>
-<div id="q10.-what-is-a-moving-window-if-you-are-using-a-focal-maximum-explain-how-cell-values-assigned-in-the-final-output.-5-points" class="section level6 unnumbered hasAnchor">
-<h6>Q10. What is a moving window? If you are using a focal maximum, explain how cell values assigned in the final output. (5 points)<a href="lidar-forest-management.html#q10.-what-is-a-moving-window-if-you-are-using-a-focal-maximum-explain-how-cell-values-assigned-in-the-final-output.-5-points" class="anchor-section" aria-label="Anchor link to header"></a></h6>
+</div>
+<div id="q10.-what-is-a-moving-window-if-you-are-using-a-focal-maximum-explain-how-cell-values-assigned-in-the-final-output.-5-points" class="section level5 unnumbered hasAnchor">
+<h5>Q10. What is a moving window? If you are using a focal maximum, explain how cell values assigned in the final output. (5 points)<a href="lidar-forest-management.html#q10.-what-is-a-moving-window-if-you-are-using-a-focal-maximum-explain-how-cell-values-assigned-in-the-final-output.-5-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p><strong>Step 3:</strong> Open the “Raster Calculator” tool. We will use this tool to find the pixels in the “TreeTops” raster that match the maximum focal height in the “TreeTops_max”. To do this, we will use a True/False conditional statement using the <code>Con</code> syntax:</p>
 <p><code>Con(statement, iftrue, if false)</code> - Essentially for each pixel the statement is evaulated and if it is true an action is taken, and if it is false a different action is taken.</p>
 <p>Enter the following statement in the “Raster Calculator” tool:</p>
@@ -424,7 +426,6 @@ raster that you just made. Field is Value, and the output name should be “tree
 <li>Field: Value</li>
 <li>Output: Final_treetops</li>
 </ul>
-</div>
 </div>
 <div id="q11.-how-many-tree-tops-are-in-the-final-output-2-points" class="section level5 unnumbered hasAnchor">
 <h5>Q11. How many tree tops are in the final output? (2 points)<a href="lidar-forest-management.html#q11.-how-many-tree-tops-are-in-the-final-output-2-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
