@@ -42,13 +42,13 @@ By the end of this lab, you will be able to:
 
 ## Deliverables {#lab3-deliverables .unnumbered}
 
-<input type="checkbox" unchecked> Responses to the questions posed throughout the lab on the course management system. (60 points)</input>
+<input type="checkbox" unchecked> Responses to the questions posed throughout the lab on the course management system (60 points)</input>
 
-<input type="checkbox" unchecked> A table with fields for total area, old-growth area, and percentage old growth. (10 points)</input>
+<input type="checkbox" unchecked> A table with fields for total area, old-growth area, and percentage old growth (10 points)</input>
 
-<input type="checkbox" unchecked> A screenshot of the python expression created for Task 2. (10 points)</input>
+<input type="checkbox" unchecked> A screenshot of the python expression created for Task 2 (10 points)</input>
 
-<input type="checkbox" unchecked> A map showing the study area and the distribution of difference in calculated old-growth percentage and targets, by polygon. (20 points)</input>
+<input type="checkbox" unchecked> A map showing the study area and the distribution of difference in calculated old-growth percentage and targets, by polygon (20 points)</input>
 
 ------------------------------------------------------------------------
 
@@ -73,13 +73,13 @@ All data for this lab are accessible via the UBC PostgreSQL server. Instructions
 
 **Step 3:** From the top ribbon, navigate to the "Insert" tab, then click "Connections", and from the drop-down menu, select "New Database Connection". 
 
-```{r 03-arcgispro-postgres-connection-1, out.width= "75%", echo = FALSE}
+```{r 03-arcgispro-postgres-connection-1, out.width= "100%", echo = FALSE}
     knitr::include_graphics("images/03-arcgispro-postgres-connection-1.png")
 ```
 
 You can name it "UBC PostgreSQL Server" and for the host enter "FRST-PostgreSQL.ead.ubc.ca". The username and password will be provided to students enrolled in the course. Once you have correctly entered the correct credentials, ArcGIS Pro will do a "soft" connection to the server to retrieve the available databases. From the "Database" drop-down menu, select "vri" and then click "OK".
 
-```{r 03-arcgispro-postgres-connection-2, out.width= "50%", echo = FALSE}
+```{r 03-arcgispro-postgres-connection-2, out.width= "75%", echo = FALSE}
     knitr::include_graphics("images/03-arcgispro-postgres-connection-2.png")
 ```
 
@@ -143,6 +143,10 @@ The query layer that you just created is persistent between ArcGIS Pro sessions 
 
 **Step 8:** Export the selection you have made your ArcGIS Pro project geodatabase by right-clicking the "vancouver_island_vri_select" layer in your Table of Contents, select "Data", then select "Export Features". In the dialogue window that opens, change the output filename to "forest_land_base" (Note: layers stored in geodatabases do not have file extensions), the default location is already the geodatabase for your ArcGIS Pro project. Click "Ok". This should take about 5 minutes to complete.
 
+```{r 03-Export-Features, out.width= "75%", echo = FALSE}
+    knitr::include_graphics("images/03-ExportFeatures.png")
+```
+
 Next, we are going to export the other layers and download them directly to our ArcGIS Pro project geodatabase.
 
 **Step 9:** From the "Catalog Pane", export the "vancouver_island_own" layer to your ArcGIS Pro project geodatabase by right-clicking the "vancouver_island_own" layer, select "Export", then select "Export Features...". In the dialogue window that opens, change the output filename to "vancouver_island_own" (Note: layers stored in geodatabases do not have file extensions), the default location is already the geodatabase for your ArcGIS Pro project. Click "Ok". This should take a few minutes to complete.
@@ -151,7 +155,7 @@ Repeat the last step for "vancouver_island_human_disturbance" and "vancouver_isl
 
 The cumulative effects framework only considers forests located on crown land. Next, we will use the forest ownership layer "vancouver_island_own" to select for land ownership types. The `ownership_description` field describes whether the polygon is private or crown land in a text format. There are lots of different types of crown ownership categories, but for our purpose we need all of them. To do this quickly, we can use `LIKE`, which is a pattern-matching operator for strings. We need to use the `%` wildcard to partially-match some pattern. For example, we can search for any row in "vancouver_island_own" with a description of "Crown" using the following statement: `SELECT * FROM vancouver_island_own WHERE ownership_description LIKE 'Crown%'`. Basically `%` is a wildcard for zero or more characters, so when we construct the pattern `'Crown%'`, we are saying *match any string that starts with "Crown" and has any number of characters after it*.
 
-**Step 10:** Open the attribute table of "vancouver_island_own" by right-clicking the layer in the contents pane. Then click the "Select by Attributes" button then toggle the SQL Editor button to show the SQL codeblock. Write a query to select all the polygons that are crown land. Note that in this particular interface, you only need to give the conditions for selection, so you can omit `SELECT * FROM table WHERE`. Export the features to your ArcGIS Pro project geodatabase as you did with the the vancouver_island_vri_select, naming the new layer "crown_land" and ensuring that "Use the selected records" is toggled on.
+**Step 10:** Open the attribute table of "vancouver_island_own" by right-clicking the layer in the contents pane. Then click the "Select by Attributes" button then toggle the SQL Editor button to show the SQL codeblock. Write a query to select all the polygons that are crown land as described in the previous step. Note that in this particular interface, you only need to give the conditions for selection, so you can omit `SELECT * FROM table WHERE`. Export the features to your ArcGIS Pro project geodatabase as you did with the the vancouver_island_vri_select, naming the new layer "crown_land" and ensuring that "Use the selected records" is toggled on.
 
 CEF human disturbance layer reference methodology document: <https://catalogue.data.gov.bc.ca/dataset/7d61ff12-b85f-4aeb-ac8b-7b10e84b046c/resource/7b5789ad-7571-4216-a359-79fd722335f5/download/human-distrubance-description-for-bcdc-archived-and-current.pdf>
 
@@ -165,7 +169,7 @@ Use the **Pairwise Intersect tool**. You can search for it by clicking the toolb
 
 Once the tool has finished running, open the new Crown_Forest attribute table to ensure that 'bec_zone_code' and 'bec_subzone' attributes have been preserved.
 
-**Step 12:** Turn off visibility for other layers in the contents pane on the left side. If the contents pane has been closed, it can be reopened from the ribbon at the top of the screen. Visualize the `Crown_Forest` layer by `BEC_ZONE_CODE` or `BEC_SUBZONE`. To do this, right-click the layer in the contents pane and select 'Symbology'. Change the primary symbology to 'Unique Values' and 'field 1' to the attribute of your choice.
+**Step 12:** Turn off visibility for other layers in the contents pane on the left side. If the contents pane has been closed, it can be reopened from the ribbon at the top of the screen. Visualize the `Crown_Forest` layer by `bec_zone_code` or `bec_subzone`. To do this, right-click the layer in the contents pane and select 'Symbology'. Change the primary symbology to 'Unique Values' and 'field 1' to the attribute of your choice.
 
 **Pro tip:** Polygon outlines can be removed by clicking the symbol of each row in the 'Classes' table of the symbology layer. When given the option, select a symbol that does not have an outline. This makes it easier to see the area of many smaller polygons combined.
 
@@ -233,7 +237,7 @@ def getSeralStage(bec, age):
 
 To better understand what is being done in this code chunk, the syntax is described below.
 
-```{r 03-PythonSyntax, out.width= "75%", echo = FALSE}
+```{r 03-PythonSyntax, out.width= "100%", echo = FALSE}
     knitr::include_graphics("images/03-PythonSyntax.jpg")
 ```
 
@@ -241,7 +245,7 @@ Review that all the rows have been populated in the `Seral_stage` field.
 
 ##### Q2. Define "old growth" and cite at least one primary source. What characteristics might be overlooked by a definition of "old growth" that only accounts for stand age? (10 points) {.unnumbered}
 
-**Step 15:** Our current layers only depict where crown forests could possibly be. In this step we will remove any areas that have experienced human disturbance in the forms of roads, buildings, and logging. We will use `vancouver_island_human_disturbance` to do so. Select by attribute where `cef_human_disturb_flag` is equal to `Human Disturb Current 20yr`. Export the selected attributes as a new feature named `Disturbed_areas`.
+**Step 15:** Our current layers only indicate where crown forests *could potentially occur*. In this step, we will reset the seral stage in areas that have experienced human disturbances such as roads, buildings, or logging. We are not removing these areas entirely, as they remain part of the landscape unit where old-growth forest could exist if it had not been cleared. We will use `vancouver_island_human_disturbance` to do so. Select by attribute where `cef_human_disturb_flag` is equal to `Human Disturb Current 20yr`. Export the selected attributes as a new feature named `Disturbed_areas`.
 
 Then, use `Select By Location` in the top ribbon to identify areas of overlap between potential crown forest stands and areas of disturbance.
 
@@ -273,6 +277,8 @@ Then, use `Select By Location` in the top ribbon to identify areas of overlap be
 
 -   Click ‘Clear’ to remove selection
 
+**Pro tip:** Always clear your selection once you are done working with it. This prevents potential missteps in later steps.
+
 **Step 17:** Old growth forest quantities are assessed in terms of Land Units and BEC Subzones. Land Units are land parcels pre-determined by the BC Government for ease of land management and assessment. We will need to divide our current Crown Forest Landbase by the pre-determined Landscape Units.
 
 Open the **Pairwise Intersect** tool again:
@@ -293,7 +299,11 @@ Add a new field to CrownForest_LU attribute table:
 In the `LU_BEC =` textbox, paste:
 
 ``` python
-str(!landscape_unit_code!) + "_" + str(bec_zone_c!) + str(!bec_subzone!)
+str(!landscape_unit_id!) + "_" + str(bec_zone_code!) + str(!bec_subzone!)
+```
+
+```{r 03-lu-bec-calculate-field, out.width= "100%", echo = FALSE}
+    knitr::include_graphics("images/03-lu-bec-calculate-field.png")
 ```
 
 The `str()` function ensures that the attribute values are treated as text strings rather than numeric values for addition. The result should be a new string of landscape unit, BEC zone and subzone.
@@ -302,11 +312,15 @@ The `str()` function ensures that the attribute values are treated as text strin
 
 -   Input Table: `CrownForest_LU`
 -   Dissolve Fields: LU_BEC
--   Statistics Fields: `Shape_Area` → SUM, `BEC_SUBZON` → FIRST
+-   Statistics Fields: `Shape_Area` → SUM, `bec_subzone` → FIRST
 -   Output Table: `Total_Forest_Area`
 -   Check "Create Multipart Features"
 
 This creates a polygon layer where each feature is one LU_BEC area with total crown forest area as an attribute.
+
+```{r 03-total-forest-area, out.width= "75%", echo = FALSE}
+    knitr::include_graphics("images/03-total-forest-area.png")
+```
 
 **Step 3:** To identify areas of assumed old growth, we will calculate the area of only forests with “Seral_stage” = old. We can select for old forest by using **Select by Attributes on CrownForest_LU** before using the **Dissolve** tool. Ensure that the “use the selected records” option is switched on.
 
@@ -318,6 +332,10 @@ This creates a polygon layer where each feature is one LU_BEC area with total cr
 -   Check "Create Multipart Features"
 
 Now we have created a table of total crown forest area and a table of old growth crown forest area, each by landscape unit.
+
+```{r 03-old-growth-area, out.width= "75%", echo = FALSE}
+    knitr::include_graphics("images/03-old-growth-area.png")
+```
 
 **Step 4:** We can join these tables back together using a
 
@@ -407,6 +425,10 @@ bec = lu_bec[5:]
 ```
 
 We read this as _give me all the elements from position 5 to the end of the string_, where the colon `:` separates the "from" and "to" values. If we leave one side of the colon blank, then we are saying we want whatever the minimum (left side of colon) or maximum (right side of colon) number of elements is. Python indexing starts at zero, so if I want to return the letter "g" from the alphabet string `abcdefghijklmnopqrstuvwxyz`, then I would write something like `alphabet[6]` or if I want all letters before "g", then `alphabet[:5]`.
+
+```{r 03-diff-from-high, out.width= "75%", echo = FALSE}
+    knitr::include_graphics("images/03-diff-from-high.png")
+```
 
 **Step 7:** Visualize Results
 

@@ -142,7 +142,7 @@ Once you have correctly filtered the point cloud open the "LAS Dataset to Raster
 
 ##### Q7. What features or land cover types can you idenify from the DSM? (5 points) {.unnumbered} 
 
-**Step 3:** Finally, we will create a CHM using the DEM and DSM. Navigate to Analysis > Tools > Raster Calculator (Image Analyst Tools).This tool allows you to create a new raster by combining multiple rasters using simple mathematical operators (adding, subtracting etc). 
+**Step 3:** Finally, we will create a CHM using the DEM and DSM. Navigate to Analysis > Tools > Raster Calculator (Image Analyst Tools).This tool allows you to create a new raster by combining multiple rasters using simple mathematical operators (adding, subtracting etc). You double-click the layer names from the list to add them to the calculator window.
 
 Calculate the CHM as: DSM - DEM
 
@@ -152,7 +152,9 @@ Calculate the CHM as: DSM - DEM
 knitr::include_graphics('images/05-RasterCalc.jpg')
 ```
 
-##### Screenshot 1: Upload a screenshot of your final CHM. Change the default symbology to show unvegetated areas, medium vegetation <30m and tall vegetation >30m. (15 points) {.unnumbered}
+**Step 4:** Once you have the CHM raster in ArcGIS, right-click the layer and open Symbology. From the top, change "Stretch" to "Classify", then select 3 classes, and change "Method" to "Manual Interval". Now on the bottom of the Symbology panel, you can adjust the upper values of each class break to separate unvegetated (< 2 m), medium height vegetation (< 30 m), and high vegetation (> 30 m).
+
+##### Screenshot 1: Upload a screenshot of your final CHM. Change the default symbology to show unvegetated areas < 2 m, medium vegetation < 30 m, and tall vegetation > 30 m. (15 points) {.unnumbered}
 
 ------------------------------------------------------------------------
 
@@ -184,7 +186,7 @@ Next, use the "LAS Dataset to Raster" tool to create a raster from the filtered 
 - Statistic Type: Maximum
 - Ignore no data in calculations: Checked
 
-###### Q10. What is a moving window? If you are using a focal maximum, explain how cell values assigned in the final output. (5 points) {.unnumbered}
+##### Q10. What is a moving window? If you are using a focal maximum, explain how cell values assigned in the final output. (5 points) {.unnumbered}
 
 **Step 3:** Open the "Raster Calculator" tool. We will use this tool to find the pixels in the "TreeTops" raster that match the maximum focal height in the "TreeTops_max". To do this, we will use a True/False conditional statement using the `Con` syntax: 
 

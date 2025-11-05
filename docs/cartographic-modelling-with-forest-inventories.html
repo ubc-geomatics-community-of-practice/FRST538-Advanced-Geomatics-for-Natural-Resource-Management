@@ -23,7 +23,7 @@
 <meta name="author" content="Paul D. Pickell" />
 
 
-<meta name="date" content="2025-10-22" />
+<meta name="date" content="2025-11-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -277,10 +277,10 @@ Sadie Russell</p>
 </div>
 <div id="lab3-deliverables" class="section level2 unnumbered hasAnchor">
 <h2>Deliverables<a href="cartographic-modelling-with-forest-inventories.html#lab3-deliverables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><input type="checkbox" unchecked> Responses to the questions posed throughout the lab on the course management system. (60 points)</input></p>
-<p><input type="checkbox" unchecked> A table with fields for total area, old-growth area, and percentage old growth. (10 points)</input></p>
-<p><input type="checkbox" unchecked> A screenshot of the python expression created for Task 2. (10 points)</input></p>
-<p><input type="checkbox" unchecked> A map showing the study area and the distribution of difference in calculated old-growth percentage and targets, by polygon. (20 points)</input></p>
+<p><input type="checkbox" unchecked> Responses to the questions posed throughout the lab on the course management system (60 points)</input></p>
+<p><input type="checkbox" unchecked> A table with fields for total area, old-growth area, and percentage old growth (10 points)</input></p>
+<p><input type="checkbox" unchecked> A screenshot of the python expression created for Task 2 (10 points)</input></p>
+<p><input type="checkbox" unchecked> A map showing the study area and the distribution of difference in calculated old-growth percentage and targets, by polygon (20 points)</input></p>
 <hr />
 </div>
 <div id="data-1" class="section level2 unnumbered hasAnchor">
@@ -329,9 +329,9 @@ Sadie Russell</p>
 <p><strong>Step 1:</strong> Ensure that you are authenticated through UBC myVPN. If you are at UBC, use your dedicated ethernet port or connect via the ubcsecure wireless network. If you are away from campus, you will need to first connect to the UBC myVPN service using Cisco AnyConnect Secure Mobility Client. Only authenticated users with a Campus Wide Login (CWL) who are connected to the UBC myVPN may access the UBC PostgreSQL server. However, if you are not a UBC student, then you can just download the data directly from the BC Data Catalogue.</p>
 <p><strong>Step 2:</strong> Start ArcGIS Pro and create a new Map project.</p>
 <p><strong>Step 3:</strong> From the top ribbon, navigate to the “Insert” tab, then click “Connections”, and from the drop-down menu, select “New Database Connection”.</p>
-<p><img src="images/03-arcgispro-postgres-connection-1.png" width="75%" /></p>
+<p><img src="images/03-arcgispro-postgres-connection-1.png" width="100%" /></p>
 <p>You can name it “UBC PostgreSQL Server” and for the host enter “FRST-PostgreSQL.ead.ubc.ca”. The username and password will be provided to students enrolled in the course. Once you have correctly entered the correct credentials, ArcGIS Pro will do a “soft” connection to the server to retrieve the available databases. From the “Database” drop-down menu, select “vri” and then click “OK”.</p>
-<p><img src="images/03-arcgispro-postgres-connection-2.png" width="50%" /></p>
+<p><img src="images/03-arcgispro-postgres-connection-2.png" width="75%" /></p>
 <p>The database connection has now been added to your ArcGIS Pro project, and you can view the tables inside the database from the Catalog Pane (“View” tab &gt; “Catalog Pane” &gt; expand “Databases” &gt; expand “PostgreSQL-FRST-PostgreSQL-vri(student)” &gt; now you can see all the tables in the <code>vri</code> database). You can drag and drop any of the layers of the database directly into your map to visualize them if you want. Though be aware that these are large layers and they may take a while to draw on your map. We do not actually need all of these data, so instead, we are going to use the power of SQL (Structured Query Language) to write a query that will return to us the tiny fraction that we need to use for this lab. First, let us break down what a generic SQL SELECT query looks like:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="cartographic-modelling-with-forest-inventories.html#cb1-1" tabindex="-1"></a><span class="kw">SELECT</span> gid, site_index, species_cd_1, species_pct_1, geom</span>
 <span id="cb1-2"><a href="cartographic-modelling-with-forest-inventories.html#cb1-2" tabindex="-1"></a><span class="kw">FROM</span> veg_comp_lyr_r1_poly_2024</span>
@@ -365,11 +365,12 @@ Sadie Russell</p>
 <p>Our goal here is not necessarily to visualize the results, though you should see you map automatically pan to Vancouver Island. You can toggle the layer off and visualize it later. If you open the attribute table, you should see the five columns we requested and there should be 275,246 polygons. (Click the “Load All” button at the bottom of the attribute table to verify, which will take some additional time).</p>
 <p>The query layer that you just created is persistent between ArcGIS Pro sessions if you saved and re-open the project later, but the query layer does not actually contain any data because it just provides the instructions to apply the query to the remote database. It will re-run the query each time you re-open your ArcGIS Pro project, which will take some time to retrieve the data. To avoid this, we are going to actually download the data to our local computer.</p>
 <p><strong>Step 8:</strong> Export the selection you have made your ArcGIS Pro project geodatabase by right-clicking the “vancouver_island_vri_select” layer in your Table of Contents, select “Data”, then select “Export Features”. In the dialogue window that opens, change the output filename to “forest_land_base” (Note: layers stored in geodatabases do not have file extensions), the default location is already the geodatabase for your ArcGIS Pro project. Click “Ok”. This should take about 5 minutes to complete.</p>
+<p><img src="images/03-ExportFeatures.png" width="75%" /></p>
 <p>Next, we are going to export the other layers and download them directly to our ArcGIS Pro project geodatabase.</p>
 <p><strong>Step 9:</strong> From the “Catalog Pane”, export the “vancouver_island_own” layer to your ArcGIS Pro project geodatabase by right-clicking the “vancouver_island_own” layer, select “Export”, then select “Export Features…”. In the dialogue window that opens, change the output filename to “vancouver_island_own” (Note: layers stored in geodatabases do not have file extensions), the default location is already the geodatabase for your ArcGIS Pro project. Click “Ok”. This should take a few minutes to complete.</p>
 <p>Repeat the last step for “vancouver_island_human_disturbance” and “vancouver_island_landscape_units”. Altogether, this is about 600 MB of data, so be sure you have sufficient disk space and be patient as the data transfer completes. When finished, you can drag the layers into ArcGIS Pro to visualize them on the map. If you paused drawing mode earlier, then unpause it now.</p>
 <p>The cumulative effects framework only considers forests located on crown land. Next, we will use the forest ownership layer “vancouver_island_own” to select for land ownership types. The <code>ownership_description</code> field describes whether the polygon is private or crown land in a text format. There are lots of different types of crown ownership categories, but for our purpose we need all of them. To do this quickly, we can use <code>LIKE</code>, which is a pattern-matching operator for strings. We need to use the <code>%</code> wildcard to partially-match some pattern. For example, we can search for any row in “vancouver_island_own” with a description of “Crown” using the following statement: <code>SELECT * FROM vancouver_island_own WHERE ownership_description LIKE 'Crown%'</code>. Basically <code>%</code> is a wildcard for zero or more characters, so when we construct the pattern <code>'Crown%'</code>, we are saying <em>match any string that starts with “Crown” and has any number of characters after it</em>.</p>
-<p><strong>Step 10:</strong> Open the attribute table of “vancouver_island_own” by right-clicking the layer in the contents pane. Then click the “Select by Attributes” button then toggle the SQL Editor button to show the SQL codeblock. Write a query to select all the polygons that are crown land. Note that in this particular interface, you only need to give the conditions for selection, so you can omit <code>SELECT * FROM table WHERE</code>. Export the features to your ArcGIS Pro project geodatabase as you did with the the vancouver_island_vri_select, naming the new layer “crown_land” and ensuring that “Use the selected records” is toggled on.</p>
+<p><strong>Step 10:</strong> Open the attribute table of “vancouver_island_own” by right-clicking the layer in the contents pane. Then click the “Select by Attributes” button then toggle the SQL Editor button to show the SQL codeblock. Write a query to select all the polygons that are crown land as described in the previous step. Note that in this particular interface, you only need to give the conditions for selection, so you can omit <code>SELECT * FROM table WHERE</code>. Export the features to your ArcGIS Pro project geodatabase as you did with the the vancouver_island_vri_select, naming the new layer “crown_land” and ensuring that “Use the selected records” is toggled on.</p>
 <p>CEF human disturbance layer reference methodology document: <a href="https://catalogue.data.gov.bc.ca/dataset/7d61ff12-b85f-4aeb-ac8b-7b10e84b046c/resource/7b5789ad-7571-4216-a359-79fd722335f5/download/human-distrubance-description-for-bcdc-archived-and-current.pdf" class="uri">https://catalogue.data.gov.bc.ca/dataset/7d61ff12-b85f-4aeb-ac8b-7b10e84b046c/resource/7b5789ad-7571-4216-a359-79fd722335f5/download/human-distrubance-description-for-bcdc-archived-and-current.pdf</a></p>
 <p><strong>Step 11:</strong> Next, we will select the areas where crown land overlaps with potentially forested areas.</p>
 <p>Use the <strong>Pairwise Intersect tool</strong>. You can search for it by clicking the toolbox on the top ribbon (“Analysis” tab &gt; “Tools”).</p>
@@ -378,7 +379,7 @@ Sadie Russell</p>
 <li><p>Output: <code>Crown_Forest</code></p></li>
 </ul>
 <p>Once the tool has finished running, open the new Crown_Forest attribute table to ensure that ‘bec_zone_code’ and ‘bec_subzone’ attributes have been preserved.</p>
-<p><strong>Step 12:</strong> Turn off visibility for other layers in the contents pane on the left side. If the contents pane has been closed, it can be reopened from the ribbon at the top of the screen. Visualize the <code>Crown_Forest</code> layer by <code>BEC_ZONE_CODE</code> or <code>BEC_SUBZONE</code>. To do this, right-click the layer in the contents pane and select ‘Symbology’. Change the primary symbology to ‘Unique Values’ and ‘field 1’ to the attribute of your choice.</p>
+<p><strong>Step 12:</strong> Turn off visibility for other layers in the contents pane on the left side. If the contents pane has been closed, it can be reopened from the ribbon at the top of the screen. Visualize the <code>Crown_Forest</code> layer by <code>bec_zone_code</code> or <code>bec_subzone</code>. To do this, right-click the layer in the contents pane and select ‘Symbology’. Change the primary symbology to ‘Unique Values’ and ‘field 1’ to the attribute of your choice.</p>
 <p><strong>Pro tip:</strong> Polygon outlines can be removed by clicking the symbol of each row in the ‘Classes’ table of the symbology layer. When given the option, select a symbol that does not have an outline. This makes it easier to see the area of many smaller polygons combined.</p>
 <p><img src="images/03-VRI_BecSubZones.png" width="75%" /></p>
 <p><strong>Step 13:</strong> In BC forestry standards, the age of a forest stand is categorized by “Seral Stage.” Since the required ages for mature or old growth forests varies depending on the BEC zone, seral stages are used to denote the relative age class of a stand; “Early”, “Mid”, “Mature”, and “Old”. We will create a new field and classify each polygon depending on it’s estimated age.</p>
@@ -429,12 +430,12 @@ Sadie Russell</p>
 <li><em>Note: Ignore the warning message that appears.</em></li>
 </ul>
 <p>To better understand what is being done in this code chunk, the syntax is described below.</p>
-<p><img src="images/03-PythonSyntax.jpg" width="75%" /></p>
+<p><img src="images/03-PythonSyntax.jpg" width="100%" /></p>
 <p>Review that all the rows have been populated in the <code>Seral_stage</code> field.</p>
 </div>
 <div id="q2.-define-old-growth-and-cite-at-least-one-primary-source.-what-characteristics-might-be-overlooked-by-a-definition-of-old-growth-that-only-accounts-for-stand-age-10-points" class="section level5 unnumbered hasAnchor">
 <h5>Q2. Define “old growth” and cite at least one primary source. What characteristics might be overlooked by a definition of “old growth” that only accounts for stand age? (10 points)<a href="cartographic-modelling-with-forest-inventories.html#q2.-define-old-growth-and-cite-at-least-one-primary-source.-what-characteristics-might-be-overlooked-by-a-definition-of-old-growth-that-only-accounts-for-stand-age-10-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<p><strong>Step 15:</strong> Our current layers only depict where crown forests could possibly be. In this step we will remove any areas that have experienced human disturbance in the forms of roads, buildings, and logging. We will use <code>vancouver_island_human_disturbance</code> to do so. Select by attribute where <code>cef_human_disturb_flag</code> is equal to <code>Human Disturb Current 20yr</code>. Export the selected attributes as a new feature named <code>Disturbed_areas</code>.</p>
+<p><strong>Step 15:</strong> Our current layers only indicate where crown forests <em>could potentially occur</em>. In this step, we will reset the seral stage in areas that have experienced human disturbances such as roads, buildings, or logging. We are not removing these areas entirely, as they remain part of the landscape unit where old-growth forest could exist if it had not been cleared. We will use <code>vancouver_island_human_disturbance</code> to do so. Select by attribute where <code>cef_human_disturb_flag</code> is equal to <code>Human Disturb Current 20yr</code>. Export the selected attributes as a new feature named <code>Disturbed_areas</code>.</p>
 <p>Then, use <code>Select By Location</code> in the top ribbon to identify areas of overlap between potential crown forest stands and areas of disturbance.</p>
 <ul>
 <li><p><strong>Input Feature</strong>: Crown_Forest</p></li>
@@ -455,6 +456,7 @@ Sadie Russell</p>
 <li><p>Click Apply</p></li>
 <li><p>Click ‘Clear’ to remove selection</p></li>
 </ul>
+<p><strong>Pro tip:</strong> Always clear your selection once you are done working with it. This prevents potential missteps in later steps.</p>
 <p><strong>Step 17:</strong> Old growth forest quantities are assessed in terms of Land Units and BEC Subzones. Land Units are land parcels pre-determined by the BC Government for ease of land management and assessment. We will need to divide our current Crown Forest Landbase by the pre-determined Landscape Units.</p>
 <p>Open the <strong>Pairwise Intersect</strong> tool again:</p>
 <ul>
@@ -473,17 +475,19 @@ Sadie Russell</p>
 <li>Type: Text</li>
 </ul>
 <p>In the <code>LU_BEC =</code> textbox, paste:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="cartographic-modelling-with-forest-inventories.html#cb4-1" tabindex="-1"></a><span class="bu">str</span>(<span class="op">!</span>landscape_unit_code<span class="op">!</span>) <span class="op">+</span> <span class="st">&quot;_&quot;</span> <span class="op">+</span> <span class="bu">str</span>(bec_zone_c<span class="op">!</span>) <span class="op">+</span> <span class="bu">str</span>(<span class="op">!</span>bec_subzone<span class="op">!</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="cartographic-modelling-with-forest-inventories.html#cb4-1" tabindex="-1"></a><span class="bu">str</span>(<span class="op">!</span>landscape_unit_id<span class="op">!</span>) <span class="op">+</span> <span class="st">&quot;_&quot;</span> <span class="op">+</span> <span class="bu">str</span>(bec_zone_code<span class="op">!</span>) <span class="op">+</span> <span class="bu">str</span>(<span class="op">!</span>bec_subzone<span class="op">!</span>)</span></code></pre></div>
+<p><img src="images/03-lu-bec-calculate-field.png" width="100%" /></p>
 <p>The <code>str()</code> function ensures that the attribute values are treated as text strings rather than numeric values for addition. The result should be a new string of landscape unit, BEC zone and subzone.</p>
 <p><strong>Step 2:</strong> We will now calculate the total amount of forested area in each of these landscape unit/BEC zone combination. With the <strong>Dissolve</strong> tool, we can create new polygons from the landscape identifier:</p>
 <ul>
 <li>Input Table: <code>CrownForest_LU</code></li>
 <li>Dissolve Fields: LU_BEC</li>
-<li>Statistics Fields: <code>Shape_Area</code> → SUM, <code>BEC_SUBZON</code> → FIRST</li>
+<li>Statistics Fields: <code>Shape_Area</code> → SUM, <code>bec_subzone</code> → FIRST</li>
 <li>Output Table: <code>Total_Forest_Area</code></li>
 <li>Check “Create Multipart Features”</li>
 </ul>
 <p>This creates a polygon layer where each feature is one LU_BEC area with total crown forest area as an attribute.</p>
+<p><img src="images/03-total-forest-area.png" width="75%" /></p>
 <p><strong>Step 3:</strong> To identify areas of assumed old growth, we will calculate the area of only forests with “Seral_stage” = old. We can select for old forest by using <strong>Select by Attributes on CrownForest_LU</strong> before using the <strong>Dissolve</strong> tool. Ensure that the “use the selected records” option is switched on.</p>
 <ul>
 <li>Select by Attribute: <code>Seral_Stage = 'Old'</code></li>
@@ -494,6 +498,7 @@ Sadie Russell</p>
 <li>Check “Create Multipart Features”</li>
 </ul>
 <p>Now we have created a table of total crown forest area and a table of old growth crown forest area, each by landscape unit.</p>
+<p><img src="images/03-old-growth-area.png" width="75%" /></p>
 <p><strong>Step 4:</strong> We can join these tables back together using a</p>
 <p>Use <strong>Join Field</strong> with the following expression:</p>
 <ul>
@@ -596,6 +601,7 @@ Sadie Russell</p>
 <p><strong>Pro Tip:</strong> The subzone code can be isolated by removing the first 5 characters with a slice. This would look something like this:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="cartographic-modelling-with-forest-inventories.html#cb8-1" tabindex="-1"></a>bec <span class="op">=</span> lu_bec[<span class="dv">5</span>:] </span></code></pre></div>
 <p>We read this as <em>give me all the elements from position 5 to the end of the string</em>, where the colon <code>:</code> separates the “from” and “to” values. If we leave one side of the colon blank, then we are saying we want whatever the minimum (left side of colon) or maximum (right side of colon) number of elements is. Python indexing starts at zero, so if I want to return the letter “g” from the alphabet string <code>abcdefghijklmnopqrstuvwxyz</code>, then I would write something like <code>alphabet[6]</code> or if I want all letters before “g”, then <code>alphabet[:5]</code>.</p>
+<p><img src="images/03-diff-from-high.png" width="75%" /></p>
 <p><strong>Step 7:</strong> Visualize Results</p>
 <p>In the <strong>Contents</strong> pane, right-click the <code>Total_Forest_Area</code> layer and select <strong>Symbology</strong>. In the Symbology panel, set the <strong>Field</strong> to <code>DiffFromHigh</code>. This will display the data based on the values in that field. Under <strong>Primary symbology</strong>, choose <strong>Graduated Colors</strong> (a gradient).</p>
 <p>Select a <strong>color ramp</strong> that makes sense for your data. For values that represent <em>low to high</em> differences, use a single-hue light-to-dark ramp (e.g., light yellow → dark green). Avoid using colors that are difficult to interpret (e.g., bright rainbow colors). - Think about your audience—pick colors that clearly show the trend and are readable to someone with color-vision deficiencies.Adjust the <strong>classification method and number of classes</strong> if needed (e.g., Natural Breaks, Quantile). This determines how your data values are grouped into color ranges.</p>
