@@ -1,3 +1,23 @@
+---
+title: "Lab 07: Final Project — Geospatial Analysis and Synthesis"
+lab_id: frst538-lab07-final-project
+course_code: FRST 538
+summary: "Integrate techniques from previous labs to design and carry out a spatial analysis addressing a forest management question of your choice. Compile and communicate results through a professional map and brief report."
+topics: [project design, spatial analysis, synthesis, forest management, communication]
+software: [ArcGIS Pro, R, Python, QGIS]
+keywords: [project planning, spatial workflow, analysis design, visualization, report, map layout]
+license: CC-BY-4.0
+learning_outcomes:
+  - Design a spatial analysis project that integrates multiple geospatial methods.
+  - Select and prepare suitable datasets for the analysis question.
+  - Apply appropriate geoprocessing and visualization tools to derive insights.
+  - Communicate methods and results effectively in written and cartographic form.
+  - Reflect on challenges, limitations, and decision-making in spatial analysis.
+blooms_verbs: [design, select, prepare, apply, communicate, reflect]
+blooms_levels: [apply, analyze, evaluate, create]
+---
+
+
 ```{r echo=FALSE}
 yml_content <- yaml::read_yaml("chapterauthors.yml")
 author <- yml_content[["time-series-image-analysis"]][["author"]]

@@ -1,3 +1,23 @@
+---
+title: "Lab 01: Exploring Spatial Data"
+lab_id: frst538-lab01-exploring-spatial-data
+course_code: FRST 538
+summary: "Find, evaluate, and visualize vector spatial data in ArcGIS Pro; examine file formats and metadata; select an appropriate coordinate reference system; and produce a simple multi-layer map."
+topics: [vector data, metadata, coordinate reference systems, map projections, open data portals, symbology, file formats]
+software: [ArcGIS Pro]
+keywords: [points, lines, polygons, CRS, projection, symbology, geodatabase, shapefile, GeoPackage, GeoJSON, open data]
+license: CC-BY-4.0
+learning_outcomes:
+  - Locate and download relevant datasets from open data portals.
+  - Identify spatial data file formats and attribute field data types.
+  - Inspect metadata (coordinate reference system, extent, file type, data type) within ArcGIS Pro.
+  - Choose the most appropriate coordinate reference system for your study area.
+  - Examine attribute tables to understand data content, codes, and field data types.
+  - Create a simple map that visualizes multiple vector spatial datasets.
+blooms_verbs: [locate, identify, inspect, choose, examine, create]
+blooms_levels: [remember, understand, analyze, evaluate, create]
+---
+
 ```{r echo=FALSE}
 yml_content <- yaml::read_yaml("chapterauthors.yml")
 author <- yml_content[["exploring-spatial-data"]][["author"]]

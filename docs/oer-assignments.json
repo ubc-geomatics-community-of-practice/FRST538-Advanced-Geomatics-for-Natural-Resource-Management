@@ -1,0 +1,103 @@
+{
+  "items": [
+    {
+      "id": "frst538-lab01-exploring-spatial-data",
+      "title": "Lab 01: Exploring Spatial Data",
+      "course_code": "FRST 538",
+      "page_url": "01-Exploring-Spatial-Data.html",
+      "summary": "Find, evaluate, and visualize vector spatial data in ArcGIS Pro; examine file formats and metadata; select an appropriate coordinate reference system; and produce a simple multi-layer map.",
+      "topics": ["vector data", "metadata", "coordinate reference systems", "map projections", "open data portals", "symbology", "file formats"],
+      "software": "ArcGIS Pro",
+      "keywords": ["points", "lines", "polygons", "CRS", "projection", "symbology", "geodatabase", "shapefile", "GeoPackage", "GeoJSON", "open data"],
+      "license": "CC-BY-4.0",
+      "learning_outcomes": ["Locate and download relevant datasets from open data portals.", "Identify spatial data file formats and attribute field data types.", "Inspect metadata (coordinate reference system, extent, file type, data type) within ArcGIS Pro.", "Choose the most appropriate coordinate reference system for your study area.", "Examine attribute tables to understand data content, codes, and field data types.", "Create a simple map that visualizes multiple vector spatial datasets."],
+      "blooms_verbs": ["identify", "examine", "create"],
+      "blooms_levels": ["remember", "analyze", "create"]
+    },
+    {
+      "id": "frst538-lab02-collecting-processing-gnss",
+      "title": "Lab 02: Collecting & Processing GNSS Data",
+      "course_code": "FRST 538",
+      "page_url": "02-Collecting-and-Processing-GNSS-Data.html",
+      "summary": "Plan a GNSS field collection, acquire positions with Avenza Maps, and assess accuracy and precision against reference points using ArcGIS Pro and supporting tools.",
+      "topics": ["GNSS", "field data collection", "accuracy & precision", "planning", "data quality"],
+      "software": ["ArcGIS Pro", "Avenza Maps", "Trimble GNSS Planning Online", "Excel"],
+      "keywords": ["DOP", "sky plot", "KML", "KML to Layer", "reference points", "UTM", "horizontal accuracy", "precision"],
+      "license": "CC-BY-4.0",
+      "learning_outcomes": ["Plan for field data collection.", "Use AvenzaMaps to collect GNSS readings.", "Evaluate the accuracy and precision of GNSS coordinates."],
+      "blooms_verbs": ["use", "evaluate"],
+      "blooms_levels": ["apply", "evaluate"]
+    },
+    {
+      "id": "frst538-lab03-cartographic-modelling-forest-inventories",
+      "title": "Lab 03: Cartographic Modelling with Forest Inventories",
+      "course_code": "FRST 538",
+      "page_url": "03-Cartographic-Modelling-with-Forest-Inventories.html",
+      "summary": "Query, prepare, and summarize VRI and related layers to identify old-growth candidates; compute areas/percentages and communicate results with a cartographic summary.",
+      "topics": ["forest inventory", "VRI", "old-growth analysis", "SQL querying", "cartographic summary"],
+      "software": ["ArcGIS Pro", "PostgreSQL", "SQL"],
+      "keywords": ["VRI", "BEC", "managed forest", "select by expression", "area calculation", "Vancouver Island"],
+      "license": "CC-BY-4.0",
+      "learning_outcomes": ["Prepare and clean a forest inventory dataset and related layers for analysis.", "Perform attribute/select-by-expression filtering to isolate old-growth candidate polygons.", "Calculate old-growth area and percentages by polygon using field calculations.", "Produce a cartographic summary (map and table) that communicates old-growth distribution.", "Reflect on limitations and assumptions of VRI-derived old-growth estimates."],
+      "blooms_verbs": ["perform", "calculate", "produce"],
+      "blooms_levels": ["apply", "create"]
+    },
+    {
+      "id": "frst538-lab04-remote-sensing-image-analysis",
+      "title": "Lab 04: Remote Sensing Image Analysis",
+      "course_code": "FRST 538",
+      "page_url": "04-Remote-Sensing-Image-Analysis.html",
+      "summary": "Explore the EMS, build true/false-colour composites, compute indices, and analyze spectral signatures using Landsat 5 in ArcGIS Pro.",
+      "topics": ["remote sensing", "electromagnetic spectrum", "Landsat 5", "spectral indices", "color composites"],
+      "software": "ArcGIS Pro",
+      "keywords": ["spectral bands", "spectral profile", "NDVI", "vegetation", "urban", "false colour"],
+      "license": "CC-BY-4.0",
+      "learning_outcomes": ["Differentiate regions of the electromagnetic spectrum for urban applications.", "Use Landsat 5 spectral reflectance to map vegetation and urban areas.", "Analyze spectral signatures of different land cover types."],
+      "blooms_verbs": ["differentiate", "use", "analyze"],
+      "blooms_levels": ["apply", "analyze"]
+    },
+    {
+      "id": "frst538-lab05-lidar-forest-management",
+      "title": "Lab 05: LiDAR for Forest Management",
+      "course_code": "FRST 538",
+      "page_url": "05-LiDAR-for-Forest-Management.html",
+      "summary": "Work with LiDAR point clouds to build DEM/DSM/CHM products, identify tree tops, and visualize results in 3D to support forest management.",
+      "topics": ["LiDAR", "point clouds", "DEM/DSM/CHM", "canopy structure", "3D visualization"],
+      "software": "ArcGIS Pro",
+      "keywords": ["LAS", "canopy height model", "raster calculator", "focal statistics", "scene"],
+      "license": "CC-BY-4.0",
+      "learning_outcomes": ["Understand how LiDAR data is collected.", "Learn how to model terrain and vegetation from a LiDAR point cloud.", "Visualize 3D data in a Scene."],
+      "blooms_verbs": [],
+      "blooms_levels": []
+    },
+    {
+      "id": "frst538-lab06-terrain-analysis-riparian",
+      "title": "Lab 06: Terrain Analysis & Riparian Area Management",
+      "course_code": "FRST 538",
+      "page_url": "06-Terrain-Analysis-and-Riparian-Area-Management.html",
+      "summary": "Use DEM-based hydrologic tools to derive stream networks, compute stream metrics, and delineate riparian management areas to evaluate harvestable zones.",
+      "topics": ["terrain analysis", "hydrology", "stream networks", "riparian management", "DEM processing"],
+      "software": ["ArcGIS Pro", "Python"],
+      "keywords": ["flow direction", "flow accumulation", "Strahler", "Shreve", "zonal statistics", "riparian buffers", "gradient"],
+      "license": "CC-BY-4.0",
+      "learning_outcomes": ["Practice characterizing riparian areas using hydrologic toolsets.", "Execute tasks using Python scripting.", "Evaluate harvestable areas near riparian management areas."],
+      "blooms_verbs": ["execute", "evaluate"],
+      "blooms_levels": ["apply", "evaluate"]
+    },
+    {
+      "id": "frst538-lab07-final-project",
+      "title": "Lab 07: Final Project — Geospatial Analysis and Synthesis",
+      "course_code": "FRST 538",
+      "page_url": "07-Time-Series-Analysis.html",
+      "summary": "Integrate techniques from previous labs to design and carry out a spatial analysis addressing a forest management question of your choice. Compile and communicate results through a professional map and brief report.",
+      "topics": ["project design", "spatial analysis", "synthesis", "forest management", "communication"],
+      "software": ["ArcGIS Pro", "R", "Python", "QGIS"],
+      "keywords": ["project planning", "spatial workflow", "analysis design", "visualization", "report", "map layout"],
+      "license": "CC-BY-4.0",
+      "learning_outcomes": ["Design a spatial analysis project that integrates multiple geospatial methods.", "Select and prepare suitable datasets for the analysis question.", "Apply appropriate geoprocessing and visualization tools to derive insights.", "Communicate methods and results effectively in written and cartographic form.", "Reflect on challenges, limitations, and decision-making in spatial analysis."],
+      "blooms_verbs": ["design", "apply"],
+      "blooms_levels": ["apply", "create"]
+    }
+  ],
+  "generated_at": "2025-11-05T20:56:36Z"
+}
