@@ -1,22 +1,3 @@
----
-title: "Lab 03: Cartographic Modelling with Forest Inventories"
-lab_id: frst538-lab03-cartographic-modelling-forest-inventories
-course_code: FRST 538
-summary: "Query, prepare, and summarize VRI and related layers to identify old-growth candidates; compute areas/percentages and communicate results with a cartographic summary."
-topics: [forest inventory, VRI, old-growth analysis, SQL querying, cartographic summary]
-software: [ArcGIS Pro, PostgreSQL, SQL]
-keywords: [VRI, BEC, managed forest, select by expression, area calculation, Vancouver Island]
-license: CC-BY-4.0
-learning_outcomes:
-  - Prepare and clean a forest inventory dataset and related layers for analysis.
-  - Perform attribute/select-by-expression filtering to isolate old-growth candidate polygons.
-  - Calculate old-growth area and percentages by polygon using field calculations.
-  - Produce a cartographic summary (map and table) that communicates old-growth distribution.
-  - Reflect on limitations and assumptions of VRI-derived old-growth estimates.
-blooms_verbs: [prepare, clean, perform, filter, calculate, produce, reflect]
-blooms_levels: [apply, analyze, evaluate, create]
----
-
 ```{r echo=FALSE}
 yml_content <- yaml::read_yaml("chapterauthors.yml")
 author <- yml_content[["cartographic-modelling-with-forest-inventories"]][["author"]]

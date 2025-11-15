@@ -1,20 +1,3 @@
----
-title: "Lab 05: LiDAR for Forest Management"
-lab_id: frst538-lab05-lidar-forest-management
-course_code: FRST 538
-summary: "Work with LiDAR point clouds to build DEM/DSM/CHM products, identify tree tops, and visualize results in 3D to support forest management."
-topics: [LiDAR, point clouds, DEM/DSM/CHM, canopy structure, 3D visualization]
-software: [ArcGIS Pro]
-keywords: [LAS, canopy height model, raster calculator, focal statistics, scene]
-license: CC-BY-4.0
-learning_outcomes:
-  - Understand how LiDAR data is collected.
-  - Learn how to model terrain and vegetation from a LiDAR point cloud.
-  - Visualize 3D data in a Scene.
-blooms_verbs: [understand, model, visualize]
-blooms_levels: [understand, apply]
----
-
 ```{r echo=FALSE}
 yml_content <- yaml::read_yaml("chapterauthors.yml")
 author <- yml_content[["lidar-for-forest-management"]][["author"]]

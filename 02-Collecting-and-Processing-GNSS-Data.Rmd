@@ -1,20 +1,3 @@
----
-title: "Lab 02: Collecting & Processing GNSS Data"
-lab_id: frst538-lab02-collecting-processing-gnss
-course_code: FRST 538
-summary: "Plan a GNSS field collection, acquire positions with Avenza Maps, and assess accuracy and precision against reference points using ArcGIS Pro and supporting tools."
-topics: [GNSS, field data collection, accuracy & precision, planning, data quality]
-software: [ArcGIS Pro, Avenza Maps, Trimble GNSS Planning Online, Excel]
-keywords: [DOP, sky plot, KML, KML to Layer, reference points, UTM, horizontal accuracy, precision]
-license: CC-BY-4.0
-learning_outcomes:
-  - Plan for field data collection.
-  - Use AvenzaMaps to collect GNSS readings.
-  - Evaluate the accuracy and precision of GNSS coordinates.
-blooms_verbs: [plan, use, evaluate]
-blooms_levels: [apply, evaluate, create]
----
-
 ```{r echo=FALSE}
 yml_content <- yaml::read_yaml("chapterauthors.yml")
 author <- yml_content[["collecting-and-processing-gnss-data"]][["author"]]

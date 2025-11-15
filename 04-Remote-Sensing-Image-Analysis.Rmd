@@ -1,20 +1,3 @@
----
-title: "Lab 04: Remote Sensing Image Analysis"
-lab_id: frst538-lab04-remote-sensing-image-analysis
-course_code: FRST 538
-summary: "Explore the EMS, build true/false-colour composites, compute indices, and analyze spectral signatures using Landsat 5 in ArcGIS Pro."
-topics: [remote sensing, electromagnetic spectrum, Landsat 5, spectral indices, color composites]
-software: [ArcGIS Pro]
-keywords: [spectral bands, spectral profile, NDVI, vegetation, urban, false colour]
-license: CC-BY-4.0
-learning_outcomes:
-  - Differentiate regions of the electromagnetic spectrum for urban applications.
-  - Use Landsat 5 spectral reflectance to map vegetation and urban areas.
-  - Analyze spectral signatures of different land cover types.
-blooms_verbs: [differentiate, use, map, analyze]
-blooms_levels: [apply, analyze]
----
-
 ```{r echo=FALSE}
 yml_content <- yaml::read_yaml("chapterauthors.yml")
 author <- yml_content[["remote-sensing-image-analysis"]][["author"]]

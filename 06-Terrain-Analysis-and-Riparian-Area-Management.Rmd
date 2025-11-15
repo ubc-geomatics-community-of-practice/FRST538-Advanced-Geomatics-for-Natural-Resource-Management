@@ -1,20 +1,3 @@
----
-title: "Lab 06: Terrain Analysis & Riparian Area Management"
-lab_id: frst538-lab06-terrain-analysis-riparian
-course_code: FRST 538
-summary: "Use DEM-based hydrologic tools to derive stream networks, compute stream metrics, and delineate riparian management areas to evaluate harvestable zones."
-topics: [terrain analysis, hydrology, stream networks, riparian management, DEM processing]
-software: [ArcGIS Pro, Python]
-keywords: [flow direction, flow accumulation, Strahler, Shreve, zonal statistics, riparian buffers, gradient]
-license: CC-BY-4.0
-learning_outcomes:
-  - Practice characterizing riparian areas using hydrologic toolsets.
-  - Execute tasks using Python scripting.
-  - Evaluate harvestable areas near riparian management areas.
-blooms_verbs: [practice, characterize, execute, evaluate]
-blooms_levels: [apply, analyze, evaluate]
----
-
 ```{r echo=FALSE}
 yml_content <- yaml::read_yaml("chapterauthors.yml")
 author <- yml_content[["terrain-and-riparian-area-management"]][["author"]]

@@ -1,23 +1,3 @@
----
-title: "Lab 07: Final Project — Geospatial Analysis and Synthesis"
-lab_id: frst538-lab07-final-project
-course_code: FRST 538
-summary: "Integrate techniques from previous labs to design and carry out a spatial analysis addressing a forest management question of your choice. Compile and communicate results through a professional map and brief report."
-topics: [project design, spatial analysis, synthesis, forest management, communication]
-software: [ArcGIS Pro, R, Python, QGIS]
-keywords: [project planning, spatial workflow, analysis design, visualization, report, map layout]
-license: CC-BY-4.0
-learning_outcomes:
-  - Design a spatial analysis project that integrates multiple geospatial methods.
-  - Select and prepare suitable datasets for the analysis question.
-  - Apply appropriate geoprocessing and visualization tools to derive insights.
-  - Communicate methods and results effectively in written and cartographic form.
-  - Reflect on challenges, limitations, and decision-making in spatial analysis.
-blooms_verbs: [design, select, prepare, apply, communicate, reflect]
-blooms_levels: [apply, analyze, evaluate, create]
----
-
-
 ```{r echo=FALSE}
 yml_content <- yaml::read_yaml("chapterauthors.yml")
 author <- yml_content[["time-series-image-analysis"]][["author"]]
@@ -161,9 +141,9 @@ Click on **Export** in the Temporal profile pane and save your chart as a jpeg a
 
 ##### Screenshot 1: Upload a screenshot of your temporal profile. (15 points) {.unnumbered}
 
-##### Q5. Examine your graph and provide some comments on the general trends you notice. Hypothesize on why different points take longer to recover or have smaller changes in NDVI values. (30 points) {.unnumbered}
+##### Q5. Examine your graph and provide some comments on the general trends you notice. Hypothesize on why different points take longer to recover or have smaller changes in NDVI values. (15 points) {.unnumbered}
 
-##### Q6. Examnine the line representing a water pixel. Does it have a consistant NDVI value? Explain why or why not? (15 points) {.unnumbered}
+##### Q6. Examine the line representing a water pixel. Does it have a consistant NDVI value? Explain why or why not? (15 points) {.unnumbered}
 
 ------------------------------------------------------------------------
 
@@ -202,5 +182,4 @@ Navigate to the "Analysis" ribbon and select **Tools**.  Search for the tool "Ex
 ## Summary {.unnumbered}
 
 Spectral Indices offer a unique ability to highlight landcover and image properties that would be very difficult to map without the use of spectral information. The Normalized Difference Vegetation Index (NDVI) has become one of the most widely used indices and thanks to satellite programs like Landsat, we now have access to global coverage of this index. In this lab, we explored the ability to derive this index from Landsat BAP data from 2000-2019 in ArcGIS and explore the temporal profile of NDVI to quantify changes in the image through time. We can use change detection tools to then be able to assess regions that have changed significantly through our time period. Time series data of spectral indices like NDVI can be game changing for many research applications like monitoring drought, agricultural productivity, and measuring biomass! 
-
 Return to the [**Deliverables**](#lab7-deliverables) section to check off everything you need to submit for credit in the course management system.
