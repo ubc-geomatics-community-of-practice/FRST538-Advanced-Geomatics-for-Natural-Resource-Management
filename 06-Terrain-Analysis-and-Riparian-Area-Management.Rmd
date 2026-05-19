@@ -6,7 +6,7 @@ author <- yml_content[["terrain-and-riparian-area-management"]][["author"]]
 # Terrain Analysis and Riparian Area Management {#terrain-and-riparian-area-management}
 
 Written by
-```{r results='asis', echo=FALSE}
+```{r results="asis", echo=FALSE}
 cat(author)
 ```
 
@@ -32,7 +32,7 @@ Airborne Laser Scanning (ALS) can be used to derive detailed maps of terrain and
 
 Throughout this lab stream *order* refers to the Strahler or Shreve ordering system seen in your previous lab, and stream *class* refers to the BC government stream classification used to determine riparian management areas. 
 
-More background information on riparian forest management in British Columbia can be found here: <https://www2.gov.bc.ca/gov/content/industry/forestry/managing-our-forest-resources/silviculture/silvicultural-systems/silviculture-guidebooks/riparian-management-area-guidebook>
+More background information on riparian forest management in British Columbia can be found here: [https://www2.gov.bc.ca/gov/content/industry/forestry/managing-our-forest-resources/silviculture/silvicultural-systems/silviculture-guidebooks/riparian-management-area-guidebook](https://www2.gov.bc.ca/gov/content/industry/forestry/managing-our-forest-resources/silviculture/silvicultural-systems/silviculture-guidebooks/riparian-management-area-guidebook)
 
 ------------------------------------------------------------------------
 
@@ -75,7 +75,7 @@ The Z-limit represents the minimum depth of sinks that will be filled. For examp
 
 There are three flow modelling algorithms, but we will use the simplest: D8. In this model water will flow from one cell to its steepest downslope neighbour. The cell will then be assigned a value based on which of its 8 neighbours water will flow into.
 
-Click Run. You should now have something like the image below:
+Click "Run". You should now have something like the image below:
 
 ```{r 06-flow-direction, fig.cap=fig_cap, out.width= "100%", echo = FALSE}
   fig_cap <- paste0("Flow Direction.")
@@ -219,7 +219,7 @@ Next, in the "Code Block" we need to define the `reclass` function, so that we c
 knitr::include_graphics("images/06-python-stream-width.png")
 ```
 
-Modify the following code and paste it into the "Code Block" (delete the square brackets before running). Verify the expression using the check button \> Apply.
+Modify the following code and paste it into the "Code Block" (delete the square brackets before running). Verify the expression using the check button, then "Apply".
 
 ```         
 def reclass(Order):

@@ -23,7 +23,7 @@
 <meta name="author" content="Paul D. Pickell" />
 
 
-<meta name="date" content="2025-12-19" />
+<meta name="date" content="2026-05-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -285,7 +285,7 @@ Nicholas Coops</p>
 </div>
 <div id="task-1-calcualting-ndvi-from-a-landsat-image" class="section level2 unnumbered hasAnchor">
 <h2>Task 1: Calcualting NDVI from a Landsat image<a href="time-series-image-analysis.html#task-1-calcualting-ndvi-from-a-landsat-image" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Step 1:</strong> Start a new ArcGIS Pro Map project and drag-and-drop the <strong>MKRF_UTM10S_2019_BAP.tif</strong> file into the map window. At this point, you should see an RGB satellite image of the Malcolm Knapp Research Forest (Figure <a href="time-series-image-analysis.html#fig:07-true-colour-composite-mkrf">7.1</a>) if the map view does not immediately pan to the image right click <strong>MKRF_UTM10S_2019_BAP.tif </strong> in the Contents pane and press Zoom to Layer.</p>
+<p><strong>Step 1:</strong> Start a new ArcGIS Pro Map project and drag-and-drop the <strong>MKRF_UTM10S_2019_BAP.tif</strong> file into the map window. At this point, you should see an RGB satellite image of the Malcolm Knapp Research Forest (Figure <a href="time-series-image-analysis.html#fig:07-true-colour-composite-mkrf">7.1</a>) if the map view does not immediately pan to the image right-click <strong>MKRF_UTM10S_2019_BAP.tif </strong> in the Contents pane and press Zoom to Layer.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:07-true-colour-composite-mkrf"></span>
 <img src="images/07-true-colour-composite-mkrf.png" alt="True colour composite of Malcom Knapp Research Forest (MKRF)." width="100%" />
 <p class="caption">
@@ -303,12 +303,12 @@ NDVI=\frac{NIR-Red}{NIR+Red}
 Where NIR is the near-infrared band (Landsat 7 Band 4) and Red is the red band (Landsat 7 Band 3). The results of this equation should be between -1 and 1 with values less than 0 representing water and values between 0-1 representing different levels of green vegetation.</p>
 <p>Navigate to the <strong>Imagery</strong> ribbon at the top of your ArcPro window and click the <strong>Raster Function</strong> button.</p>
 <p><img src="images/07-raster-functions.png" width="80%" style="display: block; margin: auto;" /></p>
-<p>The Raster Functions pane should appear, you can either navigate the drop-down menus to <strong>Math-&gt; Band Arithmetic</strong> or use the search function to find the <strong>Band Arithmetic Tool</strong> and click to open.</p>
+<p>The Raster Functions pane should appear, you can either navigate the drop-down menus to <strong>“Math”, then “Band Arithmetic”</strong> or use the search function to find the <strong>Band Arithmetic Tool</strong> and click to open.</p>
 <p><img src="images/07-band-arithmetic.png" width="80%" style="display: block; margin: auto;" /></p>
-<p>The “Band Arithmetic Properties” dialogue should appear. Under <strong>“Raster”</strong> use the drop-down menu and select the <strong>MKRF_UTM10s_2019_BAP.tif</strong> layer. If it is not currently in your map view and can use the folder button and navigate to your lab data folder and select the file. Under <strong>“Method”</strong> select <strong>User Defined</strong>. It should look like the screen shot below.</p>
+<p>The “Band Arithmetic Properties” dialogue should appear. Under “Raster” use the drop-down menu and select the <strong>MKRF_UTM10s_2019_BAP.tif</strong> layer. If it is not currently in your map view and can use the folder button and navigate to your lab data folder and select the file. Under “Method” select <strong>User Defined</strong>. It should look like the screenshot below.</p>
 <p><img src="images/07-band-arithmetic-properties.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Use your knowledge of spectral indices and the NDVI formula given above to fill in the NDVI calculation for your data.</p>
-<p><strong>“Create new layer”</strong> at the bottom of the window. The output should look something like Figure <a href="time-series-image-analysis.html#fig:07-example-output-ndvi-calculation">7.2</a>.</p>
+<p>“Create new layer” at the bottom of the window. The output should look something like Figure <a href="time-series-image-analysis.html#fig:07-example-output-ndvi-calculation">7.2</a>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:07-example-output-ndvi-calculation"></span>
 <img src="images/07-example-output-ndvi-calculation.png" alt="Example output for the 2019 NDVI raster calculation for MKRF " width="70%" />
 <p class="caption">
@@ -327,20 +327,20 @@ Figure 7.2: Example output for the 2019 NDVI raster calculation for MKRF
 <div id="task-2-time-series-analysis" class="section level2 unnumbered hasAnchor">
 <h2>Task 2: Time Series Analysis<a href="time-series-image-analysis.html#task-2-time-series-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In the previous section of this lab you calculated NDVI for an image of the Malcom Knapp Research Forest. In this section you will use a multidimensional dataset containing NDVI layers from 2000-2019 to create a temporal profile of NDVI change over time.</p>
-<p>Open the <strong>Catalogue</strong> pane and navigate to the lab data folder. Press the arrow for the data folder to expand. Click and drag the NDVI multidimensional data set into your map viewer.</p>
+<p>Open the <strong>Catalogue</strong> pane and navigate to the lab data folder. Click the arrow for the data folder to expand. Click and drag the NDVI multidimensional data set into your map viewer.</p>
 <p><img src="images/07-ndvi-layer.png" width="40%" style="display: block; margin: auto;" /></p>
 <p>After opening the multidimensional dataset a new ribbon should appear at the top called Time along with a slider at the top of the map pane.</p>
 <p><img src="images/07-slider.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Press the play button on the slider to start an animation of NDVI change over time. You can also click and drag the slider to view individual years.</p>
 <div id="q4.-hypothesize-on-what-is-causing-the-changes-in-ndvi-why-might-the-pattern-in-the-south-west-corner-of-the-timelapse-look-different-from-other-changes-15-points" class="section level5 unnumbered hasAnchor">
 <h5>Q4. Hypothesize on what is causing the changes in NDVI? Why might the pattern in the south west corner of the timelapse look different from other changes? (15 points)<a href="time-series-image-analysis.html#q4.-hypothesize-on-what-is-causing-the-changes-in-ndvi-why-might-the-pattern-in-the-south-west-corner-of-the-timelapse-look-different-from-other-changes-15-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<p>Now that you have visualized the imagery, it is time to create a temporal profile help quantify the changes in the images. Right Click on the NDVI layer in the Contents pane and hover over “Create Chart” and select <strong>Temporal Profile</strong>.</p>
+<p>Now that you have visualized the imagery, it is time to create a temporal profile help quantify the changes in the images. Right-click on the NDVI layer in the Contents pane and hover over “Create Chart” and select <strong>Temporal Profile</strong>.</p>
 <p><img src="images/07-temporal-profile.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>The “Temporal Profile” pane should appear on your screen, select “Properties” at the top of this pane. The “Chart Properties” pane should appear. Under “Time series” select “Multiple Locations with one variable” and select “Point” under area of interest.</p>
 <p><img src="images/07-chart-properties-ndvi.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>Your cursor should change into a coloured dot when hovering over the map pane. Clicking the left mouse button will select a pixel to view on your temporal profile. Use the Time slider animation function to find <strong>4</strong> changes that occur in different years, a 5th pixel representing water and a 6th representing an area with minimal change. See example bellow for possible locations but feel free to find and select your own.</p>
 <p><img src="images/07-example-of-aois-for-temporal-profile.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>Click on <strong>Export</strong> in the Temporal profile pane and save your chart as a jpeg and submit it in your final report.</p>
+<p>Click “Export” in the Temporal profile pane and save your chart as a jpeg and submit it in your final report.</p>
 </div>
 <div id="screenshot-1-upload-a-screenshot-of-your-temporal-profile.-15-points" class="section level5 unnumbered hasAnchor">
 <h5>Screenshot 1: Upload a screenshot of your temporal profile. (15 points)<a href="time-series-image-analysis.html#screenshot-1-upload-a-screenshot-of-your-temporal-profile.-15-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
@@ -355,12 +355,12 @@ Figure 7.2: Example output for the 2019 NDVI raster calculation for MKRF
 </div>
 <div id="task-3-change-detection" class="section level2 unnumbered hasAnchor">
 <h2>Task 3: Change Detection<a href="time-series-image-analysis.html#task-3-change-detection" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Select the NDVI layer in the Contents pane, navigate to the Imagery ribbon and select <strong>Change Detection Wizard</strong>. A new pane should appear, under “Change Detection Method” select <strong>Pixel Value Change</strong>. Choose your NDVI multidimensional dataset as the “Input Raster”. “Variable” and “Dimension” should auto fill to NDVI and StdTime. Under “From Slice” select the year 2000 for “To Slice” select 2019 and press next. In the next window select <strong>Absolute</strong> under “Difference Type” and leave the remainder as default and press the Next button at the bottom. The “Classify Difference” pane should appear and you should see a histogram. Uncheck the “Classify the difference in values” button and then press next. Under “Smoothing Neighborhood” select <strong>3x3</strong> and set the “Statistics Fill Method” to <strong>median</strong>. Save your result as a raster dataset and under “Output Dataset” write “ChangeDetection_2000_2019” and press finish.</p>
-<p>Your results should appear in your map area. If you see a gray box right click the layer in the Contents pane and select “Symbology”. Under Primary symbology use the drop down menu and select <strong>Classify</strong>. You should now see an image on your screen that looks something like this:</p>
+<p>Select the NDVI layer in the Contents pane, navigate to the Imagery ribbon and select <strong>Change Detection Wizard</strong>. A new pane should appear, under “Change Detection Method” select <strong>Pixel Value Change</strong>. Choose your NDVI multidimensional dataset as the “Input Raster”. “Variable” and “Dimension” should auto fill to NDVI and StdTime. Under “From Slice” select the year 2000 for “To Slice” select 2019 and press “Next”. In the next window select <strong>Absolute</strong> under “Difference Type” and leave the remainder as default and press “Next” at the bottom. The “Classify Difference” pane should appear and you should see a histogram. Uncheck the “Classify the difference in values” button and then press “Next”. Under “Smoothing Neighborhood” select <strong>3x3</strong> and set the “Statistics Fill Method” to <strong>median</strong>. Save your result as a raster dataset and under “Output Dataset” write “ChangeDetection_2000_2019” and press “Finish”.</p>
+<p>Your results should appear in your map area. If you see a gray box right-click the layer in the Contents pane and select “Symbology”. Under Primary symbology use the drop-down menu and select <strong>Classify</strong>. You should now see an image on your screen that looks something like this:</p>
 <p><img src="images/07-difference-in-ndvi.png" width="50%" style="display: block; margin: auto;" /></p>
 <p><strong>This output shows the difference in NDVI values between the 2000 and 2019 values close to zero mean that no change occurred while negative values represent a decrease in NDVI and positive values an increase in NDVI.</strong></p>
 <p>Next, we will use the NDVI change layer to identify decreases in NDVI representing <strong>cut blocks</strong>.</p>
-<p>We are now going to use Geoprocessing tools to extract only the areas that have been identified. Navigate to the <strong>Analysis</strong> tab and select Tools &gt; <strong>Reclassify (Spatial Analyst Tools)</strong>.</p>
+<p>We are now going to use Geoprocessing tools to extract only the areas that have been identified. Navigate to the <strong>Analysis</strong> tab and select “Tools”, then “Reclassify (Spatial Analyst Tools)”.</p>
 <p>The “Reclassify Window” should appear. Under the reclassification table press the <strong>Classify</strong> button and under “Number of Classes” write 2. The table should change and look like this:</p>
 <p><img src="images/07-classify-table.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>Change the “End” value in the first class to <strong>-0.05</strong> and the “Start” value in the second class to <strong>-0.049999</strong> and change the new field from 2 to <strong>NODATA</strong>. Run the tool. Your output should be a layer containing only pixels that had a negative change between the year 2000 NDVI image and the year 2019 NDVI image.</p>

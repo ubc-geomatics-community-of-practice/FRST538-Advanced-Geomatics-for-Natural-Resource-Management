@@ -23,7 +23,7 @@
 <meta name="author" content="Paul D. Pickell" />
 
 
-<meta name="date" content="2025-12-19" />
+<meta name="date" content="2026-05-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -259,7 +259,7 @@ Sadie Russell</p>
 <p>Old growth forests are an important feature found in many types of forested ecosystems. They are characterized not only by their age but also by their complex composition and structure. (LePage &amp; Banner, 2014) Old growth stands boast the highest rates of biodiversity and provide critical habitat for rare, threatened, or endangered species. Additionally, they contribute to soil fertility by supporting intricate soil structures formed by micro-organisms, fungi, and plants.</p>
 <p>It is generally assumed that the structural complexity desired in a forest develops over time. As such, a stand is designated as old growth once it has reached a certain age without experiencing major disturbance. The length of time required for this designation varies by Biogeoclimatic Ecosystem Classification (<a href="https://cfcg.forestry.ubc.ca/resources/cataloguing-in-situ-genetic-resources/about-bec-and-bgc-units/">BEC</a>) zone.</p>
 <p>Old growth forests are also highly valued for timber production due to their superior qualities. (Canadian Institute of Forestry, 2022) These trees have had the opportunity to grow slowly over long periods, resulting in denser wood grain and stronger lumber. Furthermore, their tall, straight trunks are ideal for producing a wide range of wood products.</p>
-<p>To balance the benefits of both logging and preserving old growth forests, frameworks and guidelines are put in place to manage Old Growth sites. In BC, Old Growth Forests are assessed using the Cumulative Effects Framework (CEF). This framework was put in place to provide guidelines on assessing the effects of human activities and natural processes on the provinces forested ecosystems. The province’s old growth and mature-plus-old targets are outlined in the Biodiversity Guidebook (Province of B.C., 1995).</p>
+<p>To balance the benefits of both logging and preserving old growth forests, frameworks and guidelines are put in place to manage Old Growth sites. In BC, Old Growth Forests are assessed using the Cumulative Effects Framework (CEF). This framework was put in place to provide guidelines on assessing the effects of human activities and natural processes on the provinces forested ecosystems. The provincial old growth and mature-plus-old targets are outlined in the Biodiversity Guidebook (Province of B.C., 1995).</p>
 <p>Vancouver Island, British Columbia, has been an area of highly contentious Old Growth logging. Conflicting interests between logging companies, First Nations, Provincial and Federal Governments, and the general public came into the spotlight during the Fairy Creek protests of 2020. Over two years of protest, more than 1,000 protesters were arrested at the site (CBC, 2022). The events at Fairy Creek, and many others like it, have brought the issues of Old Growth conservation to the forefront of timber production relations.</p>
 <hr />
 </div>
@@ -313,7 +313,7 @@ Sadie Russell</p>
 <tr class="odd">
 <td>Cumulative Effects Framework: Human Disturbance (current)</td>
 <td><code>vancouver_island_human_disturbance</code></td>
-<td><a href="https://catalogue.data.gov.bc.ca/dataset/bc-cumulative-effects-framework-human-disturbance-current" class="uri">https://catalogue.data.gov.bc.ca/dataset/bc-cumulative-effects-framework-human-disturbance-current</a></td>
+<td><a href="https://catalogue.data.gov.bc.ca/dataset/7d61ff12-b85f-4aeb-ac8b-7b10e84b046c" class="uri">https://catalogue.data.gov.bc.ca/dataset/7d61ff12-b85f-4aeb-ac8b-7b10e84b046c</a></td>
 </tr>
 <tr class="even">
 <td>Landscape Units (current)</td>
@@ -332,7 +332,7 @@ Sadie Russell</p>
 <p><img src="images/03-arcgispro-postgres-connection-1.png" width="100%" /></p>
 <p>You can name it “UBC PostgreSQL Server” and for the host enter “FRST-PostgreSQL.ead.ubc.ca”. The username and password will be provided to students enrolled in the course. Once you have correctly entered the correct credentials, ArcGIS Pro will do a “soft” connection to the server to retrieve the available databases. From the “Database” drop-down menu, select “vri” and then click “OK”.</p>
 <p><img src="images/03-arcgispro-postgres-connection-2.png" width="75%" /></p>
-<p>The database connection has now been added to your ArcGIS Pro project, and you can view the tables inside the database from the Catalog Pane (“View” tab &gt; “Catalog Pane” &gt; expand “Databases” &gt; expand “PostgreSQL-FRST-PostgreSQL-vri(student)” &gt; now you can see all the tables in the <code>vri</code> database). You can drag and drop any of the layers of the database directly into your map to visualize them if you want. Though be aware that these are large layers and they may take a while to draw on your map. We do not actually need all of these data, so instead, we are going to use the power of SQL (Structured Query Language) to write a query that will return to us the tiny fraction that we need to use for this lab. First, let us break down what a generic SQL SELECT query looks like:</p>
+<p>The database connection has now been added to your ArcGIS Pro project, and you can view the tables inside the database from the Catalog Pane (open the “View” tab, open the “Catalog Pane”, expand “Databases”, expand “PostgreSQL-FRST-PostgreSQL-vri(student)”, and view the tables in the <code>vri</code> database). You can drag and drop any of the layers of the database directly into your map to visualize them if you want. Though be aware that these are large layers and they may take a while to draw on your map. We do not actually need all of these data, so instead, we are going to use the power of SQL (Structured Query Language) to write a query that will return to us the tiny fraction that we need to use for this lab. First, let us break down what a generic SQL SELECT query looks like:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="cartographic-modelling-with-forest-inventories.html#cb1-1" tabindex="-1"></a><span class="kw">SELECT</span> gid, site_index, species_cd_1, species_pct_1, geom</span>
 <span id="cb1-2"><a href="cartographic-modelling-with-forest-inventories.html#cb1-2" tabindex="-1"></a><span class="kw">FROM</span> veg_comp_lyr_r1_poly_2024</span>
 <span id="cb1-3"><a href="cartographic-modelling-with-forest-inventories.html#cb1-3" tabindex="-1"></a><span class="kw">WHERE</span> bec_zone_code <span class="op">=</span> <span class="st">&#39;CWH&#39;</span>;</span></code></pre></div>
@@ -356,7 +356,7 @@ Sadie Russell</p>
 <p>The VRI data include descriptions about both forested and non-forested lands in British Columbia. Since we are only concerned with forests, we are going to only find polygons that are managed forests. We can do this simply with <code>SELECT * FROM vancouver_island_vri WHERE for_mgmt_land_base_ind = 'Y'</code>. See here that we have not defined any specific column names to return, <code>SELECT *</code> means <em>give me all the columns</em>, so in this example, we are only subsetting on the rows with <code>WHERE for_mgmt_land_base_ind = 'Y'</code>, but not the columns. If instead we used <code>SELECT for_mgmt_land_base_ind FROM vancouver_island_vri</code>, then we would get all the polygon values for only the <code>for_mgmt_land_base_ind</code> column name (subset columns, but not rows). You can test this SQL query but do not complete it as a new layer.</p>
 <div id="q1.-what-does-for_mgmt_land_base_ind-select-for-what-parameters-are-required-to-receive-a-yes-value-hint-take-a-look-at-the-vri-relational-data-dictionary.-10-points" class="section level5 unnumbered hasAnchor">
 <h5>Q1. What does for_mgmt_land_base_ind select for? What parameters are required to receive a “Yes” value? Hint: take a look at the VRI Relational Data Dictionary. (10 points)<a href="cartographic-modelling-with-forest-inventories.html#q1.-what-does-for_mgmt_land_base_ind-select-for-what-parameters-are-required-to-receive-a-yes-value-hint-take-a-look-at-the-vri-relational-data-dictionary.-10-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<p><strong>Pro tip:</strong> When a column value stores a text string, we use single quotation marks in SQL <code>'abc'</code> around the values that we are searching for, double quotation marks <code>"abc"</code> will fail for a SQL query.</p>
+<p><strong>Pro tip:</strong> When a column value stores a text string, we use single quotation marks in SQL <code>'abc'</code> around the values that we are searching for; double quotation marks <code>"abc"</code> will fail for a SQL query.</p>
 <p><strong>Step 6:</strong> Using what you just learned, draft a select statement that limits the VRI polygons to only managed forests and return only the column names <code>gid</code>, <code>bec_zone_code</code>, <code>bec_subzone</code>, <code>proj_age_1</code>, and <code>geom</code>. Do not run this just yet in ArcGIS Pro, but have it validated by the instructor then press the “Validate” button on the bottom of the dialogue window. If the statement validates successfully, then the “Next” button will allow you to proceed.</p>
 <p><strong>Pro tip:</strong> If you are working from a laptop, be sure to plug into your power source as your computer power options may significantly slow down your ArcGIS Pro performance to conserve battery.</p>
 <p><strong>Step 7:</strong> In the next dialogue, toggle <code>gid</code> as the field that uniquely identifies all features in the table, “Unique Identifier Field(s)” (i.e., the primary key), leave the other fields toggled off. Once you click “Finish”, your select statement will be applied and sent to the server. You will see a small dialogue window that indicates that the extent is being calculated, and this should take about 3-5 minutes before you will see a layer appear in your Table of Contents. Read on to understand the next steps while the server processes your query.</p>
@@ -371,29 +371,29 @@ Sadie Russell</p>
 <p>Repeat the last step for “vancouver_island_human_disturbance” and “vancouver_island_landscape_units”. Altogether, this is about 600 MB of data, so be sure you have sufficient disk space and be patient as the data transfer completes. When finished, you can drag the layers into ArcGIS Pro to visualize them on the map. If you paused drawing mode earlier, then unpause it now.</p>
 <p>The cumulative effects framework only considers forests located on crown land. Next, we will use the forest ownership layer “vancouver_island_own” to select for land ownership types. The <code>ownership_description</code> field describes whether the polygon is private or crown land in a text format. There are lots of different types of crown ownership categories, but for our purpose we need all of them. To do this quickly, we can use <code>LIKE</code>, which is a pattern-matching operator for strings. We need to use the <code>%</code> wildcard to partially-match some pattern. For example, we can search for any row in “vancouver_island_own” with a description of “Crown” using the following statement: <code>SELECT * FROM vancouver_island_own WHERE ownership_description LIKE 'Crown%'</code>. Basically <code>%</code> is a wildcard for zero or more characters, so when we construct the pattern <code>'Crown%'</code>, we are saying <em>match any string that starts with “Crown” and has any number of characters after it</em>.</p>
 <p><strong>Step 10:</strong> Open the attribute table of “vancouver_island_own” by right-clicking the layer in the contents pane. Then click the “Select by Attributes” button then toggle the SQL Editor button to show the SQL codeblock. Write a query to select all the polygons that are crown land as described in the previous step. Note that in this particular interface, you only need to give the conditions for selection, so you can omit <code>SELECT * FROM table WHERE</code>. Export the features to your ArcGIS Pro project geodatabase as you did with the the vancouver_island_vri_select, naming the new layer “crown_land” and ensuring that “Use the selected records” is toggled on.</p>
-<p>CEF human disturbance layer reference methodology document: <a href="https://catalogue.data.gov.bc.ca/dataset/7d61ff12-b85f-4aeb-ac8b-7b10e84b046c/resource/7b5789ad-7571-4216-a359-79fd722335f5/download/human-distrubance-description-for-bcdc-archived-and-current.pdf" class="uri">https://catalogue.data.gov.bc.ca/dataset/7d61ff12-b85f-4aeb-ac8b-7b10e84b046c/resource/7b5789ad-7571-4216-a359-79fd722335f5/download/human-distrubance-description-for-bcdc-archived-and-current.pdf</a></p>
+<p>You can read more about the CEF human disturbance layer and methodology here: <a href="https://catalogue.data.gov.bc.ca/dataset/bc-cumulative-effects-framework-human-disturbance-current">https://catalogue.data.gov.bc.ca/dataset/bc-cumulative-effects-framework-human-disturbance-current</a></p>
 <p><strong>Step 11:</strong> Next, we will select the areas where crown land overlaps with potentially forested areas.</p>
-<p>Use the <strong>Pairwise Intersect tool</strong>. You can search for it by clicking the toolbox on the top ribbon (“Analysis” tab &gt; “Tools”).</p>
+<p>Use the <strong>Pairwise Intersect tool</strong>. You can search for it by clicking the toolbox on the top ribbon (open the “Analysis” tab, then click “Tools”).</p>
 <ul>
 <li><p>Input: <code>forest_land_base</code>, <code>crown_land</code></p></li>
 <li><p>Output: <code>Crown_Forest</code></p></li>
 </ul>
-<p>Once the tool has finished running, open the new Crown_Forest attribute table to ensure that ‘bec_zone_code’ and ‘bec_subzone’ attributes have been preserved.</p>
-<p><strong>Step 12:</strong> Turn off visibility for other layers in the contents pane on the left side. If the contents pane has been closed, it can be reopened from the ribbon at the top of the screen. Visualize the <code>Crown_Forest</code> layer by <code>bec_zone_code</code> or <code>bec_subzone</code>. To do this, right-click the layer in the contents pane and select ‘Symbology’. Change the primary symbology to ‘Unique Values’ and ‘field 1’ to the attribute of your choice.</p>
-<p><strong>Pro tip:</strong> Polygon outlines can be removed by clicking the symbol of each row in the ‘Classes’ table of the symbology layer. When given the option, select a symbol that does not have an outline. This makes it easier to see the area of many smaller polygons combined.</p>
+<p>Once the tool has finished running, open the new Crown_Forest attribute table to ensure that “bec_zone_code” and “bec_subzone” attributes have been preserved.</p>
+<p><strong>Step 12:</strong> Turn off visibility for other layers in the contents pane on the left side. If the contents pane has been closed, it can be reopened from the ribbon at the top of the screen. Visualize the <code>Crown_Forest</code> layer by <code>bec_zone_code</code> or <code>bec_subzone</code>. To do this, right-click the layer in the contents pane and select “Symbology”. Change the primary symbology to “Unique Values” and “field 1” to the attribute of your choice.</p>
+<p><strong>Pro tip:</strong> Polygon outlines can be removed by clicking the symbol of each row in the “Classes” table of the symbology layer. When given the option, select a symbol that does not have an outline. This makes it easier to see the area of many smaller polygons combined.</p>
 <p><img src="images/03-VRI_BecSubZones.png" width="75%" /></p>
-<p><strong>Step 13:</strong> In BC forestry standards, the age of a forest stand is categorized by “Seral Stage.” Since the required ages for mature or old growth forests varies depending on the BEC zone, seral stages are used to denote the relative age class of a stand; “Early”, “Mid”, “Mature”, and “Old”. We will create a new field and classify each polygon depending on it’s estimated age.</p>
-<p>Open the <code>Crown_Forest</code> attribute table and select ‘Add’ in the table ribbon. This will take you to the field view. At the bottom, create a new field using:</p>
+<p><strong>Step 13:</strong> In BC forestry standards, the age of a forest stand is categorized by “Seral Stage.” Since the required ages for mature or old growth forests varies depending on the BEC zone, seral stages are used to denote the relative age class of a stand; “Early”, “Mid”, “Mature”, and “Old”. We will create a new field and classify each polygon depending on it is estimated age.</p>
+<p>Open the <code>Crown_Forest</code> attribute table and select “Add” in the table ribbon. This will take you to the field view. At the bottom, create a new field using:</p>
 <ul>
-<li>Name: ‘Seral_Stage’</li>
+<li>Name: “Seral_Stage”</li>
 <li>Data Type: Text</li>
 </ul>
-<p>To save this new field, click ‘Save’ on the Ribbon at the top of the window. Once it is saved you can close the field view and return to the <code>Crown_Forest</code> attribute table. Once it is saved you can close the field view and return to the <code>Crown_Forest</code> attribute table.</p>
-<p><strong>Step 14:</strong> Right-click the new field and select <code>Calculate Field</code>. The age categories for each seral stage depend on which BEC zone the stand falls within. These age categories correspond with the growth rate and productivity of different eco-zones. The provided code defines the breakdown of Early, Mid, Mature and Old for the three BEC zones found on Vancouver Island.</p>
+<p>To save this new field, click “Save” on the Ribbon at the top of the window. Once it is saved you can close the field view and return to the <code>Crown_Forest</code> attribute table. Once it is saved you can close the field view and return to the <code>Crown_Forest</code> attribute table.</p>
+<p><strong>Step 14:</strong> Right-click the new field and select “Calculate Field”. The age categories for each seral stage depend on which BEC zone the stand falls within. These age categories correspond with the growth rate and productivity of different eco-zones. The provided code defines the breakdown of Early, Mid, Mature and Old for the three BEC zones found on Vancouver Island.</p>
 <p>In the expression field paste the following code. This take the BEC zone code and estimated age as inputs into a function that we will define.</p>
-<p>In the code block under ‘Seral_stage =’, paste:</p>
+<p>In the code block under “Seral_stage =”, paste:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="cartographic-modelling-with-forest-inventories.html#cb2-1" tabindex="-1"></a>getSeralStage(<span class="op">!</span>BEC_ZONE_CODE<span class="op">!</span>, <span class="op">!</span>PROJ_AGE_1<span class="op">!</span>)</span></code></pre></div>
-<p>In the ‘Code Block’ paste:</p>
+<p>In the “Code Block” paste:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="cartographic-modelling-with-forest-inventories.html#cb3-1" tabindex="-1"></a></span>
 <span id="cb3-2"><a href="cartographic-modelling-with-forest-inventories.html#cb3-2" tabindex="-1"></a><span class="kw">def</span> getSeralStage(bec, age): </span>
 <span id="cb3-3"><a href="cartographic-modelling-with-forest-inventories.html#cb3-3" tabindex="-1"></a>  </span>
@@ -445,16 +445,16 @@ Sadie Russell</p>
 </ul>
 <p><strong>Step 16:</strong> In the Crown_Forest attribute table:</p>
 <ul>
-<li>Click ‘Show Selected Records’</li>
+<li>Click “Show Selected Records”</li>
 </ul>
 <p><img src="images/03-VRI_ShowSelected.png" width="75%" /></p>
 <ul>
-<li><p>Right-click <code>Seral_Stage</code> field &gt; Calculate Field</p></li>
+<li><p>Right-click the <code>Seral_Stage</code> field, then click “Calculate Field”</p></li>
 <li><p>Expression: <code>"Early"</code></p></li>
 <li><p>Ensure that <code>Use the selected records</code> is toggled on</p></li>
 <li><p>Remove your previous code text if it still remains. Type “Early” (with quotes) into the expression box and leave the Code Block empty.</p></li>
-<li><p>Click Apply</p></li>
-<li><p>Click ‘Clear’ to remove selection</p></li>
+<li><p>Click “Apply”</p></li>
+<li><p>Click “Clear” to remove selection</p></li>
 </ul>
 <p><strong>Pro tip:</strong> Always clear your selection once you are done working with it. This prevents potential missteps in later steps.</p>
 <p><strong>Step 17:</strong> Old growth forest quantities are assessed in terms of Land Units and BEC Subzones. Land Units are land parcels pre-determined by the BC Government for ease of land management and assessment. We will need to divide our current Crown Forest Landbase by the pre-determined Landscape Units.</p>
@@ -482,17 +482,17 @@ Sadie Russell</p>
 <ul>
 <li>Input Table: <code>CrownForest_LU</code></li>
 <li>Dissolve Fields: LU_BEC</li>
-<li>Statistics Fields: <code>Shape_Area</code> → SUM, <code>bec_subzone</code> → FIRST</li>
+<li>Statistics Fields: <code>Shape_Area</code> as <code>SUM</code> and <code>bec_subzone</code> as <code>FIRST</code></li>
 <li>Output Table: <code>Total_Forest_Area</code></li>
 <li>Check “Create Multipart Features”</li>
 </ul>
 <p>This creates a polygon layer where each feature is one LU_BEC area with total crown forest area as an attribute.</p>
 <p><img src="images/03-total-forest-area.png" width="75%" /></p>
-<p><strong>Step 3:</strong> To identify areas of assumed old growth, we will calculate the area of only forests with “Seral_stage” = old. We can select for old forest by using <strong>Select by Attributes on CrownForest_LU</strong> before using the <strong>Dissolve</strong> tool. Ensure that the “use the selected records” option is switched on.</p>
+<p><strong>Step 3:</strong> To identify areas of assumed old growth, we will calculate the area of only forests where <code>Seral_stage</code> equals <code>old</code>. We can select for old forest by using <strong>Select by Attributes on CrownForest_LU</strong> before using the <strong>Dissolve</strong> tool. Ensure that the “Use the selected records” option is switched on.</p>
 <ul>
-<li>Select by Attribute: <code>Seral_Stage = 'Old'</code></li>
+<li>Select by Attribute: <code>Seral_Stage = "Old"</code></li>
 <li>Dissolve Fields: LU_BEC</li>
-<li>Statistics Fields: <code>Shape_Area</code> → SUM</li>
+<li>Statistics Fields: <code>Shape_Area</code> as <code>SUM</code></li>
 <li>Output Table: <code>Old_Forest_Area</code></li>
 <li>Ensure <code>Use the selected records</code> is on</li>
 <li>Check “Create Multipart Features”</li>
@@ -532,9 +532,9 @@ Sadie Russell</p>
 <p><strong>Step 6:</strong> Classify Percent Compared to Provincial Targets.</p>
 <p>The target percentages of old growth forests are dependent on the BEC subzone. Instead of assigning each LU–BEC to a discrete class (Low / Intermediate / High), in this step you will create a numeric field representing the difference between the calculated percent old growth and the subzone-specific “high” threshold. You will do this by writing your own python expression to calculate the difference. Refer to the code in step 10 for a guideline on how to build the function. This difference (PercentOld - HighThreshold) is what you will visualize as a continuous gradient:</p>
 <ul>
-<li><p>Positive → exceeds the high target,</p></li>
-<li><p>Negative → falls short of the high target,</p></li>
-<li><p>Zero → meets the high target exactly.</p></li>
+<li><p>Positive values exceed the high target,</p></li>
+<li><p>Negative values fall short of the high target,</p></li>
+<li><p>Zero values meet the high target exactly.</p></li>
 </ul>
 <p>Begin by adding a new field to <code>Total_Forest_Area</code>:</p>
 <ul>
@@ -604,18 +604,18 @@ Sadie Russell</p>
 <p><img src="images/03-diff-from-high.png" width="75%" /></p>
 <p><strong>Step 7:</strong> Visualize Results</p>
 <p>In the <strong>Contents</strong> pane, right-click the <code>Total_Forest_Area</code> layer and select <strong>Symbology</strong>. In the Symbology panel, set the <strong>Field</strong> to <code>DiffFromHigh</code>. This will display the data based on the values in that field. Under <strong>Primary symbology</strong>, choose <strong>Graduated Colors</strong> (a gradient).</p>
-<p>Select a <strong>color ramp</strong> that makes sense for your data. For values that represent <em>low to high</em> differences, use a single-hue light-to-dark ramp (e.g., light yellow → dark green). Avoid using colors that are difficult to interpret (e.g., bright rainbow colors). - Think about your audience—pick colors that clearly show the trend and are readable to someone with color-vision deficiencies.Adjust the <strong>classification method and number of classes</strong> if needed (e.g., Natural Breaks, Quantile). This determines how your data values are grouped into color ranges.</p>
+<p>Select a <strong>color ramp</strong> that makes sense for your data. For values that represent <em>low to high</em> differences, use a single-hue light-to-dark ramp (e.g., light yellow to dark green). Avoid using colors that are difficult to interpret (e.g., bright rainbow colors). - Think about your audience—pick colors that clearly show the trend and are readable to someone with color-vision deficiencies.Adjust the <strong>classification method and number of classes</strong> if needed (e.g., Natural Breaks, Quantile). This determines how your data values are grouped into color ranges.</p>
 <p><strong>Step 8:</strong> Create the Layout Map</p>
 <p>From the top ribbon, go to the <strong>Insert</strong> tab and select <strong>New Layout</strong>. Choose an appropriate page size (e.g., Letter 8.5x11 or A4). Use the <strong>Map Frame</strong> tool to insert your map view into the layout. Resize and position it so it fills most of the page. - Add essential map elements: - <strong>Title</strong>: Insert a descriptive map title (e.g., <em>“Difference from High Threshold in Total Forest Area”</em>).</p>
 <ul>
-<li><p><strong>North Arrow</strong>: Insert → North Arrow. Place it in a corner where it does not overlap important data.</p></li>
-<li><p><strong>Legend</strong>: Insert → Legend. This should explain the symbology of your <code>DiffFromHigh</code> values.</p></li>
-<li><p><strong>Scale Bar</strong>: Insert → Scale Bar. A useful addition if map distance matters.</p></li>
+<li><p><strong>North Arrow</strong>: select “Insert”, then select “North Arrow”. Place it in a corner where it does not overlap important data.</p></li>
+<li><p><strong>Legend</strong>: select “Insert”, then select “Legend”. This should explain the symbology of your <code>DiffFromHigh</code> values.</p></li>
+<li><p><strong>Scale Bar</strong>: select “Insert”, then select “Scale Bar”. A useful addition if map distance matters.</p></li>
 <li><p><strong>Author/Date/Text</strong>: Add your name and date for documentation.</p></li>
 </ul>
 <p>Rearrange and resize elements so the layout looks clean, balanced, and easy to read. Avoid cluttering the map with overlapping items.</p>
 <p><strong>Step 9:</strong> Create the Layout Map</p>
-<p>When you are satisfied with the layout, go to <strong>Share → Export Layout</strong>. Choose <strong>PNG</strong> as the file format.</p>
+<p>When you are satisfied with the layout, go to <strong>select “Share”, then select “Export Layout”</strong>. Choose <strong>PNG</strong> as the file format.</p>
 </div>
 <div id="q3.-describe-the-results-of-your-final-output.-what-is-the-distribution-of-old-growth-targets-met-across-vancouver-island-10-points" class="section level5 unnumbered hasAnchor">
 <h5>Q3. Describe the results of your final output. What is the distribution of old growth targets met across Vancouver Island? (10 points)<a href="cartographic-modelling-with-forest-inventories.html#q3.-describe-the-results-of-your-final-output.-what-is-the-distribution-of-old-growth-targets-met-across-vancouver-island-10-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
@@ -641,9 +641,9 @@ Sadie Russell</p>
 <h2>References<a href="cartographic-modelling-with-forest-inventories.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>British Columbia &amp; BC Environment (Eds.). (1995). <em>Biodiversity guidebook</em>. Forest Service, British Columbia: BC Environment.</p>
 <p>Canadian Institute of Forestry (2022). <em>Old Growth Information bulletin</em>. March, 2022</p>
-<p>CBC. (2022, February 11). Fairy Creek protesters’ bid to have charges stayed is ‘simply not the way justice is done’: Crown lawyer. <em>CBC News</em>. <a href="https://www.cbc.ca/news/canada/british-columbia/protest-court-proceedings-1.6348014" class="uri">https://www.cbc.ca/news/canada/british-columbia/protest-court-proceedings-1.6348014</a></p>
-<p>Forest Analysis and Inventory Branch (2024). VRI - 2024 - Forest Vegetation Composite Rank 1 Layer (R1). British Columbia Data Catalogue.<a href="https://catalogue.data.gov.bc.ca/dataset/2ebb35d8-c82f-4a17-9c96-612ac3532d55" class="uri">https://catalogue.data.gov.bc.ca/dataset/2ebb35d8-c82f-4a17-9c96-612ac3532d55</a></p>
-<p>LePage, P., &amp; Banner, A. (2014). Long-term recovery of forest structure and composition after harvesting in the coastal temperate rainforests of northern British Columbia. <em>Forest Ecology and Management</em>, <em>318</em>, 250–260. <a href="https://doi.org/10.1016/j.foreco.2014.01.031" class="uri">https://doi.org/10.1016/j.foreco.2014.01.031</a></p>
+<p>CBC. (2022, February 11). Fairy Creek protesters bid to have charges stayed. <em>CBC News</em>. <a href="https://www.cbc.ca/news/canada/british-columbia/protest-court-proceedings-1.6348014">www.cbc.ca/news/canada/british-columbia/protest-court-pro…</a></p>
+<p>Forest Analysis and Inventory Branch (2024). VRI - 2024 - Forest Vegetation Composite Rank 1 Layer (R1). British Columbia Data Catalogue.<a href="https://catalogue.data.gov.bc.ca/dataset/2ebb35d8-c82f-4a17-9c96-612ac3532d55">catalogue.data.gov.bc.ca/dataset/2ebb35d8-c82f-4a17-9c96-…</a></p>
+<p>LePage, P., &amp; Banner, A. (2014). Long-term recovery of forest structure and composition after harvesting in the coastal temperate rainforests of northern British Columbia. <em>Forest Ecology and Management</em>, <em>318</em>, 250–260. <a href="https://doi.org/10.1016/j.foreco.2014.01.031">doi.org/10.1016/j.foreco.2014.01.031</a></p>
 <p>Ministry of Water, Land and Resource Stewardship (WLRS). (2024). Old Growth Forests in British Columbia: Cumulative Effects Assessment Backgrounder. Victoria, British Columbia.</p>
 <p>Ministry of Water, Land and Resource Stewardship. 2024. Old Growth Forest Management in British Columbia: Provincial Backgrounder. Victoria, British Columbia.</p>
 <hr />

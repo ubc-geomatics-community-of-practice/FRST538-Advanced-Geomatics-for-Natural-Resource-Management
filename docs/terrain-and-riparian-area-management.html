@@ -23,7 +23,7 @@
 <meta name="author" content="Paul D. Pickell" />
 
 
-<meta name="date" content="2025-12-19" />
+<meta name="date" content="2026-05-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -273,7 +273,7 @@ Hana Travers-Smith</p>
 <p>Riparian areas are found adjacent streams, lakes and wetlands. In many areas they contain highly productive and commercially valuable timber. However, vegetation in riparian zones also has important ecological function by stabilizing stream banks, regulating water temperature, providing nutrient inputs and reducing runoff into water bodies. In British Columbia, Riparian Management Areas (RMAs) are defined around sensitive streams and rivers that forbid or limit forest harvest activities within them. The width of these buffer zones depend on stream class, which is defined by channel width and fish-bearing potential. Thus, it is critical for forest managers to accurately map and measure stream networks.</p>
 <p>Airborne Laser Scanning (ALS) can be used to derive detailed maps of terrain and vegetation structure to aid in riparian forest management. Previous work has been done using ALS to map and extract stream characteristics over large areas and assign stream classes (<a href="https://doi.org/10.1016/j.rse.2017.01.038">Tompalski et al., 2017</a>). You will use similar methods to classify streams and define RMAs over a small area in the Nahmint valley, British Columbia.</p>
 <p>Throughout this lab stream <em>order</em> refers to the Strahler or Shreve ordering system seen in your previous lab, and stream <em>class</em> refers to the BC government stream classification used to determine riparian management areas.</p>
-<p>More background information on riparian forest management in British Columbia can be found here: <a href="https://www2.gov.bc.ca/gov/content/industry/forestry/managing-our-forest-resources/silviculture/silvicultural-systems/silviculture-guidebooks/riparian-management-area-guidebook" class="uri">https://www2.gov.bc.ca/gov/content/industry/forestry/managing-our-forest-resources/silviculture/silvicultural-systems/silviculture-guidebooks/riparian-management-area-guidebook</a></p>
+<p>More background information on riparian forest management in British Columbia can be found here: <a href="https://www2.gov.bc.ca/gov/content/industry/forestry/managing-our-forest-resources/silviculture/silvicultural-systems/silviculture-guidebooks/riparian-management-area-guidebook">https://www2.gov.bc.ca/gov/content/industry/forestry/managing-our-forest-resources/silviculture/silvicultural-systems/silviculture-guidebooks/riparian-management-area-guidebook</a></p>
 <hr />
 </div>
 <div id="lab6-deliverables" class="section level2 unnumbered hasAnchor">
@@ -307,7 +307,7 @@ Hana Travers-Smith</p>
 <li>Leave the rest blank/unchecked</li>
 </ul>
 <p>There are three flow modelling algorithms, but we will use the simplest: D8. In this model water will flow from one cell to its steepest downslope neighbour. The cell will then be assigned a value based on which of its 8 neighbours water will flow into.</p>
-<p>Click Run. You should now have something like the image below:</p>
+<p>Click “Run”. You should now have something like the image below:</p>
 <div class="figure"><span style="display:block;" id="fig:06-flow-direction"></span>
 <img src="images/06-flow-direction.jpg" alt="Flow Direction." width="100%" />
 <p class="caption">
@@ -405,7 +405,7 @@ S2 Stream (it is barely visible)</p>
 <p>To use Python in the tool we need to populate two fields. First, the top “Expression” field, which should read <code>StreamWidth =</code>. This is where we can call a function and define the inputs to the function. Here we have called the function <code>reclass</code> with the “StreamOrder” attribute as the input.</p>
 <p>Next, in the “Code Block” we need to define the <code>reclass</code> function, so that we can use it as part of an expression. Here we will use an <code>ifelse</code> statement to set the values of stream width based on stream order.</p>
 <p><img src="images/06-python-stream-width.png" width="100%" /></p>
-<p>Modify the following code and paste it into the “Code Block” (delete the square brackets before running). Verify the expression using the check button &gt; Apply.</p>
+<p>Modify the following code and paste it into the “Code Block” (delete the square brackets before running). Verify the expression using the check button, then “Apply”.</p>
 <pre><code>def reclass(Order):
      if (Order == 1):
           return [average stream width here]

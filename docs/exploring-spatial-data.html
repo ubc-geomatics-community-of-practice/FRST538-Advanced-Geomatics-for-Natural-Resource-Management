@@ -23,7 +23,7 @@
 <meta name="author" content="Paul D. Pickell" />
 
 
-<meta name="date" content="2025-12-19" />
+<meta name="date" content="2026-05-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -283,7 +283,7 @@ Paul D. Pickell</p>
 </div>
 <div id="task-1-create-an-arcgis-pro-project" class="section level2 unnumbered hasAnchor">
 <h2>Task 1: Create an ArcGIS Pro Project<a href="exploring-spatial-data.html#task-1-create-an-arcgis-pro-project" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Step 1</strong>: Start ArcGIS Pro. On the start-up screen, you will be prompted to select the type of project. Select “Map” and give your project a meaningful name, something like <code>FRST538_Lab1</code> is a good choice. When you create a project, ArcGIS Pro will create a folder with your project name in <code>C:\Users\[your username]\Documents\ArcGIS\Projects\[your project name]\</code>.</p>
+<p><strong>Step 1:</strong> Start ArcGIS Pro. On the start-up screen, you will be prompted to select the type of project. Select “Map” and give your project a meaningful name, something like <code>FRST538_Lab1</code> is a good choice. When you create a project, ArcGIS Pro will create a folder with your project name in <code>C:\Users\[your username]\Documents\ArcGIS\Projects\[your project name]\</code>.</p>
 <p><img src="images/01-arcgis-create-project.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>Inside this folder, you will find ArcGIS Pro has generated a bunch of files and folders. Importantly, there is the <code>.aprx</code> file, which is the file you can use to open your project in ArcGIS Pro. The other important folder is <code>FRST538_Lab1.gdb</code>, which is the default geodatabase for your project. When you start running different tools in ArcGIS Pro, this is where the outputs will automatically be stored. If you navigate to this folder in Windows Explorer, it will just look like a bunch of random files, so you can only view the contents of your geodatabase through GIS software like ArcGIS Pro.</p>
 <p><img src="images/01-arcgis-project-folder.png" width="50%" style="display: block; margin: auto;" /></p>
@@ -312,7 +312,7 @@ Paul D. Pickell</p>
 </div>
 <div id="q4.-what-is-the-difference-between-a-geographic-coordinate-system-and-a-projected-coordinate-system-10-points" class="section level5 unnumbered hasAnchor">
 <h5>Q4. What is the difference between a geographic coordinate system and a projected coordinate system? (10 points)<a href="exploring-spatial-data.html#q4.-what-is-the-difference-between-a-geographic-coordinate-system-and-a-projected-coordinate-system-10-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<p><strong>Step 4:</strong> Select or search for “North Pole Azimuthal Equidistant” and double-click it or select it and click “Apply”. Inspect the result. We can also modify CRS definitions to create a custom map projection. For example, notice how Canada is rotated in this azimuthal projection because the default central meridian is 0° longitude. Open the map properties again, but this time right-click on “North Pole Azimuthal Equidistant” and select “Copy and Modify”. In the dialogue window that appears, find the value for “Central Meridian” and change it from <code>0</code> to <code>-123</code>, then click “Save”, then click “Apply”. Inspect the result. Notice that we have now rotated the map projection over Vancouver, Canada. Feel free to explore other projections, if you want, but before proceeding to the following steps, be sure to change your map CRS back to “WGS 1984 Web Mercator (auxillary sphere)”.</p>
+<p><strong>Step 4:</strong> Select or search for “North Pole Azimuthal Equidistant” and double-click it or select it and click “Apply”. Inspect the result. We can also modify CRS definitions to create a custom map projection. For example, notice how Canada is rotated in this azimuthal projection because the default central meridian is 0° longitude. Open the map properties again, but this time right-click on “North Pole Azimuthal Equidistant” and select “Copy and Modify”. In the dialogue window that appears, find the value for “Central Meridian” and change it from <code>0</code> to <code>-123</code>, then click “Save”, then click “Apply”. Inspect the result. Notice that we have now rotated the map projection over Vancouver, Canada. Feel free to explore other projections, if you want, but before proceeding to the following steps, be sure to change your map CRS back to “WGS 1984 Web Mercator (Auxilary Sphere)”.</p>
 <p><img src="images/01-arcgis-custom-projection.png" width="75%" style="display: block; margin: auto;" /></p>
 <p>What we just explored is that your ArcGIS Pro Map has its own CRS defined. This is an important concept because a map can only have one coordinate system, whether we are talking about a digital map in ArcGIS Pro or an historical paper map. It will be very important for you to understand that your ArcGIS Map can have a different CRS than the data that you want to map. ArcGIS Pro and other modern GIS software solve this issue by re-projecting your spatial data “on-the-fly” using the current CRS of your map. You see the illusion that everything is “mapped” in the same coordinate system, but in fact, your underlying data can be in completely different coordinate systems, even different datums. For our purposes in this lab, this is okay because we will only be visualizing the data as layers, but this issue becomes very problematic when we start to run data through tools and rely on the calculations of position, area, and perimeter/length of features, which can be very inaccurate when working between different CRS. Therefore, it is best practice to choose the CRS that is most appropriate for your study area and purpose and then change your map to that CRS.</p>
 </div>
@@ -368,47 +368,47 @@ Paul D. Pickell</p>
 <tbody>
 <tr class="odd">
 <td>BC Data Catalogue</td>
-<td><a href="https://catalogue.data.gov.bc.ca/" class="uri">https://catalogue.data.gov.bc.ca/</a></td>
+<td><a href="https://catalogue.data.gov.bc.ca/">https://catalogue.data.gov.bc.ca/</a></td>
 <td>Provincial datasets: forestry, land cover, cadastral, climate, transportation, natural resources</td>
 </tr>
 <tr class="even">
 <td>City of Vancouver Open Data Portal</td>
-<td><a href="https://opendata.vancouver.ca/" class="uri">https://opendata.vancouver.ca/</a></td>
+<td><a href="https://opendata.vancouver.ca/">https://opendata.vancouver.ca/</a></td>
 <td>Municipal datasets: zoning, land use, parks, trees, utilities, transportation, planning</td>
 </tr>
 <tr class="odd">
 <td>Government of Canada Geoportal</td>
-<td><a href="https://geo.ca/home/" class="uri">https://geo.ca/home/</a></td>
+<td><a href="https://geo.ca/home/">https://geo.ca/home/</a></td>
 <td>Federal datasets: topography, land cover, soils, administrative boundaries</td>
 </tr>
 <tr class="even">
 <td>Lunaris</td>
-<td><a href="https://www.lunaris.ca/" class="uri">https://www.lunaris.ca/</a></td>
+<td><a href="https://www.lunaris.ca/">https://www.lunaris.ca/</a></td>
 <td>National discovery service for research data across Canadian institutions</td>
 </tr>
 <tr class="odd">
 <td>UBC Geospatial Open Data</td>
-<td><a href="https://github.com/UBCGeodata/ubc-geospatial-opendata" class="uri">https://github.com/UBCGeodata/ubc-geospatial-opendata</a></td>
+<td><a href="https://github.com/UBCGeodata/ubc-geospatial-opendata">https://github.com/UBCGeodata/ubc-geospatial-opendata</a></td>
 <td>UBC-hosted geospatial datasets, campus and research related</td>
 </tr>
 <tr class="even">
 <td>Natural Resources Canada</td>
-<td><a href="https://maps.canada.ca/" class="uri">https://maps.canada.ca/</a></td>
+<td><a href="https://maps.canada.ca/">https://maps.canada.ca/</a></td>
 <td>Federal geospatial data: topographic maps, forests, geology, hydrography</td>
 </tr>
 <tr class="odd">
 <td>Metro Vancouver Data Portal</td>
-<td><a href="http://www.metrovancouver.org/data" class="uri">http://www.metrovancouver.org/data</a></td>
+<td><a href="https://open-data-portal-metrovancouver.hub.arcgis.com/">https://open-data-portal-metrovancouver.hub.arcgis.com/</a></td>
 <td>Regional planning: air quality, utilities, infrastructure, parks</td>
 </tr>
 <tr class="even">
 <td>Natural Earth</td>
-<td><a href="https://www.naturalearthdata.com/" class="uri">https://www.naturalearthdata.com/</a></td>
+<td><a href="https://www.naturalearthdata.com/">https://www.naturalearthdata.com/</a></td>
 <td>Global vector and raster datasets at multiple scales</td>
 </tr>
 <tr class="odd">
 <td>UN FAO GeoNetwork</td>
-<td><a href="https://data.apps.fao.org" class="uri">https://data.apps.fao.org</a></td>
+<td><a href="https://data.apps.fao.org">https://data.apps.fao.org</a></td>
 <td>Global agriculture, land cover, and environmental datasets</td>
 </tr>
 </tbody>
@@ -443,47 +443,47 @@ Paul D. Pickell</p>
 <td><strong>Shapefile</strong></td>
 <td><code>.shp</code> (+ <code>.dbf</code>, <code>.shx</code>, etc.)</td>
 <td>Legacy, widely used, multiple files</td>
-<td><em>Add Data</em> → select <code>.shp</code></td>
+<td><em>Add Data</em> , then select <code>.shp</code></td>
 </tr>
 <tr class="even">
 <td><strong>GeoPackage</strong></td>
 <td><code>.gpkg</code></td>
 <td>Modern OGC standard, single file, may contain many layers</td>
-<td><em>Add Data</em> → select <code>.gpkg</code> then choose layer</td>
+<td><em>Add Data</em> , then select <code>.gpkg</code> then choose layer</td>
 </tr>
 <tr class="odd">
 <td><strong>File Geodatabase</strong></td>
 <td><code>.gdb</code> (folder)</td>
 <td>ESRI native format, may contain many layers</td>
-<td><em>Add Data</em> → browse into folder, select layer</td>
+<td><em>Add Data</em> , then browse into folder, select layer</td>
 </tr>
 <tr class="even">
 <td><strong>GeoJSON</strong></td>
 <td><code>.geojson</code></td>
 <td>Web-mapping format</td>
-<td><em>Add Data</em> → select <code>.geojson</code></td>
+<td><em>Add Data</em> , then select <code>.geojson</code></td>
 </tr>
 <tr class="odd">
 <td><strong>FlatGeobuf</strong></td>
 <td><code>.fgb</code></td>
 <td>Fast modern format</td>
-<td><em>Add Data</em> → select <code>.fgb</code></td>
+<td><em>Add Data</em> , then select <code>.fgb</code></td>
 </tr>
 <tr class="even">
 <td><strong>KML/KMZ</strong></td>
 <td><code>.kml</code>, <code>.kmz</code></td>
 <td>Google Earth</td>
-<td><em>Add Data</em> → ArcGIS Pro converts to feature class</td>
+<td><em>KML to Layer</em> , then ArcGIS Pro converts to feature classes in a geodatabase and a layer file for styling</td>
 </tr>
 <tr class="odd">
 <td><strong>CSV with coordinates</strong></td>
 <td><code>.csv</code></td>
 <td>Tabular data with X/Y columns</td>
-<td><em>Add Data</em> → XY Table, set fields</td>
+<td><em>Add Data</em> , then XY Table, set fields</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Step 4:</strong> Import you data into your project’s geodatabase. This will vary depending on the file formats that you encounter, but generally you can right-click the geodatabase in the project folder, select “Import”, then select “Feature Class(es)”. In the “Feature Class to Geodatabase” tool that appears, select your three datasets from the drop down menus (if you added them to your ArcGIS Pro Map already) or navigate to the location of the files in your project folder then click “Run”. When it completes, be sure to remove the old layers from your map (right-click the layer, “Remove”) and then add the three feature classes in your geodatabase to your map.</p>
+<p><strong>Step 4:</strong> Import you data into your project’s geodatabase. This will vary depending on the file formats that you encounter, but generally you can right-click the geodatabase in the project folder, select “Import”, then select “Feature Class(es)”. In the “Feature Class to Geodatabase” tool that appears, select your three datasets from the drop-down menus (if you added them to your ArcGIS Pro Map already) or navigate to the location of the files in your project folder then click “Run”. When it completes, be sure to remove the old layers from your map (right-click the layer, “Remove”) and then add the three feature classes in your geodatabase to your map.</p>
 <p>Note that ArcGIS Pro refers to vector data (i.e., points, lines, polygons) as a “feature class”. You will see this language throughout various tools in ArcGIS Pro (e.g., “Input Feature Class”, “Output Feature Class”).</p>
 <p><img src="images/01-arcgis-import-geodatabase.png" width="75%" style="display: block; margin: auto;" /></p>
 <p>Up to this point, you have primarily been manipulating data directly through ArcGIS Pro, but you have not really changed much about your actual project. So there is no project state to really save. For example, if ArcGIS Pro crashed right now, you should still be able to find the feature classes that you imported into your project geodatabase. That said, it is good practice to save your project file moving forward as you work through this lab and later assignments.</p>

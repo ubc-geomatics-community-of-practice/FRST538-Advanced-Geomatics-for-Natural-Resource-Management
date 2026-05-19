@@ -6,7 +6,7 @@ author <- yml_content[["remote-sensing-image-analysis"]][["author"]]
 # Remote Sensing Imagery Analysis {#remote-sensing-image-analysis}
 
 Written by
-```{r results='asis', echo=FALSE}
+```{r results="asis", echo=FALSE}
 cat(author)
 ```
 
@@ -80,7 +80,7 @@ Figure 2: Reflectance characteristics of unknown features.
 
 ## Task 2: Landsat 5 Bands, the EMS & ArcPro Software {.unnumbered}
 
-Table 2: Parameters of Landsat 5’s Enhanced Thematic Mapper (ETM+) sensor
+Table 2: Parameters of Landsat 5's Thematic Mapper (TM) sensor
 
 ```{r echo = FALSE}
 Band = 1:7
@@ -97,13 +97,13 @@ kable(df, align = 'c')
 
 ```
  
-##### Q6. Each pixel of landsat’s thermal infrared band (band 6) covers ___ pixels of the other bands. If it helps, draw a picture of the two pixel resolutions. (1 point) {.unnumbered}
+##### Q6. Each pixel of landsat's thermal infrared band (band 6) covers ___ pixels of the other bands. If it helps, draw a picture of the two pixel resolutions. (1 point) {.unnumbered}
 
 ##### Q7. Band 6 is recorded with a coarser resolution because thermal radiation has a very ___ wavelength. Therefore, there is ___ energy available to sense. (1 point) {.unnumbered}
 
 **Step 1:** Start ArcGIS Pro.
 
-To start the lab, Open a new ArcPro map project and open the the L5047026subset_19990922_7B.dat  file into the map window. At this point, you should see an RGB satellite image of the city of Vancouver (Figure 3) if the mapview does not immediately pan to the image right click "L5047026subset_19990922_7B.dat" in the Contents pane and press Zoom to Layer.  
+To start the lab, Open a new ArcPro map project and open the the L5047026subset_19990922_7B.dat  file into the map window. At this point, you should see an RGB satellite image of the city of Vancouver (Figure 3) if the mapview does not immediately pan to the image right-click "L5047026subset_19990922_7B.dat" in the Contents pane and press Zoom to Layer.  
 
 ```{r 04-sat, out.width= "75%", echo = FALSE}
     knitr::include_graphics("images/04-sat.png")
@@ -113,7 +113,7 @@ Figure 3: True colour composite of Vancouver.
 
 **Step 2:** Exploring the data
 
-It is now time to explore your imagery. Right click the box beside the "L5047026subset_19990922_7B.dat"  file in the Contents pane and select "Properties". Use the menu on the left-hand side and select the Source page and the Raster Information drop down. 
+It is now time to explore your imagery. Right click the box beside the "L5047026subset_19990922_7B.dat"  file in the Contents pane and select "Properties". Use the menu on the left-hand side and select the Source page and the Raster Information drop-down. 
 
 ```{r 04-source, out.width= "75%", echo = FALSE}
     knitr::include_graphics("images/04-source.png")
@@ -143,7 +143,7 @@ Traditionally, single bands of imagery are shown in greyscale, with dark areas s
     knitr::include_graphics("images/04-grey.png")
 ```
 
-Right click on you data in the Contents pane and select "Symbology". The symbology pane should appear on the side of you window. Press the drop down menu and select "Stretch".
+Right click on you data in the Contents pane and select "Symbology". The symbology pane should appear on the side of you window. Press the drop-down menu and select "Stretch".
 
 ```{r 04-strech, out.width= "75%", echo = FALSE}
     knitr::include_graphics("images/04-strech.png")
@@ -206,7 +206,7 @@ Right click the bands in the Contents pane, turn different layers on and off by 
 
 Now it is time to examine your data set more thoroughly. At the beginning of this lecture we examined the spectral signatures of different materials. We will now do the same thing for the different sections of our Vancouver Landsat image. 
 
-Right click on the "L5047026subset_19990922_7B.dat" file in the Contents pane and select Create Chart -> Spectral Profile. The Chart Properties pane should appear on the right side of your screen and the spectral chart on the bottom.
+Right click on the "L5047026subset_19990922_7B.dat" file in the Contents pane and select "Create Chart", then "Spectral Profile". The Chart Properties pane should appear on the right side of your screen and the spectral chart on the bottom.
 
 ```{r 04-chart, out.width= "75%", echo = FALSE}
     knitr::include_graphics("images/04-chart.png")
@@ -248,13 +248,13 @@ Navigate to the Imagery ribbon at the top of your ArcPro window and click the "R
     knitr::include_graphics("images/04-raster.png")
 ```
 
-The Raster Functions pane should appear, you can either navigate the drop down menus to "Math", "Band Arithmetic" or use the search function to find the "Band Arithmetic Tool" and click to open. 
+The Raster Functions pane should appear, you can either navigate the drop-down menus to "Math", "Band Arithmetic" or use the search function to find the "Band Arithmetic Tool" and click to open. 
 
 ```{r 04-raster-func, out.width= "75%", echo = FALSE}
     knitr::include_graphics("images/04-raster-func.png")
 ```
 
-The "Band Arithmetic Properties" dialogue should appear. Under "Raster" use the drop down menu and select the "L5047026subset_19990922_7B.dat" layer. If it is not currently in your map view and can use the folder button and navigate to  your lab data folder and select the file. Under "Method" select "User Defined". It should look like the screen shot below. 
+The "Band Arithmetic Properties" dialogue should appear. Under "Raster" use the drop-down menu and select the "L5047026subset_19990922_7B.dat" layer. If it is not currently in your map view and can use the folder button and navigate to  your lab data folder and select the file. Under "Method" select "User Defined". It should look like the screenshot below. 
 
 ```{r 04-band-math, out.width= "75%", echo = FALSE}
     knitr::include_graphics("images/04-band-math.png")
@@ -304,6 +304,6 @@ Now use the Reclassify tool to create a new layer from the NDBI where all you ke
 
 ## Summary {.unnumbered}
 
-In this lab, you learned how to interpret the electromagnetic spectrum for urban and environmental applications, connect spectral behavior to what you see in imagery, and operationalize those ideas in ArcGIS Pro. You explored Landsat 5 bands, toggled single-band greyscale views, and built both true- and false-colour composites to emphasize specific surface properties. You examined spectral signatures for different land covers and compared them to reference curves to understand why materials separate (or don’t) across wavelengths. You then calculated NDVI to highlight vegetation and NDBI to highlight built-up areas, and reclassified these indices to extract high-confidence classes. Finally, you synthesized your results into a clear map that overlays vegetation and urban masks on the base imagery. By the end, you could differentiate EMS regions, justify band choices for specific analyses, quantify patterns with indices, and communicate findings cartographically.
+In this lab, you learned how to interpret the electromagnetic spectrum for urban and environmental applications, connect spectral behavior to what you see in imagery, and operationalize those ideas in ArcGIS Pro. You explored Landsat 5 bands, toggled single-band greyscale views, and built both true- and false-colour composites to emphasize specific surface properties. You examined spectral signatures for different land covers and compared them to reference curves to understand why materials separate (or don't) across wavelengths. You then calculated NDVI to highlight vegetation and NDBI to highlight built-up areas, and reclassified these indices to extract high-confidence classes. Finally, you synthesized your results into a clear map that overlays vegetation and urban masks on the base imagery. By the end, you could differentiate EMS regions, justify band choices for specific analyses, quantify patterns with indices, and communicate findings cartographically.
 
 Return to the [**Deliverables**](#lab4-deliverables) section to check off everything you need to submit for credit in the course management system.

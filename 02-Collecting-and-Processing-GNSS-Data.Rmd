@@ -6,7 +6,7 @@ author <- yml_content[["collecting-and-processing-gnss-data"]][["author"]]
 # Collecting and processing GNSS data {#collecting-and-processing-gnss-data}
 
 Written by
-```{r results='asis', echo=FALSE}
+```{r results="asis", echo=FALSE}
 cat(author)
 ```
 
@@ -60,7 +60,7 @@ Your study area must:
 
 ##### Q1. Describe your study area. Where is it located? What features are around? Why did you choose this location? (5 points) {.unnumbered}
 
-**Step 1:** Open ArcGIS Pro and turn on an imagery basemap (Map > Basemap > Imagery). Navigate to your proposed study area. You can do this by (a) dragging around your map, (b) putting coordinates into Go To XY, (c) typing in an address or park name into the Locate tool.
+**Step 1:** Open ArcGIS Pro and turn on an imagery basemap ("Map", "Basemap", and "Imagery"). Navigate to your proposed study area. You can do this by (a) dragging around your map, (b) putting coordinates into Go To XY, (c) typing in an address or park name into the Locate tool.
 
 Before physically visiting your study area, you will need to verify that there are usable reference points in your chosen park. The reference points should be immovable, viewable from the sky and ground, and not tall (not trees or buildings). Additionally, you will be walking to your points – so they should be somewhere safely accessible and not too close or too far from each other.
 
@@ -70,7 +70,7 @@ Before physically visiting your study area, you will need to verify that there a
 - **Has M:** No
 - **Has Z:** No
 - **Coordinate System:** --Local UTM--
-- Click **"Run"**
+- Click "Run"
 
 Your new feature class should now be in the "Contents" Pane, but it has no points.
 
@@ -82,11 +82,11 @@ Open the attribute table of refpoints and add three new columns: Name, East, Nor
 
 **Step 3:** You will be exporting a georeferenced map of your study area. Zoom in (or out) to an extent that contains at least the entire park. 
 
-Using the top ribbon, select Share > Export Map. A pane will pop up on the right-hand side of your screen. The file type is PDF, and make sure that it is saved somewhere you will be able to find it. Toward the bottom of the pane, make sure that the box under "PDF Settings" that says "Export georeference information" is selected. Then select export. This will be used when you are collecting data with Avenza.
+Using the top ribbon, select Share , then Export Map. A pane will pop up on the right-hand side of your screen. The file type is PDF, and make sure that it is saved somewhere you will be able to find it. Toward the bottom of the pane, make sure that the box under "PDF Settings" that says "Export georeference information" is selected. Then select "Export". This will be used when you are collecting data with Avenza.
 
 **Step 4:** Now that you have established a study area, you need to decide when you will be collecting your data. There are times in the day where you are more likely to get accurate GNSS readings. Find the coordinates of your study area so that you can use them in the Trimble GNSS Planning Online website (http://www.gnssplanning.com/). 
 
-Go to the Trimble GNSS Planning Online website and enter your study area’s coordinates (one set of coordinates from anywhere within the study area) and elevation. If your coordinates are not in the proper units, either convert them to the proper units. Choose the day that you plan to visit your field site and collect data. 
+Go to the Trimble GNSS Planning Online website and enter your study area's coordinates (one set of coordinates from anywhere within the study area) and elevation. If your coordinates are not in the proper units, either convert them to the proper units. Choose the day that you plan to visit your field site and collect data. 
 
 After you have input your information into Settings, click "Apply" and look through the other tabs (Satellite Library, Charts, Sky Plot, World View). Using the information on the website, determine the ideal time to collect your GNSS points. Justify your chosen time using the data on the website (this justification should be included on your report, along with screenshots from the webpage).
 
@@ -106,13 +106,13 @@ After you have input your information into Settings, click "Apply" and look thro
 
 You will need either an Android or iOS smartphone capable of installing the Avenza Maps App. If you do not have an Android or iOS smartphone, then please contact the instructor for alternative arrangements or accommodations
 
-**Step 1:** To start you will need to install Avenza Maps App on your phone. There is an Android version as well as an iOS version so just go to your app store and download it. It’s free!
+**Step 1:** To start you will need to install Avenza Maps App on your phone. There is an Android version as well as an iOS version so just go to your app store and download it. It's free!
 
 **Step 2:**  Once you have the app installed on your phone, you need to sign up for a free account. If you have concerns about your privacy, you can use a pseudonym and your student UBC e-mail address.Avenza Maps is a widely used mobile mapping application, so chances are you might continue to use it in the future for other projects or hobbies. If you want to ensure future access to your Avenza Maps account and assets, then choose an e-mail account that you will continue to have access to (i.e., not your UBC student e-mail).
 
 **Step 3:**  Now that you are registered and logged in, you will change some settings in the Avenza Maps app. Navigate to the Settings in the bottom right corner (for iOS) and in the top right corner (for Android). Scroll down and click "GPS settings". Use the following settings:
 
-- **Location Source:** "Use Only Internal Sources". This ensures that we are only using the phone’s internal GNSS receiver.
+- **Location Source:** "Use Only Internal Sources". This ensures that we are only using the phone's internal GNSS receiver.
 - **Horizontal Accuracy:** "Keep all fixes"
 - **Distance Thresholds:** "Keep all fixes"
 - **Time Threshold:** "Keep all fixes"
@@ -128,7 +128,7 @@ Next, we will set the units to metric. In Settings, navigate to "Units of Measur
     knitr::include_graphics("images/02-avenza2.png")
 ```
 
-**Step 4:** Ensure that the Avenza Maps App is allowed to access your location, camera, and photos in your *phone’s settings*.
+**Step 4:** Ensure that the Avenza Maps App is allowed to access your location, camera, and photos in your *phone's settings*.
 
 ```{r 02-phone, out.width= "75%", echo = FALSE}
     knitr::include_graphics("images/02-phone.png")

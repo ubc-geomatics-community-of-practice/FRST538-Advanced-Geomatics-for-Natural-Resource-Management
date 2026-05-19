@@ -23,7 +23,7 @@
 <meta name="author" content="Paul D. Pickell" />
 
 
-<meta name="date" content="2025-12-19" />
+<meta name="date" content="2026-05-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -294,7 +294,7 @@ At all times, you must be aware of possible hazards both overhead and underfoot.
 </ul>
 <div id="q1.-describe-your-study-area.-where-is-it-located-what-features-are-around-why-did-you-choose-this-location-5-points" class="section level5 unnumbered hasAnchor">
 <h5>Q1. Describe your study area. Where is it located? What features are around? Why did you choose this location? (5 points)<a href="collecting-and-processing-gnss-data.html#q1.-describe-your-study-area.-where-is-it-located-what-features-are-around-why-did-you-choose-this-location-5-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<p><strong>Step 1:</strong> Open ArcGIS Pro and turn on an imagery basemap (Map &gt; Basemap &gt; Imagery). Navigate to your proposed study area. You can do this by (a) dragging around your map, (b) putting coordinates into Go To XY, (c) typing in an address or park name into the Locate tool.</p>
+<p><strong>Step 1:</strong> Open ArcGIS Pro and turn on an imagery basemap (“Map”, “Basemap”, and “Imagery”). Navigate to your proposed study area. You can do this by (a) dragging around your map, (b) putting coordinates into Go To XY, (c) typing in an address or park name into the Locate tool.</p>
 <p>Before physically visiting your study area, you will need to verify that there are usable reference points in your chosen park. The reference points should be immovable, viewable from the sky and ground, and not tall (not trees or buildings). Additionally, you will be walking to your points – so they should be somewhere safely accessible and not too close or too far from each other.</p>
 <p><strong>Step 2:</strong> Find at least five possible reference points (all at least 10 m from each other). You will create a new feature class and populate it with these reference points. In “Geoprocessing”, find the “Create Feature Class” tool by searching for “Create Feature Class”. Save it to your ArcGIS Pro project geodatabase and give it a meaningful name (for this lab, it will be called “refpoints”). For the other options:</p>
 <ul>
@@ -302,7 +302,7 @@ At all times, you must be aware of possible hazards both overhead and underfoot.
 <li><strong>Has M:</strong> No</li>
 <li><strong>Has Z:</strong> No</li>
 <li><strong>Coordinate System:</strong> –Local UTM–</li>
-<li>Click <strong>“Run”</strong></li>
+<li>Click “Run”</li>
 </ul>
 <p>Your new feature class should now be in the “Contents” Pane, but it has no points.</p>
 </div>
@@ -311,7 +311,7 @@ At all times, you must be aware of possible hazards both overhead and underfoot.
 <p>Choose “Edit” from the top ribbon, then select “Create”. On the right, a “Create Features” pane will appear. In there, click refpoints, then select “Create a Point Feature”. Zoom in closely on the basemap before creating point features so that the points are more accurate. Click on (at least) four reference points, then select “Save” from the Edit ribbon. If you need to Move a reference point, you can select Move from the Edit Tools.</p>
 <p>Open the attribute table of refpoints and add three new columns: Name, East, North. Populate the columns for each reference point: Name – a unique name. East – Easting. North – Northing. Easting and Northing can be populated using “Calculate Geometry.” For more relatable measurements in your precision and accuracy assessment (Task 3), use your local UTM for the geometry. Be sure to save your edits.</p>
 <p><strong>Step 3:</strong> You will be exporting a georeferenced map of your study area. Zoom in (or out) to an extent that contains at least the entire park.</p>
-<p>Using the top ribbon, select Share &gt; Export Map. A pane will pop up on the right-hand side of your screen. The file type is PDF, and make sure that it is saved somewhere you will be able to find it. Toward the bottom of the pane, make sure that the box under “PDF Settings” that says “Export georeference information” is selected. Then select export. This will be used when you are collecting data with Avenza.</p>
+<p>Using the top ribbon, select Share , then Export Map. A pane will pop up on the right-hand side of your screen. The file type is PDF, and make sure that it is saved somewhere you will be able to find it. Toward the bottom of the pane, make sure that the box under “PDF Settings” that says “Export georeference information” is selected. Then select “Export”. This will be used when you are collecting data with Avenza.</p>
 <p><strong>Step 4:</strong> Now that you have established a study area, you need to decide when you will be collecting your data. There are times in the day where you are more likely to get accurate GNSS readings. Find the coordinates of your study area so that you can use them in the Trimble GNSS Planning Online website (<a href="http://www.gnssplanning.com/" class="uri">http://www.gnssplanning.com/</a>).</p>
 <p>Go to the Trimble GNSS Planning Online website and enter your study area’s coordinates (one set of coordinates from anywhere within the study area) and elevation. If your coordinates are not in the proper units, either convert them to the proper units. Choose the day that you plan to visit your field site and collect data.</p>
 <p>After you have input your information into Settings, click “Apply” and look through the other tabs (Satellite Library, Charts, Sky Plot, World View). Using the information on the website, determine the ideal time to collect your GNSS points. Justify your chosen time using the data on the website (this justification should be included on your report, along with screenshots from the webpage).</p>

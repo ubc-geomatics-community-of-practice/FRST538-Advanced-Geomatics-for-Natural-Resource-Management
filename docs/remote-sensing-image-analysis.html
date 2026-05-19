@@ -23,7 +23,7 @@
 <meta name="author" content="Paul D. Pickell" />
 
 
-<meta name="date" content="2025-12-19" />
+<meta name="date" content="2026-05-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -311,7 +311,7 @@ Paul D. Pickell</p>
 </div>
 <div id="task-2-landsat-5-bands-the-ems-arcpro-software" class="section level2 unnumbered hasAnchor">
 <h2>Task 2: Landsat 5 Bands, the EMS &amp; ArcPro Software<a href="remote-sensing-image-analysis.html#task-2-landsat-5-bands-the-ems-arcpro-software" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Table 2: Parameters of Landsat 5’s Enhanced Thematic Mapper (ETM+) sensor</p>
+<p>Table 2: Parameters of Landsat 5’s Thematic Mapper (TM) sensor</p>
 <table>
 <colgroup>
 <col width="3%" />
@@ -387,11 +387,11 @@ Paul D. Pickell</p>
 <div id="q7.-band-6-is-recorded-with-a-coarser-resolution-because-thermal-radiation-has-a-very-___-wavelength.-therefore-there-is-___-energy-available-to-sense.-1-point" class="section level5 unnumbered hasAnchor">
 <h5>Q7. Band 6 is recorded with a coarser resolution because thermal radiation has a very ___ wavelength. Therefore, there is ___ energy available to sense. (1 point)<a href="remote-sensing-image-analysis.html#q7.-band-6-is-recorded-with-a-coarser-resolution-because-thermal-radiation-has-a-very-___-wavelength.-therefore-there-is-___-energy-available-to-sense.-1-point" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p><strong>Step 1:</strong> Start ArcGIS Pro.</p>
-<p>To start the lab, Open a new ArcPro map project and open the the L5047026subset_19990922_7B.dat file into the map window. At this point, you should see an RGB satellite image of the city of Vancouver (Figure 3) if the mapview does not immediately pan to the image right click “L5047026subset_19990922_7B.dat” in the Contents pane and press Zoom to Layer.</p>
+<p>To start the lab, Open a new ArcPro map project and open the the L5047026subset_19990922_7B.dat file into the map window. At this point, you should see an RGB satellite image of the city of Vancouver (Figure 3) if the mapview does not immediately pan to the image right-click “L5047026subset_19990922_7B.dat” in the Contents pane and press Zoom to Layer.</p>
 <p><img src="images/04-sat.png" width="75%" /></p>
 <p>Figure 3: True colour composite of Vancouver.</p>
 <p><strong>Step 2:</strong> Exploring the data</p>
-<p>It is now time to explore your imagery. Right click the box beside the “L5047026subset_19990922_7B.dat” file in the Contents pane and select “Properties”. Use the menu on the left-hand side and select the Source page and the Raster Information drop down.</p>
+<p>It is now time to explore your imagery. Right click the box beside the “L5047026subset_19990922_7B.dat” file in the Contents pane and select “Properties”. Use the menu on the left-hand side and select the Source page and the Raster Information drop-down.</p>
 <p><img src="images/04-source.png" width="75%" /></p>
 <p>After clicking on the Raster Information, the tab should open up, and display important information about the image, such as dimensions (number of pixels in the X or Y directions), data types, projection, and resolution (listed as Projection/Pixel). This information can be useful when examining an image!</p>
 <p>From the “Raster Information” you can see that the spatial resolution of this image is approximately 30 m by 30 m, square. That means that each pixel in the image represents an area of approximately 30 x 30 m on the ground, or 900 square meters. Furthermore, it is a Landsat 5 Thematic Mapper image of Vancouver and its surroundings taken at 22 September 1999 - Wow! Even more details are apparent – its size is 4000 by 3000 pixels, and has seven bands.</p>
@@ -403,7 +403,7 @@ Paul D. Pickell</p>
 <p><strong>Step 3:</strong> Displaying Greyscale, True Colour, &amp; False Colour Imagery.</p>
 <p>Traditionally, single bands of imagery are shown in greyscale, with dark areas shown in black, and light areas shown in white, with anything else shown in shades of grey. Think of each pixel representing a number between 0-255 (byte data type range, the same one of this very imagery!), with areas colored pure black representing the number 0, and areas colored pure white representing the number 255, and everything else is a shade of grey increasing in lightness from 1-254. The figure below displays this concept.</p>
 <p><img src="images/04-grey.png" width="75%" /></p>
-<p>Right click on you data in the Contents pane and select “Symbology”. The symbology pane should appear on the side of you window. Press the drop down menu and select “Stretch”.</p>
+<p>Right click on you data in the Contents pane and select “Symbology”. The symbology pane should appear on the side of you window. Press the drop-down menu and select “Stretch”.</p>
 <p><img src="images/04-strech.png" width="75%" /></p>
 <p>In the next dropdown menu labeled “Band” select “Band 4 NIR” you should see the same image as below.</p>
 <p><img src="images/04-gorge.png" width="75%" /></p>
@@ -441,7 +441,7 @@ You should see the following:</p>
 <h5>Q12. Experiment with many different false colour composites. Which 3 bands would you combine if you wanted to analyze urban areas? Do some light research on spectral properties and the applications of different landsat bands and write a sentence or two justifying each of your choices. Then, append a screenshot of your chosen composite to your response. (10 points)<a href="remote-sensing-image-analysis.html#q12.-experiment-with-many-different-false-colour-composites.-which-3-bands-would-you-combine-if-you-wanted-to-analyze-urban-areas-do-some-light-research-on-spectral-properties-and-the-applications-of-different-landsat-bands-and-write-a-sentence-or-two-justifying-each-of-your-choices.-then-append-a-screenshot-of-your-chosen-composite-to-your-response.-10-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p><strong>Step 4: Viewing Spectral Signatures</strong></p>
 <p>Now it is time to examine your data set more thoroughly. At the beginning of this lecture we examined the spectral signatures of different materials. We will now do the same thing for the different sections of our Vancouver Landsat image.</p>
-<p>Right click on the “L5047026subset_19990922_7B.dat” file in the Contents pane and select Create Chart -&gt; Spectral Profile. The Chart Properties pane should appear on the right side of your screen and the spectral chart on the bottom.</p>
+<p>Right click on the “L5047026subset_19990922_7B.dat” file in the Contents pane and select “Create Chart”, then “Spectral Profile”. The Chart Properties pane should appear on the right side of your screen and the spectral chart on the bottom.</p>
 <p><img src="images/04-chart.png" width="75%" /></p>
 <p>In the Chart properties pane under “Define an Area of Interest” select “point” and then click a pixel on your map. Change the colour and select a variety of different points representing different land cover types (Urban, forest, water, crops, snow).</p>
 <p><img src="images/04-points.png" width="75%" /></p>
@@ -465,9 +465,9 @@ You should see the following:</p>
 <p>While ArcGIS Pro contains a built-in tool to calculate NDVI and a series of other spectral indices, in this lab we will be using the “band arithmetic” function and the above equation to create our own NDVI tool.</p>
 <p>Navigate to the Imagery ribbon at the top of your ArcPro window and click the “Raster Function” button.</p>
 <p><img src="images/04-raster.png" width="40%" /></p>
-<p>The Raster Functions pane should appear, you can either navigate the drop down menus to “Math”, “Band Arithmetic” or use the search function to find the “Band Arithmetic Tool” and click to open.</p>
+<p>The Raster Functions pane should appear, you can either navigate the drop-down menus to “Math”, “Band Arithmetic” or use the search function to find the “Band Arithmetic Tool” and click to open.</p>
 <p><img src="images/04-raster-func.png" width="75%" /></p>
-<p>The “Band Arithmetic Properties” dialogue should appear. Under “Raster” use the drop down menu and select the “L5047026subset_19990922_7B.dat” layer. If it is not currently in your map view and can use the folder button and navigate to your lab data folder and select the file. Under “Method” select “User Defined”. It should look like the screen shot below.</p>
+<p>The “Band Arithmetic Properties” dialogue should appear. Under “Raster” use the drop-down menu and select the “L5047026subset_19990922_7B.dat” layer. If it is not currently in your map view and can use the folder button and navigate to your lab data folder and select the file. Under “Method” select “User Defined”. It should look like the screenshot below.</p>
 <p><img src="images/04-band-math.png" width="75%" /></p>
 <p>Use your knowledge of spectral indices, the NDVI formula given above and the table below fill in the NDVI calculation for your data.</p>
 <div id="screenshot-2.-upload-a-screenshot-of-you-band-arithmetic-equation-for-ndvi.-2-points" class="section level5 unnumbered hasAnchor">
