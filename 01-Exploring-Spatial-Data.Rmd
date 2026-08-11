@@ -6,6 +6,7 @@ author <- yml_content[["exploring-spatial-data"]][["author"]]
 # Exploring Spatial Data {#exploring-spatial-data}
 
 Written by
+
 ```{r results="asis", echo=FALSE}
 cat(author)
 ```
@@ -112,7 +113,7 @@ What we just explored is that your ArcGIS Pro Map has its own CRS defined. This 
 As you will discover in the next task, spatial data are distributed in a wide variety of coordinate systems, and you are not always guaranteed the CRS that matches your project. So you may need to manually re-project your data before undertaking any analysis beyond simple visualization. Below is a table of three commonly used CRS in British Columbia and Canada:
 
 | Coordinate Reference System (CRS) | Uses |
-|--------------|----------------|
+|----------------------------------|--------------------------------------|
 | **NAD 1983 UTM Zone 10N** | Mapping within Universal Transverse Mercator (UTM) Zone 10 North around Vancouver |
 | **NAD 1983 BC Environment Albers** | Mapping across all of British Columbia |
 | **Canada Albers Equal Area Conic** | Mapping across all of Canada |
@@ -127,15 +128,17 @@ The table below lists a few places to start your search:
 
 | Portal | URL | Focus / Notes |
 |------------------------|------------------------|------------------------|
-| BC Data Catalogue | [https://catalogue.data.gov.bc.ca/](https://catalogue.data.gov.bc.ca/) | Provincial datasets: forestry, land cover, cadastral, climate, transportation, natural resources |
-| City of Vancouver Open Data Portal | [https://opendata.vancouver.ca/](https://opendata.vancouver.ca/) | Municipal datasets: zoning, land use, parks, trees, utilities, transportation, planning |
-| Government of Canada Geoportal | [https://geo.ca/home/](https://geo.ca/home/) | Federal datasets: topography, land cover, soils, administrative boundaries |
-| Lunaris | [https://www.lunaris.ca/](https://www.lunaris.ca/) | National discovery service for research data across Canadian institutions |
-| UBC Geospatial Open Data | [https://github.com/UBCGeodata/ubc-geospatial-opendata](https://github.com/UBCGeodata/ubc-geospatial-opendata) | UBC-hosted geospatial datasets, campus and research related |
-| Natural Resources Canada | [https://maps.canada.ca/](https://maps.canada.ca/) | Federal geospatial data: topographic maps, forests, geology, hydrography |
-| Metro Vancouver Data Portal | [https://open-data-portal-metrovancouver.hub.arcgis.com/](https://open-data-portal-metrovancouver.hub.arcgis.com/) | Regional planning: air quality, utilities, infrastructure, parks |
-| Natural Earth | [https://www.naturalearthdata.com/](https://www.naturalearthdata.com/) | Global vector and raster datasets at multiple scales |
-| UN FAO GeoNetwork | [https://data.apps.fao.org](https://data.apps.fao.org) | Global agriculture, land cover, and environmental datasets |
+| BC Data Catalogue | <https://catalogue.data.gov.bc.ca/> | Provincial datasets: forestry, land cover, cadastral, climate, transportation, natural resources |
+| City of Vancouver Open Data Portal | <https://opendata.vancouver.ca/> | Municipal datasets: zoning, land use, parks, trees, utilities, transportation, planning |
+| Government of Canada Geoportal | <https://geo.ca/home/> | Federal datasets: topography, land cover, soils, administrative boundaries |
+| Lunaris | <https://www.lunaris.ca/> | National discovery service for research data across Canadian institutions |
+| UBC Campus and Malcolm Knapp Research Forest Orthophotos and LiDAR | <https://206-12-122-94.cloud.computecanada.ca/> | UBC-hosted historical LiDAR and orthophotos of campus and Malcolm Knapp Research Forest |
+| UBC Geospatial Open Data | <https://github.com/UBCGeodata/ubc-geospatial-opendata> | UBC-hosted vector geospatial datasets, campus and research related |
+| UBC Malcolm Knapp Research Forest Vector Data | frst-gis.ead.ubc.ca (only accessible by UBC students) | Password-protected PostgreSQL database `mkrf` that contains various spatial layers for Malcolm Knapp Research Forest |
+| Natural Resources Canada | <https://maps.canada.ca/> | Federal geospatial data: topographic maps, forests, geology, hydrography |
+| Metro Vancouver Data Portal | <https://open-data-portal-metrovancouver.hub.arcgis.com/> | Regional planning: air quality, utilities, infrastructure, parks |
+| Natural Earth | <https://www.naturalearthdata.com/> | Global vector and raster datasets at multiple scales |
+| UN FAO GeoNetwork | <https://data.apps.fao.org> | Global agriculture, land cover, and environmental datasets |
 
 **Step 1:** Navigate to one or more of the portals linked above and search for three vector datasets that might be relevant to your project. You can select data of any themes that you are interested in, but you must follow these guidelines to receive credit:
 
@@ -146,7 +149,7 @@ The table below lists a few places to start your search:
 
 **Step 2:** Once you have found a dataset, download the file into your ArcGIS Pro project folder location that you noted from Task 1. Do not download files directly into your project's default geodatabase. Most likely the files that you will find will be zipped (compressed), so you will also need to unzip (uncompress) the files into your project folder so that ArcGIS Pro can read them.
 
-Pay attention to the metadata on the portal that describe what you are downloading. Metadata are data about data. They describe data and help to make them findable through portals and library indexes. For example, you might come across metadata that describes who the author of the data is, when the data were created/collected/updated, how large the files are and what formats they are, codes for understanding the attribute table, licensing, and more. Rather than provide detailed instructions here for each portal, just ask the instructor or TA if you have any doubts or questions about what you are looking at.
+Pay attention to the metadata on the portal that describe what you are downloading. Metadata are data about data. They describe data and help to make data findable through portals and library indexes. For example, you might come across metadata that describes who the author of the data is, when the data were created/collected/updated, how large the files are and what formats they are, codes for understanding the attribute table, licensing, and more. Rather than provide detailed instructions here for each portal, just ask the instructor or TA if you have any doubts or questions about what you are looking at.
 
 **Step 3:** For each dataset that you download, check the file type and then bring it into ArcGIS Pro using the instructions in the table below. For many file types, you can just drag and drop the file into ArcGIS Pro. You can also navigate to your project folder in the "Catalog" pane (expand "Folders", expand "FRST538_Lab1") and drag files from there or right-click files and select "Add To Project" (you may need to right-click the project folder and select "Refresh" to see recently added files from this method).
 
@@ -220,7 +223,7 @@ In this last task, we will look at some simple ways to manipulate the symbology 
 knitr::include_graphics("images/01-arcgis-single-symbology.png")
 ```
 
-**Step 2:** From the "Symbology" pane, click the drop-down menu under "Primary Symbology" and select "Graduated Colors". From here, you can select any numeric field to serve as the basis for applying color to your features. In the example below, I have selected "max_floors" as the field to symbolize and chosen the blue-yellow color palette. ArcGIS Pro will update the layer and also show the classes in the "Contents" pane. 
+**Step 2:** From the "Symbology" pane, click the drop-down menu under "Primary Symbology" and select "Graduated Colors". From here, you can select any numeric field to serve as the basis for applying color to your features. In the example below, I have selected "max_floors" as the field to symbolize and chosen the blue-yellow color palette. ArcGIS Pro will update the layer and also show the classes in the "Contents" pane.
 
 ```{r 01-arcgis-graduated-colors, echo=FALSE, fig.align = "center", out.width = "75%"}
 knitr::include_graphics("images/01-arcgis-graduated-colors.png")
@@ -242,7 +245,7 @@ knitr::include_graphics("images/01-arcgis-basemap.png")
 
 **Step 6:** Add a title to your map by select the text icon in the "Graphics and Text" grouping on the top ribbon under the "Insert" tab. Here you will need to adjust the size and position of the text.
 
-Note that there are too many options here to provide detailed instructions for. If you want to know how to do something specifically, just ask your instructor or TA. 
+Note that there are too many options here to provide detailed instructions for. If you want to know how to do something specifically, just ask your instructor or TA.
 
 ##### Map 1. Upload your final map that shows your three selected datasets. At least one dataset must be symbolized by a field in the attribute table. You can pick the colors/symbols to use for each layer. Layers that appear to use the default random color/weight assignment by ArcGIS Pro will not be accepted for credit. You must show that you manipulated the symbology for each layer. Your map must also contain a title, north arrow, scale bar, and a legend that contains the symbologies of all the layers. (25 points) {.unnumbered}
 
