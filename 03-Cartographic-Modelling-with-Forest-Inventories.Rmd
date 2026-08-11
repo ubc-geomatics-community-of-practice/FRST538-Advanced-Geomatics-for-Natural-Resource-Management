@@ -58,10 +58,10 @@ All data for this lab are accessible via the UBC PostgreSQL server. Instructions
 
 | Layer Name | File Name | Reference Link |
 |----|----|----|
-| Vegetation Resource Inventory 2024 | `vancouver_island_vri` | <https://catalogue.data.gov.bc.ca/dataset/vri-2024-forest-vegetation-composite-layer-1-l1-> |
-| Generalized Forest Cover Ownership | `vancouver_island_own` | <https://catalogue.data.gov.bc.ca/dataset/generalized-forest-cover-ownership> |
-| Cumulative Effects Framework: Human Disturbance (current) | `vancouver_island_human_disturbance` | <https://catalogue.data.gov.bc.ca/dataset/7d61ff12-b85f-4aeb-ac8b-7b10e84b046c> |
-| Landscape Units (current) | `vancouver_island_landscape_units` | <https://catalogue.data.gov.bc.ca/dataset/landscape-units-of-british-columbia-current> |
+| Vegetation Resource Inventory 2025 | `vancouver_island_vri` | <https://catalogue.data.gov.bc.ca/dataset/vri-2025-forest-vegetation-composite-layer-1-l1-> |
+| Land Designations for Forest Management | `vancouver_island_own` | <https://catalogue.data.gov.bc.ca/dataset/4574f131-470e-407c-bbcc-5b19d9adcc1b> |
+| Human Disturbance – 2025 | `vancouver_island_human_disturbance` | <https://catalogue.data.gov.bc.ca/dataset/human-disturbance-2025> |
+| Landscape Units of British Columbia - Current | `vancouver_island_landscape_units` | <https://catalogue.data.gov.bc.ca/dataset/landscape-units-of-british-columbia-current> |
 
 ------------------------------------------------------------------------
 
@@ -77,25 +77,25 @@ All data for this lab are accessible via the UBC PostgreSQL server. Instructions
     knitr::include_graphics("images/03-arcgispro-postgres-connection-1.png")
 ```
 
-You can name it "UBC PostgreSQL Server" and for the host enter "FRST-PostgreSQL.ead.ubc.ca". The username and password will be provided to students enrolled in the course. Once you have correctly entered the correct credentials, ArcGIS Pro will do a "soft" connection to the server to retrieve the available databases. From the "Database" drop-down menu, select "vri" and then click "OK".
+You can name it "UBC PostgreSQL Server" and for the host enter "FRST-GIS.ead.ubc.ca". The username and password will be provided to students enrolled in the course and it is not your CWL. Once you have correctly entered the correct credentials, ArcGIS Pro will do a "soft" connection to the server to retrieve the available databases. From the "Database" drop-down menu, select "vri" and then click "OK".
 
 ```{r 03-arcgispro-postgres-connection-2, out.width= "75%", echo = FALSE}
     knitr::include_graphics("images/03-arcgispro-postgres-connection-2.png")
 ```
 
-The database connection has now been added to your ArcGIS Pro project, and you can view the tables inside the database from the Catalog Pane (open the "View" tab, open the "Catalog Pane", expand "Databases", expand "PostgreSQL-FRST-PostgreSQL-vri(student)", and view the tables in the `vri` database). You can drag and drop any of the layers of the database directly into your map to visualize them if you want. Though be aware that these are large layers and they may take a while to draw on your map. We do not actually need all of these data, so instead, we are going to use the power of SQL (Structured Query Language) to write a query that will return to us the tiny fraction that we need to use for this lab. First, let us break down what a generic SQL SELECT query looks like:
+The database connection has now been added to your ArcGIS Pro project, and you can view the tables inside the database from the Catalog Pane (open the "View" tab, open the "Catalog Pane", expand "Databases", expand "PostgreSQL-FRST-GIS-vri(student)", and view the tables in the `vri` database). You can drag and drop any of the layers of the database directly into your map to visualize them if you want. Though be aware that these are large layers and they may take a while to draw on your map. We do not actually need all of these data, so instead, we are going to use the power of SQL (Structured Query Language) to write a query that will return to us the tiny fraction that we need to use for this lab. First, let us break down what a generic SQL SELECT query looks like:
 
 ``` sql
-SELECT gid, site_index, species_cd_1, species_pct_1, geom
-FROM veg_comp_lyr_r1_poly_2024
+SELECT feature_id, site_index, species_cd_1, species_pct_1, geom
+FROM vancouver_island_vri
 WHERE bec_zone_code = 'CWH';
 ```
 
 The `SELECT` keyword is the most common database operation and the only one that we will use for this lab, but understand that there are keywords for other tasks in the database like creating tables, inserting data, updating data, and deleting data, to name a few. By convention, SQL keywords are capitalized, but most software including ArcGIS Pro do not require this.
 
-What follows the `SELECT` keyword is a comma-separated list of column names that we want to retrieve from the table, `gid, site_index, species_cd_1, species_pct_1, geom`. You could also replace these with `*` to return all of the column names and this is generally the default behavior across ArcGIS Pro, so for most tasks in ArcGIS Pro you generally will not need to specify any column names.
+What follows the `SELECT` keyword is a comma-separated list of column names that we want to retrieve from the table, `feature_id, site_index, species_cd_1, species_pct_1, geom`. You could also replace these with `*` to return all of the column names and this is generally the default behavior across ArcGIS Pro, so for most tasks in ArcGIS Pro you generally will not need to specify any column names when writing a SQL query.
 
--   `gid` is the primary key of the VRI table, this uniquely identifies all of the polygons from each other. When we select any subset of a table, we always want to grab the primary key because this allows us to keep track of which polygon we are dealing with from the originating table.
+-   `feature_id` is the primary key of the VRI table, this uniquely identifies all of the polygons from each other. When we select any subset of a table, we always want to grab the primary key because this allows us to keep track of which polygon we are dealing with from the originating table.
 
 -   `site_index` is the estimate of site productivity for tree growth for the polygon; the values are recorded as decimal numbers. 
 
@@ -105,39 +105,39 @@ What follows the `SELECT` keyword is a comma-separated list of column names that
 
 -   `geom` is the geometry column, which is where the coordinates of the polygons are actually stored. We need this column if we want to map the results of our query.
 
-There are 190 other attributes (columns) in the VRI table for each polygon, so this is just a small subset. You should review the [VRI Relational Data Dictionary](https://www2.gov.bc.ca/assets/gov/farming-natural-resources-and-industry/forestry/stewardship/forest-analysis-inventory/data-management/standards/vegcomp_poly_rank1_data_dictionaryv5_2019.pdf) if you have any doubts about what a particular field refers to.
+There are 190 other attributes (columns) in the VRI table for each polygon, so this is just a small subset. You should review the [VRI Relational Data Dictionary](/data/standards/vegcomp_poly_rank1_data_dictionaryv5_2019.pdf) if you have any doubts about what a particular field refers to.
 
-Next, the statement describes the table name in the database that these columns are being selected from, `FROM veg_comp_lyr_r1_poly_2024`.
+Next, the statement describes the table name in the database that these columns are being selected from, `FROM veg_comp_lyr_r1_poly_2025`.
 
 The `WHERE bec_zone_code = 'CWH'` clause is a conditional statement, which limits the rows (features) returned from the originating table. Note here that we can refer to any column names from the originating table, even if they do not appear in the list of column names that we want to return, as long as they exist in the originating table. Finally, all SQL queries are always concluded with a semicolon `;`.
 
 You should think of `SELECT` as *subsetting columns of a table* (along the x-axis) and `WHERE` as *subsetting rows of a table* (along the y-axis). When used together, we are reducing both dimensions of the originating table simultaneously, which substantially reduces the total data that we are retrieving. We will use this principle and expand the SQL statement above in the next step in order to retrieve only the tiny fraction of the VRI data that we need.
 
-**Step 4:** From the top ribbon in ArcGIS Pro, navigate to the "Map" tab, then click the down arrow under "Add Data" and select "Query Layer..." from the drop-down menu. In the "New Query Layer" dialogue window that appears, click the "Datasource" drop-down menu at the top and you should see the UBC PostgreSQL server connection to the `vri` database listed there that you added at the beginning of this task. It should look something like "PostgreSQL-FRST-PostgreSQL-vri(student).sde".
+**Step 4:** From the top ribbon in ArcGIS Pro, navigate to the "Map" tab, then click the down arrow under "Add Data" and select "Query Layer..." from the drop-down menu. In the "New Query Layer" dialogue window that appears, click the "Datasource" drop-down menu at the top and you should see the UBC PostgreSQL server connection to the `vri` database listed there that you added at the beginning of this task. It should look something like "PostgreSQL-FRST-GIS-vri(student).sde".
 
-If not, then click the little database connection button next to the drop-down menu in the dialogue window to add the database connection. (Note: in this specific case, you will need to add the port number to the path string like `FRST-PostgreSQL.ead.ubc.ca,5432`)
+If not, then click the little database connection button next to the drop-down menu in the dialogue window to add the database connection. (Note: in this specific case, you will need to add the port number to the path string like `FRST-GIS.ead.ubc.ca,5432`)
 
 We are going to write a select query to retrieve these data from the server, but we do not need all the columns, nor all the rows. We only need polygons that are managed forests and for those polygons, we only need a few attributes that we are going to use later in the lab ("bec_zone_code", "bec_subzone", and "proj_age_1").
 
 **Step 5:** Toggle on "List of Tables" to see the table names and then click on the VRI table in the list "vri.public.vancouver_island_vri" to show the list of columns. (If you get an error message here, then save your project, restart ArcGIS Pro and try again). We are going to write a SQL query to select the polygons that meet some of our initial criteria and then return the values of the columns (attributes) that we will need later. In the "Name" field, name the new query layer "vancouver_island_vri_select".
 
-The VRI data include descriptions about both forested and non-forested lands in British Columbia. Since we are only concerned with forests, we are going to only find polygons that are managed forests. We can do this simply with `SELECT * FROM vancouver_island_vri WHERE for_mgmt_land_base_ind = 'Y'`. See here that we have not defined any specific column names to return, `SELECT *` means *give me all the columns*, so in this example, we are only subsetting on the rows with `WHERE for_mgmt_land_base_ind = 'Y'`, but not the columns. If instead we used `SELECT for_mgmt_land_base_ind FROM vancouver_island_vri`, then we would get all the polygon values for only the `for_mgmt_land_base_ind` column name (subset columns, but not rows). You can test this SQL query but do not complete it as a new layer.
+The VRI data include descriptions about both forested and non-forested lands in British Columbia. Since we are only concerned with forests, we are going to only find polygons that are managed forests. We can do this simply with `SELECT * FROM vancouver_island_vri WHERE for_mgmt_land_base_ind = 'Y'`. See here that we have not defined any specific column names to return, `SELECT *` means *give me all the columns*, so in this example, we are only subsetting on the rows with `WHERE for_mgmt_land_base_ind = 'Y'`, but not the columns. If instead we used `SELECT for_mgmt_land_base_ind FROM vancouver_island_vri`, then we would get all the polygon values for only the `for_mgmt_land_base_ind` column name (subset columns, but not rows). Run the query and inspect the output as a new layer.
 
 ##### Q1. What does for_mgmt_land_base_ind select for? What parameters are required to receive a "Yes" value? Hint: take a look at the VRI Relational Data Dictionary. (10 points) {.unnumbered}
 
 **Pro tip:** When a column value stores a text string, we use single quotation marks in SQL `'abc'` around the values that we are searching for; double quotation marks `"abc"` will fail for a SQL query.
 
-**Step 6:** Using what you just learned, draft a select statement that limits the VRI polygons to only managed forests and return only the column names `gid`, `bec_zone_code`, `bec_subzone`, `proj_age_1`, and `geom`. Do not run this just yet in ArcGIS Pro, but have it validated by the instructor then press the "Validate" button on the bottom of the dialogue window. If the statement validates successfully, then the "Next" button will allow you to proceed.
+**Step 6:** Using what you just learned, draft a select statement that limits the VRI polygons to only managed forests and return only the column names `feature_id`, `bec_zone_code`, `bec_subzone`, `proj_age_1`, and `geom`. Press the "Validate" button on the bottom of the dialogue window. If the statement validates successfully, then the "Next" button will allow you to proceed.
 
 **Pro tip:** If you are working from a laptop, be sure to plug into your power source as your computer power options may significantly slow down your ArcGIS Pro performance to conserve battery.
 
-**Step 7:** In the next dialogue, toggle `gid` as the field that uniquely identifies all features in the table, "Unique Identifier Field(s)" (i.e., the primary key), leave the other fields toggled off. Once you click "Finish", your select statement will be applied and sent to the server. You will see a small dialogue window that indicates that the extent is being calculated, and this should take about 3-5 minutes before you will see a layer appear in your Table of Contents. Read on to understand the next steps while the server processes your query.
+**Step 7:** In the next dialogue, toggle `feature_id` as the field that uniquely identifies all features in the table, "Unique Identifier Field(s)" (i.e., the primary key), leave the other fields toggled off. Once you click "Finish", your select statement will be applied and sent to the server. You will see a small dialogue window that indicates that the extent is being calculated, and this should take about 3-5 minutes before you will see a layer appear in your Table of Contents. Read on to understand the next steps while the server processes your query.
 
 **Pro tip:** It will take another 3-5 minutes before you will see any polygons drawn on your map. You can speed some steps up if you "Pause" the map drawing mode by pressing the pause button at the very bottom of your map. In general, try to keep large layers toggled off so that they are not drawing in the background.
 
 Save your ArcGIS Pro project now.
 
-Our goal here is not necessarily to visualize the results, though you should see you map automatically pan to Vancouver Island. You can toggle the layer off and visualize it later. If you open the attribute table, you should see the five columns we requested and there should be 275,246 polygons. (Click the "Load All" button at the bottom of the attribute table to verify, which will take some additional time).
+Our goal here is not necessarily to visualize the results, though you should see you map automatically pan to Vancouver Island. You can toggle the layer off and visualize it later. If you open the attribute table, you should see the five columns we requested and there should be 250,000+ polygons. (Click the "Load All" button at the bottom of the attribute table to verify, which will take some additional time).
 
 The query layer that you just created is persistent between ArcGIS Pro sessions if you saved and re-open the project later, but the query layer does not actually contain any data because it just provides the instructions to apply the query to the remote database. It will re-run the query each time you re-open your ArcGIS Pro project, which will take some time to retrieve the data. To avoid this, we are going to actually download the data to our local computer.
 
@@ -157,6 +157,10 @@ The cumulative effects framework only considers forests located on crown land. N
 
 **Step 10:** Open the attribute table of "vancouver_island_own" by right-clicking the layer in the contents pane. Then click the "Select by Attributes" button then toggle the SQL Editor button to show the SQL codeblock. Write a query to select all the polygons that are crown land as described in the previous step. Note that in this particular interface, you only need to give the conditions for selection, so you can omit `SELECT * FROM table WHERE`. Export the features to your ArcGIS Pro project geodatabase as you did with the the vancouver_island_vri_select, naming the new layer "crown_land" and ensuring that "Use the selected records" is toggled on.
 
+```{r 03-select-by-attributes, out.width= "75%", echo = FALSE}
+    knitr::include_graphics("images/03-select-by-attributes.png")
+```
+
 You can read more about the CEF human disturbance layer and methodology here: [https://catalogue.data.gov.bc.ca/dataset/bc-cumulative-effects-framework-human-disturbance-current](https://catalogue.data.gov.bc.ca/dataset/bc-cumulative-effects-framework-human-disturbance-current)
 
 **Step 11:** Next, we will select the areas where crown land overlaps with potentially forested areas.
@@ -169,15 +173,23 @@ Use the **Pairwise Intersect tool**. You can search for it by clicking the toolb
 
 Once the tool has finished running, open the new Crown_Forest attribute table to ensure that "bec_zone_code" and "bec_subzone" attributes have been preserved.
 
-**Step 12:** Turn off visibility for other layers in the contents pane on the left side. If the contents pane has been closed, it can be reopened from the ribbon at the top of the screen. Visualize the `Crown_Forest` layer by `bec_zone_code` or `bec_subzone`. To do this, right-click the layer in the contents pane and select "Symbology". Change the primary symbology to "Unique Values" and "field 1" to the attribute of your choice.
+**Step 12:** Turn off visibility for other layers in the contents pane on the left side. If the contents pane has been closed, it can be reopened from the ribbon at the top of the screen. Visualize the `Crown_Forest` layer by `bec_zone_code` or `bec_subzone`. To do this, right-click the layer in the contents pane and select "Symbology". Change the primary symbology to "Unique Values" and "field 1" to the attribute of your choice. 
 
 **Pro tip:** Polygon outlines can be removed by clicking the symbol of each row in the "Classes" table of the symbology layer. When given the option, select a symbol that does not have an outline. This makes it easier to see the area of many smaller polygons combined.
+
+```{r 03-select-symbology, out.width= "25%", echo = FALSE}
+    knitr::include_graphics("images/03-select-symbology.png")
+```
+
+```{r 03-select-borderless-symbology, out.width= "25%", echo = FALSE}
+    knitr::include_graphics("images/03-select-borderless-symbology.png")
+```
 
 ```{r 03-VRI_BecSubZones, out.width= "75%", echo = FALSE}
     knitr::include_graphics("images/03-VRI_BecSubZones.png")
 ```
 
-**Step 13:** In BC forestry standards, the age of a forest stand is categorized by "Seral Stage." Since the required ages for mature or old growth forests varies depending on the BEC zone, seral stages are used to denote the relative age class of a stand; "Early", "Mid", "Mature", and "Old". We will create a new field and classify each polygon depending on it is estimated age.
+**Step 13:** In BC forestry standards, the age of a forest stand is categorized by "Seral Stage." Since the required ages for mature or old growth forests varies depending on the BEC zone, seral stages are used to denote the relative age class of a stand; "Early", "Mid", "Mature", and "Old". We will create a new field and classify each polygon depending on its estimated age.
 
 Open the `Crown_Forest` attribute table and select "Add" in the table ribbon. This will take you to the field view. At the bottom, create a new field using:
 
@@ -233,7 +245,11 @@ def getSeralStage(bec, age):
     return None
 ```
 
--   *Note: Ignore the warning message that appears.*
+```{r 03-calculate-field, out.width= "75%", echo = FALSE}
+    knitr::include_graphics("images/03-calculate-field.png")
+```
+
+*Note: Ignore the warning message that appears.*
 
 To better understand what is being done in this code chunk, the syntax is described below.
 
@@ -241,21 +257,27 @@ To better understand what is being done in this code chunk, the syntax is descri
     knitr::include_graphics("images/03-PythonSyntax.jpg")
 ```
 
-Review that all the rows have been populated in the `Seral_stage` field.
+Check that all the rows have been populated in the `Seral_stage` field.
 
 ##### Q2. Define "old growth" and cite at least one primary source. What characteristics might be overlooked by a definition of "old growth" that only accounts for stand age? (10 points) {.unnumbered}
 
 **Step 15:** Our current layers only indicate where crown forests *could potentially occur*. In this step, we will reset the seral stage in areas that have experienced human disturbances such as roads, buildings, or logging. We are not removing these areas entirely, as they remain part of the landscape unit where old-growth forest could exist if it had not been cleared. We will use `vancouver_island_human_disturbance` to do so. Select by attribute where `cef_human_disturb_flag` is equal to `Human Disturb Current 20yr`. Export the selected attributes as a new feature named `Disturbed_areas`.
 
+```{r 03-select-by-location, out.width= "100%", echo = FALSE}
+    knitr::include_graphics("images/03-select-by-location.png")
+```
+
 Then, use `Select By Location` in the top ribbon to identify areas of overlap between potential crown forest stands and areas of disturbance.
 
--   **Input Feature**: Crown_Forest
+-   **Input Features**: Crown_Forest
 
--   **Selecting Feature**: Disturbed_areas
+-   **Relationship**: Intersect
 
--   **Relationship**: Intersect - Leave the rest at default
+-   **Selecting Features**: Disturbed_areas
 
--   This may take a few moments to run
+-   **Selection Type**: New Selection
+
+Leave other options with their defaults. This may take a couple of minutes to complete.
 
 **Step 16:** In the Crown_Forest attribute table:
 
@@ -267,7 +289,7 @@ Then, use `Select By Location` in the top ribbon to identify areas of overlap be
 
 -   Right-click the `Seral_Stage` field, then click "Calculate Field"
 
--   Expression: `"Early"`
+-   **Expression**: `"Early"`
 
 -   Ensure that `Use the selected records` is toggled on
 
@@ -276,6 +298,10 @@ Then, use `Select By Location` in the top ribbon to identify areas of overlap be
 -   Click "Apply"
 
 -   Click "Clear" to remove selection
+
+```{r 03-define-seral-stage, out.width= "75%", echo = FALSE}
+    knitr::include_graphics("images/03-define-seral-stage.png")
+```
 
 **Pro tip:** Always clear your selection once you are done working with it. This prevents potential missteps in later steps.
 
@@ -299,7 +325,7 @@ Add a new field to CrownForest_LU attribute table:
 In the `LU_BEC =` textbox, paste:
 
 ``` python
-str(!landscape_unit_id!) + "_" + str(bec_zone_code!) + str(!bec_subzone!)
+str(!landscape_unit_id!) + "_" + str(!bec_zone_code!) + str(!bec_subzone!)
 ```
 
 ```{r 03-lu-bec-calculate-field, out.width= "100%", echo = FALSE}
@@ -474,9 +500,9 @@ British Columbia & BC Environment (Eds.). (1995). *Biodiversity guidebook*. Fore
 
 Canadian Institute of Forestry (2022). *Old Growth Information bulletin*. March, 2022
 
-CBC. (2022, February 11). Fairy Creek protesters bid to have charges stayed. *CBC News*. [www.cbc.ca/news/canada/british-columbia/protest-court-pro...](https://www.cbc.ca/news/canada/british-columbia/protest-court-proceedings-1.6348014)
+CBC. (2022, February 11). Fairy Creek protesters bid to have charges stayed. *CBC News*. [https://www.cbc.ca/news/canada/british-columbia/protest-court-proceedings-1.6348014](https://www.cbc.ca/news/canada/british-columbia/protest-court-proceedings-1.6348014)
 
-Forest Analysis and Inventory Branch (2024). VRI - 2024 - Forest Vegetation Composite Rank 1 Layer (R1). British Columbia Data Catalogue.[catalogue.data.gov.bc.ca/dataset/2ebb35d8-c82f-4a17-9c96-...](https://catalogue.data.gov.bc.ca/dataset/2ebb35d8-c82f-4a17-9c96-612ac3532d55)
+Forest Analysis and Inventory Branch (2025). VRI - 2025 - Forest Vegetation Composite Rank 1 Layer (R1). British Columbia Data Catalogue.
 
 LePage, P., & Banner, A. (2014). Long-term recovery of forest structure and composition after harvesting in the coastal temperate rainforests of northern British Columbia. *Forest Ecology and Management*, *318*, 250–260. [doi.org/10.1016/j.foreco.2014.01.031](https://doi.org/10.1016/j.foreco.2014.01.031)
 
