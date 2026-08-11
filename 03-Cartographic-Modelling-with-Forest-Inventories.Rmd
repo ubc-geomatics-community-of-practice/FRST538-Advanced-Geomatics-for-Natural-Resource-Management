@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 # Cartographic Modelling with Forest Inventories {#cartographic-modelling-with-forest-inventories}
 
 Written by
+
 ```{r results="asis", echo=FALSE}
 cat(author)
 ```
@@ -57,7 +58,7 @@ By the end of this lab, you will be able to:
 All data for this lab are accessible via the UBC PostgreSQL server. Instructions for connecting to the server are given in the tasks below. These are very large datasets that come from the BC Data Catalog and are described in the table below. Accessing these data from the UBC PostgreSQL server allows us to extract only the data we need for this lab, which is the extent of Vancouver Island.
 
 | Layer Name | File Name | Reference Link |
-|----|----|----|
+|------------------------|------------------------|------------------------|
 | Vegetation Resource Inventory 2025 | `vancouver_island_vri` | <https://catalogue.data.gov.bc.ca/dataset/vri-2025-forest-vegetation-composite-layer-1-l1-> |
 | Land Designations for Forest Management | `vancouver_island_own` | <https://catalogue.data.gov.bc.ca/dataset/4574f131-470e-407c-bbcc-5b19d9adcc1b> |
 | Human Disturbance – 2025 | `vancouver_island_human_disturbance` | <https://catalogue.data.gov.bc.ca/dataset/human-disturbance-2025> |
@@ -71,7 +72,7 @@ All data for this lab are accessible via the UBC PostgreSQL server. Instructions
 
 **Step 2:** Start ArcGIS Pro and create a new Map project.
 
-**Step 3:** From the top ribbon, navigate to the "Insert" tab, then click "Connections", and from the drop-down menu, select "New Database Connection". 
+**Step 3:** From the top ribbon, navigate to the "Insert" tab, then click "Connections", and from the drop-down menu, select "New Database Connection".
 
 ```{r 03-arcgispro-postgres-connection-1, out.width= "100%", echo = FALSE}
     knitr::include_graphics("images/03-arcgispro-postgres-connection-1.png")
@@ -97,9 +98,9 @@ What follows the `SELECT` keyword is a comma-separated list of column names that
 
 -   `feature_id` is the primary key of the VRI table, this uniquely identifies all of the polygons from each other. When we select any subset of a table, we always want to grab the primary key because this allows us to keep track of which polygon we are dealing with from the originating table.
 
--   `site_index` is the estimate of site productivity for tree growth for the polygon; the values are recorded as decimal numbers. 
+-   `site_index` is the estimate of site productivity for tree growth for the polygon; the values are recorded as decimal numbers.
 
-- `species_cd_1` is the leading tree species code for the polygon; the values are recorded as text strings.
+-   `species_cd_1` is the leading tree species code for the polygon; the values are recorded as text strings.
 
 -   `species_pct_1` is the percentage of the polygon occupied by the leading species represented by the `species_cd_1`; the values are recorded as integers. Note that "occupy" here is defined differently, depending on whether the stand is young or mature.
 
@@ -161,7 +162,7 @@ The cumulative effects framework only considers forests located on crown land. N
     knitr::include_graphics("images/03-select-by-attributes.png")
 ```
 
-You can read more about the CEF human disturbance layer and methodology here: [https://catalogue.data.gov.bc.ca/dataset/bc-cumulative-effects-framework-human-disturbance-current](https://catalogue.data.gov.bc.ca/dataset/bc-cumulative-effects-framework-human-disturbance-current)
+You can read more about the CEF human disturbance layer and methodology here: <https://catalogue.data.gov.bc.ca/dataset/bc-cumulative-effects-framework-human-disturbance-current>
 
 **Step 11:** Next, we will select the areas where crown land overlaps with potentially forested areas.
 
@@ -173,7 +174,7 @@ Use the **Pairwise Intersect tool**. You can search for it by clicking the toolb
 
 Once the tool has finished running, open the new Crown_Forest attribute table to ensure that "bec_zone_code" and "bec_subzone" attributes have been preserved.
 
-**Step 12:** Turn off visibility for other layers in the contents pane on the left side. If the contents pane has been closed, it can be reopened from the ribbon at the top of the screen. Visualize the `Crown_Forest` layer by `bec_zone_code` or `bec_subzone`. To do this, right-click the layer in the contents pane and select "Symbology". Change the primary symbology to "Unique Values" and "field 1" to the attribute of your choice. 
+**Step 12:** Turn off visibility for other layers in the contents pane on the left side. If the contents pane has been closed, it can be reopened from the ribbon at the top of the screen. Visualize the `Crown_Forest` layer by `bec_zone_code` or `bec_subzone`. To do this, right-click the layer in the contents pane and select "Symbology". Change the primary symbology to "Unique Values" and "field 1" to the attribute of your choice.
 
 **Pro tip:** Polygon outlines can be removed by clicking the symbol of each row in the "Classes" table of the symbology layer. When given the option, select a symbol that does not have an outline. This makes it easier to see the area of many smaller polygons combined.
 
@@ -413,7 +414,7 @@ The target percentages of old growth forests are dependent on the BEC subzone. I
 
 -   Negative values fall short of the high target,
 
--   Zero values meet the high target exactly.
+-   Zero meets the high target exactly.
 
 Begin by adding a new field to `Total_Forest_Area`:
 
@@ -450,7 +451,7 @@ Now write your own expression to calculate the difference between the old growth
 bec = lu_bec[5:] 
 ```
 
-We read this as _give me all the elements from position 5 to the end of the string_, where the colon `:` separates the "from" and "to" values. If we leave one side of the colon blank, then we are saying we want whatever the minimum (left side of colon) or maximum (right side of colon) number of elements is. Python indexing starts at zero, so if I want to return the letter "g" from the alphabet string `abcdefghijklmnopqrstuvwxyz`, then I would write something like `alphabet[6]` or if I want all letters before "g", then `alphabet[:5]`.
+We read this as *give me all the elements from position 5 to the end of the string*, where the colon `:` separates the "from" and "to" values. If we leave one side of the colon blank, then we are saying we want whatever the minimum (left side of colon) or maximum (right side of colon) number of elements is. Python indexing starts at zero, so if I want to return the letter "g" from the alphabet string `abcdefghijklmnopqrstuvwxyz`, then I would write something like `alphabet[6]` or if I want all letters before "g", then `alphabet[:5]`.
 
 ```{r 03-diff-from-high, out.width= "75%", echo = FALSE}
     knitr::include_graphics("images/03-diff-from-high.png")
@@ -500,7 +501,7 @@ British Columbia & BC Environment (Eds.). (1995). *Biodiversity guidebook*. Fore
 
 Canadian Institute of Forestry (2022). *Old Growth Information bulletin*. March, 2022
 
-CBC. (2022, February 11). Fairy Creek protesters bid to have charges stayed. *CBC News*. [https://www.cbc.ca/news/canada/british-columbia/protest-court-proceedings-1.6348014](https://www.cbc.ca/news/canada/british-columbia/protest-court-proceedings-1.6348014)
+CBC. (2022, February 11). Fairy Creek protesters bid to have charges stayed. *CBC News*. <https://www.cbc.ca/news/canada/british-columbia/protest-court-proceedings-1.6348014>
 
 Forest Analysis and Inventory Branch (2025). VRI - 2025 - Forest Vegetation Composite Rank 1 Layer (R1). British Columbia Data Catalogue.
 
