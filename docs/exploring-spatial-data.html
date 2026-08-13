@@ -23,7 +23,7 @@
 <meta name="author" content="Paul D. Pickell" />
 
 
-<meta name="date" content="2026-05-19" />
+<meta name="date" content="2026-08-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -188,7 +188,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#data-2"><i class="fa fa-check"></i>Data</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#task-1-the-ems"><i class="fa fa-check"></i>Task 1: The EMS</a></li>
-<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#task-2-landsat-5-bands-the-ems-arcpro-software"><i class="fa fa-check"></i>Task 2: Landsat 5 Bands, the EMS &amp; ArcPro Software</a></li>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#task-2-landsat-9-bands-the-ems-arcgis-pro-software"><i class="fa fa-check"></i>Task 2: Landsat 9 Bands, the EMS &amp; ArcGIS Pro Software</a></li>
 <li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#task-3-calculating-ndvi-and-built-up-index"><i class="fa fa-check"></i>Task 3: Calculating NDVI and Built Up Index</a></li>
 <li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#task-4-reclassifying-spectral-indices-and-map-making"><i class="fa fa-check"></i>Task 4: Reclassifying Spectral Indices and Map Making</a></li>
 <li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#summary-3"><i class="fa fa-check"></i>Summary</a></li>
@@ -321,8 +321,8 @@ Paul D. Pickell</p>
 <p>As you will discover in the next task, spatial data are distributed in a wide variety of coordinate systems, and you are not always guaranteed the CRS that matches your project. So you may need to manually re-project your data before undertaking any analysis beyond simple visualization. Below is a table of three commonly used CRS in British Columbia and Canada:</p>
 <table>
 <colgroup>
-<col width="46%" />
-<col width="53%" />
+<col width="47%" />
+<col width="52%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -368,47 +368,57 @@ Paul D. Pickell</p>
 <tbody>
 <tr class="odd">
 <td>BC Data Catalogue</td>
-<td><a href="https://catalogue.data.gov.bc.ca/">https://catalogue.data.gov.bc.ca/</a></td>
+<td><a href="https://catalogue.data.gov.bc.ca/" class="uri">https://catalogue.data.gov.bc.ca/</a></td>
 <td>Provincial datasets: forestry, land cover, cadastral, climate, transportation, natural resources</td>
 </tr>
 <tr class="even">
 <td>City of Vancouver Open Data Portal</td>
-<td><a href="https://opendata.vancouver.ca/">https://opendata.vancouver.ca/</a></td>
+<td><a href="https://opendata.vancouver.ca/" class="uri">https://opendata.vancouver.ca/</a></td>
 <td>Municipal datasets: zoning, land use, parks, trees, utilities, transportation, planning</td>
 </tr>
 <tr class="odd">
 <td>Government of Canada Geoportal</td>
-<td><a href="https://geo.ca/home/">https://geo.ca/home/</a></td>
+<td><a href="https://geo.ca/home/" class="uri">https://geo.ca/home/</a></td>
 <td>Federal datasets: topography, land cover, soils, administrative boundaries</td>
 </tr>
 <tr class="even">
 <td>Lunaris</td>
-<td><a href="https://www.lunaris.ca/">https://www.lunaris.ca/</a></td>
+<td><a href="https://www.lunaris.ca/" class="uri">https://www.lunaris.ca/</a></td>
 <td>National discovery service for research data across Canadian institutions</td>
 </tr>
 <tr class="odd">
+<td>UBC Campus and Malcolm Knapp Research Forest Orthophotos and LiDAR</td>
+<td><a href="https://206-12-122-94.cloud.computecanada.ca/" class="uri">https://206-12-122-94.cloud.computecanada.ca/</a></td>
+<td>UBC-hosted historical LiDAR and orthophotos of campus and Malcolm Knapp Research Forest</td>
+</tr>
+<tr class="even">
 <td>UBC Geospatial Open Data</td>
-<td><a href="https://github.com/UBCGeodata/ubc-geospatial-opendata">https://github.com/UBCGeodata/ubc-geospatial-opendata</a></td>
-<td>UBC-hosted geospatial datasets, campus and research related</td>
+<td><a href="https://github.com/UBCGeodata/ubc-geospatial-opendata" class="uri">https://github.com/UBCGeodata/ubc-geospatial-opendata</a></td>
+<td>UBC-hosted vector geospatial datasets, campus and research related</td>
+</tr>
+<tr class="odd">
+<td>UBC Malcolm Knapp Research Forest Vector Data</td>
+<td>frst-gis.ead.ubc.ca (only accessible by UBC students)</td>
+<td>Password-protected PostgreSQL database <code>mkrf</code> that contains various spatial layers for Malcolm Knapp Research Forest</td>
 </tr>
 <tr class="even">
 <td>Natural Resources Canada</td>
-<td><a href="https://maps.canada.ca/">https://maps.canada.ca/</a></td>
+<td><a href="https://maps.canada.ca/" class="uri">https://maps.canada.ca/</a></td>
 <td>Federal geospatial data: topographic maps, forests, geology, hydrography</td>
 </tr>
 <tr class="odd">
 <td>Metro Vancouver Data Portal</td>
-<td><a href="https://open-data-portal-metrovancouver.hub.arcgis.com/">https://open-data-portal-metrovancouver.hub.arcgis.com/</a></td>
+<td><a href="https://open-data-portal-metrovancouver.hub.arcgis.com/" class="uri">https://open-data-portal-metrovancouver.hub.arcgis.com/</a></td>
 <td>Regional planning: air quality, utilities, infrastructure, parks</td>
 </tr>
 <tr class="even">
 <td>Natural Earth</td>
-<td><a href="https://www.naturalearthdata.com/">https://www.naturalearthdata.com/</a></td>
+<td><a href="https://www.naturalearthdata.com/" class="uri">https://www.naturalearthdata.com/</a></td>
 <td>Global vector and raster datasets at multiple scales</td>
 </tr>
 <tr class="odd">
 <td>UN FAO GeoNetwork</td>
-<td><a href="https://data.apps.fao.org">https://data.apps.fao.org</a></td>
+<td><a href="https://data.apps.fao.org" class="uri">https://data.apps.fao.org</a></td>
 <td>Global agriculture, land cover, and environmental datasets</td>
 </tr>
 </tbody>
@@ -421,7 +431,7 @@ Paul D. Pickell</p>
 <li>You must properly cite the source of your dataset</li>
 </ul>
 <p><strong>Step 2:</strong> Once you have found a dataset, download the file into your ArcGIS Pro project folder location that you noted from Task 1. Do not download files directly into your project’s default geodatabase. Most likely the files that you will find will be zipped (compressed), so you will also need to unzip (uncompress) the files into your project folder so that ArcGIS Pro can read them.</p>
-<p>Pay attention to the metadata on the portal that describe what you are downloading. Metadata are data about data. They describe data and help to make them findable through portals and library indexes. For example, you might come across metadata that describes who the author of the data is, when the data were created/collected/updated, how large the files are and what formats they are, codes for understanding the attribute table, licensing, and more. Rather than provide detailed instructions here for each portal, just ask the instructor or TA if you have any doubts or questions about what you are looking at.</p>
+<p>Pay attention to the metadata on the portal that describe what you are downloading. Metadata are data about data. They describe data and help to make data findable through portals and library indexes. For example, you might come across metadata that describes who the author of the data is, when the data were created/collected/updated, how large the files are and what formats they are, codes for understanding the attribute table, licensing, and more. Rather than provide detailed instructions here for each portal, just ask the instructor or TA if you have any doubts or questions about what you are looking at.</p>
 <p><strong>Step 3:</strong> For each dataset that you download, check the file type and then bring it into ArcGIS Pro using the instructions in the table below. For many file types, you can just drag and drop the file into ArcGIS Pro. You can also navigate to your project folder in the “Catalog” pane (expand “Folders”, expand “FRST538_Lab1”) and drag files from there or right-click files and select “Add To Project” (you may need to right-click the project folder and select “Refresh” to see recently added files from this method).</p>
 <table>
 <colgroup>

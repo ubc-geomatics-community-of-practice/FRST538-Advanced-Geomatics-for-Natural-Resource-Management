@@ -6,7 +6,6 @@ author <- yml_content[["exploring-spatial-data"]][["author"]]
 # Exploring Spatial Data {#exploring-spatial-data}
 
 Written by
-
 ```{r results="asis", echo=FALSE}
 cat(author)
 ```

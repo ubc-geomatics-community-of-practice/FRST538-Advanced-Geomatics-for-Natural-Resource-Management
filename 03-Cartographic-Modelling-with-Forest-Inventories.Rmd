@@ -10,7 +10,6 @@ knitr::opts_chunk$set(echo = TRUE)
 # Cartographic Modelling with Forest Inventories {#cartographic-modelling-with-forest-inventories}
 
 Written by
-
 ```{r results="asis", echo=FALSE}
 cat(author)
 ```

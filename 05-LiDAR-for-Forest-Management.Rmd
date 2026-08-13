@@ -6,7 +6,6 @@ author <- yml_content[["lidar-for-forest-management"]][["author"]]
 # LiDAR for Forest Management {#lidar-forest-management}
 
 Written by
-
 ```{r results="asis", echo=FALSE}
 cat(author)
 ```

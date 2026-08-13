@@ -23,7 +23,7 @@
 <meta name="author" content="Paul D. Pickell" />
 
 
-<meta name="date" content="2026-05-19" />
+<meta name="date" content="2026-08-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -188,7 +188,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#data-2"><i class="fa fa-check"></i>Data</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#task-1-the-ems"><i class="fa fa-check"></i>Task 1: The EMS</a></li>
-<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#task-2-landsat-5-bands-the-ems-arcpro-software"><i class="fa fa-check"></i>Task 2: Landsat 5 Bands, the EMS &amp; ArcPro Software</a></li>
+<li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#task-2-landsat-9-bands-the-ems-arcgis-pro-software"><i class="fa fa-check"></i>Task 2: Landsat 9 Bands, the EMS &amp; ArcGIS Pro Software</a></li>
 <li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#task-3-calculating-ndvi-and-built-up-index"><i class="fa fa-check"></i>Task 3: Calculating NDVI and Built Up Index</a></li>
 <li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#task-4-reclassifying-spectral-indices-and-map-making"><i class="fa fa-check"></i>Task 4: Reclassifying Spectral Indices and Map Making</a></li>
 <li class="chapter" data-level="" data-path="remote-sensing-image-analysis.html"><a href="remote-sensing-image-analysis.html#summary-3"><i class="fa fa-check"></i>Summary</a></li>
@@ -256,7 +256,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Hana Travers-Smith</p>
 <div id="lab-overview-4" class="section level2 unnumbered hasAnchor">
 <h2>Lab Overview<a href="lidar-forest-management.html#lab-overview-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>LiDAR, short for Light Detection and Ranging, is a remote sensing technology that uses laser pulses to measure distances and create detailed 3D maps of objects and environments. To map vegetation, LiDAR emits laser beams from an aircraft or ground-based system towards the vegetation canopy. The laser pulses bounce back upon hitting objects, including leaves, branches, and the ground. By measuring the time it takes for the pulses to return, LiDAR calculates the distance to each point, generating a “point cloud” of data.</p>
+<p>LiDAR (<strong>Li</strong>ght <strong>D</strong>etection <strong>a</strong>nd <strong>R</strong>anging) is a remote sensing technology that uses laser pulses to measure distances and create detailed 3D maps of objects and environments. To map vegetation, LiDAR emits laser beams from an aircraft or ground-based system towards the vegetation canopy. The laser pulses bounce back upon hitting objects, including leaves, branches, and the ground. By measuring the time it takes for the pulses to return, LiDAR calculates the distance to each point, generating a “point cloud” of data.</p>
 <p>“Point clouds” can be used to create high-resolution maps depicting the vertical structure of vegetation, including tree heights, density, and ground cover. These maps are invaluable for understanding ecosystem health, biodiversity, carbon storage, and assisting in land management decisions such as forest monitoring, conservation planning, and urban development.</p>
 <p>In this lab you will use high resolution LiDAR data collected by the City of Vancouver to create a model of terrain and vegetation for a forest located on UBC campus.</p>
 <p><img src="images/05-river_pointcloud.png" width="960" style="display: block; margin: auto;" /></p>
@@ -285,8 +285,8 @@ Hana Travers-Smith</p>
 </div>
 <div id="task-1-load-and-understand-lidar-data-in-a-map-project" class="section level2 unnumbered hasAnchor">
 <h2>Task 1: Load and understand LiDAR data in a Map Project<a href="lidar-forest-management.html#task-1-load-and-understand-lidar-data-in-a-map-project" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Step 1:</strong> Download the LiDAR data from the following link: <a href="https://opendata.vancouver.ca/explore/dataset/lidar-2018/information/" class="uri">https://opendata.vancouver.ca/explore/dataset/lidar-2018/information/</a></p>
-<p>THe data is split up into a tiled grid system. You will download one tile covering a section of UBC. Use the “Table” view and search for the following tile and download it: “4840E_54550N” by clicking on the .zip link.</p>
+<p><strong>Step 1:</strong> Download the LiDAR data from the following link: <a href="https://opendata.vancouver.ca/explore/dataset/lidar-2022/information/" class="uri">https://opendata.vancouver.ca/explore/dataset/lidar-2022/information/</a></p>
+<p>THe data is split up into a tiled grid system. You will download one tile covering a section of UBC. Use the “Table” view and search for the following tile and download it: “484000_5455000” by clicking on the .zip link. The zip file is about 2 GB compressed and about 4 GB extracted, so you will need 6 GB of free space on your computer to complete this step. After you have extracted the las file, you can delete the zip file to free up space on your computer.</p>
 <p>Use the metadata from the City of Vancouver data portal to answer the following questions:</p>
 <div id="q1.-what-is-the-horizontal-and-vertical-datum-of-the-las-dataset-why-is-it-important-for-lidar-data-to-have-both-horiziantal-and-vertical-datums-10-points" class="section level5 unnumbered hasAnchor">
 <h5>Q1. What is the horizontal and vertical datum of the LAS dataset? Why is it important for Lidar data to have both horiziantal AND vertical datums? (10 points)<a href="lidar-forest-management.html#q1.-what-is-the-horizontal-and-vertical-datum-of-the-las-dataset-why-is-it-important-for-lidar-data-to-have-both-horiziantal-and-vertical-datums-10-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
@@ -296,15 +296,15 @@ Hana Travers-Smith</p>
 <p><strong>Step 2:</strong> Create a new project in ArcGIS Pro.</p>
 <p>ArcGIS Pro has several tools that we can use to view and analyse LiDAR point clouds. In order to view the dataset, we need to import it as a LAS Dataset. From the geoprcessing pane, search for the “Create LAS dataset” tool, then parameterize it as follows:</p>
 <ul>
-<li>Input File: 4840E_54550N.las</li>
-<li>Output LAS Dataset: LAS Dataset.lasd</li>
-<li>Coodinate System: Use the horizontal datum from the dataset specifications</li>
+<li>Input File: 484000_5455000.las</li>
+<li>Output LAS Dataset: pacific_spirit_park.lasd</li>
+<li>Coordinate System: Use the horizontal datum from the dataset specifications</li>
 <li>Create PRJ for LAS Files: All LAS files</li>
 <li>Check the “Compute Statistics” box.</li>
 <li>Surface Constraints can be left blank</li>
 </ul>
-<p><img src="images/05-lasd.jpg" width="50%" style="display: block; margin: auto;" /></p>
-<p><strong>Step 3:</strong> Depending on the zoom extent, you may only see the red bounding box of the las file; this isn”t an error, you just need to zoom in to see the actual points.</p>
+<p><img src="images/05-lasd.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><strong>Step 3:</strong> Depending on the zoom extent, you may only see the red bounding box of the las file; this is not an error, you just need to zoom in to see the actual points.</p>
 <p>The points can be classified into the following categories:</p>
 <ul>
 <li>Ground</li>
@@ -313,7 +313,7 @@ Hana Travers-Smith</p>
 </ul>
 <p>The default display is that no point cloud filters are applied. To quickly filter only ground points right-click on the file in the Contents Pane, navigate to “LAS Filters”, and click “Ground”.</p>
 <p>There is also a more detailed classification system, which includes vegetation, water, noise, buildings etc. Right-click the file, select “Properties”, then select “LAS Filter”. This menu gives you more control for which points you want to display from the dataset.</p>
-<p><img src="images/05-filter.jpg" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="images/05-filter.png" width="50%" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 </div>
@@ -321,7 +321,7 @@ Hana Travers-Smith</p>
 <h2>Task 2: Create a DEM, DSM and CHM<a href="lidar-forest-management.html#task-2-create-a-dem-dsm-and-chm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In this task we will create 3 raster datasets by interpolating heights from the point cloud to create continuous surfaces:</p>
 <ul>
-<li>Digitial Elevation Model (DEM) - sometimes referred to as a Digitial Terrain Model (DTM)</li>
+<li>Digital Elevation Model (DEM) - sometimes referred to as a Digital Terrain Model (DTM)</li>
 <li>Digital Surface Model (DSM)</li>
 <li>Canopy Height Model (CHM)</li>
 </ul>
@@ -330,7 +330,7 @@ Hana Travers-Smith</p>
 <p><strong>Step 1:</strong> First, we will create a DEM from the .lasd point cloud. <strong>Filter the point cloud so that only points labelled “02 Ground” are displayed.</strong></p>
 <p>Analysis , Tools , and Search for “LAS Dataset to Raster”. We will use the “Binning” method to interpolate elevation. This method works by dividing the point cloud into cells (pixels) and assigning a value to each cell based on the heights of all the points in the cell. For example, cell values could be assigned as the average height of all points within a 10x10m pixel.</p>
 <ul>
-<li>Input LAS Dataset: LAS Dataset.lasd</li>
+<li>Input LAS Dataset: pacific_spirit_park.lasd</li>
 <li>Output Raster: DEM</li>
 <li>Value Field: Elevation
 <ul>
@@ -419,8 +419,7 @@ Hana Travers-Smith</p>
 <p><img src="images/05-raster-calculator.jpg" width="50%" style="display: block; margin: auto;" /></p>
 <p>Inspect the output. Zooming in reveals what we have done. Pixels that represent the maximum height in each focal window are assigned a value equal to the maximum height, while all other pixels have a NoData value.</p>
 <p><img src="images/05-treetops-raster.jpg" width="602" style="display: block; margin: auto;" /></p>
-<p><strong>Step 6:</strong> Open the “Raster to Point” tool. The input raster is the
-raster that you just made. Field is Value, and the output name should be “tree_with_height”.</p>
+<p><strong>Step 6:</strong> Open the “Raster to Point” tool. The input raster is the raster that you just made. Field is Value, and the output name should be “tree_with_height”.</p>
 <ul>
 <li>Input: tree_with_height</li>
 <li>Field: Value</li>
@@ -437,8 +436,8 @@ raster that you just made. Field is Value, and the output name should be “tree
 <p>So far we have worked with the point cloud data in flat, 2-dimensional space. In this task, you will explore the point cloud in 3-dimensions in a Scene.</p>
 <p>On the top ribbon, select “Insert”, then “New Map”, then “New Local Scene”.</p>
 <p><strong>Step 1:</strong> Practice using the On Screen Navigator to manipulate the scene. The first toggle lets you navigate in the normal directions and the second toggle (the person) lets you rotate the scene in 3D.</p>
-<p><img src="images/05-nav1.jpg" width="20%" style="display: block; margin: auto;" />
-<img src="images/05-nav2.jpg" width="20%" style="display: block; margin: auto;" /></p>
+<p><img src="images/05-nav1.jpg" width="20%" style="display: block; margin: auto;" /></p>
+<p><img src="images/05-nav2.jpg" width="20%" style="display: block; margin: auto;" /></p>
 <p><strong>Step 2:</strong> Navigate to the UBC campus study area and change the Basemap to “Imagery” in the Map tab located on the top ribbon. In the Contents pane, right-click Ground, located below the Elevation Surfaces group layer. Click “Add Elevation Source”. Browse to the location of your 10m DSM and select it. You can now start to see how the surface features have been incorporated into the surface. Make sure to zoom in to look at areas with high relief and roads.</p>
 <p>Add the “TreeTops_Final” point shapefile to the Scene.</p>
 <p><strong>Step 3:</strong> Click on “Ground” underneath the Elevation Surfaces tab. On the top ribbon click “Elevation Surface Layer”. Set the Vertical Exaggeration to 2 - this will increase the contrast between high/low elevation in the scene. Finally, turn off the WorldElevation3D/Terrain3d layer to better see how the DSM.</p>
