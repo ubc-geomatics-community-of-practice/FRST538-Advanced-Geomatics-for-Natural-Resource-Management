@@ -12,7 +12,7 @@ cat(author)
 
 ## Lab Overview {.unnumbered}
 
-In this lab you will learn how to find, evaluate, and visualize vector spatial data. You are encouraged to select datasets for a geography that is meaningful to you, such as the area where you are planning to do your project or capstone. This will help you begin to build a library of data that may be directly useful later. As you work through the lab, you will explore some of the basic capabilities of the ArcGIS Pro software that we will continue to build upon throughout the course. You will look at a variety of different spatial data file formats and data types.
+In this lab you will learn how to find, evaluate, and visualize vector spatial data. You are encouraged to select datasets for a geography that is meaningful to you, such as the area where you are planning to do your project or capstone for your program. This will help you begin to build a library of data that may be directly useful later. As you work through the lab, you will explore some of the basic capabilities of the ArcGIS Pro software that we will continue to build upon throughout the course. You will look at a variety of different spatial data file formats and data types.
 
 ------------------------------------------------------------------------
 
@@ -41,7 +41,7 @@ For this lab, you will explore different publicly available spatial data portals
 
 ## Task 1: Create an ArcGIS Pro Project {.unnumbered}
 
-**Step 1:** Start ArcGIS Pro. On the start-up screen, you will be prompted to select the type of project. Select "Map" and give your project a meaningful name, something like `FRST538_Lab1` is a good choice. When you create a project, ArcGIS Pro will create a folder with your project name in `C:\Users\[your username]\Documents\ArcGIS\Projects\[your project name]\`.
+**Step 1:** Start ArcGIS Pro. On the start-up screen, you will be prompted to select the type of project. Select "Map" and give your project a meaningful name, something like `Lab1_Exploring_Spatial_Data` is a good choice. When you create a project, ArcGIS Pro will create a folder with your project name in `C:\Users\[your username]\Documents\ArcGIS\Projects\[your project name]\`.
 
 ```{r 01-arcgis-create-project, echo=FALSE, fig.align = "center", out.width = "50%"}
 knitr::include_graphics("images/01-arcgis-create-project.png")
@@ -133,7 +133,7 @@ The table below lists a few places to start your search:
 | Lunaris | <https://www.lunaris.ca/> | National discovery service for research data across Canadian institutions |
 | UBC Campus and Malcolm Knapp Research Forest Orthophotos and LiDAR | <https://206-12-122-94.cloud.computecanada.ca/> | UBC-hosted historical LiDAR and orthophotos of campus and Malcolm Knapp Research Forest |
 | UBC Geospatial Open Data | <https://github.com/UBCGeodata/ubc-geospatial-opendata> | UBC-hosted vector geospatial datasets, campus and research related |
-| UBC Malcolm Knapp Research Forest Vector Data | frst-gis.ead.ubc.ca (only accessible by UBC students) | Password-protected PostgreSQL database `mkrf` that contains various spatial layers for Malcolm Knapp Research Forest |
+| UBC Malcolm Knapp Research Forest and campus Vector Data | frst-gis.ead.ubc.ca (only accessible by UBC students) | Password-protected PostgreSQL database `mkrf` that contains various spatial layers for Malcolm Knapp Research Forest and campus |
 | Natural Resources Canada | <https://maps.canada.ca/> | Federal geospatial data: topographic maps, forests, geology, hydrography |
 | Metro Vancouver Data Portal | <https://open-data-portal-metrovancouver.hub.arcgis.com/> | Regional planning: air quality, utilities, infrastructure, parks |
 | Natural Earth | <https://www.naturalearthdata.com/> | Global vector and raster datasets at multiple scales |
@@ -142,29 +142,57 @@ The table below lists a few places to start your search:
 **Step 1:** Navigate to one or more of the portals linked above and search for three vector datasets that might be relevant to your project. You can select data of any themes that you are interested in, but you must follow these guidelines to receive credit:
 
 -   You must select one dataset each of points, lines, and polygons (i.e., 2D vector data only, and one of each type)
--   You must select datasets from at least two different sources
 -   You must only use the sources listed above
 -   You must properly cite the source of your dataset
 
-**Step 2:** Once you have found a dataset, download the file into your ArcGIS Pro project folder location that you noted from Task 1. Do not download files directly into your project's default geodatabase. Most likely the files that you will find will be zipped (compressed), so you will also need to unzip (uncompress) the files into your project folder so that ArcGIS Pro can read them.
+If you wish to use data from the UBC PostgreSQL server for UBC Vancouver campus or Malcolm Knapp Research Forest, then consult Steps 4-6.
+
+**Step 2:** Once you have found a dataset, download the file into your ArcGIS Pro project folder location that you noted from Task 1. Do not download files directly into your project's geodatabase. Most likely the files that you will find will be zipped (compressed), so you will also need to unzip (uncompress) the files into your project folder so that ArcGIS Pro can read them.
 
 Pay attention to the metadata on the portal that describe what you are downloading. Metadata are data about data. They describe data and help to make data findable through portals and library indexes. For example, you might come across metadata that describes who the author of the data is, when the data were created/collected/updated, how large the files are and what formats they are, codes for understanding the attribute table, licensing, and more. Rather than provide detailed instructions here for each portal, just ask the instructor or TA if you have any doubts or questions about what you are looking at.
 
-**Step 3:** For each dataset that you download, check the file type and then bring it into ArcGIS Pro using the instructions in the table below. For many file types, you can just drag and drop the file into ArcGIS Pro. You can also navigate to your project folder in the "Catalog" pane (expand "Folders", expand "FRST538_Lab1") and drag files from there or right-click files and select "Add To Project" (you may need to right-click the project folder and select "Refresh" to see recently added files from this method).
+**Step 3:** For each dataset that you download, check the file type and then bring it into ArcGIS Pro using the instructions in the table below. For many file types, you can just drag and drop the file into ArcGIS Pro. You can also navigate to your project folder in the "Catalog" pane (expand "Folders", expand "Lab1_Exploring_Spatial_Data") and drag files from there or right-click files and select "Add To Project" (you may need to right-click the project folder and select "Refresh" to see recently added files from this method).
 
 | Format | File Extension(s) | Notes | Opening in ArcGIS Pro |
-|------------------|------------------|------------------|------------------|
-| **Shapefile** | `.shp` (+ `.dbf`, `.shx`, etc.) | Legacy, widely used, multiple files | *Add Data* , then select `.shp` |
-| **GeoPackage** | `.gpkg` | Modern OGC standard, single file, may contain many layers | *Add Data* , then select `.gpkg` then choose layer |
-| **File Geodatabase** | `.gdb` (folder) | ESRI native format, may contain many layers | *Add Data* , then browse into folder, select layer |
-| **GeoJSON** | `.geojson` | Web-mapping format | *Add Data* , then select `.geojson` |
-| **FlatGeobuf** | `.fgb` | Fast modern format | *Add Data* , then select `.fgb` |
-| **KML/KMZ** | `.kml`, `.kmz` | Google Earth | *KML to Layer* , then ArcGIS Pro converts to feature classes in a geodatabase and a layer file for styling |
-| **CSV with coordinates** | `.csv` | Tabular data with X/Y columns | *Add Data* , then XY Table, set fields |
+|-------------------|------------------|------------------|------------------|
+| **Shapefile** | `.shp` (+ `.dbf`, `.shx`, etc.) | Legacy, widely used, multiple files | "Add Data" \> "Browse" \> select `.shp` |
+| **GeoPackage** | `.gpkg` | Modern OGC standard, single file, may contain many layers | "Add Data" \> "Browse" \> select `.gpkg` then choose layer |
+| **File Geodatabase** | `.gdb` (folder) | ESRI native format, may contain many layers | "Add Data" \> "Browse" \> navigate into `.gdb` folder \> select layer |
+| **GeoJSON** | `.geojson` | Web-mapping format | "Add Data" \> select `.geojson` |
+| **KML/KMZ** | `.kml`, `.kmz` | Google Earth | "KML to Layer" \> ArcGIS Pro converts to feature classes in a geodatabase and a layer file for styling |
+| **CSV with coordinates** | `.csv` | Tabular data with X/Y columns | "XY Table to Point" \> set fields |
 
-**Step 4:** Import you data into your project's geodatabase. This will vary depending on the file formats that you encounter, but generally you can right-click the geodatabase in the project folder, select "Import", then select "Feature Class(es)". In the "Feature Class to Geodatabase" tool that appears, select your three datasets from the drop-down menus (if you added them to your ArcGIS Pro Map already) or navigate to the location of the files in your project folder then click "Run". When it completes, be sure to remove the old layers from your map (right-click the layer, "Remove") and then add the three feature classes in your geodatabase to your map.
+Steps 4-6 below are for optionally accessing data from the UBC PostgreSQL server for UBC Vancouver campus and Malcolm Knapp Research Forest. If you are not using these data sources, then proceed directly to Step 7.
+
+**Step 4:** Ensure that you are authenticated through UBC myVPN. If you are at UBC, use your dedicated ethernet port or connect via the ubcsecure wireless network. If you are away from campus, you will need to first connect to the UBC myVPN service using Cisco AnyConnect Secure Mobility Client. Only users authenticated with a Campus Wide Login (CWL) and connected to the UBC myVPN may access the UBC PostgreSQL server.
+
+**Step 5:** From the top ribbon, navigate to the "Insert" tab, then click "Connections", and from the drop-down menu, select "New Database Connection". From the "Database Platform", select "PostgreSQL". Paste `FRST-GIS.ead.ubc.ca` into "Instance", which is the hostname/address for the UBC PostgreSQL server.
+
+**You will need to get the student credential (username and password) from your instructor, which is different from your CWL, before proceeding. This is ordinarily provided during your registered lab session and will not be found in these assignment instructions.**
+
+Once you have correctly entered the correct credential, ArcGIS Pro will do a "soft" connection to the server to retrieve the available databases. From the "Database" drop-down menu, select `ubcv` for UBC Vancovuer campus datasets or `mkrf` for Malcolm Knapp Research Forest datasets and then click "OK".
+
+If you receive an error:
+
+-   Are you connected to myVPN or ubcsecure wifi network?
+
+-   Did you enter the correct server address provided above? (this is not case-sensitive)
+
+-   Did you enter the correct student credential, not you CWL? (this is case-sensitive)
+
+```{r 01-arcgispro-postgres-connection, out.width= "40%", echo = FALSE}
+    knitr::include_graphics("images/01-arcgispro-postgres-connection.png")
+```
+
+**Step 6:** From the top ribbon, navigate to the "Map" tab, then click "Add Data". From the dialogue window that opens, expand "Databases", and you will see your local project geodatabase that was created when you initiated the project and the newly added postgres server. Click the postgres server connection to view the tables and then add a layer to your map. Note that your list of layers may be different if you connected to the `mkrf` database instead.
+
+```{r 01-arcgispro-postrges-catalog, out.width= "75%", echo = FALSE}
+    knitr::include_graphics("images/01-arcgispro-postrges-catalog.png")
+```
 
 Note that ArcGIS Pro refers to vector data (i.e., points, lines, polygons) as a "feature class". You will see this language throughout various tools in ArcGIS Pro (e.g., "Input Feature Class", "Output Feature Class").
+
+**Step 7:** Import you data into your project's geodatabase. This will vary depending on the file formats that you encounter, but generally you can right-click the geodatabase in the project folder, select "Import", then select "Feature Class(es)". In the "Feature Class to Geodatabase" tool that appears, select your three datasets from the drop-down menus (if you added them to your ArcGIS Pro Map already) or navigate to the location of the files in your project folder then click "Run". When it completes, be sure to remove the old layers from your map (right-click the layer, "Remove") and then add the three feature classes in your geodatabase to your map.
 
 ```{r 01-arcgis-import-geodatabase, echo=FALSE, fig.align = "center", out.width = "75%"}
 knitr::include_graphics("images/01-arcgis-import-geodatabase.png")
@@ -172,7 +200,7 @@ knitr::include_graphics("images/01-arcgis-import-geodatabase.png")
 
 Up to this point, you have primarily been manipulating data directly through ArcGIS Pro, but you have not really changed much about your actual project. So there is no project state to really save. For example, if ArcGIS Pro crashed right now, you should still be able to find the feature classes that you imported into your project geodatabase. That said, it is good practice to save your project file moving forward as you work through this lab and later assignments.
 
-##### Q6. What are the three datasets you chose and what sources did they come from? Provide the URL to the data source and report the file format that the data were provided in. (15 points) {.unnumbered}
+##### Q6. What are the three datasets you chose and what sources did they come from? Provide the URL to the data source (or indicate use of the UBC PostgreSQL server) and report the file format (or PostgreSQL) that the data were provided in. (15 points) {.unnumbered}
 
 ------------------------------------------------------------------------
 
@@ -222,29 +250,218 @@ In this last task, we will look at some simple ways to manipulate the symbology 
 knitr::include_graphics("images/01-arcgis-single-symbology.png")
 ```
 
-**Step 2:** From the "Symbology" pane, click the drop-down menu under "Primary Symbology" and select "Graduated Colors". From here, you can select any numeric field to serve as the basis for applying color to your features. In the example below, I have selected "max_floors" as the field to symbolize and chosen the blue-yellow color palette. ArcGIS Pro will update the layer and also show the classes in the "Contents" pane.
+Experiment with the different symbology types for your layers and attributes until you arrive at something you like. Be sure to change the symbology of each of your layers. The sections below give some examples of how you can modify point, line, and polygon symbologies. You do not need to follow these sections exactly with the same data. They are only meant to give you some ideas for how you can symbolize your data and prepare your map.
 
-```{r 01-arcgis-graduated-colors, echo=FALSE, fig.align = "center", out.width = "75%"}
-knitr::include_graphics("images/01-arcgis-graduated-colors.png")
+### Polygon Symbologies {.unnumbered}
+
+Polygons can be symbolized for their areas and/or their perimeters. Depending on the type of attribute that you want to symbolize (qualitative, diverging, sequential), you will choose a different symbology type and color palette. The figure below shows some examples of different types of colour palettes that are available in ArcGIS Pro.
+
+```{r palette-types, out.width="80%", echo=FALSE, warning=FALSE, message=FALSE}
+library(RColorBrewer)
+library(ggplot2)
+library(dplyr)
+
+selected_palettes <- c(
+  seq_mono = "Blues",
+  seq_multi = "YlGnBu",
+  diverging = "RdBu",
+  qual_accent = "Accent",
+  qual_paired = "Paired"
+)
+
+custom_labels <- c(
+  seq_mono = "Single-hue gradient",
+  seq_multi = "Multi-hue gradient",
+  diverging = "Diverging, red-blue",
+  qual_accent = "Qualitative, accent",
+  qual_paired = "Qualitative, paired"
+)
+
+n_levels <- 101
+
+palette_df <- lapply(names(selected_palettes), function(key) {
+  pal <- selected_palettes[[key]]
+  max_n <- brewer.pal.info[pal, "maxcolors"]
+  base_colors <- brewer.pal(max_n, pal)
+
+  if (brewer.pal.info[pal, "category"] == "qual") {
+    tile_width <- n_levels / max_n
+    data.frame(
+      row_label = custom_labels[[key]],
+      position = (seq_len(max_n) - 0.5) * tile_width,
+      color = base_colors,
+      tile_width = tile_width,
+      stringsAsFactors = FALSE
+    )
+  } else {
+    colors <- colorRampPalette(base_colors)(n_levels)
+    data.frame(
+      row_label = custom_labels[[key]],
+      position = seq_len(n_levels),
+      color = colors,
+      tile_width = 1,
+      stringsAsFactors = FALSE
+    )
+  }
+}) %>% bind_rows()
+
+palette_df$row_label <- factor(palette_df$row_label, levels = rev(custom_labels))
+
+ggplot(palette_df, aes(x = position, y = row_label, fill = color, width = tile_width)) +
+  geom_tile(color = NA, height = 0.7) +
+  scale_fill_identity() +
+  labs(title = "ArcGIS Pro Palette Types",
+       x = NULL, y = NULL) +
+  theme_minimal(base_size = 12) +
+  theme(
+    axis.text.x = element_blank(),
+    axis.ticks = element_blank(),
+    panel.grid = element_blank(),
+    plot.title = element_text(face = "bold", hjust = 0.5)
+  )
 ```
 
-Experiment with the different symbology types for your layers and attributes until you arrive at something you like. Be sure to change the smybology of each of your layers.
+If the attribute that you want to symbolize is discrete or text-based, then you should select "Unique Values" for the "Primary Symbology". Then, select the field from your attribute table that you want to use to symbolize different classes. This is a good choice for the "neighbourhood" field in the "ubcv_buildings" dataset shown below. When you choose "Unique Values" you should use a discrete color scheme. If your qualitative categories are completely distinct, you might choose a a colour palette that uses accent colours.
 
-You can also change the basemap to something more neutral like "Light Gray" to make your chosen colour palette more visible ("Map" tab on the top ribbon, select "Basemap").
-
-```{r 01-arcgis-basemap, echo=FALSE, fig.align = "center", out.width = "75%"}
-knitr::include_graphics("images/01-arcgis-basemap.png")
+```{r 01-arcgis-polygon-unique-symbology, echo=FALSE, fig.align = "center", out.width = "100%"}
+knitr::include_graphics("images/01-arcgis-polygon-unique-symbology.png")
 ```
 
-**Step 3:** When you are satisfied with your layer symbologies, you can enter the map layout mode to begin the final layout and export process. From the top ribbon, select "Insert", and then "New Layout". We are not actually printing the map, so you can select a regular letter size layout in either portrait or landscape mode. This will open a new blank Layout tab in your project and expose a bunch of new options specific to exporting a professional map.
+If your qualitative categories can be grouped in some way, like "deciduous" and "coniferous" are both types of forests, then you might choose light/dark paired colours so that all forests on your map are some shade of green. Similar logic can be applied to other classes like water, urban, agriculture, and so on.
 
-**Step 4:** Add your ArcGIS Pro Map to your Layout by selecting "Map Frame" from the top ribbon under the "Insert" tab. From there, you can select any Maps that you have created in your project. When you select your Map, your cursor will switch to a cross hairs and you just click and drag a rectangle where you want the map to appear on the layout.
+For continuous attributes, you should choose either "Graduated Colors" or "Unclassed Colors" as the symbology type. Typically, you should use either the single hue or multi-hue gradients for these values. For example, you might see total precipitation displayed in a single hue while temperature is displayed in a multi-hue gradient. Diverging gradients should only be used for continuous attributes that have values that diverage from zero or if you want to emphasize values above or below a particular value. With "Graduated Colors", you can classify the range of values into classes, which can sometimes improve the readability of the map, but it also creates more items for your legend (discussed later). You can choose the number of classes you want and the method for identifying the breakpoint values between classes. In the example shown below, the building height values are separated into five classes using quantiles. Note the small text box just above the symbols of the five classes on the right is where you enter the label as you want it to appear in the legend, "Building Height".
 
-**Step 5:** Add a North Arrow, Scale Bar, and Legend from the top ribbon under the "Insert" tab. Pick your favourite styles for these features and experiment with the large number of customization options until you achieve something you like. You can directly rename the layers in your "Contents" pane to update how they appear in the legend. You may need to go back to your individual layer symbologies to adjust how the values are grouped and displayed.
+```{r 01-arcgis-polygon-graduate-symbology, echo=FALSE, fig.align = "center", out.width = "100%"}
+knitr::include_graphics("images/01-arcgis-polygon-graduate-symbology.png")
+```
 
-**Step 6:** Add a title to your map by select the text icon in the "Graphics and Text" grouping on the top ribbon under the "Insert" tab. Here you will need to adjust the size and position of the text.
+In the case that you want to visualize two attributes at the same time from one layer, then you need to use a "Bivariate Colors" symbology type. This effectively combines two gradients, one for each attribute, into a grid matrix where the intersection of those gradients produces new hues. For example, in the image below max floors is shown in a single hue pink gradient and building height is shown in a single hue blue gradient. The mixture of these two gradients, produces a new set of blues and purples, depending on the value of both attributes for a given polygon. Where values for building height and max floors are both high, the polygon is coloured dark purple (upper right corner of the colour grid).
 
-Note that there are too many options here to provide detailed instructions for. If you want to know how to do something specifically, just ask your instructor or TA.
+```{r 01-arcgis-polygon-bivariate-symbology, echo=FALSE, fig.align = "center", out.width = "100%"}
+knitr::include_graphics("images/01-arcgis-polygon-bivariate-symbology.png")
+```
+
+### Line Symbologies {.unnumbered}
+
+Lines are often used to show route networks likes roads or streams. Since the goal of such visualizations is to follow or navigate the path relative to other features in the map (points and polygons), in this section we will focus on labelling with a "Single Symbol" symbology type over the ESRI Imagery basemap.
+
+When placing line features on a darker image basemap, we need to use a lighter colour such as white. To label these line features (or even points or polygons), right-click the layer in the Contents pane and select "Labels". This will toggle on the labels for the layer. Next, right-click the layer again and select "Layer Properties..." to expose the labeling options.
+
+In the Class Label dialogue window that opens, you can specify the text label that will be placed next to the feature. There are a lot of options here, mainly because there are many ways that you can generate the text. Most likely, you just need to pick an attribute that contains the text for each line segment. This is exactly what is shown in the image below with the roadname attribute, using Python.
+
+```{r 01-arcgis-line-label-text, echo=FALSE, fig.align = "center", out.width = "40%"}
+knitr::include_graphics("images/01-arcgis-line-label-text.png")
+```
+
+Notice that this accepts an "Expression", which in the example above is simply `[roadname]` because this is the attribute that contains the text values that we want to use as labels for each feature. The expression is automatically iterated over all features. Below are some additional examples for how you might construct expressions to achieve different results.
+
+```{r python-label-expressions, echo = FALSE}
+Expression = c('`"City Boundary"`', 
+               '`"Persons per sq km: " + str( round( [POP2021] / [SHAPE_Area], 1) )`', 
+               '`[CITY_NAME] + ", " + [PROV_ABBR]`')
+Output = c('City Boundary', 'Persons per sq km: 5356.7', 'Vancouver, BC')
+Description = c('A static text string applied identically to every feature, regardless of any field values - useful for a fixed layer-wide label like a legend note or category header.',
+                'Performs a calculation on two numeric fields (POP2021 divided by SHAPE_AREA), rounds the result to one tenth percision, and concatenates the result with a static text string, converting the number to text with str() so it can be joined.',
+                'Concatenates two separate text fields together with a static separator (", ") in between, producing a combined label from multiple attributes.')
+df = data.frame(Expression, Output, Description)
+colnames(df) <- c('Python Expression', 'Example Output', 'Description')
+library(knitr)
+kable(df, align = 'l')
+```
+
+Next, we are going to add a white halo to the label so that the text is easy to see (along with the white line). Expand the "Halo" group under "Symbol" and change the colour to white. Adjust the size of the halo until you are satisfied. It is good to do this only when you are happy with the current extent and scale of the map since zooming in or out later will change the relative sizes of the text and crowding on the map.
+
+```{r 01-arcgis-line-label-halo, echo=FALSE, fig.align = "center", out.width = "40%"}
+knitr::include_graphics("images/01-arcgis-line-label-halo.png")
+```
+
+Positioning labels around features is a major challenge in cartography. There are so many factors that cause labels to collide. Generally, our goal is to position the labels so that the map remains readable and to do this mostly automatically since manual label placement is very time-consuming. Switch to the "Position" options and then select the chess knight icon and untoggle "Stack label". This will prevent long text labels from being stacked on two lines.
+
+```{r 01-arcgis-line-label-stacking, echo=FALSE, fig.align = "center", out.width = "40%"}
+knitr::include_graphics("images/01-arcgis-line-label-stacking.png")
+```
+
+Next, click the label icon and under "Remove duplicate labels" select "Remove within fixed distance" from the drop-down menu. Change the search radius to "150" points. This prevents the same label from being drawn multiple times when a road is represented by multiple nearby (but disjoint) line segments that all have the same name.
+
+```{r 01-arcgis-line-label-remove-duplicates, echo=FALSE, fig.align = "center", out.width = "40%"}
+knitr::include_graphics("images/01-arcgis-line-label-remove-duplicates.png")
+```
+
+Finally, select the cross-hair icon, expand "Placement", and choose "Street placement" from the drop-down menu. This option is similar to removing duplicate labels described above, but is specifically for multiple line segments that are connected and share the same label value, so ArcGIS Pro treats these as a single line segment for placing the label. Finally, you can choose where/how you want the label placed relative to the line feature. The image below shows an example of "Centered curved", but you can also choose fixed offsets and these options will be slightly different if you are labelling points or polygons instead.
+
+```{r 01-arcgis-line-label-placement, echo=FALSE, fig.align = "center", out.width = "100%"}
+knitr::include_graphics("images/01-arcgis-line-label-placement.png")
+```
+
+### Point Symbologies {.unnumbered}
+
+Points are spatially dimensionless, so their symbology requires different strategies compared to lines or polygons to achieve desired effects. For example, if you are just trying to convey location, then a simple "Single Symbol" symbology type will suffice as shown below using the ubcv_campus_trees dataset. Similar to polygons, you can assign colour palettes to attribute values using "Unique Values" or "Graduated Values" symbology types.
+
+```{r 01-arcgis-point-single-symbol, echo=FALSE, fig.align = "center", out.width = "100%"}
+knitr::include_graphics("images/01-arcgis-point-single-symbol.png")
+```
+
+Clicking on the point symbol in the Symbology pane will allow you to choose from a "Gallery" of preset symbols and from there you can switch to "Properties" to customize your own point symbol.
+
+```{r 01-arcgis-point-single-symbol-properties, echo=FALSE, fig.align = "center", out.width = "100%"}
+knitr::include_graphics("images/01-arcgis-point-single-symbol-properties.png")
+```
+
+You may want to convey the value of an attribute by adjusting the size of the symbol, rather than the colour. This is a "Proportional Symbols" symbology type and it also gives the effect of exaggerating the area of a feature that otherwise does not have an area. The example below shows this effect using the "crownwidth1" attribute of the campus trees. The overlapping features produce an illusion of continuous canopy cover, which has a different purpose than just showing the location of the trees. Adjusting the minimum and maximum point sizes can increase or decrease the amount of overlap. Compare the map below with the one above.
+
+```{r 01-arcgis-point-proportional-symbol, echo=FALSE, fig.align = "center", out.width = "100%"}
+knitr::include_graphics("images/01-arcgis-point-proportional-symbol.png")
+```
+
+Points, like lines and polygons, can be filtered so that your symbology only applies to features that match some criteria. You can access these options by selecting the funnel symbol at the top of the Symbology pane, toggle on "Enable display filters", then click the "+" next to "<all features>".
+
+```{r 01-arcgis-symbology-filter-points-1, echo=FALSE, fig.align = "center", out.width = "40%"}
+knitr::include_graphics("images/01-arcgis-symbology-filter-points-1.png")
+```
+
+An option will expand where you can "Add Clause" and create an SQL statement to achieve your desired effect. This also works with lines and polygons, and you also have the option to change whether features are visible at different scales with the slider bar.
+
+```{r 01-arcgis-symbology-filter-points-2, echo=FALSE, fig.align = "center", out.width = "40%"}
+knitr::include_graphics("images/01-arcgis-symbology-filter-points-2.png")
+```
+
+```{r 01-arcgis-symbology-point-label, echo=FALSE, fig.align = "center", out.width = "40%"}
+knitr::include_graphics("images/01-arcgis-symbology-point-label.png")
+```
+
+When you are satisfied with your layer symbologies, save you project because your project file stores the symbologies for your map layers. Now you can enter the map layout mode to begin the final layout and export process.
+
+**Step 3:** From the top ribbon, select "Insert", and then "New Layout". We are not actually printing the map, so you can select a regular letter size layout in either portrait or landscape mode. This will open a new blank Layout tab in your project and expose a bunch of new options specific to exporting a professional map.
+
+```{r 01-arcgis-insert-toolbar, echo=FALSE, fig.align = "center", out.width = "100%"}
+knitr::include_graphics("images/01-arcgis-insert-toolbar.png")
+```
+
+**Step 4:** From the "Layout" toolbar, select "Add Guides", then add "Both" vertical and horizontal guides "Offset from edge" and use 0.25" as the margin. Now, when you place elements onto the layout, you can snap them to these guides.
+
+**Step 5:** Add your ArcGIS Pro Map to your layout by selecting "Map Frame" from the top ribbon under the "Insert" tab. From there, you can select any Maps that you have created in your project. When you select your Map, your cursor will switch to a cross hairs and you just left-click and drag a rectangle where you want the map to appear on the layout. Once placed, you can drag the corners to resize the Map.
+
+If you need to zoom in/out of the map without changing its position in the layout, then select "Activate" from the "Insert" toolbar or by right-clicking the map in the Contents pane.
+
+```{r 01-arcgis-activate-map-frame, echo=FALSE, fig.align = "center", out.width = "40%"}
+knitr::include_graphics("images/01-arcgis-activate-map-frame.png")
+```
+
+If you need to resize or reposition the map frame in the layout without zooming in/out or panning the map itself, then select "Close Activation" under the "Layout" toolbar or by right-clicking the map in the Contents pane.
+
+**Step 6:** You can reorient your map so that it better fits the area of your page. In the example below, we have rotated the map of UBC campus by 60 degrees to give a more natural looking arrangement for the other elements. To do this, right-click the map in the Contents pane, select "Properties", and then change rotation to your desired value.
+
+**Step 7:** Add a North Arrow, Scale Bar, and Legend from the top ribbon under the "Insert" toolbar. Pick your favourite styles for these features and experiment with the large number of customization options until you achieve something you like. You can directly rename the layers in your "Contents" pane to update how they appear in the legend. You may need to go back to your individual layer symbologies to adjust how the values are grouped and displayed.
+
+**Step 8:** Add a title to your map by select the text icon in the "Graphics and Text" grouping on the top ribbon under the "Insert" toolbar. Click to place the text and then type what you want. Right-click the element and select "Properties" to adjust font size, style, etc. Right-click the element again, select "Align", then select whichever way you would like to align the text relative to the page or simply drag the element and use your guide lines to snap it in a location relative to the margins that we placed earlier.
+
+```{r 01-arcgis-align-text, echo=FALSE, fig.align = "center", out.width = "100%"}
+knitr::include_graphics("images/01-arcgis-align-text.png")
+```
+
+**Step 9:** When you are ready to export your map, navigate to the "Share" tab from the top ribbon, select "Export Layout", and choose "Georeferenced PDF". You can accept most of the default settings in the dialogue window that opens, just note that the default output location is your project folder.
+
+At this point, it will become apparent how visible features are based on your symbology choices. For example, heavy line weights or large point symbols can make it difficult to see other labels or nearby features, which may be important if you were using this map to navigate in the field. Resize your elements, adjust text label and symbol sizes, choose a larger page size for your layout, and remove compression to improve your desired output, at the expense of a larger file size. Here we chose a georeferenced PDF firstly because PDF's are optimal for storing and displaying vector graphics and secondly because *georeferenced* PDF's can be imported into other other mapping apps for use with field work.
 
 ##### Map 1. Upload your final map that shows your three selected datasets. At least one dataset must be symbolized by a field in the attribute table. You can pick the colors/symbols to use for each layer. Layers that appear to use the default random color/weight assignment by ArcGIS Pro will not be accepted for credit. You must show that you manipulated the symbology for each layer. Your map must also contain a title, north arrow, scale bar, and a legend that contains the symbologies of all the layers. (25 points) {.unnumbered}
 

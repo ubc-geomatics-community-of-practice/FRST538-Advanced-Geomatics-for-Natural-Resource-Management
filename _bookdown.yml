@@ -1,5 +1,5 @@
 book_filename: "ubc-frst-538-advanced-geomatics-for-natural-resource-management"
-chapter_name: "Lab: "
+chapter_name: "Lab "
 repo: https://github.com/ubc-geomatics-community-of-practice/FRST538-Advanced-Geomatics-for-Natural-Resource-Management
 output_dir: docs
 clean: [book.bib, bookdown.bbl, packages.bib]

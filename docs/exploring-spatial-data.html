@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Lab: 1 Exploring Spatial Data | FRST 538: Advanced Geomatics for Natural Resource Management</title>
+  <title>Lab 1 Exploring Spatial Data | FRST 538: Advanced Geomatics for Natural Resource Management</title>
   <meta name="description" content="Open Educational Resources for FRST 538 course at the University of British Columbia" />
   <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Lab: 1 Exploring Spatial Data | FRST 538: Advanced Geomatics for Natural Resource Management" />
+  <meta property="og:title" content="Lab 1 Exploring Spatial Data | FRST 538: Advanced Geomatics for Natural Resource Management" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Open Educational Resources for FRST 538 course at the University of British Columbia" />
   <meta name="github-repo" content="github.com/ubc-geomatics-community-of-practice/FRST538-Advanced-Geomatics-for-Natural-Resource-Management/book" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lab: 1 Exploring Spatial Data | FRST 538: Advanced Geomatics for Natural Resource Management" />
+  <meta name="twitter:title" content="Lab 1 Exploring Spatial Data | FRST 538: Advanced Geomatics for Natural Resource Management" />
   
   <meta name="twitter:description" content="Open Educational Resources for FRST 538 course at the University of British Columbia" />
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Paul D. Pickell" />
 
 
-<meta name="date" content="2026-08-13" />
+<meta name="date" content="2026-08-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -54,70 +54,6 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
-<style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
 
 <style type="text/css">
   
@@ -153,7 +89,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#task-1-create-an-arcgis-pro-project"><i class="fa fa-check"></i>Task 1: Create an ArcGIS Pro Project</a></li>
 <li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#task-2-find-your-own-spatial-datasets"><i class="fa fa-check"></i>Task 2: Find your own spatial datasets</a></li>
 <li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#task-3-inspect-and-examine-your-spatial-data-in-arcgis-pro"><i class="fa fa-check"></i>Task 3: Inspect and Examine your Spatial Data in ArcGIS Pro</a></li>
-<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#task-4-visualize-your-spatial-data-in-arcgis-pro"><i class="fa fa-check"></i>Task 4: Visualize your Spatial Data in ArcGIS Pro</a></li>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#task-4-visualize-your-spatial-data-in-arcgis-pro"><i class="fa fa-check"></i>Task 4: Visualize your Spatial Data in ArcGIS Pro</a>
+<ul>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#polygon-symbologies"><i class="fa fa-check"></i>Polygon Symbologies</a></li>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#line-symbologies"><i class="fa fa-check"></i>Line Symbologies</a></li>
+<li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#point-symbologies"><i class="fa fa-check"></i>Point Symbologies</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="exploring-spatial-data.html"><a href="exploring-spatial-data.html#summary"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="collecting-and-processing-gnss-data.html"><a href="collecting-and-processing-gnss-data.html"><i class="fa fa-check"></i><b>2</b> Collecting and processing GNSS data</a>
@@ -251,12 +192,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="exploring-spatial-data" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Lab: 1</span> Exploring Spatial Data<a href="exploring-spatial-data.html#exploring-spatial-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<h1><span class="header-section-number">Lab 1</span> Exploring Spatial Data<a href="exploring-spatial-data.html#exploring-spatial-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Written by
 Paul D. Pickell</p>
 <div id="lab-overview" class="section level2 unnumbered hasAnchor">
 <h2>Lab Overview<a href="exploring-spatial-data.html#lab-overview" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In this lab you will learn how to find, evaluate, and visualize vector spatial data. You are encouraged to select datasets for a geography that is meaningful to you, such as the area where you are planning to do your project or capstone. This will help you begin to build a library of data that may be directly useful later. As you work through the lab, you will explore some of the basic capabilities of the ArcGIS Pro software that we will continue to build upon throughout the course. You will look at a variety of different spatial data file formats and data types.</p>
+<p>In this lab you will learn how to find, evaluate, and visualize vector spatial data. You are encouraged to select datasets for a geography that is meaningful to you, such as the area where you are planning to do your project or capstone for your program. This will help you begin to build a library of data that may be directly useful later. As you work through the lab, you will explore some of the basic capabilities of the ArcGIS Pro software that we will continue to build upon throughout the course. You will look at a variety of different spatial data file formats and data types.</p>
 <hr />
 </div>
 <div id="learning-objectives" class="section level2 unnumbered hasAnchor">
@@ -283,7 +224,7 @@ Paul D. Pickell</p>
 </div>
 <div id="task-1-create-an-arcgis-pro-project" class="section level2 unnumbered hasAnchor">
 <h2>Task 1: Create an ArcGIS Pro Project<a href="exploring-spatial-data.html#task-1-create-an-arcgis-pro-project" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Step 1:</strong> Start ArcGIS Pro. On the start-up screen, you will be prompted to select the type of project. Select “Map” and give your project a meaningful name, something like <code>FRST538_Lab1</code> is a good choice. When you create a project, ArcGIS Pro will create a folder with your project name in <code>C:\Users\[your username]\Documents\ArcGIS\Projects\[your project name]\</code>.</p>
+<p><strong>Step 1:</strong> Start ArcGIS Pro. On the start-up screen, you will be prompted to select the type of project. Select “Map” and give your project a meaningful name, something like <code>Lab1_Exploring_Spatial_Data</code> is a good choice. When you create a project, ArcGIS Pro will create a folder with your project name in <code>C:\Users\[your username]\Documents\ArcGIS\Projects\[your project name]\</code>.</p>
 <p><img src="images/01-arcgis-create-project.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>Inside this folder, you will find ArcGIS Pro has generated a bunch of files and folders. Importantly, there is the <code>.aprx</code> file, which is the file you can use to open your project in ArcGIS Pro. The other important folder is <code>FRST538_Lab1.gdb</code>, which is the default geodatabase for your project. When you start running different tools in ArcGIS Pro, this is where the outputs will automatically be stored. If you navigate to this folder in Windows Explorer, it will just look like a bunch of random files, so you can only view the contents of your geodatabase through GIS software like ArcGIS Pro.</p>
 <p><img src="images/01-arcgis-project-folder.png" width="50%" style="display: block; margin: auto;" /></p>
@@ -397,9 +338,9 @@ Paul D. Pickell</p>
 <td>UBC-hosted vector geospatial datasets, campus and research related</td>
 </tr>
 <tr class="odd">
-<td>UBC Malcolm Knapp Research Forest Vector Data</td>
+<td>UBC Malcolm Knapp Research Forest and campus Vector Data</td>
 <td>frst-gis.ead.ubc.ca (only accessible by UBC students)</td>
-<td>Password-protected PostgreSQL database <code>mkrf</code> that contains various spatial layers for Malcolm Knapp Research Forest</td>
+<td>Password-protected PostgreSQL database <code>mkrf</code> that contains various spatial layers for Malcolm Knapp Research Forest and campus</td>
 </tr>
 <tr class="even">
 <td>Natural Resources Canada</td>
@@ -426,19 +367,19 @@ Paul D. Pickell</p>
 <p><strong>Step 1:</strong> Navigate to one or more of the portals linked above and search for three vector datasets that might be relevant to your project. You can select data of any themes that you are interested in, but you must follow these guidelines to receive credit:</p>
 <ul>
 <li>You must select one dataset each of points, lines, and polygons (i.e., 2D vector data only, and one of each type)</li>
-<li>You must select datasets from at least two different sources</li>
 <li>You must only use the sources listed above</li>
 <li>You must properly cite the source of your dataset</li>
 </ul>
-<p><strong>Step 2:</strong> Once you have found a dataset, download the file into your ArcGIS Pro project folder location that you noted from Task 1. Do not download files directly into your project’s default geodatabase. Most likely the files that you will find will be zipped (compressed), so you will also need to unzip (uncompress) the files into your project folder so that ArcGIS Pro can read them.</p>
+<p>If you wish to use data from the UBC PostgreSQL server for UBC Vancouver campus or Malcolm Knapp Research Forest, then consult Steps 4-6.</p>
+<p><strong>Step 2:</strong> Once you have found a dataset, download the file into your ArcGIS Pro project folder location that you noted from Task 1. Do not download files directly into your project’s geodatabase. Most likely the files that you will find will be zipped (compressed), so you will also need to unzip (uncompress) the files into your project folder so that ArcGIS Pro can read them.</p>
 <p>Pay attention to the metadata on the portal that describe what you are downloading. Metadata are data about data. They describe data and help to make data findable through portals and library indexes. For example, you might come across metadata that describes who the author of the data is, when the data were created/collected/updated, how large the files are and what formats they are, codes for understanding the attribute table, licensing, and more. Rather than provide detailed instructions here for each portal, just ask the instructor or TA if you have any doubts or questions about what you are looking at.</p>
-<p><strong>Step 3:</strong> For each dataset that you download, check the file type and then bring it into ArcGIS Pro using the instructions in the table below. For many file types, you can just drag and drop the file into ArcGIS Pro. You can also navigate to your project folder in the “Catalog” pane (expand “Folders”, expand “FRST538_Lab1”) and drag files from there or right-click files and select “Add To Project” (you may need to right-click the project folder and select “Refresh” to see recently added files from this method).</p>
+<p><strong>Step 3:</strong> For each dataset that you download, check the file type and then bring it into ArcGIS Pro using the instructions in the table below. For many file types, you can just drag and drop the file into ArcGIS Pro. You can also navigate to your project folder in the “Catalog” pane (expand “Folders”, expand “Lab1_Exploring_Spatial_Data”) and drag files from there or right-click files and select “Add To Project” (you may need to right-click the project folder and select “Refresh” to see recently added files from this method).</p>
 <table>
 <colgroup>
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
+<col width="26%" />
+<col width="24%" />
+<col width="24%" />
+<col width="24%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -453,52 +394,60 @@ Paul D. Pickell</p>
 <td><strong>Shapefile</strong></td>
 <td><code>.shp</code> (+ <code>.dbf</code>, <code>.shx</code>, etc.)</td>
 <td>Legacy, widely used, multiple files</td>
-<td><em>Add Data</em> , then select <code>.shp</code></td>
+<td>“Add Data” &gt; “Browse” &gt; select <code>.shp</code></td>
 </tr>
 <tr class="even">
 <td><strong>GeoPackage</strong></td>
 <td><code>.gpkg</code></td>
 <td>Modern OGC standard, single file, may contain many layers</td>
-<td><em>Add Data</em> , then select <code>.gpkg</code> then choose layer</td>
+<td>“Add Data” &gt; “Browse” &gt; select <code>.gpkg</code> then choose layer</td>
 </tr>
 <tr class="odd">
 <td><strong>File Geodatabase</strong></td>
 <td><code>.gdb</code> (folder)</td>
 <td>ESRI native format, may contain many layers</td>
-<td><em>Add Data</em> , then browse into folder, select layer</td>
+<td>“Add Data” &gt; “Browse” &gt; navigate into <code>.gdb</code> folder &gt; select layer</td>
 </tr>
 <tr class="even">
 <td><strong>GeoJSON</strong></td>
 <td><code>.geojson</code></td>
 <td>Web-mapping format</td>
-<td><em>Add Data</em> , then select <code>.geojson</code></td>
+<td>“Add Data” &gt; select <code>.geojson</code></td>
 </tr>
 <tr class="odd">
-<td><strong>FlatGeobuf</strong></td>
-<td><code>.fgb</code></td>
-<td>Fast modern format</td>
-<td><em>Add Data</em> , then select <code>.fgb</code></td>
-</tr>
-<tr class="even">
 <td><strong>KML/KMZ</strong></td>
 <td><code>.kml</code>, <code>.kmz</code></td>
 <td>Google Earth</td>
-<td><em>KML to Layer</em> , then ArcGIS Pro converts to feature classes in a geodatabase and a layer file for styling</td>
+<td>“KML to Layer” &gt; ArcGIS Pro converts to feature classes in a geodatabase and a layer file for styling</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong>CSV with coordinates</strong></td>
 <td><code>.csv</code></td>
 <td>Tabular data with X/Y columns</td>
-<td><em>Add Data</em> , then XY Table, set fields</td>
+<td>“XY Table to Point” &gt; set fields</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Step 4:</strong> Import you data into your project’s geodatabase. This will vary depending on the file formats that you encounter, but generally you can right-click the geodatabase in the project folder, select “Import”, then select “Feature Class(es)”. In the “Feature Class to Geodatabase” tool that appears, select your three datasets from the drop-down menus (if you added them to your ArcGIS Pro Map already) or navigate to the location of the files in your project folder then click “Run”. When it completes, be sure to remove the old layers from your map (right-click the layer, “Remove”) and then add the three feature classes in your geodatabase to your map.</p>
+<p>Steps 4-6 below are for optionally accessing data from the UBC PostgreSQL server for UBC Vancouver campus and Malcolm Knapp Research Forest. If you are not using these data sources, then proceed directly to Step 7.</p>
+<p><strong>Step 4:</strong> Ensure that you are authenticated through UBC myVPN. If you are at UBC, use your dedicated ethernet port or connect via the ubcsecure wireless network. If you are away from campus, you will need to first connect to the UBC myVPN service using Cisco AnyConnect Secure Mobility Client. Only users authenticated with a Campus Wide Login (CWL) and connected to the UBC myVPN may access the UBC PostgreSQL server.</p>
+<p><strong>Step 5:</strong> From the top ribbon, navigate to the “Insert” tab, then click “Connections”, and from the drop-down menu, select “New Database Connection”. From the “Database Platform”, select “PostgreSQL”. Paste <code>FRST-GIS.ead.ubc.ca</code> into “Instance”, which is the hostname/address for the UBC PostgreSQL server.</p>
+<p><strong>You will need to get the student credential (username and password) from your instructor, which is different from your CWL, before proceeding. This is ordinarily provided during your registered lab session and will not be found in these assignment instructions.</strong></p>
+<p>Once you have correctly entered the correct credential, ArcGIS Pro will do a “soft” connection to the server to retrieve the available databases. From the “Database” drop-down menu, select <code>ubcv</code> for UBC Vancovuer campus datasets or <code>mkrf</code> for Malcolm Knapp Research Forest datasets and then click “OK”.</p>
+<p>If you receive an error:</p>
+<ul>
+<li><p>Are you connected to myVPN or ubcsecure wifi network?</p></li>
+<li><p>Did you enter the correct server address provided above? (this is not case-sensitive)</p></li>
+<li><p>Did you enter the correct student credential, not you CWL? (this is case-sensitive)</p></li>
+</ul>
+<p><img src="images/01-arcgispro-postgres-connection.png" width="40%" /></p>
+<p><strong>Step 6:</strong> From the top ribbon, navigate to the “Map” tab, then click “Add Data”. From the dialogue window that opens, expand “Databases”, and you will see your local project geodatabase that was created when you initiated the project and the newly added postgres server. Click the postgres server connection to view the tables and then add a layer to your map. Note that your list of layers may be different if you connected to the <code>mkrf</code> database instead.</p>
+<p><img src="images/01-arcgispro-postrges-catalog.png" width="75%" /></p>
 <p>Note that ArcGIS Pro refers to vector data (i.e., points, lines, polygons) as a “feature class”. You will see this language throughout various tools in ArcGIS Pro (e.g., “Input Feature Class”, “Output Feature Class”).</p>
+<p><strong>Step 7:</strong> Import you data into your project’s geodatabase. This will vary depending on the file formats that you encounter, but generally you can right-click the geodatabase in the project folder, select “Import”, then select “Feature Class(es)”. In the “Feature Class to Geodatabase” tool that appears, select your three datasets from the drop-down menus (if you added them to your ArcGIS Pro Map already) or navigate to the location of the files in your project folder then click “Run”. When it completes, be sure to remove the old layers from your map (right-click the layer, “Remove”) and then add the three feature classes in your geodatabase to your map.</p>
 <p><img src="images/01-arcgis-import-geodatabase.png" width="75%" style="display: block; margin: auto;" /></p>
 <p>Up to this point, you have primarily been manipulating data directly through ArcGIS Pro, but you have not really changed much about your actual project. So there is no project state to really save. For example, if ArcGIS Pro crashed right now, you should still be able to find the feature classes that you imported into your project geodatabase. That said, it is good practice to save your project file moving forward as you work through this lab and later assignments.</p>
-<div id="q6.-what-are-the-three-datasets-you-chose-and-what-sources-did-they-come-from-provide-the-url-to-the-data-source-and-report-the-file-format-that-the-data-were-provided-in.-15-points" class="section level5 unnumbered hasAnchor">
-<h5>Q6. What are the three datasets you chose and what sources did they come from? Provide the URL to the data source and report the file format that the data were provided in. (15 points)<a href="exploring-spatial-data.html#q6.-what-are-the-three-datasets-you-chose-and-what-sources-did-they-come-from-provide-the-url-to-the-data-source-and-report-the-file-format-that-the-data-were-provided-in.-15-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div id="q6.-what-are-the-three-datasets-you-chose-and-what-sources-did-they-come-from-provide-the-url-to-the-data-source-or-indicate-use-of-the-ubc-postgresql-server-and-report-the-file-format-or-postgresql-that-the-data-were-provided-in.-15-points" class="section level5 unnumbered hasAnchor">
+<h5>Q6. What are the three datasets you chose and what sources did they come from? Provide the URL to the data source (or indicate use of the UBC PostgreSQL server) and report the file format (or PostgreSQL) that the data were provided in. (15 points)<a href="exploring-spatial-data.html#q6.-what-are-the-three-datasets-you-chose-and-what-sources-did-they-come-from-provide-the-url-to-the-data-source-or-indicate-use-of-the-ubc-postgresql-server-and-report-the-file-format-or-postgresql-that-the-data-were-provided-in.-15-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <hr />
 </div>
 </div>
@@ -530,19 +479,97 @@ Paul D. Pickell</p>
 <p>In this last task, we will look at some simple ways to manipulate the symbology of your layers and produce and export a final map.</p>
 <p><strong>Step 1:</strong> Right-click one of your layers and select “Symbology”. Note that ArcGIS Pro randomly assigns a colour/symbology to a layer when it is added to the map. Very rarely do data have a pre-defined symbology that come with the data. The default symbology is typically a random colour that is applied to all features, this is called “Single Symbol”. For something like polygons, you can change the fill and the border by clicking the icon next to “Symbol”. From here, you can select any of a number of preset symbologies provided by ArcGIS Pro or you can select the “Properties” tab at the top and customize with whatever features you want.</p>
 <p><img src="images/01-arcgis-single-symbology.png" width="75%" style="display: block; margin: auto;" /></p>
-<p><strong>Step 2:</strong> From the “Symbology” pane, click the drop-down menu under “Primary Symbology” and select “Graduated Colors”. From here, you can select any numeric field to serve as the basis for applying color to your features. In the example below, I have selected “max_floors” as the field to symbolize and chosen the blue-yellow color palette. ArcGIS Pro will update the layer and also show the classes in the “Contents” pane.</p>
-<p><img src="images/01-arcgis-graduated-colors.png" width="75%" style="display: block; margin: auto;" /></p>
-<p>Experiment with the different symbology types for your layers and attributes until you arrive at something you like. Be sure to change the smybology of each of your layers.</p>
-<p>You can also change the basemap to something more neutral like “Light Gray” to make your chosen colour palette more visible (“Map” tab on the top ribbon, select “Basemap”).</p>
-<p><img src="images/01-arcgis-basemap.png" width="75%" style="display: block; margin: auto;" /></p>
-<p><strong>Step 3:</strong> When you are satisfied with your layer symbologies, you can enter the map layout mode to begin the final layout and export process. From the top ribbon, select “Insert”, and then “New Layout”. We are not actually printing the map, so you can select a regular letter size layout in either portrait or landscape mode. This will open a new blank Layout tab in your project and expose a bunch of new options specific to exporting a professional map.</p>
-<p><strong>Step 4:</strong> Add your ArcGIS Pro Map to your Layout by selecting “Map Frame” from the top ribbon under the “Insert” tab. From there, you can select any Maps that you have created in your project. When you select your Map, your cursor will switch to a cross hairs and you just click and drag a rectangle where you want the map to appear on the layout.</p>
-<p><strong>Step 5:</strong> Add a North Arrow, Scale Bar, and Legend from the top ribbon under the “Insert” tab. Pick your favourite styles for these features and experiment with the large number of customization options until you achieve something you like. You can directly rename the layers in your “Contents” pane to update how they appear in the legend. You may need to go back to your individual layer symbologies to adjust how the values are grouped and displayed.</p>
-<p><strong>Step 6:</strong> Add a title to your map by select the text icon in the “Graphics and Text” grouping on the top ribbon under the “Insert” tab. Here you will need to adjust the size and position of the text.</p>
-<p>Note that there are too many options here to provide detailed instructions for. If you want to know how to do something specifically, just ask your instructor or TA.</p>
+<p>Experiment with the different symbology types for your layers and attributes until you arrive at something you like. Be sure to change the symbology of each of your layers. The sections below give some examples of how you can modify point, line, and polygon symbologies. You do not need to follow these sections exactly with the same data. They are only meant to give you some ideas for how you can symbolize your data and prepare your map.</p>
+<div id="polygon-symbologies" class="section level3 unnumbered hasAnchor">
+<h3>Polygon Symbologies<a href="exploring-spatial-data.html#polygon-symbologies" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Polygons can be symbolized for their areas and/or their perimeters. Depending on the type of attribute that you want to symbolize (qualitative, diverging, sequential), you will choose a different symbology type and color palette. The figure below shows some examples of different types of colour palettes that are available in ArcGIS Pro.</p>
+<p><img src="ubc-frst-538-advanced-geomatics-for-natural-resource-management_files/figure-html/palette-types-1.png" width="80%" /></p>
+<p>If the attribute that you want to symbolize is discrete or text-based, then you should select “Unique Values” for the “Primary Symbology”. Then, select the field from your attribute table that you want to use to symbolize different classes. This is a good choice for the “neighbourhood” field in the “ubcv_buildings” dataset shown below. When you choose “Unique Values” you should use a discrete color scheme. If your qualitative categories are completely distinct, you might choose a a colour palette that uses accent colours.</p>
+<p><img src="images/01-arcgis-polygon-unique-symbology.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>If your qualitative categories can be grouped in some way, like “deciduous” and “coniferous” are both types of forests, then you might choose light/dark paired colours so that all forests on your map are some shade of green. Similar logic can be applied to other classes like water, urban, agriculture, and so on.</p>
+<p>For continuous attributes, you should choose either “Graduated Colors” or “Unclassed Colors” as the symbology type. Typically, you should use either the single hue or multi-hue gradients for these values. For example, you might see total precipitation displayed in a single hue while temperature is displayed in a multi-hue gradient. Diverging gradients should only be used for continuous attributes that have values that diverage from zero or if you want to emphasize values above or below a particular value. With “Graduated Colors”, you can classify the range of values into classes, which can sometimes improve the readability of the map, but it also creates more items for your legend (discussed later). You can choose the number of classes you want and the method for identifying the breakpoint values between classes. In the example shown below, the building height values are separated into five classes using quantiles. Note the small text box just above the symbols of the five classes on the right is where you enter the label as you want it to appear in the legend, “Building Height”.</p>
+<p><img src="images/01-arcgis-polygon-graduate-symbology.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>In the case that you want to visualize two attributes at the same time from one layer, then you need to use a “Bivariate Colors” symbology type. This effectively combines two gradients, one for each attribute, into a grid matrix where the intersection of those gradients produces new hues. For example, in the image below max floors is shown in a single hue pink gradient and building height is shown in a single hue blue gradient. The mixture of these two gradients, produces a new set of blues and purples, depending on the value of both attributes for a given polygon. Where values for building height and max floors are both high, the polygon is coloured dark purple (upper right corner of the colour grid).</p>
+<p><img src="images/01-arcgis-polygon-bivariate-symbology.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="line-symbologies" class="section level3 unnumbered hasAnchor">
+<h3>Line Symbologies<a href="exploring-spatial-data.html#line-symbologies" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Lines are often used to show route networks likes roads or streams. Since the goal of such visualizations is to follow or navigate the path relative to other features in the map (points and polygons), in this section we will focus on labelling with a “Single Symbol” symbology type over the ESRI Imagery basemap.</p>
+<p>When placing line features on a darker image basemap, we need to use a lighter colour such as white. To label these line features (or even points or polygons), right-click the layer in the Contents pane and select “Labels”. This will toggle on the labels for the layer. Next, right-click the layer again and select “Layer Properties…” to expose the labeling options.</p>
+<p>In the Class Label dialogue window that opens, you can specify the text label that will be placed next to the feature. There are a lot of options here, mainly because there are many ways that you can generate the text. Most likely, you just need to pick an attribute that contains the text for each line segment. This is exactly what is shown in the image below with the roadname attribute, using Python.</p>
+<p><img src="images/01-arcgis-line-label-text.png" width="40%" style="display: block; margin: auto;" /></p>
+<p>Notice that this accepts an “Expression”, which in the example above is simply <code>[roadname]</code> because this is the attribute that contains the text values that we want to use as labels for each feature. The expression is automatically iterated over all features. Below are some additional examples for how you might construct expressions to achieve different results.</p>
+<table>
+<colgroup>
+<col width="20%" />
+<col width="7%" />
+<col width="71%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Python Expression</th>
+<th align="left">Example Output</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>"City Boundary"</code></td>
+<td align="left">City Boundary</td>
+<td align="left">A static text string applied identically to every feature, regardless of any field values - useful for a fixed layer-wide label like a legend note or category header.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>"Persons per sq km: " + str( round( [POP2021] / [SHAPE_Area], 1) )</code></td>
+<td align="left">Persons per sq km: 5356.7</td>
+<td align="left">Performs a calculation on two numeric fields (POP2021 divided by SHAPE_AREA), rounds the result to one tenth percision, and concatenates the result with a static text string, converting the number to text with str() so it can be joined.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>[CITY_NAME] + ", " + [PROV_ABBR]</code></td>
+<td align="left">Vancouver, BC</td>
+<td align="left">Concatenates two separate text fields together with a static separator (“,”) in between, producing a combined label from multiple attributes.</td>
+</tr>
+</tbody>
+</table>
+<p>Next, we are going to add a white halo to the label so that the text is easy to see (along with the white line). Expand the “Halo” group under “Symbol” and change the colour to white. Adjust the size of the halo until you are satisfied. It is good to do this only when you are happy with the current extent and scale of the map since zooming in or out later will change the relative sizes of the text and crowding on the map.</p>
+<p><img src="images/01-arcgis-line-label-halo.png" width="40%" style="display: block; margin: auto;" /></p>
+<p>Positioning labels around features is a major challenge in cartography. There are so many factors that cause labels to collide. Generally, our goal is to position the labels so that the map remains readable and to do this mostly automatically since manual label placement is very time-consuming. Switch to the “Position” options and then select the chess knight icon and untoggle “Stack label”. This will prevent long text labels from being stacked on two lines.</p>
+<p><img src="images/01-arcgis-line-label-stacking.png" width="40%" style="display: block; margin: auto;" /></p>
+<p>Next, click the label icon and under “Remove duplicate labels” select “Remove within fixed distance” from the drop-down menu. Change the search radius to “150” points. This prevents the same label from being drawn multiple times when a road is represented by multiple nearby (but disjoint) line segments that all have the same name.</p>
+<p><img src="images/01-arcgis-line-label-remove-duplicates.png" width="40%" style="display: block; margin: auto;" /></p>
+<p>Finally, select the cross-hair icon, expand “Placement”, and choose “Street placement” from the drop-down menu. This option is similar to removing duplicate labels described above, but is specifically for multiple line segments that are connected and share the same label value, so ArcGIS Pro treats these as a single line segment for placing the label. Finally, you can choose where/how you want the label placed relative to the line feature. The image below shows an example of “Centered curved”, but you can also choose fixed offsets and these options will be slightly different if you are labelling points or polygons instead.</p>
+<p><img src="images/01-arcgis-line-label-placement.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="point-symbologies" class="section level3 unnumbered hasAnchor">
+<h3>Point Symbologies<a href="exploring-spatial-data.html#point-symbologies" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Points are spatially dimensionless, so their symbology requires different strategies compared to lines or polygons to achieve desired effects. For example, if you are just trying to convey location, then a simple “Single Symbol” symbology type will suffice as shown below using the ubcv_campus_trees dataset. Similar to polygons, you can assign colour palettes to attribute values using “Unique Values” or “Graduated Values” symbology types.</p>
+<p><img src="images/01-arcgis-point-single-symbol.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Clicking on the point symbol in the Symbology pane will allow you to choose from a “Gallery” of preset symbols and from there you can switch to “Properties” to customize your own point symbol.</p>
+<p><img src="images/01-arcgis-point-single-symbol-properties.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>You may want to convey the value of an attribute by adjusting the size of the symbol, rather than the colour. This is a “Proportional Symbols” symbology type and it also gives the effect of exaggerating the area of a feature that otherwise does not have an area. The example below shows this effect using the “crownwidth1” attribute of the campus trees. The overlapping features produce an illusion of continuous canopy cover, which has a different purpose than just showing the location of the trees. Adjusting the minimum and maximum point sizes can increase or decrease the amount of overlap. Compare the map below with the one above.</p>
+<p><img src="images/01-arcgis-point-proportional-symbol.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Points, like lines and polygons, can be filtered so that your symbology only applies to features that match some criteria. You can access these options by selecting the funnel symbol at the top of the Symbology pane, toggle on “Enable display filters”, then click the “+” next to “<all features>”.</p>
+<p><img src="images/01-arcgis-symbology-filter-points-1.png" width="40%" style="display: block; margin: auto;" /></p>
+<p>An option will expand where you can “Add Clause” and create an SQL statement to achieve your desired effect. This also works with lines and polygons, and you also have the option to change whether features are visible at different scales with the slider bar.</p>
+<p><img src="images/01-arcgis-symbology-filter-points-2.png" width="40%" style="display: block; margin: auto;" /></p>
+<p><img src="images/01-arcgis-symbology-point-label.png" width="40%" style="display: block; margin: auto;" /></p>
+<p>When you are satisfied with your layer symbologies, save you project because your project file stores the symbologies for your map layers. Now you can enter the map layout mode to begin the final layout and export process.</p>
+<p><strong>Step 3:</strong> From the top ribbon, select “Insert”, and then “New Layout”. We are not actually printing the map, so you can select a regular letter size layout in either portrait or landscape mode. This will open a new blank Layout tab in your project and expose a bunch of new options specific to exporting a professional map.</p>
+<p><img src="images/01-arcgis-insert-toolbar.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><strong>Step 4:</strong> From the “Layout” toolbar, select “Add Guides”, then add “Both” vertical and horizontal guides “Offset from edge” and use 0.25” as the margin. Now, when you place elements onto the layout, you can snap them to these guides.</p>
+<p><strong>Step 5:</strong> Add your ArcGIS Pro Map to your layout by selecting “Map Frame” from the top ribbon under the “Insert” tab. From there, you can select any Maps that you have created in your project. When you select your Map, your cursor will switch to a cross hairs and you just left-click and drag a rectangle where you want the map to appear on the layout. Once placed, you can drag the corners to resize the Map.</p>
+<p>If you need to zoom in/out of the map without changing its position in the layout, then select “Activate” from the “Insert” toolbar or by right-clicking the map in the Contents pane.</p>
+<p><img src="images/01-arcgis-activate-map-frame.png" width="40%" style="display: block; margin: auto;" /></p>
+<p>If you need to resize or reposition the map frame in the layout without zooming in/out or panning the map itself, then select “Close Activation” under the “Layout” toolbar or by right-clicking the map in the Contents pane.</p>
+<p><strong>Step 6:</strong> You can reorient your map so that it better fits the area of your page. In the example below, we have rotated the map of UBC campus by 60 degrees to give a more natural looking arrangement for the other elements. To do this, right-click the map in the Contents pane, select “Properties”, and then change rotation to your desired value.</p>
+<p><strong>Step 7:</strong> Add a North Arrow, Scale Bar, and Legend from the top ribbon under the “Insert” toolbar. Pick your favourite styles for these features and experiment with the large number of customization options until you achieve something you like. You can directly rename the layers in your “Contents” pane to update how they appear in the legend. You may need to go back to your individual layer symbologies to adjust how the values are grouped and displayed.</p>
+<p><strong>Step 8:</strong> Add a title to your map by select the text icon in the “Graphics and Text” grouping on the top ribbon under the “Insert” toolbar. Click to place the text and then type what you want. Right-click the element and select “Properties” to adjust font size, style, etc. Right-click the element again, select “Align”, then select whichever way you would like to align the text relative to the page or simply drag the element and use your guide lines to snap it in a location relative to the margins that we placed earlier.</p>
+<p><img src="images/01-arcgis-align-text.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><strong>Step 9:</strong> When you are ready to export your map, navigate to the “Share” tab from the top ribbon, select “Export Layout”, and choose “Georeferenced PDF”. You can accept most of the default settings in the dialogue window that opens, just note that the default output location is your project folder.</p>
+<p>At this point, it will become apparent how visible features are based on your symbology choices. For example, heavy line weights or large point symbols can make it difficult to see other labels or nearby features, which may be important if you were using this map to navigate in the field. Resize your elements, adjust text label and symbol sizes, choose a larger page size for your layout, and remove compression to improve your desired output, at the expense of a larger file size. Here we chose a georeferenced PDF firstly because PDF’s are optimal for storing and displaying vector graphics and secondly because <em>georeferenced</em> PDF’s can be imported into other other mapping apps for use with field work.</p>
 <div id="map-1.-upload-your-final-map-that-shows-your-three-selected-datasets.-at-least-one-dataset-must-be-symbolized-by-a-field-in-the-attribute-table.-you-can-pick-the-colorssymbols-to-use-for-each-layer.-layers-that-appear-to-use-the-default-random-colorweight-assignment-by-arcgis-pro-will-not-be-accepted-for-credit.-you-must-show-that-you-manipulated-the-symbology-for-each-layer.-your-map-must-also-contain-a-title-north-arrow-scale-bar-and-a-legend-that-contains-the-symbologies-of-all-the-layers.-25-points" class="section level5 unnumbered hasAnchor">
 <h5>Map 1. Upload your final map that shows your three selected datasets. At least one dataset must be symbolized by a field in the attribute table. You can pick the colors/symbols to use for each layer. Layers that appear to use the default random color/weight assignment by ArcGIS Pro will not be accepted for credit. You must show that you manipulated the symbology for each layer. Your map must also contain a title, north arrow, scale bar, and a legend that contains the symbologies of all the layers. (25 points)<a href="exploring-spatial-data.html#map-1.-upload-your-final-map-that-shows-your-three-selected-datasets.-at-least-one-dataset-must-be-symbolized-by-a-field-in-the-attribute-table.-you-can-pick-the-colorssymbols-to-use-for-each-layer.-layers-that-appear-to-use-the-default-random-colorweight-assignment-by-arcgis-pro-will-not-be-accepted-for-credit.-you-must-show-that-you-manipulated-the-symbology-for-each-layer.-your-map-must-also-contain-a-title-north-arrow-scale-bar-and-a-legend-that-contains-the-symbologies-of-all-the-layers.-25-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <hr />
+</div>
 </div>
 </div>
 <div id="summary" class="section level2 unnumbered hasAnchor">
@@ -612,20 +639,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
