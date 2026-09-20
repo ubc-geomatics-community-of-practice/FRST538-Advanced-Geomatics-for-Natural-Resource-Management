@@ -43,13 +43,11 @@ For this lab, you will choose your own site through your own knowledge and simpl
 
 ### Deliverables {#lab2-deliverables .unnumbered}
 
-<input type="checkbox" unchecked> Responses to the questions posed throughout the lab on the course management system. (57 points)</input>
+<input type="checkbox" unchecked> Responses to the questions posed throughout the lab on the course management system. (72 points)</input>
 
 <input type="checkbox" unchecked> Screenshots of your Trimble GNSS Planning tool charts (your settings must be visible in all the screenshots): Number of Satellites, DOPs, Iono Information, Sky Plot. (8 points)</input>
 
-<input type="checkbox" unchecked> Map of the "True" and "Observed" points. (25 points)</input>
-
-<input type="checkbox" unchecked> Table of accuracy and precision calculated values. (10 points)</input>
+<input type="checkbox" unchecked> Table of GNSS errors (20 points)</input>
 
 ------------------------------------------------------------------------
 
@@ -202,7 +200,7 @@ knitr::include_graphics(c(
 
 **Step 3:** Search for your "YOURNAME_GNSS_Field_Map" and select it to load onto your app. If you zoom in, you should see your current position along with the marker that represents your chosen reference point. Navigate to your reference point and then while standing at one point click the "+" button in the bottom right of your screen to add a point at your current location. Then, select "Submit" in the top right to save the point. Repeat this process until you have collected 10 points for your reference point.
 
-##### Screenshot 5. Take a photo of your feature with your phone when you visit your reference point and upload the photo. (2 points) {.unnumbered}
+##### Q3. While you are in the field, take a photo of your feature with your phone when you visit your reference point and upload the photo. (2 points) {.unnumbered}
 
 ------------------------------------------------------------------------
 
