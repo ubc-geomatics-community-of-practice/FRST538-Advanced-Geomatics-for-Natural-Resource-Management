@@ -14,6 +14,22 @@ cat(author)
 
 Oftentimes, you will need to collect and display your own data. There are many phone applications to collect your own GNSS data. In this lab, you will plan your own GNSS collection, collect data, and process the data.
 
+**Planning Your GNSS Data Collection**
+
+All students are expected to collect data at UBC Vancouver campus. The instructions that follow illustrate how to design and deploy a field campaign using UBC Vancouver datasets. However, if you are a student in the UBC Master of Sustainable Forest Management (MSFM) program, then you may have the option to instead design your field campaign for Malcolm Knapp Research Forest to support your site plan exercise. In this case, you are responsible for adhering to the UBC safety plan and following the directions of the instructors for that course when visiting Malcolm Knapp Research Forest. If you are unable or unwilling to do that, then you should plan your data collection for UBC Vancouver campus.
+
+Avoid going somewhere that is unfamiliar to you without supervision. Ensure that you stay off of private or restricted property. Most of the outdoor academic campus is public and accessible. You should only collect data during daylight hours and plan to go out in sunny weather only. Check government websites for any recent animal sightings and be aware that coyotes are often sighted on campus. Do not plan to collect your GNSS data at Wreck Beach or near other bodies of water. Do not plan to collect your GNSS data near cliffs or on steep terrain. Finally, ensure that you will have good cell phone coverage in case of an emergency.
+
+**Likely Hazards**
+
+At all times, you must be aware of possible hazards both overhead and underfoot. The main overhead hazard is going to be trees and falling branches. Do not collect your GNSS data during windy or stormy weather, which may cause tree branches to fall. Wet and slippery surfaces, steep angles, holes, logs, debris, and loose soil all pose fall hazards. Many of these hazards can be avoided with careful planning before you even step outside. Speaking of stepping, make sure you wear appropriate footwear, closed toed shoes are best for this work. You may need to cross or transit streets to reach your location. Always follow local traffic laws and look for moving vehicles in and around your site. Always use designated crosswalks and do not look at your phone when walking near stopped or moving vehicles.
+
+*Do not collect your GNSS data while walking and looking at your phone. Always be aware of your surroundings.*
+
+*Important: If you feel uncomfortable undertaking this task, please contact the instructor for alternative arrangements or accommodations for this particular assignment*
+
+For this lab, you will choose your own site through your own knowledge and simple remote sensing. Your site must be somewhere that you can legally and safely visit on UBC Vancouver campus or Malcolm Knapp Research Forest and have features on the ground must be visible from the most recent aerial orthophoto.
+
 ------------------------------------------------------------------------
 
 ### Learning Objectives {.unnumbered}
@@ -41,38 +57,23 @@ Oftentimes, you will need to collect and display your own data. There are many p
 
 Field data collection is an important skill set to learn and practice. In this task, you will plan the collection of your GNSS data on UBC Vancouver campus or Malcolm Knapp Research Forest. This section is meant to inform you of the likely hazards and how to stay safe.
 
-**Planning Your GNSS Data Collection**
+**Step 1:** Open ArcGIS Pro and create a new project for this lab.
 
-All students are expected to collect data at UBC Vancouver campus. The instructions that follow illustrate how to design and deploy a field campaign using UBC Vancouver datasets. However, if you are a student in the UBC Master of Sustainable Forest Management (MSFM) program, then you may have the option to instead design your field campaign for Malcolm Knapp Research Forest to support your site plan exercise. In this case, you are responsible for adhering to the UBC safety plan and following the directions of the instructors for that course when visiting Malcolm Knapp Research Forest. If you are unable or unwilling to do that, then you should plan your data collection for UBC Vancouver campus.
-
-Avoid going somewhere that is unfamiliar to you without supervision. Ensure that you stay off of private or restricted property. Most of the outdoor academic campus is public and accessible. You should only collect data during daylight hours and plan to go out in sunny weather only. Check government websites for any recent animal sightings and be aware that coyotes are often sighted on campus. Do not plan to collect your GNSS data at Wreck Beach or near other bodies of water. Do not plan to collect your GNSS data near cliffs or on steep terrain. Finally, ensure that you will have good cell phone coverage in case of an emergency.
-
-**Likely Hazards**
-At all times, you must be aware of possible hazards both overhead and underfoot. The main overhead hazard is going to be trees and falling branches. Do not collect your GNSS data during windy or stormy weather, which may cause tree branches to fall. Wet and slippery surfaces, steep angles, holes, logs, debris, and loose soil all pose fall hazards. Many of these hazards can be avoided with careful planning before you even step outside. Speaking of stepping, make sure you wear appropriate footwear, closed toed shoes are best for this work. You may need to cross or transit streets to reach your location. Always follow local traffic laws and look for moving vehicles in and around your site. Always use designated crosswalks and do not look at your phone when walking near stopped or moving vehicles.
-
-*Do not collect your GNSS data while walking and looking at your phone. Always be aware of your surroundings.*
-
-*Important: If you feel uncomfortable undertaking this task, please contact the instructor for alternative arrangements or accommodations for this particular assignment*
-
-For this lab, you will choose your own site through your own knowledge and simple remote sensing. Your site must be somewhere that you can legally and safely visit on UBC Vancouver campus or Malcolm Knapp Research Forest and have features on the ground must be visible from the most recent aerial orthophoto.
-
-**Step 1:** Open ArcGIS Pro and create a new project for this lab. 
-
-**Step 2:** Navigate to this website and find the most recent aerial orthophoto for your site (either UBC Vancouver campus or MKRF): https://206-12-122-94.cloud.computecanada.ca/UBC_ORTHOPHOTOS/ Note that for each orthophoto, there are two files: a GeoTIFF and a VRT. The GeoTIFF (TIF) is the raw file and these are large (several gigabytes), multi-band images. VRT is Virtual Raster, a very small file that basically points to a remote file so that the raw data can be retrieved dynamically and on-the-fly. If you think you will not have reliable internet access in the field, then you can take the orthophoto offline by downloading the raw TIF. But for our purposes in this lab, we will use the much smaller VRT file. After you have found the year of the orthophoto that you want to use, right-click the VRT file and (depending on your browser), select "Save link as..." or something similar to download the file. You will want to save or move the file to your ArcGIS Pro project folder.
+**Step 2:** Navigate to this website and find the most recent aerial orthophoto for your site (either UBC Vancouver campus or MKRF): <https://206-12-122-94.cloud.computecanada.ca/UBC_ORTHOPHOTOS/> Note that for each orthophoto, there are two files: a GeoTIFF and a VRT. The GeoTIFF (TIF) is the raw file and these are large (several gigabytes), multi-band images. VRT is Virtual Raster, a very small file that basically points to a remote file so that the raw data can be retrieved dynamically and on-the-fly. If you think you will not have reliable internet access in the field, then you can take the orthophoto offline by downloading the raw TIF. But for our purposes in this lab, we will use the much smaller VRT file. After you have found the year of the orthophoto that you want to use, right-click the VRT file and (depending on your browser), select "Save link as..." or something similar to download the file. You will want to save or move the file to your ArcGIS Pro project folder.
 
 **Step 3:** Add the orthophoto VRT to your ArcGIS Pro map. You can do this either by "Add data" and then browse and select it or simply drag and drop it from Windows Explorer into your ArcGIS Pro map canvas.
 
-Before physically visiting your study area, you will need to verify that there are usable reference features in your chosen site. Use the orthophoto that you have added to the map in order to find some features that you can easily find and visit on the ground/ The reference features should be immovable and not tall (ideally not trees or buildings). Look for features that are easily identified from aerial imagery and not obstructed from tree canopy. Additionally, you will be walking to your reference features, so they should be somewhere safely accessible and not too far from each other.
+Before physically visiting your study area, you will need to verify that there are usable reference features in your chosen site. Use the orthophoto that you have added to the map in order to find some features that you can easily find and visit on the ground. The reference feature should be immovable and not tall (ideally not trees or buildings). Look for features that are easily identified from aerial imagery and not obstructed from tree canopy. Additionally, you will be walking to your reference feature, so it should be somewhere safely accessible and not too far from each other.
 
-**Step 4:** Find at least five possible reference points (all at least 10 m from each other). You will create a new feature class and populate it with these reference points. From the "Analysis" tab in the top ribbon, select "Tools" to open the "Geoprocessing" pane and search for the "Create Feature Class" tool. Save it to your ArcGIS Pro project geodatabase and name it "refpoints". Your new feature class should now be in the "Contents" Pane, but it has no points.
+**Step 4:** From the "Analysis" tab in the top ribbon, select "Tools" to open the "Geoprocessing" pane and search for the "Create Feature Class" tool. Save it to your ArcGIS Pro project geodatabase and name it "refpoints". Your new feature class should now be in the "Contents" Pane, but it has no points.
 
 ```{r 02-arcgis-create-feature-class, out.width= "40%", echo = FALSE}
   knitr::include_graphics("images/02-arcgis-create-feature-class.png")
 ```
 
-##### Q2. Describe each of your five reference points. What features do they represent? (5 points) {.unnumbered}
+##### Q1. Describe your reference point. What feature does it represent? Why did you choose this reference point? (5 points) {.unnumbered}
 
-**Step 5:** Choose "Edit" from the top ribbon, then select "Create". On the right, a "Create Features" pane will appear. In there, click "refpoints", which will then allow you to start placing points on the map. Zoom in closely on the orthophoto before creating point features so that the points are placed precisely. Left-click to place five reference points, then select "Save" from the Edit ribbon. If you need to move or delete a reference point, then select "Delete" or "Move" from the "Edit Tools" in the top ribbon. When you are finished, select "Save" from the top ribbon.
+**Step 5:** Choose "Edit" from the top ribbon, then select "Create". On the right, a "Create Features" pane will appear. In there, click "refpoints", which will then allow you to start placing points on the map. Zoom in closely on the orthophoto before creating point features so that the point is placed precisely. Left-click to place one reference point, then select "Save" from the Edit ribbon. If you need to move or delete your reference point, then select "Delete" or "Move" from the "Edit Tools" in the top ribbon. When you are finished, select "Save" from the top ribbon.
 
 ```{r 02-arcgis-edit-features, out.width= "100%", echo = FALSE}
   knitr::include_graphics("images/02-arcgis-edit-features.png")
@@ -90,21 +91,21 @@ Before physically visiting your study area, you will need to verify that there a
   knitr::include_graphics("images/02-arcgis-edit-name.png")
 ```
 
-**Step 8:** The "Easting" and "Northing" fields can be populated using the "Calculate Geometry Attributes" tool. Select the field names then match the x- and y-coordinate to the correct fields and choose NAD 83 CSRS UTM Zone 10N as the coordinate system (both UBC Vancouver campus and MKRF are in the same UTM zone). Check that your attribute table now has Northings and Estings calculated.
+**Step 8:** The "Easting" and "Northing" fields can be populated using the "Calculate Geometry Attributes" tool. Select the field names then match the x- and y-coordinate to the correct fields and choose NAD 83 CSRS UTM Zone 10N as the coordinate system (both UBC Vancouver campus and MKRF are in the same UTM zone). Check that your attribute table now has Northings and Eastings calculated.
 
 ```{r 02-arcgis-calculate-geometry-attributes, out.width= "40%", echo = FALSE}
   knitr::include_graphics("images/02-arcgis-calculate-geometry-attributes.png")
 ```
 
-Next, we are going to create a simple field map that we can take offline and use to navigate to our points. If you already made a map of your site in Lab 1, then open your Lab 1 ArcGIS Pro project now and use that map layout for this next part. Otherwise, you will need to refer back to Lab 1 for creating a map layout. Those steps are not going to be repeated here.
+**Step 9:** Right-click "refpoints" and select "Sharing", then "Share As Web Layer". In the tool that opens, change the name of the layer to "YOURNAME_refpoints", press the "Analyze" button and then "Publish". This will take a few minutes to upload your layer to the UBC ArcGIS Online portal.
 
-**Step 9:** Create a simple map layout that contains the orthophoto you are using and the "refpoints" you made in the steps above. You might want to add a title, north arrow, and/or scale bar, but these are optional. Make sure you have zoomed in tightly around your five reference points, other parts of the orthophoto are not relevant for this map and we want as much detail as possible. Ensure that the symbology of your points is not too large, so that you are still able to partially see the surroundings when you zoom into the map later. If you want, you can add other layers to your map that might help you find your features and this can be more important for field maps of sites that you are unfamiliar with or ex-urban sites that have few identifiable features. Export the map as a georeferenced PDF.
+**Step 10:** From ArcGIS Pro, grab the coordinates of your site so that you can use them in the Trimble GNSS Planning Online website. At the bottom of your ArcGIS Pro map, the coordinates are currently displayed in UTM Eastings and Northings, but you can click the downward arrow to change it degrees, minutes, seconds, which is what the Trimble Planning tool website uses. Then just right-click anywhere on your map and select "Copy Coordinates". Paste them onto a notepad to retrieve later. You only need one latitude-longitude pair for your entire site.
 
-```{r 02-arcgis-export-georeferenced-pdf, out.width= "100%", echo = FALSE}
-  knitr::include_graphics("images/02-arcgis-export-georeferenced-pdf.png")
+```{r 02-arcgis-map-units, out.width= "75%", echo = FALSE}
+  knitr::include_graphics("images/02-arcgis-map-units.png")
 ```
 
-**Step 10:** In a web browser, open https://www.arcgis.com/index.html. Click "Sign-in". Do not enter and credential in the fields shown, instead click "Your ArcGIS organization's url". Type "ubc" in the text field. Click the blue button that says "University of British Columbia", then sign in with your CWL.
+**Step 11:** In a web browser, open <https://www.arcgis.com/index.html>. Click "Sign-in". Do not enter any credential in the fields shown, instead click "Your ArcGIS organization's url". Type "ubc" in the text field. Click the blue button that says "University of British Columbia", then sign in with your CWL.
 
 ```{r 02-arcgis-online-sign-in, out.width= "33%", echo = FALSE, fig.show='hold'}
 knitr::include_graphics(c(
@@ -114,39 +115,57 @@ knitr::include_graphics(c(
 ))
 ```
 
-**Step 11:** Once you are signed into your ArcGIS Online account, select "Content" and then click "New Item" at the top.
+**Step 12:** Once you are signed into your ArcGIS Online account, select "Content" from the top navigation ribbon. You should see your "YOURNAME_refpoints" layer listed along with a service definition file of the same name. If you do not see any content, then return to ArcGIS Pro and check for errors when you published the layer.
 
-```{r 02-arcgis-online-content, out.width= "100%", echo = FALSE}
-  knitr::include_graphics("images/02-arcgis-online-content.png")
+**Step 13:** From the ArcGIS Online portal, select the nine dots symbol next to your profile name in the top-right to expand all the cool things you can build in ArcGIS Online. From here, select "Field Maps Designer".
+
+```{r 02-arcgis-field-maps-designer, out.width= "100%", echo = FALSE}
+  knitr::include_graphics("images/02-arcgis-field-maps-designer.png")
 ```
 
-```{r 02-arcgis-online-new-item, out.width= "100%", echo = FALSE}
-  knitr::include_graphics("images/02-arcgis-online-new-item.png")
+ArcGIS Field Maps is the primary application that enables field work and remote data collection in ArcGIS. The app is available on Android and iOS. We are going to set up a simple project that will allow us to display a map in the field and collect some points using the GNSS receiver on your phone.
+
+**Step 14:** Select the blue button "+ New Map" and when prompted select "Start with new layers" and then "Next". Name the new layer "YOURNAME_GNSS_points" and select "Next".
+
+```{r 02-arcgis-online-field-maps-new, out.width= "100%", echo = FALSE}
+  knitr::include_graphics("images/02-arcgis-online-field-maps-new.png")
 ```
 
-**Step 12:** Select "From your device" and then navigate to the georeferenced PDF that you just made or drag and drop it into the browser window. In the next window, ensure that "This is a geospatial PDF" is toggled on and that the name of the layer will be unique across the UBC ArcGIS Online organization, so use a name like "Pickell_FRST538_Lab2" and click "Save".
+**Step 15:** Toggle on "Will high accuracy GPS receivers be used to collect data?" and further below expand "Advanced settings", select "Use a coordinate system" from the drop-down menu, and click "Browse". You can find the corect coordinate system quickly by typing the ID 26910 and then click on the coordinate system name that appears then press "Next". Finally, name the map title "YOURNAME_GNSS_Field_Map" and name the Feature layer title "YOURNAME_GNSS_points" and select "Create Map".
 
-```{r 02-arcgis-online-new-item-your-device, out.width= "50%", echo = FALSE}
-  knitr::include_graphics("images/02-arcgis-online-new-item-your-device.png")
+```{r 02-arcgis-online-configure-gnss-points-1, out.width= "100%", echo = FALSE}
+  knitr::include_graphics("images/02-arcgis-online-configure-gnss-points-1.png")
 ```
 
-```{r 02-arcgis-online-new-item-upload, out.width= "50%", echo = FALSE}
-  knitr::include_graphics("images/02-arcgis-online-new-item-upload.png")
+```{r 02-arcgis-online-configure-gnss-points-2, out.width= "40%", echo = FALSE}
+  knitr::include_graphics("images/02-arcgis-online-configure-gnss-points-2.png")
 ```
 
-If successful, you will be re-directed to the overview page for the item that you have now uploaded to ArcGIS Online. This PDF file is now hosted online. We just need to ensure that everything is configured correctly.
+**Step 16:** On the left, select "Add Layer" and then using the search bar, search for your "YOURNAME_refpoints" layer and press the "+ Add" button to add it to your web map.
 
-**Step 13:** Select "Settings" and then on the next page ensure that "This is a geospatial PDF" and "Use in ArcGIS Field Maps" are both toggled on.
-
-Now that you have established a site, selected your reference points, and made a map, you need to decide when you will be collecting your data. There are times in the day where you are more likely to get accurate GNSS readings. 
-
-**Step 14:** From ArcGIS Pro, grab the coordinates of your site so that you can use them in the Trimble GNSS Planning Online website. At the bottom of your ArcGIS Pro map, the coordinates are currently displayed in UTM Eastings and Northings, but you can click the downward arrow to change it degrees, minutes, seconds, which is what the Trimble Planning tool website uses. Then just right-click anywhere on your map and select "Copy Coordinates". Paste them onto a notepad to retrieve later. You only need one latitude-longitude pair for your entire site.
-
-```{r 02-arcgis-map-units, out.width= "50%", echo = FALSE}
-  knitr::include_graphics("images/02-arcgis-map-units.png")
+```{r 02-arcgis-online-add-refpoints-to-field-map, out.width= "100%", echo = FALSE}
+  knitr::include_graphics("images/02-arcgis-online-add-refpoints-to-field-map.png")
 ```
 
-**Step 15:** In a web browser, open the Trimble GNSS Planning Online website (http://www.gnssplanning.com/) and enter your site's latitude, longitude and height. If your site is at UBC Vancouver campus, you can just use the average elevation for campus, which is 81 m. If your site is MKRF, then you may want to consult your instructor for which elevation value to use since elevations at the research forest range between 2 to 1018 m, depending on where you are. Select the date that you plan to do your data collection and be sure to change the "Time Zone" to Pacific Time. 
+You should now see two layers, "YOURNAME_refpoints" and "YOURNAME_GNSS_points" in your web map called "YOURNAME_GNSS_Field_Map". These names must all be unique across the shared UBC ArcGIS Online portal, which is why we ask you to identify your assets with your name. Next, we are going to configure the form that will be displayed when you open the ArcGIS Field Maps app on your phone. In the middle of your screen, you should see "Start configuring a form for the layer". Make sure that you have selected "YOURNAME_GNSS_points" layer on the left, then you can drag and drop elements on the right into the space in the centre.
+
+**Step 17:** Add a "Date" element and a "Time" element to your form. Toward the top is a small button to save the form state. We are going to set these up so that they automatically populate with values of the current date and time.
+
+```{r 02-arcgis-online-add-datetime-field-save, out.width= "100%", echo = FALSE}
+  knitr::include_graphics("images/02-arcgis-online-add-datetime-field-save.png")
+```
+
+Once you have added the "Date" element to your form and saved, click on it to highlight it. On the right, at the very bottom, click the gear icon next to "Calculated expression" and then select "+ New Expression". Name the new express "Today's date" and then in the code block simply type `Today()`. This expression will automatically add the current date to the attribute table for any new point you add. Repeat this step with another expression for the "Time" element, but use `Now()` instead.
+
+```{r 02-arcgis-online-calculated-expression, out.width= "100%", echo = FALSE}
+  knitr::include_graphics("images/02-arcgis-online-calculated-expression.png")
+```
+
+**Step 18:** Add two "Double - Number" elements to your form. Name one "Easting" and the other "Northing". We will calculate these fields later once we have collected the sample points.
+
+If you want, you can add additional elements to your form.
+
+**Step 19:** In a web browser, open the Trimble GNSS Planning Online website (<http://www.gnssplanning.com/>) and enter your site's latitude, longitude and height. If your site is at UBC Vancouver campus, you can just use the average elevation for campus, which is 81 m. If your site is MKRF, then you may want to consult your instructor for which elevation value to use since elevations at the research forest range between 2 to 1018 m, depending on where you are. Select the date that you plan to do your data collection and be sure to change the "Time Zone" to Pacific Time.
 
 "Elevation cutoff" is used to discard satellite paths that are very close to your visible horizon. Since GNSS is a line-of-sight system, any tall objects above your horizon can obstruct the signal. Here we are mostly concerned with tall buildings and mountains. The default values of 10 degrees is generally reasonable for UBC Vancouver campus. Consider that an object that is as tall as it is from you will appear 45 degrees above your horizon. Stretch your arm fully out in front of you. Your closed fist is about 10 degrees, three fingers held together is about 5 degrees, and one finger is about 1 degree. You might want to make a note of this when you are in the field so that you can better interpret your sky plot and answer the lab questions that follow (e.g., "a mountain to my north appears to be 20 degrees above my horizon").
 
@@ -160,23 +179,17 @@ After you have input your information into Settings, click "Apply" and look thro
 
 ##### Screenshot 4. Upload a screenshot of the Sky Plot from the Trimble GNSS Planning Tool. The settings that you used must be visible in the screenshot. (2 points) {.unnumbered}
 
-##### Q3. Interpret the Trimble GNSS Planning Tool charts and sky plot with 1-2 sentences each. When is the ideal time to collect data at your study area? When did you actually collect data at your study area? (15 points) {.unnumbered}
+##### Q2. Interpret the Trimble GNSS Planning Tool charts and sky plot with 1-2 sentences each. When is the ideal time to collect data at your study area? When did you actually collect data at your study area? How did the conditions during your collection time vary from the ideal time? (15 points) {.unnumbered}
 
 ------------------------------------------------------------------------
 
-## Task 2: Design a field map for ArcGIS Field Maps {-}
+## Task 2: Collect your GNSS data {.unnumbered}
 
-
-
-------------------------------------------------------------------------
-
-## Task 3: Collect your data {-}
-
-You will need either an Android or iOS smartphone capable of installing the Field Maps app. If you do not have an Android or iOS smartphone, then please contact the instructor for alternative arrangements or accommodations
+You will need either an Android or iOS smartphone capable of installing the Field Maps app. If you do not have an Android or iOS smartphone, then please contact the instructor for alternative arrangements or accommodations. Alternatively, you may be able to use one of the Trimble data collectors during lab, if they are available.
 
 **Step 1:** To start you will need to install ArcGIS Field Maps App on your phone. There is an Android version as well as an iOS version so just go to your app store and download it. It is free!
 
-**Step 2:** Once you have the app installed on your phone, you need to sign in using your ArcGIS account. At UBC, this is done using your CWL. Select "Sign in with ArcGIS Online", do not enter any credential and instead select "Your ArcGIS organization's URL", type "ubc", click "Continue", click the blue button "University of British Columbia", then you will be presented with the ordinary CWL authentication page where you can enter your CWL. The screenshots below show this process using the iOS version of the app, but the options will be the same for Android.
+**Step 2:** Once you have the app installed on your phone, you need to sign in using your ArcGIS account using the instructions that were provided previously.
 
 ```{r 02-field-maps-sign-in, out.width= "25%", echo = FALSE, fig.show='hold'}
 knitr::include_graphics(c(
@@ -187,62 +200,56 @@ knitr::include_graphics(c(
 ))
 ```
 
-**Step 3:** 
+**Step 3:** Search for your "YOURNAME_GNSS_Field_Map" and select it to load onto your app. If you zoom in, you should see your current position along with the marker that represents your chosen reference point. Navigate to your reference point and then while standing at one point click the "+" button in the bottom right of your screen to add a point at your current location. Then, select "Submit" in the top right to save the point. Repeat this process until you have collected 10 points for your reference point.
 
-
-**Step 6:** Travel to your study area! Open the ArcGIS Field Maps app, and select the Georeferenced PDF under "My Maps." Go to one of the reference points you selected in ArcGIS. 
-
-
-On the bottom right of the app, there is a button that will bring the map to your current area. Press that button, then press the placemark button directly to the right of it. Create a placemark and name it something meaningful (for example: placemark 1, location 1). Stay exactly where you are, and create a placemark every 10 seconds for the next minute by pressing the location button then the placemark. You should have a total of 6 placemarks. Take a picture of the area you are trying to geographically capture. Go to two more of your designated locations and do the same procedure (create 6 placemarks, each 10 seconds apart, and take a picture.
-
-**Step 7:** Now you can return back to your workstation (after taking a nice walk!). Sign in to ArcGIS.com using the same proceedure as you did for signing into your account on the ArcGIS Field Maps app. 
-
-**Step 8:** 
-
-##### Screenshot 5. Upload an image from one of your reference points. (2 points) {.unnumbered}
-
-##### Map 1. Upload a map showing the True and Observed points. (25 points) {.unnumbered}
+##### Screenshot 5. Take a photo of your feature with your phone when you visit your reference point and upload the photo. (2 points) {.unnumbered}
 
 ------------------------------------------------------------------------
 
-## Task 3: Assess Precision, Accuracy, and Possible Errors {-}
+## Task 3: Assess Precision, Accuracy, and Possible Errors {.unnumbered}
 
-For this lab, we will consider the initial ArcGIS-created reference points as the "true" values and perform an accuracy assessment with that in mind.
+For this lab, we will consider the initial reference point from Task 1 as the "true" value and perform an accuracy assessment with that in mind.
 
-**Step 1:** Visually compare the Avenza-created Placemarks (called "Observed values" for the rest of the lab) with each other and ArcGIS reference points. How close/far are they from one another? You can use the measure tool to add values to this visual assessment. When you are comparing the observed values to each other, you are assessing precision, when you are comparing them to the "True" locations, you are assessing accuracy.
+**Step 1:** After you have finished collecting your GNSS sample points with ArcGIS Field Maps, return to your ArcGIS Pro project on your computer. From the top navigation ribbon, select "Map", then "Add Data", and in the window that appears expand "Portal" and then "My content" on the left navigation panel. This will display all of your content that is stored on the UBC ArcGIS Online portal. Find and select "YOURNAME_GNSS_points Feature Layer (Hosted)" and then click "OK" to add it to your map.
 
-**Step 2:** Quantitatively determine the accuracy of the points. Add two columns in the Observed attribute table and populate them with the east and north values for each point. You should have the True values from your reference point attribute table. Export both tables and bring them into excel.
+You should see a new layer appear in the contents pane of your map. It might not be apparent, but if you click the little triangle to the left of the layer name, it will expand and show you the layer. Right-click the nested layer to open the attribute table. You should now see your first glimpse of all of the GNSS metadata that was collected when you created your sample points in the field. Depending on the device that you used, some of the fields may be empty, which is OK!
 
-Calculate the horizontal accuracy for each placemark using the following equation:
+**Step 2:** Add two fields to your "YOURNAME_GNSS_points" called "Northing" and "Easting" and set the data type to float. Calculate the Northings and Eastings for the 10 points you collected. Refer to Task 1 for how to do this. Now add two more fields to "YOURNAME_GNSS_points", "Northing_error" and "Easting_error", and set the data type to float.
 
-$\sigma_{H_{acc}} = \sqrt{(\overline{E} - E_{true})^2 + (\overline{N} - N_{true})^2}$
+**Step 3:** Inspect the attribute table for "YOURNAME_refpoints" and copy the Northing and Easting values for your reference point. This is the "true" value that we are going to use to calculate the errors. Open the attribute table for "YOURNAME_GNSS_points", right-click the field named "Easting_error" and calculate the difference (error) between the "true" Easting value that you copied down and each of the 10 points that you collected. You should use an expression like `Easting - YOUR_TRUE_VALUE_HERE`. Repeat this process for "Northing_error".
 
-Excel is a convenient place to use this equation. Breaking down the equation – get the mean observed East value, then subtract the "True" East value. Square this difference. Do the same for North. Add the north and east results, then take the square root of them. In excel, you can do this with the equation:
+```{r 02-arcgis-online-calculate-error, out.width= "75%", echo = FALSE}
+  knitr::include_graphics("images/02-arcgis-online-calculate-error.png")
+```
 
-`=SQRT((average(observed east values)-true east value)^2+((average(observed north values)-true north value)^2))`
+##### Table 1. Submit a table that shows the Northing and Easting errors for each of your 10 sample points. (20 points) {.unnumbered}
 
-The resulting value represents how accurate the GNSS measurements were – a lower value represents greater accuracy. Is there a noticeable difference in accuracy between your placemarks? Why do you think this is?
+Calculate the Euclidean distance horizontal accuracy for the average of your 10 sample points using the following equation:
+
+$H_{accuracy} = \sqrt{(\overline{E} - E_{true})^2 + (\overline{N} - N_{true})^2}$
+
+First, calculate the mean observed Easting value, then subtract the "True" East value. Square this difference. Do the same for Northing. Then add the two and take the square root of the sum. The resulting value represents how far (in meters) the GNSS measurements were in the x-y plane, a lower value represents greater accuracy.
+
+##### Q4. Report your calculated horizontal accuracy and show your work. (4 points) {.unnumbered}
 
 To assess the precision, you will use the following equation:
 
-$\sigma_{H_{pre} = \sqrt{\sigma^2_E + \sigma^2_N}}$
+$H_{precision} = \sqrt{\sigma^2_E + \sigma^2_N}$
 
-Calculate the standard deviation of the observed East and North values, square them, then add them and take the square root of the sum. In excel, you can do this with the equation:
+Calculate the standard deviation of the observed Easting and Northing ***errors***, square them, then add them and take the square root of the sum. The resulting value represents how precise the GNSS measurements were, a lower value represents greater precision.
 
-`=SQRT((STDEV(observed east values)^2 + STDEV(observed values)^2))`
+##### Q5. Report your calculated horizontal precision and show your work. (4 points) {.unnumbered}
 
-The resulting value represents how precise the GNSS measurements were – a lower value represents greater accuracy. Is there a noticeable difference in precision between your placemarks? Why do you think this is?
+Finally, we will assess the ellipsoidal height. We do not have a reference "true" value for this, so just find the "Ellipsoidal Height (m)" field in the attribute table of your "YOURNAME_GNSS_points" and calculate the average and standard deviation.
 
-##### Table 1. Submit a table that shows the accuracy and precision calculated values for each point. (10 points) {.unnumbered}
+##### Q6. Report the mean and standard deviation of the ellispoidal height from your sample points. (2 points) {.unnumbered}
 
-##### Q4. Interpret the map and table. (5 points) {.unnumbered}
-
-##### Q5. Discuss the potential errors in your data collection and describe what may have affected accuracy and precision. Integrate your site observations with the information from the Trimble GNSS Planning tool. Finally, reflect on the validity of the "True" points that you derived from the basemap imagery. (25 points) {.unnumbered}
+##### Q7. Discuss the potential errors in your data collection and describe what may have affected accuracy and precision. Was one direction (i.e., Easting versus Northing) more prone to error than another? How did the horizontal percision compare to the vertical precision? Integrate your site observations with the information from the Trimble GNSS Planning tool. Reflect on the validity of the "true" reference point that you derived from the basemap imagery. (40 points) {.unnumbered}
 
 ------------------------------------------------------------------------
 
 ## Summary {.unnumbered}
 
-In this lab, you learned how to plan, collect, and process GNSS data using a combination of ArcGIS Pro, Trimble GNSS Planning tools, and the Avenza Maps mobile application. Planning is a critical part of the GNSS collection process for both safety concerns and also to acquire the best satellite signals. Using the Trimble Planning Tool, you evaluated satellite availability, DOPs, and ionospheric conditions to select an ideal collection time. In the field, you practiced recording GNSS coordinates at reference points with Avenza Maps, producing multiple observations to assess variability. Back in the lab, you compared these "observed" values with the ArcGIS "true" reference points to calculate both precision and accuracy. This exercise highlighted the limitations of phone-based GNSS receivers, the effects of environmental conditions on data quality, and the importance of systematic planning and error assessment in field data collection. Overall, this lab showed you not only the technical workflow for GNSS data collection and analysis but also how to critically evaluate results by integrating field observations with planning tools and quantitative measures of accuracy and precision.
+In this lab, you learned how to plan, collect, and process GNSS data using a combination of ArcGIS Pro, Trimble GNSS Planning tools, and the ArcGIS Field Maps mobile application. Planning is a critical part of the GNSS collection process for both safety concerns and also to acquire the best satellite signals. Using the Trimble Planning Tool, you evaluated satellite availability, DOPs, and ionospheric conditions to select an ideal collection time. In the field, you practiced recording GNSS coordinates at reference points with ArcGIS Field Maps, producing multiple observations to assess variability. Back in the lab, you compared these sampled values with the ArcGIS "true" reference points to calculate both precision and accuracy. This exercise highlighted the limitations of phone-based GNSS receivers, the effects of environmental conditions on data quality, and the importance of systematic planning and error assessment in field data collection. Overall, this lab showed you not only the technical workflow for GNSS data collection and analysis but also how to critically evaluate results by integrating field observations with planning tools and quantitative measures of accuracy and precision.
 
 Return to the [**Deliverables**](#lab2-deliverables) section to check off everything you need to submit for credit in the course management system.
