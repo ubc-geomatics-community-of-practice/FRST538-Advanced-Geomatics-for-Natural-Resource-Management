@@ -226,7 +226,7 @@ knitr::include_graphics("images/01-arcgis-layer-properties.png")
 
 The extent represents the extreme spatial limits of the dataset, as if you drew a rectangle around all the features, what we call a bounding box. In the image above, the units of the extent for the buildings on UBC Vancouver campus are given in decimal degrees ("deg"). Below that, we see the CRS for these data is WGS 1984, a geographic coordinate system. In other words, these data are mapped purely in latitude/longitude values and are not projected. Remember that the CRS of our data can be different than the CRS of our ArcGIS Pro Map.
 
-##### Q7. What is the CRS and extent for each of your three datasets? Paste the values from ArcGIS Pro and be sure to indicate which value cooresponds to which dataset. (15 points) {.unnumbered}
+##### Q7. What is the CRS and extent for each of your three datasets? Paste the values from ArcGIS Pro and be sure to indicate which value corresponds to which dataset. (15 points) {.unnumbered}
 
 Close the layer properties.
 
