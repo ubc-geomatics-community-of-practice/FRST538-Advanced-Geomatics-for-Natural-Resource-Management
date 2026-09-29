@@ -55,7 +55,15 @@ knitr::include_graphics("images/01-arcgis-project-folder.png")
 
 Take note of your project location because this is where you will be saving the spatial data files that you download so that you can view them in ArcGIS Pro.
 
-In ArcGIS Pro, you should take note of four areas: - The map in the middle; this is where your spatial layers will be mapped, right now you are looking at the default basemap. - The navigation ribbon at the top (Project, Map, Insert, Analysis, View, Edit, Imagery, Share, Help); this is where you can add data and find tools. - The "Contents" pane on the left; this is like a table of contents where your spatial data layers will be listed in the "top-down" that they are drawn/appear on the map. - The "Catalog" pane on the right; this lists sources for data and if you expand "Databases", you will see your default geodatabase listed there that has the same name as your project.
+In ArcGIS Pro, you should take note of four areas:
+
+-   The map in the middle; this is where your spatial layers will be mapped, right now you are looking at the default basemap.
+
+-   The navigation ribbon at the top (Project, Map, Insert, Analysis, View, Edit, Imagery, Share, Help); this is where you can add data and find tools.
+
+-   The "Contents" pane on the left; this is like a table of contents where your spatial data layers will be listed in the "top-down" that they are drawn/appear on the map.
+
+-   The "Catalog" pane on the right; this lists sources for data and if you expand "Databases", you will see your default geodatabase listed there that has the same name as your project.
 
 ```{r 01-arcgis-panes, echo=FALSE, fig.align = "center", out.width = "100%"}
 knitr::include_graphics("images/01-arcgis-panes.png")
