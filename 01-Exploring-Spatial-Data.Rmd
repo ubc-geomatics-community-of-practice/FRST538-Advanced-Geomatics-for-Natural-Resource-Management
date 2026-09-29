@@ -25,6 +25,8 @@ In this lab you will learn how to find, evaluate, and visualize vector spatial d
 -   Examine attribute tables to understand data content, codes, and field data types
 -   Create a simple map that visualizes multiple vector spatial datasets
 
+------------------------------------------------------------------------
+
 ## Deliverables {#lab1-deliverables .unnumbered}
 
 <input type="checkbox" unchecked> Responses to the questions posed throughout the lab on the course management system. (75 points)</input>
