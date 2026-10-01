@@ -23,7 +23,7 @@
 <meta name="author" content="Paul D. Pickell" />
 
 
-<meta name="date" content="2026-09-29" />
+<meta name="date" content="2026-10-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -306,9 +306,9 @@ Sadie Russell</p>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Vegetation Resource Inventory 2025</td>
+<td>Vegetation Resource Inventory 2024</td>
 <td><code>vancouver_island_vri</code></td>
-<td><a href="https://catalogue.data.gov.bc.ca/dataset/vri-2025-forest-vegetation-composite-layer-1-l1-" class="uri">https://catalogue.data.gov.bc.ca/dataset/vri-2025-forest-vegetation-composite-layer-1-l1-</a></td>
+<td><a href="https://catalogue.data.gov.bc.ca/dataset/vri-historical-vegetation-resource-inventory-2002-2024-" class="uri">https://catalogue.data.gov.bc.ca/dataset/vri-historical-vegetation-resource-inventory-2002-2024-</a></td>
 </tr>
 <tr class="even">
 <td>Land Designations for Forest Management</td>
@@ -316,7 +316,7 @@ Sadie Russell</p>
 <td><a href="https://catalogue.data.gov.bc.ca/dataset/4574f131-470e-407c-bbcc-5b19d9adcc1b" class="uri">https://catalogue.data.gov.bc.ca/dataset/4574f131-470e-407c-bbcc-5b19d9adcc1b</a></td>
 </tr>
 <tr class="odd">
-<td>Human Disturbance – 2025</td>
+<td>Human Disturbance – 2024</td>
 <td><code>vancouver_island_human_disturbance</code></td>
 <td><a href="https://catalogue.data.gov.bc.ca/dataset/human-disturbance-2025" class="uri">https://catalogue.data.gov.bc.ca/dataset/human-disturbance-2025</a></td>
 </tr>
@@ -338,20 +338,20 @@ Sadie Russell</p>
 <p>You can name it “UBC PostgreSQL Server” and for the host enter “FRST-GIS.ead.ubc.ca”. The username and password will be provided to students enrolled in the course and it is not your CWL. Once you have correctly entered the correct credentials, ArcGIS Pro will do a “soft” connection to the server to retrieve the available databases. From the “Database” drop-down menu, select “vri” and then click “OK”.</p>
 <p><img src="images/03-arcgispro-postgres-connection-2.png" width="75%" /></p>
 <p>The database connection has now been added to your ArcGIS Pro project, and you can view the tables inside the database from the Catalog Pane (open the “View” tab, open the “Catalog Pane”, expand “Databases”, expand “PostgreSQL-FRST-GIS-vri(student)”, and view the tables in the <code>vri</code> database). You can drag and drop any of the layers of the database directly into your map to visualize them if you want. Though be aware that these are large layers and they may take a while to draw on your map. We do not actually need all of these data, so instead, we are going to use the power of SQL (Structured Query Language) to write a query that will return to us the tiny fraction that we need to use for this lab. First, let us break down what a generic SQL SELECT query looks like:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="cartographic-modelling-with-forest-inventories.html#cb1-1" tabindex="-1"></a><span class="kw">SELECT</span> feature_id, site_index, species_cd_1, species_pct_1, geom</span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="cartographic-modelling-with-forest-inventories.html#cb1-1" tabindex="-1"></a><span class="kw">SELECT</span> gid, site_index, species_cd_1, species_pct_1, geom</span>
 <span id="cb1-2"><a href="cartographic-modelling-with-forest-inventories.html#cb1-2" tabindex="-1"></a><span class="kw">FROM</span> vancouver_island_vri</span>
 <span id="cb1-3"><a href="cartographic-modelling-with-forest-inventories.html#cb1-3" tabindex="-1"></a><span class="kw">WHERE</span> bec_zone_code <span class="op">=</span> <span class="st">&#39;CWH&#39;</span>;</span></code></pre></div>
 <p>The <code>SELECT</code> keyword is the most common database operation and the only one that we will use for this lab, but understand that there are keywords for other tasks in the database like creating tables, inserting data, updating data, and deleting data, to name a few. By convention, SQL keywords are capitalized, but most software including ArcGIS Pro do not require this.</p>
-<p>What follows the <code>SELECT</code> keyword is a comma-separated list of column names that we want to retrieve from the table, <code>feature_id, site_index, species_cd_1, species_pct_1, geom</code>. You could also replace these with <code>*</code> to return all of the column names and this is generally the default behavior across ArcGIS Pro, so for most tasks in ArcGIS Pro you generally will not need to specify any column names when writing a SQL query.</p>
+<p>What follows the <code>SELECT</code> keyword is a comma-separated list of column names that we want to retrieve from the table, <code>gid, site_index, species_cd_1, species_pct_1, geom</code>. You could also replace these with <code>*</code> to return all of the column names and this is generally the default behavior across ArcGIS Pro, so for most tasks in ArcGIS Pro you generally will not need to specify any column names when writing a SQL query.</p>
 <ul>
-<li><p><code>feature_id</code> is the primary key of the VRI table, this uniquely identifies all of the polygons from each other. When we select any subset of a table, we always want to grab the primary key because this allows us to keep track of which polygon we are dealing with from the originating table.</p></li>
+<li><p><code>gid</code> is the primary key of the VRI table, this uniquely identifies all of the polygons from each other. When we select any subset of a table, we always want to grab the primary key because this allows us to keep track of which polygon we are dealing with from the originating table.</p></li>
 <li><p><code>site_index</code> is the estimate of site productivity for tree growth for the polygon; the values are recorded as decimal numbers.</p></li>
 <li><p><code>species_cd_1</code> is the leading tree species code for the polygon; the values are recorded as text strings.</p></li>
 <li><p><code>species_pct_1</code> is the percentage of the polygon occupied by the leading species represented by the <code>species_cd_1</code>; the values are recorded as integers. Note that “occupy” here is defined differently, depending on whether the stand is young or mature.</p></li>
 <li><p><code>geom</code> is the geometry column, which is where the coordinates of the polygons are actually stored. We need this column if we want to map the results of our query.</p></li>
 </ul>
 <p>There are 190 other attributes (columns) in the VRI table for each polygon, so this is just a small subset. You should review the <a href="/data/standards/vegcomp_poly_rank1_data_dictionaryv5_2019.pdf">VRI Relational Data Dictionary</a> if you have any doubts about what a particular field refers to.</p>
-<p>Next, the statement describes the table name in the database that these columns are being selected from, <code>FROM veg_comp_lyr_r1_poly_2025</code>.</p>
+<p>Next, the statement describes the table name in the database that these columns are being selected from, <code>FROM veg_comp_lyr_r1_poly_2024</code>.</p>
 <p>The <code>WHERE bec_zone_code = 'CWH'</code> clause is a conditional statement, which limits the rows (features) returned from the originating table. Note here that we can refer to any column names from the originating table, even if they do not appear in the list of column names that we want to return, as long as they exist in the originating table. Finally, all SQL queries are always concluded with a semicolon <code>;</code>.</p>
 <p>You should think of <code>SELECT</code> as <em>subsetting columns of a table</em> (along the x-axis) and <code>WHERE</code> as <em>subsetting rows of a table</em> (along the y-axis). When used together, we are reducing both dimensions of the originating table simultaneously, which substantially reduces the total data that we are retrieving. We will use this principle and expand the SQL statement above in the next step in order to retrieve only the tiny fraction of the VRI data that we need.</p>
 <p><strong>Step 4:</strong> From the top ribbon in ArcGIS Pro, navigate to the “Map” tab, then click the down arrow under “Add Data” and select “Query Layer…” from the drop-down menu. In the “New Query Layer” dialogue window that appears, click the “Datasource” drop-down menu at the top and you should see the UBC PostgreSQL server connection to the <code>vri</code> database listed there that you added at the beginning of this task. It should look something like “PostgreSQL-FRST-GIS-vri(student).sde”.</p>
@@ -362,9 +362,9 @@ Sadie Russell</p>
 <div id="q1.-what-does-for_mgmt_land_base_ind-select-for-what-parameters-are-required-to-receive-a-yes-value-hint-take-a-look-at-the-vri-relational-data-dictionary.-10-points" class="section level5 unnumbered hasAnchor">
 <h5>Q1. What does for_mgmt_land_base_ind select for? What parameters are required to receive a “Yes” value? Hint: take a look at the VRI Relational Data Dictionary. (10 points)<a href="cartographic-modelling-with-forest-inventories.html#q1.-what-does-for_mgmt_land_base_ind-select-for-what-parameters-are-required-to-receive-a-yes-value-hint-take-a-look-at-the-vri-relational-data-dictionary.-10-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p><strong>Pro tip:</strong> When a column value stores a text string, we use single quotation marks in SQL <code>'abc'</code> around the values that we are searching for; double quotation marks <code>"abc"</code> will fail for a SQL query.</p>
-<p><strong>Step 6:</strong> Using what you just learned, draft a select statement that limits the VRI polygons to only managed forests and return only the column names <code>feature_id</code>, <code>bec_zone_code</code>, <code>bec_subzone</code>, <code>proj_age_1</code>, and <code>geom</code>. Press the “Validate” button on the bottom of the dialogue window. If the statement validates successfully, then the “Next” button will allow you to proceed.</p>
+<p><strong>Step 6:</strong> Using what you just learned, draft a select statement that limits the VRI polygons to only managed forests and return only the column names <code>gid</code>, <code>bec_zone_code</code>, <code>bec_subzone</code>, <code>proj_age_1</code>, and <code>geom</code>. Press the “Validate” button on the bottom of the dialogue window. If the statement validates successfully, then the “Next” button will allow you to proceed.</p>
 <p><strong>Pro tip:</strong> If you are working from a laptop, be sure to plug into your power source as your computer power options may significantly slow down your ArcGIS Pro performance to conserve battery.</p>
-<p><strong>Step 7:</strong> In the next dialogue, toggle <code>feature_id</code> as the field that uniquely identifies all features in the table, “Unique Identifier Field(s)” (i.e., the primary key), leave the other fields toggled off. Once you click “Finish”, your select statement will be applied and sent to the server. You will see a small dialogue window that indicates that the extent is being calculated, and this should take about 3-5 minutes before you will see a layer appear in your Table of Contents. Read on to understand the next steps while the server processes your query.</p>
+<p><strong>Step 7:</strong> In the next dialogue, toggle <code>gid</code> as the field that uniquely identifies all features in the table, “Unique Identifier Field(s)” (i.e., the primary key), leave the other fields toggled off. Once you click “Finish”, your select statement will be applied and sent to the server. You will see a small dialogue window that indicates that the extent is being calculated, and this should take about 3-5 minutes before you will see a layer appear in your Table of Contents. Read on to understand the next steps while the server processes your query.</p>
 <p><strong>Pro tip:</strong> It will take another 3-5 minutes before you will see any polygons drawn on your map. You can speed some steps up if you “Pause” the map drawing mode by pressing the pause button at the very bottom of your map. In general, try to keep large layers toggled off so that they are not drawing in the background.</p>
 <p>Save your ArcGIS Pro project now.</p>
 <p>Our goal here is not necessarily to visualize the results, though you should see you map automatically pan to Vancouver Island. You can toggle the layer off and visualize it later. If you open the attribute table, you should see the five columns we requested and there should be 250,000+ polygons. (Click the “Load All” button at the bottom of the attribute table to verify, which will take some additional time).</p>
@@ -652,7 +652,7 @@ Sadie Russell</p>
 <p>British Columbia &amp; BC Environment (Eds.). (1995). <em>Biodiversity guidebook</em>. Forest Service, British Columbia: BC Environment.</p>
 <p>Canadian Institute of Forestry (2022). <em>Old Growth Information bulletin</em>. March, 2022</p>
 <p>CBC. (2022, February 11). Fairy Creek protesters bid to have charges stayed. <em>CBC News</em>. <a href="https://www.cbc.ca/news/canada/british-columbia/protest-court-proceedings-1.6348014" class="uri">https://www.cbc.ca/news/canada/british-columbia/protest-court-proceedings-1.6348014</a></p>
-<p>Forest Analysis and Inventory Branch (2025). VRI - 2025 - Forest Vegetation Composite Rank 1 Layer (R1). British Columbia Data Catalogue.</p>
+<p>Forest Analysis and Inventory Branch (2024). VRI - 2024 - Forest Vegetation Composite Rank 1 Layer (R1). British Columbia Data Catalogue.</p>
 <p>LePage, P., &amp; Banner, A. (2014). Long-term recovery of forest structure and composition after harvesting in the coastal temperate rainforests of northern British Columbia. <em>Forest Ecology and Management</em>, <em>318</em>, 250–260. <a href="https://doi.org/10.1016/j.foreco.2014.01.031">doi.org/10.1016/j.foreco.2014.01.031</a></p>
 <p>Ministry of Water, Land and Resource Stewardship (WLRS). (2024). Old Growth Forests in British Columbia: Cumulative Effects Assessment Backgrounder. Victoria, British Columbia.</p>
 <p>Ministry of Water, Land and Resource Stewardship. 2024. Old Growth Forest Management in British Columbia: Provincial Backgrounder. Victoria, British Columbia.</p>
