@@ -23,7 +23,7 @@
 <meta name="author" content="Paul D. Pickell" />
 
 
-<meta name="date" content="2026-10-01" />
+<meta name="date" content="2026-10-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -350,7 +350,7 @@ Sadie Russell</p>
 <li><p><code>species_pct_1</code> is the percentage of the polygon occupied by the leading species represented by the <code>species_cd_1</code>; the values are recorded as integers. Note that “occupy” here is defined differently, depending on whether the stand is young or mature.</p></li>
 <li><p><code>geom</code> is the geometry column, which is where the coordinates of the polygons are actually stored. We need this column if we want to map the results of our query.</p></li>
 </ul>
-<p>There are 190 other attributes (columns) in the VRI table for each polygon, so this is just a small subset. You should review the <a href="/data/standards/vegcomp_poly_rank1_data_dictionaryv5_2019.pdf">VRI Relational Data Dictionary</a> if you have any doubts about what a particular field refers to.</p>
+<p>There are 190 other attributes (columns) in the VRI table for each polygon, so this is just a small subset. You should review the <a href="/data/vegcomp_poly_rank1_data_dictionaryv5_2019.pdf">VRI Relational Data Dictionary</a> if you have any doubts about what a particular field refers to.</p>
 <p>Next, the statement describes the table name in the database that these columns are being selected from, <code>FROM veg_comp_lyr_r1_poly_2024</code>.</p>
 <p>The <code>WHERE bec_zone_code = 'CWH'</code> clause is a conditional statement, which limits the rows (features) returned from the originating table. Note here that we can refer to any column names from the originating table, even if they do not appear in the list of column names that we want to return, as long as they exist in the originating table. Finally, all SQL queries are always concluded with a semicolon <code>;</code>.</p>
 <p>You should think of <code>SELECT</code> as <em>subsetting columns of a table</em> (along the x-axis) and <code>WHERE</code> as <em>subsetting rows of a table</em> (along the y-axis). When used together, we are reducing both dimensions of the originating table simultaneously, which substantially reduces the total data that we are retrieving. We will use this principle and expand the SQL statement above in the next step in order to retrieve only the tiny fraction of the VRI data that we need.</p>
@@ -377,7 +377,6 @@ Sadie Russell</p>
 <p>The cumulative effects framework only considers forests located on crown land. Next, we will use the forest ownership layer “vancouver_island_own” to select for land ownership types. The <code>ownership_description</code> field describes whether the polygon is private or crown land in a text format. There are lots of different types of crown ownership categories, but for our purpose we need all of them. To do this quickly, we can use <code>LIKE</code>, which is a pattern-matching operator for strings. We need to use the <code>%</code> wildcard to partially-match some pattern. For example, we can search for any row in “vancouver_island_own” with a description of “Crown” using the following statement: <code>SELECT * FROM vancouver_island_own WHERE ownership_description LIKE 'Crown%'</code>. Basically <code>%</code> is a wildcard for zero or more characters, so when we construct the pattern <code>'Crown%'</code>, we are saying <em>match any string that starts with “Crown” and has any number of characters after it</em>.</p>
 <p><strong>Step 10:</strong> Open the attribute table of “vancouver_island_own” by right-clicking the layer in the contents pane. Then click the “Select by Attributes” button then toggle the SQL Editor button to show the SQL codeblock. Write a query to select all the polygons that are crown land as described in the previous step. Note that in this particular interface, you only need to give the conditions for selection, so you can omit <code>SELECT * FROM table WHERE</code>. Export the features to your ArcGIS Pro project geodatabase as you did with the the vancouver_island_vri_select, naming the new layer “crown_land” and ensuring that “Use the selected records” is toggled on.</p>
 <p><img src="images/03-select-by-attributes.png" width="75%" /></p>
-<p>You can read more about the CEF human disturbance layer and methodology here: <a href="https://catalogue.data.gov.bc.ca/dataset/bc-cumulative-effects-framework-human-disturbance-current" class="uri">https://catalogue.data.gov.bc.ca/dataset/bc-cumulative-effects-framework-human-disturbance-current</a></p>
 <p><strong>Step 11:</strong> Next, we will select the areas where crown land overlaps with potentially forested areas.</p>
 <p>Use the <strong>Pairwise Intersect tool</strong>. You can search for it by clicking the toolbox on the top ribbon (open the “Analysis” tab, then click “Tools”).</p>
 <ul>

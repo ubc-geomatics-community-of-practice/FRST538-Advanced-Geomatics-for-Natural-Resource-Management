@@ -105,7 +105,7 @@ What follows the `SELECT` keyword is a comma-separated list of column names that
 
 -   `geom` is the geometry column, which is where the coordinates of the polygons are actually stored. We need this column if we want to map the results of our query.
 
-There are 190 other attributes (columns) in the VRI table for each polygon, so this is just a small subset. You should review the [VRI Relational Data Dictionary](/data/standards/vegcomp_poly_rank1_data_dictionaryv5_2019.pdf) if you have any doubts about what a particular field refers to.
+There are 190 other attributes (columns) in the VRI table for each polygon, so this is just a small subset. You should review the [VRI Relational Data Dictionary](/data/vegcomp_poly_rank1_data_dictionaryv5_2019.pdf) if you have any doubts about what a particular field refers to.
 
 Next, the statement describes the table name in the database that these columns are being selected from, `FROM veg_comp_lyr_r1_poly_2024`.
 
@@ -160,8 +160,6 @@ The cumulative effects framework only considers forests located on crown land. N
 ```{r 03-select-by-attributes, out.width= "75%", echo = FALSE}
     knitr::include_graphics("images/03-select-by-attributes.png")
 ```
-
-You can read more about the CEF human disturbance layer and methodology here: <https://catalogue.data.gov.bc.ca/dataset/bc-cumulative-effects-framework-human-disturbance-current>
 
 **Step 11:** Next, we will select the areas where crown land overlaps with potentially forested areas.
 
