@@ -240,9 +240,9 @@ Calculate the standard deviation of the observed Easting and Northing ***errors*
 
 Finally, we will assess the ellipsoidal height. We do not have a reference "true" value for this, so just find the "Ellipsoidal Height (m)" field in the attribute table of your "YOURNAME_GNSS_points" and calculate the average and standard deviation.
 
-##### Q6. Report the mean and standard deviation of the ellispoidal height from your sample points. (2 points) {.unnumbered}
+##### Q6. Report the mean and standard deviation of the ellipsoidal height from your sample points. (2 points) {.unnumbered}
 
-##### Q7. Discuss the potential errors in your data collection and describe what may have affected accuracy and precision. Was one direction (i.e., Easting versus Northing) more prone to error than another? How did the horizontal percision compare to the vertical precision? Integrate your site observations with the information from the Trimble GNSS Planning tool. Reflect on the validity of the "true" reference point that you derived from the basemap imagery. (40 points) {.unnumbered}
+##### Q7. Discuss the potential errors in your data collection and describe what may have affected accuracy and precision. Was one direction (i.e., Easting versus Northing) more prone to error than another? How did the horizontal precision compare to the vertical precision? Integrate your site observations with the information from the Trimble GNSS Planning tool. Reflect on the validity of the "true" reference point that you derived from the basemap imagery. (40 points) {.unnumbered}
 
 ------------------------------------------------------------------------
 
