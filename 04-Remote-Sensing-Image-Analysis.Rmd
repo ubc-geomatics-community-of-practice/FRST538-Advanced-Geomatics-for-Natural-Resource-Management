@@ -215,7 +215,7 @@ Note that these band number combinations (4-3-2) for true colour imagery are par
     kable(df, align = 'c')
 ```
 
-In a true colour image, the computer screen visualizes objects the way we see them with our own eyes. In other words, in a true colour image, Landsat Band 2 (Blue – 480 nm) is displayed as blue, Band 3 (Green – 560 nm) is displayed as green, and band 3 (Red – 660 nm) is displayed as red. The mixing of these three primary colours in different intensities (i.e., reflection) produces all of the other colours that we can see.
+In a true colour image, the computer screen visualizes objects the way we see them with our own eyes. In other words, in a true colour image, Landsat 9 OLI Band 2 (Blue – 480 nm) is displayed as blue, Band 3 (Green – 560 nm) is displayed as green, and band 4 (Red – 660 nm) is displayed as red. The mixing of these three primary colours in different intensities (i.e., reflection) produces all of the other colours that we can see.
 
 Recall that each of these band images is just a grey scale image where the brightness of a pixel corresponds to the amount of reflectance that the surface returns to the sensor in that band of the spectrum. The "brightness" of any pixel is recorded using a **digital number**, higher digital numbers are brighter and digital numbers exactly equal to zero are black (i.e., no reflectance). If you look at the grey scale images in the Contents pane of your map (scroll up to the first screenshot in this Task), you will see that each band image has a different range of digital numbers. When we composited these bands together into an RGB image, we still have the same data (digital numbers), but now for every pixel we have three digital numbers (RGB) to display instead of one (single band).
 
