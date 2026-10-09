@@ -23,7 +23,7 @@
 <meta name="author" content="Paul D. Pickell" />
 
 
-<meta name="date" content="2026-10-08" />
+<meta name="date" content="2026-10-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -261,7 +261,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Paul D. Pickell</p>
 <div id="lab-overview-3" class="section level2 unnumbered hasAnchor">
 <h2>Lab Overview<a href="remote-sensing-image-analysis.html#lab-overview-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The aim of this lab is to learn about the electromagnetic spectrum (EMS), understand spectral properties of different surfaces, and get comfortable using ArcGIS Pro to load and explore different types of remotely sensed images, display individual spectral bands, make different colour composites, and view spectral signatures. In addition, you will calculate two difference spectral indices representing built up areas and green vegetation.</p>
+<p>The aim of this lab is to learn about the electromagnetic spectrum (EMS), understand spectral properties of different surfaces, and get comfortable using ArcGIS Pro to load and explore different types of remotely sensed images, display individual spectral bands, make different colour composites, and view spectral signatures. In addition, you will calculate two different spectral indices representing built up areas and green vegetation.</p>
 <hr />
 <div id="learning-objectives-3" class="section level3 unnumbered hasAnchor">
 <h3>Learning Objectives<a href="remote-sensing-image-analysis.html#learning-objectives-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -276,15 +276,15 @@ Paul D. Pickell</p>
 <div id="lab4-deliverables" class="section level3 unnumbered hasAnchor">
 <h3>Deliverables<a href="remote-sensing-image-analysis.html#lab4-deliverables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><input type="checkbox" unchecked> Answers to the questions posed throughout the lab. (31 points)</input></p>
-<p><input type="checkbox" unchecked> Screenshot of your spectral plot. (2 points)</input></p>
-<p><input type="checkbox" unchecked> Screenshot of you band arithmetic equation for NDVI. (2 points)</input></p>
+<p><input type="checkbox" unchecked> Screenshot showing your spectral plot. (2 points)</input></p>
+<p><input type="checkbox" unchecked> Screenshot showing your NDVI image with the diverging colour palette applied. (2 points)</input></p>
 <p><input type="checkbox" unchecked> Four screenshots of your false-colour composites. (40 points)</input></p>
 <p><input type="checkbox" unchecked> Map that shows your High_Vegetation_Areas and Urban_area layers overtop the provided Landsat Imagery. Pick appropriate colours and transparency for each layer. (25 points)</input></p>
 <hr />
 </div>
 <div id="data-2" class="section level3 unnumbered hasAnchor">
 <h3>Data<a href="remote-sensing-image-analysis.html#data-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>We will be working with a multispectral image of Vancouver from the Landsat 9 satellite that is available to download from the course management system or you download it yourself from <a href="https://earthexplorer.usgs.gov/">EarthExplorer</a> using the scene id: LC09_L2SP_047026_20260807_20260808_02_T1. This is a <a href="https://www.usgs.gov/centers/eros/science/usgs-eros-archive-landsat-archives-landsat-8-9-olitirs-collection-2-level-2">Collection 2, Level 2 Science Product</a>, which means that the provider has already processed the raw satellite imagery and corrected for atmospheric effects.</p>
+<p>We will be working with a multispectral image of Vancouver from the Landsat 9 satellite that is available to download from the course management system or you can download it yourself from <a href="https://earthexplorer.usgs.gov/">EarthExplorer</a> using the scene id: LC09_L2SP_047026_20260807_20260808_02_T1. This is a <a href="https://www.usgs.gov/centers/eros/science/usgs-eros-archive-landsat-archives-landsat-8-9-olitirs-collection-2-level-2">Collection 2, Level 2 Science Product</a>, which means that the provider has already processed the raw satellite imagery and corrected for atmospheric effects.</p>
 <hr />
 </div>
 </div>
@@ -293,14 +293,14 @@ Paul D. Pickell</p>
 <p>The electromagnetic spectrum (EMS) is the distribution of electromagnetic radiation according to wavelength/frequency, and includes radio waves, visible and infrared light, x-rays, gamma rays, and more. In remote sensing, we use the reflective, absorptive, and emissive properties of terrestrial features to identify and measure them (i.e., how do different wavelengths in the EMS interact with the surface of the Earth?).</p>
 <p>Note: It is important to recognize that the visible part of the EMS is the only section that humans can see. All colours in the visible spectrum are wavelengths, but not all wavelengths in the EMS are colours.</p>
 <p><strong>Spectral Reflectance</strong></p>
-<p>Figure 1 shows the reflective characteristics of various features of the earth’s surface. Use this figure to answer <strong>Q1 – Q4.</strong></p>
+<p>Figure 1 shows the reflective characteristics of various features of the Earth’s surface. Use this figure to answer <strong>Q1 – Q4.</strong></p>
 <p><img src="images/04-em.png" width="60%" /></p>
 <p>Figure 1: Reflectance characteristics of various features at different wavelengths.</p>
 <div id="q1.-for-broadleaf-and-needle-leaf-vegetation-what-is-the-approximate-wavelength-that-is-reflected-most-and-what-section-of-the-ems-does-this-range-belong-to-1-point" class="section level5 unnumbered hasAnchor">
-<h5>Q1. For broadleaf and needle-leaf vegetation, what is the approximate wavelength that is reflected most, and what section of the ems does this range belong to? (1 point)<a href="remote-sensing-image-analysis.html#q1.-for-broadleaf-and-needle-leaf-vegetation-what-is-the-approximate-wavelength-that-is-reflected-most-and-what-section-of-the-ems-does-this-range-belong-to-1-point" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<h5>Q1. For broadleaf and needle-leaf vegetation, what is the approximate wavelength that is reflected most, and what section of the EMS does this range belong to? (1 point)<a href="remote-sensing-image-analysis.html#q1.-for-broadleaf-and-needle-leaf-vegetation-what-is-the-approximate-wavelength-that-is-reflected-most-and-what-section-of-the-ems-does-this-range-belong-to-1-point" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 </div>
-<div id="q2.-soil-and-vegetation-reflect-roughly-the-same-proportion-of-blue-light.-1-point" class="section level5 unnumbered hasAnchor">
-<h5>Q2. Soil and vegetation reflect roughly the same proportion of blue light. (1 point)<a href="remote-sensing-image-analysis.html#q2.-soil-and-vegetation-reflect-roughly-the-same-proportion-of-blue-light.-1-point" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div id="q2.-true-or-false-soil-and-vegetation-reflect-roughly-the-same-proportion-of-blue-light.-1-point" class="section level5 unnumbered hasAnchor">
+<h5>Q2. True or False: Soil and vegetation reflect roughly the same proportion of blue light. (1 point)<a href="remote-sensing-image-analysis.html#q2.-true-or-false-soil-and-vegetation-reflect-roughly-the-same-proportion-of-blue-light.-1-point" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 </div>
 <div id="q3.-give-a-wavelength-in-microns-at-which-snow-and-ice-dry-soil-and-vegetation-are-indistinguishable-by-their-reflectance.-in-other-words-at-which-wavelength-is-the-proportion-of-radiation-reflected-the-same---10-for-these-features-1-point" class="section level5 unnumbered hasAnchor">
 <h5>Q3. Give a wavelength (in microns) at which snow and ice, dry soil, and vegetation are indistinguishable by their reflectance. In other words, at which wavelength is the proportion of radiation reflected the same (+/- 10%) for these features? (1 point)<a href="remote-sensing-image-analysis.html#q3.-give-a-wavelength-in-microns-at-which-snow-and-ice-dry-soil-and-vegetation-are-indistinguishable-by-their-reflectance.-in-other-words-at-which-wavelength-is-the-proportion-of-radiation-reflected-the-same---10-for-these-features-1-point" class="anchor-section" aria-label="Anchor link to header"></a></h5>
@@ -317,7 +317,7 @@ Paul D. Pickell</p>
 </div>
 <div id="task-2-landsat-9-bands-the-ems-arcgis-pro-software" class="section level2 unnumbered hasAnchor">
 <h2>Task 2: Landsat 9 Bands, the EMS &amp; ArcGIS Pro Software<a href="remote-sensing-image-analysis.html#task-2-landsat-9-bands-the-ems-arcgis-pro-software" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Table 2: Parameters of Landsat 9’s Operational Land Imager (OLI) sensor</p>
+<p>Table 2: Parameters of Landsat 9’s Operational Land Imager (OLI) and Thermal Infrared Sensor 2 (TIRS-2).</p>
 <table>
 <colgroup>
 <col width="3%" />
@@ -415,8 +415,8 @@ Paul D. Pickell</p>
 </tr>
 </tbody>
 </table>
-<div id="q6.-each-pixel-of-the-thermal-infrared-bands-10-11-covers-___-pixels-of-the-other-bands.-if-it-helps-draw-a-picture-of-the-two-pixel-resolutions.-1-point" class="section level5 unnumbered hasAnchor">
-<h5>Q6. Each pixel of the thermal infrared bands 10-11 covers ___ pixels of the other bands. If it helps, draw a picture of the two pixel resolutions. (1 point)<a href="remote-sensing-image-analysis.html#q6.-each-pixel-of-the-thermal-infrared-bands-10-11-covers-___-pixels-of-the-other-bands.-if-it-helps-draw-a-picture-of-the-two-pixel-resolutions.-1-point" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div id="q6.-each-pixel-of-the-thermal-infrared-bands-10-11-is-originally-100m.-so-each-band-10-11-pixel-covers-___-whole-pixels-of-the-other-bands.-if-it-helps-draw-a-picture-of-the-two-pixel-resolutions.-1-point" class="section level5 unnumbered hasAnchor">
+<h5>Q6. Each pixel of the thermal infrared bands 10-11 is originally 100m. So each band 10-11 pixel covers ___ whole pixels of the other bands. If it helps, draw a picture of the two pixel resolutions. (1 point)<a href="remote-sensing-image-analysis.html#q6.-each-pixel-of-the-thermal-infrared-bands-10-11-is-originally-100m.-so-each-band-10-11-pixel-covers-___-whole-pixels-of-the-other-bands.-if-it-helps-draw-a-picture-of-the-two-pixel-resolutions.-1-point" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 </div>
 <div id="q7.-bands-10-11-are-recorded-with-a-coarser-resolution-because-thermal-radiation-has-a-very-___-wavelength.-therefore-there-is-___-energy-available-to-sense.-1-point" class="section level5 unnumbered hasAnchor">
 <h5>Q7. Bands 10-11 are recorded with a coarser resolution because thermal radiation has a very ___ wavelength. Therefore, there is ___ energy available to sense. (1 point)<a href="remote-sensing-image-analysis.html#q7.-bands-10-11-are-recorded-with-a-coarser-resolution-because-thermal-radiation-has-a-very-___-wavelength.-therefore-there-is-___-energy-available-to-sense.-1-point" class="anchor-section" aria-label="Anchor link to header"></a></h5>
@@ -576,7 +576,7 @@ Paul D. Pickell</p>
 <p><img src="images/04-composite-bands.png" width="75%" /></p>
 <p><img src="images/04-composite-bands-output.png" width="100%" /></p>
 <p>Notice that the new file that is added to your map has some colour, but it is dull.</p>
-<p><strong>Step 4:</strong> Right-click “composite_bands” in the Contents pane and select “Symbology”. Notice the default symbology type is “RGB”, which refers to the Red, Green, and Blue colour channels of your computer screen. We can map any combination of our 1-7 bands into these three colour channels to produce new colour visualizations. Create a true-colour image by selecting “Band_4” for the drop-down menu next to “Red”, “Band_3” for “Green”, and “Band_2” for “Blue”. This has the effect of mapping the visible red band to the red colour channel, the visible green band to the green colour channel, and the visible blue band to the blue colour channel. The map automatically updates when you change the band combinations, and this combination is known as a <strong>true colour</strong> image.</p>
+<p><strong>Step 4:</strong> Right-click “composite_bands” in the Contents pane and select “Symbology”. Notice the default symbology type is “RGB”, which refers to the Red, Green, and Blue colour channels of your computer screen. We can map any combination of our 1-7 bands into these three colour channels to produce new colour visualizations. Create a true-colour image by selecting “Band_4” from the drop-down menu next to “Red”, “Band_3” for “Green”, and “Band_2” for “Blue”. This has the effect of mapping the visible red band to the red colour channel, the visible green band to the green colour channel, and the visible blue band to the blue colour channel. The map automatically updates when you change the band combinations, and this combination is known as a <strong>true colour</strong> image.</p>
 <p><img src="images/04-composite-bands-rgb.png" width="100%" /></p>
 <p>Remember that the colours that we see with our eyes are also a wavelength in the electromagnetic spectrum:</p>
 <ul>
@@ -585,15 +585,15 @@ Paul D. Pickell</p>
 <li><p>Blue – 480 nm (Band 2)</p></li>
 </ul>
 <p>Note that these band number combinations (4-3-2) for true colour imagery are particular to Landsat 9 Operational Land Imager. Other satellite missions may use different band number designations, so when creating true colour imagery you must always pay attention to the bands designated to visible red, green and blue. The table below shows true colour band number combinations for other Landsat missions.</p>
-<table style="width:100%;">
+<table>
 <colgroup>
-<col width="7%" />
-<col width="7%" />
-<col width="4%" />
-<col width="4%" />
-<col width="4%" />
-<col width="14%" />
-<col width="58%" />
+<col width="5%" />
+<col width="5%" />
+<col width="3%" />
+<col width="3%" />
+<col width="3%" />
+<col width="11%" />
+<col width="67%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -610,11 +610,11 @@ Paul D. Pickell</p>
 <tr class="odd">
 <td align="center">MSS</td>
 <td align="center">Landsat 1-5</td>
-<td align="center">Band 3</td>
 <td align="center">Band 2</td>
+<td align="center">Band 1</td>
 <td align="center">-</td>
-<td align="center">3-2-1</td>
-<td align="center">No true blue band exists; MSS band 1 is green, so this is a false-colour approximation, not true colour</td>
+<td align="center">NIR-2-1</td>
+<td align="center">No true blue band exists, so the Near-Infrared (NIR) band would be assigned to the red colour channel to produce a false-colour approximation, not true colour</td>
 </tr>
 <tr class="even">
 <td align="center">TM</td>
@@ -648,7 +648,7 @@ Paul D. Pickell</p>
 <p>In a true colour image, the computer screen visualizes objects the way we see them with our own eyes. In other words, in a true colour image, Landsat 9 OLI Band 2 (Blue – 480 nm) is displayed as blue, Band 3 (Green – 560 nm) is displayed as green, and band 4 (Red – 660 nm) is displayed as red. The mixing of these three primary colours in different intensities (i.e., reflection) produces all of the other colours that we can see.</p>
 <p>Recall that each of these band images is just a grey scale image where the brightness of a pixel corresponds to the amount of reflectance that the surface returns to the sensor in that band of the spectrum. The “brightness” of any pixel is recorded using a <strong>digital number</strong>, higher digital numbers are brighter and digital numbers exactly equal to zero are black (i.e., no reflectance). If you look at the grey scale images in the Contents pane of your map (scroll up to the first screenshot in this Task), you will see that each band image has a different range of digital numbers. When we composited these bands together into an RGB image, we still have the same data (digital numbers), but now for every pixel we have three digital numbers (RGB) to display instead of one (single band).</p>
 <p><strong>Step 5:</strong> Find a feature or land cover in the true colour image with a distinct colour and zoom in closely until the pixels are easy to distinguish, usually less than 1:5000. With your cursor, click on one of the pixels and the resulting pop-up will display the digital numbers that appear in each of the RGB colour channels.</p>
-<p>The screenshot below shows one of the many cargo ships that was anchored in English Bay at the time of the image. Notice how the digital number for the red colour channel (Band 4: 12,394) is much higher than the green (Band 3: 8,384) or blue (Band 2: 9,385) colour channels. The result is that the red light-emitting diodes that represents the pixel on your computer screen is brighter than the adjacent green and blue diodes, so the effect is that the cargo ship pixel appears distinctly red in the image.</p>
+<p>The screenshot below shows one of the many cargo ships that were anchored in English Bay at the time of the image. Notice how the digital number for the red colour channel (Band 4: 12,394) is much higher than the green (Band 3: 8,384) or blue (Band 2: 9,385) colour channels. The result is that the red light-emitting diodes that represent the pixel on your computer screen is brighter than the adjacent green and blue diodes, so the effect is that the cargo ship pixel appears distinctly red in the image.</p>
 <p><img src="images/04-digital-numbers.png" width="75%" /></p>
 <p>Note that colour vision deficiency affects about 300,000,000 people globally, and people assigned male at birth are up to 16 times more likely to experience some form of colour vision deficiency compared to people assigned female at birth.</p>
 <p><strong>Step 6:</strong> You can simulate different colour vision deficiencies in ArcGIS Pro by right-clicking on the RGB image in the map canvas, select “Color Vision Simulator”, and then select any of the types of colour vision deficiencies. This is an especially important consideration when producing accessible remote sensing images and maps for reports or technical documents. If you experience a colour vision deficiency, then you should inform the instructor so that you can receive accommodations for some of the deliverables in this lab.</p>
@@ -656,7 +656,7 @@ Paul D. Pickell</p>
 <p><strong>Step 7:</strong> Reset the Color Vision Simulator by navigating to the “View” tab on the top ribbon, and click on the coloured rectangle above “Color Vision Simulator”.</p>
 <p><img src="images/04-color-vision-simulator-toolbar.png" width="75%" /></p>
 <p>Any band combination where the visible red, green and blue bands are not mapped to the red, green, and blue colour channels, respectively, is called a <strong>false colour</strong> image. False colour images are necessary to visualize electromagnetic radiation that we can not perceive with our own eyes.</p>
-<p>Consider the following synesthesia analogy. Your eyes can hear three notes at specific frequencies: R, G, and B. Any combination of these three notes with different volumes, produces all the sounds that you can hear. You look at the true colour pixel of the cargo ship above and you hear a “red” chord. How can your eyes hear and understand notes that that are beyond this range? You build microphones (sensors) that can detect and record these other frequencies (bands) and their volumes (digital numbers) and then you play back the recording in the tones that your eyes can hear with notes of R, G, and B (false colour).</p>
+<p>Consider the following synesthesia analogy. Your eyes can hear three notes at specific frequencies: R, G, and B. Any combination of these three notes with different volumes, produces all the sounds that you can hear. You look at the true colour pixel of the cargo ship above and you hear a “red” chord. How can your eyes hear and understand notes that are beyond this range? You build microphones (sensors) that can detect and record these other frequencies (bands) and their volumes (digital numbers) and then you play back the recording in the tones that your eyes can hear with notes of R, G, and B (false colour).</p>
 <p>Are you ready to visualize parts of the electromagnetic spectrum that are beyond your natural range of perception?</p>
 <p><strong>Step 8:</strong> Using what you learned in Step 4, experiment with other band combinations in the RGB symbology of composite_bands and examine all the different false colour images that you can create. Try these R-G-B band combinations in particular:</p>
 <ul>
@@ -668,8 +668,8 @@ Paul D. Pickell</p>
 <p>The image below is an example of the 6-5-4 band combination. Note that in the Symbology pane, you can change Statistics from “Dataset” to “DRA Dynamic Range Adjustment”, which will stretch the range and brightness of the colours based on the range of digital numbers currently in view as you zoom in/out and pan around the map. This can make it easier to distinguish different land covers with different colours.</p>
 <p><img src="images/04-false-colour-654.png" width="100%" /></p>
 </div>
-<div id="q8.-in-the-6-5-4-band-combination-match-the-following-cover-types-to-the-colors-that-they-appear-in-the-image-healthy-vegetation-urban-cover-silty-water-and-clear-water.-4-points" class="section level5 unnumbered hasAnchor">
-<h5>Q8. In the 6-5-4 band combination, match the following cover types to the colors that they appear in the image: healthy vegetation, urban cover, silty water, and clear water. (4 points)<a href="remote-sensing-image-analysis.html#q8.-in-the-6-5-4-band-combination-match-the-following-cover-types-to-the-colors-that-they-appear-in-the-image-healthy-vegetation-urban-cover-silty-water-and-clear-water.-4-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div id="q8.-in-the-6-5-4-band-combination-match-the-following-cover-types-to-the-colours-that-they-appear-in-the-image-healthy-vegetation-urban-cover-silty-water-and-clear-water.-4-points" class="section level5 unnumbered hasAnchor">
+<h5>Q8. In the 6-5-4 band combination, match the following cover types to the colours that they appear in the image: healthy vegetation, urban cover, silty water, and clear water. (4 points)<a href="remote-sensing-image-analysis.html#q8.-in-the-6-5-4-band-combination-match-the-following-cover-types-to-the-colours-that-they-appear-in-the-image-healthy-vegetation-urban-cover-silty-water-and-clear-water.-4-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 </div>
 <div id="q9.-which-band-combination-would-you-use-to-analyze-vegetation-do-some-light-research-on-spectral-properties-and-the-applications-of-different-landsat-9-bands-and-write-a-sentence-or-two-justifying-each-of-your-choices.-then-append-a-screenshot-of-your-chosen-band-combination-from-arcgis-pro-to-your-response.-10-points" class="section level5 unnumbered hasAnchor">
 <h5>Q9. Which band combination would you use to analyze vegetation? Do some light research on spectral properties and the applications of different Landsat 9 bands and write a sentence or two justifying each of your choices. Then, append a screenshot of your chosen band combination from ArcGIS Pro to your response. (10 points)<a href="remote-sensing-image-analysis.html#q9.-which-band-combination-would-you-use-to-analyze-vegetation-do-some-light-research-on-spectral-properties-and-the-applications-of-different-landsat-9-bands-and-write-a-sentence-or-two-justifying-each-of-your-choices.-then-append-a-screenshot-of-your-chosen-band-combination-from-arcgis-pro-to-your-response.-10-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
@@ -696,7 +696,7 @@ Paul D. Pickell</p>
 </div>
 <div id="task-3-calculating-ndvi-and-built-up-index" class="section level2 unnumbered hasAnchor">
 <h2>Task 3: Calculating NDVI and Built Up Index<a href="remote-sensing-image-analysis.html#task-3-calculating-ndvi-and-built-up-index" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Spectral indices are mathematical equations containing spectral reflectance values from two or more wavelengths used to highlight areas of spectral importance in an image. There are a wide variety of spectral indices used to highlight a variety of different land covers and image properties including burned Areas (Normalized Burn Ratio), urban/ built up areas (Normalized Difference Built-Up Index), and water (Normalized Difference Water Index) to name a few. The Normalized Difference Vegetation Index (NDVI) is a frequently used spectral index that takes advantage of the high near-infrared reflectance and high red absorption properties of healthy vegetation and is therefore often used to quantify vegetation in a remotely sensed multispectral image.</p>
+<p>Spectral indices are mathematical equations containing spectral reflectance values from two or more wavelengths used to highlight areas of spectral importance in an image. There are a wide variety of spectral indices used to highlight a variety of different land covers and image properties including burned areas (Normalized Burn Ratio), urban/built-up areas (Normalized Difference Built-Up Index), and water (Normalized Difference Water Index) to name a few. The Normalized Difference Vegetation Index (NDVI) is a frequently used spectral index that takes advantage of the high near-infrared reflectance and high red absorption properties of healthy vegetation and is therefore often used to quantify vegetation in a remotely sensed multispectral image.</p>
 <p>NDVI is calculated with the below formula:</p>
 <p><span class="math inline">\(\ NDVI = \frac{(NIR - RED)}{(NIR+RED)}\)</span></p>
 <p>Where NIR is the near-infrared band (Landsat 9 Band 5) and Red is the red band (Landsat 9 Band 4). The results of this equation should be between -1 and 1 with values less than 0 representing water and values between 0-1 representing different levels of healthy vegetation.</p>
@@ -704,8 +704,8 @@ Paul D. Pickell</p>
 <p><img src="images/04-raster-functions-toolbar.png" width="75%" /></p>
 <p><strong>Step 2:</strong> The Raster Functions pane should appear. Expand “Analysis” and then select “NDVI” to open.</p>
 <p><img src="images/04-band-arithmetic.png" width="40%" /></p>
-<p><strong>Step 3:</strong> The “NDVI Properties” dialogue should appear. Under “Raster” use the drop-down menu and select the “composite_bands” layer. If it is not currently in your map view and can use the folder button and navigate to your lab data folder and select the file from your geodatabase or wherever you saved it in Task 2. “Visible Band ID” corresponds to the red band number and “Near Infrared ID” corresponds to the NIR band number. Select the correct band numbers and then toggle on “Scientific Output” and run the tool.</p>
-<p><strong>Step 4:</strong> Adjust the symbology of your output NDVI layer so that it uses a diverging colour palette that is stretched between -1 and 1. Right-click the layer in the Contents pane, select “Symbology”, and select a diverging colour from the drop-down list. Most of these will be towards the bottom of the list and will feature either white or yellow as the centre colour. All of the diverging colour palettes are shown in the image below, asterisks indicate palettes that are accessible for people with color vision deficiency.</p>
+<p><strong>Step 3:</strong> The “NDVI Properties” dialogue should appear. Under “Raster” use the drop-down menu and select the “composite_bands” layer. If it is not currently in your map view, you can use the folder button and navigate to your lab data folder and select the file from your geodatabase or wherever you saved it in Task 2. “Visible Band ID” corresponds to the red band number and “Near Infrared ID” corresponds to the NIR band number. Select the correct band numbers and then toggle on “Scientific Output” and run the tool.</p>
+<p><strong>Step 4:</strong> Adjust the symbology of your output NDVI layer so that it uses a diverging colour palette that is stretched between -1 and 1. Right-click the layer in the Contents pane, select “Symbology”, and select a diverging colour from the drop-down list. Most of these will be towards the bottom of the list and will feature either white or yellow as the centre colour. All of the diverging colour palettes are shown in the image below, asterisks indicate palettes that are accessible for people with colour vision deficiency.</p>
 <p><img src="ubc-frst-538-advanced-geomatics-for-natural-resource-management_files/figure-html/diverging-palettes-1.png" width="80%" /></p>
 <p><strong>Step 5:</strong> After you have selected a diverging colour palette, toggle off “Invert”, ensure “Stretch Type” is set to “Minimum Maximum”, toggle on “Edit min/max values”, and then in the corresponding boxes just below, select two numbers that are symmetric about zero. In other words, one positive number and one negative number that are equidistant from zero. This symmetry will ensure that the diverging colour palette is applied correctly, so that white or yellow is exactly at the value of zero. The natural range of NDVI is -1 to 1, but this will not always produce the best visualization. The screenshot below shows an example using -0.5 and 0.5, which works well for the Lower Mainland. You may choose different values, based on the local range of NDVI for the area you are visualizing and the types of features that you want to emphasize.</p>
 <p><img src="images/04-ndvi-diverging-colour-symbology.png" width="100%" /></p>
@@ -720,7 +720,7 @@ Paul D. Pickell</p>
 </div>
 <div id="q16.-what-information-does-this-type-of-analysis-give-us-when-and-why-might-this-type-of-analysis-be-used-4-points" class="section level5 unnumbered hasAnchor">
 <h5>Q16. What information does this type of analysis give us? When and why might this type of analysis be used? (4 points)<a href="remote-sensing-image-analysis.html#q16.-what-information-does-this-type-of-analysis-give-us-when-and-why-might-this-type-of-analysis-be-used-4-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<p><strong>Step 6:</strong> Repeat the last step, but this time calculate the Normalized Difference Built-Up Index (NDBI). The NDBI highlights urban areas where there is typically a higher reflectance in the shortwave-infrared region compared to the near-infrared region. The equation is as follows:</p>
+<p><strong>Step 6:</strong> Repeat the steps 1-5, but this time calculate the Normalized Difference Built-Up Index (NDBI) using SWIR1 and NIR bands. The NDBI highlights urban areas where there is typically a higher reflectance in the shortwave-infrared region compared to the near-infrared region. The equation is as follows:</p>
 <p><span class="math inline">\(\ NDBI = \frac{(SWIR1-NIR)}{(SWIR1+NIR)}\)</span></p>
 <hr />
 </div>
@@ -730,10 +730,10 @@ Paul D. Pickell</p>
 <p>In this last Task, you will use a technique called “thresholding” and the reclassify tool to extract highly vegetated areas (High NDVI) and urban areas (High NDBI) and then create a map with these layers overlaid with the provided satellite imagery.</p>
 <p><strong>Step 1:</strong> Navigate to the “Analysis” tab on the top ribbon and select the “Tools” option. The geoprocessing window should appear in the search box type “Reclassify” and select the option with “(Spatial Analyst Tools)” beside it.</p>
 <p><img src="images/04-reclassify.png" width="40%" /></p>
-<p><strong>Step 2:</strong> Under “Input Raster” select the NDVI layer you created in the last Task. The “Reclass field” should automatically become completed and a “Reclassification” table should appear below.</p>
+<p><strong>Step 2:</strong> Under “Input Raster” select the NDVI layer you created in the last Task. The “Reclass field” should fill in automatically and a “Reclassification” table should appear below.</p>
 <p><img src="images/04-class-tab.png" width="75%" /></p>
-<p><strong>Step 3:</strong> Select the Classify button at the bottom of the table and enter “2” for number of classes. For the first row leave “Start” as is and enter 0.49999 under “End”, change “New” to “NODATA”. For the second row change “Start” to “0.5” and leave “End” as 1 and change “New” to “1”. The Reclassify tool takes the old values from a raster and creates a new raster layer with updated values based on the Reclassification table. In this case we as saying take all pixels with values less than 0.5 and make them NODATA or blank and take all pixels with values greater than 0.5 and make their value 1. Under “Output Raster” save the file as “High_Vegetation_Areas” and press “Run” at the bottom of the window.</p>
-<p><strong>Step 4:</strong> Repeat the last step for NDBI where all you keep only pixels with values above 0 and change there value to 1. Save this layer as “Urban Areas”.</p>
+<p><strong>Step 3:</strong> Select the Classify button at the bottom of the table and enter “2” for number of classes. For the first row leave “Start” as is and enter 0.49999 under “End”, change “New” to “NODATA”. For the second row change “Start” to “0.5” and leave “End” as 1 and change “New” to “1”. The Reclassify tool takes the old values from a raster and creates a new raster layer with updated values based on the Reclassification table. In this case we are saying take all pixels with values less than 0.5 and make them NODATA or blank and take all pixels with values greater than or equal to 0.5 and make their value 1. Under “Output Raster” save the file as “High_Vegetation_Areas” and press “Run” at the bottom of the window.</p>
+<p><strong>Step 4:</strong> Repeat the last step for NDBI where you keep only pixels with values above 0 and change their value to 1. Save this layer as “Urban_Areas”.</p>
 <div id="map-1.-upload-a-map-that-shows-your-high_vegetation_areas-and-urban_area-layers-overtop-of-the-provided-landsat-imagery.-pick-appropriate-colours-and-transparency-for-each-layer.-25-points" class="section level5 unnumbered hasAnchor">
 <h5>Map 1. Upload a map that shows your High_Vegetation_Areas and Urban_area layers overtop of the provided Landsat Imagery. Pick appropriate colours and transparency for each layer. (25 points)<a href="remote-sensing-image-analysis.html#map-1.-upload-a-map-that-shows-your-high_vegetation_areas-and-urban_area-layers-overtop-of-the-provided-landsat-imagery.-pick-appropriate-colours-and-transparency-for-each-layer.-25-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <hr />
@@ -741,7 +741,7 @@ Paul D. Pickell</p>
 </div>
 <div id="summary-3" class="section level2 unnumbered hasAnchor">
 <h2>Summary<a href="remote-sensing-image-analysis.html#summary-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In this lab, you learned how to interpret the electromagnetic spectrum for urban and environmental applications, connect spectral behavior to what you see in imagery, and operationalize those ideas in ArcGIS Pro. You explored Landsat 9 bands, toggled single-band greyscale views, and built both true- and false-colour composites to emphasize specific surface properties. You examined spectral signatures for different land covers and compared them to reference curves to understand why materials separate (or do not) across wavelengths. You then calculated NDVI to highlight vegetation and NDBI to highlight built-up areas, and reclassified these indices to extract high-confidence classes. Finally, you synthesized your results into a clear map that overlays vegetation and urban masks on the base imagery. By the end, you could differentiate EMS regions, justify band choices for specific analyses, quantify patterns with indices, and communicate findings cartographically.</p>
+<p>In this lab, you learned how to interpret the electromagnetic spectrum for urban and environmental applications, connect spectral behaviour to what you see in imagery, and operationalize those ideas in ArcGIS Pro. You explored Landsat 9 bands, toggled single-band greyscale views, and built both true- and false-colour composites to emphasize specific surface properties. You examined spectral signatures for different land covers and compared them to reference curves to understand why materials separate (or do not) across wavelengths. You then calculated NDVI to highlight vegetation and NDBI to highlight built-up areas, and reclassified these indices to extract high-confidence classes. Finally, you synthesized your results into a clear map that overlays vegetation and urban masks on the base imagery. By the end, you could differentiate EMS regions, justify band choices for specific analyses, quantify patterns with indices, and communicate findings cartographically.</p>
 <p>Return to the <a href="remote-sensing-image-analysis.html#lab4-deliverables"><strong>Deliverables</strong></a> section to check off everything you need to submit for credit in the course management system.</p>
 
 </div>
