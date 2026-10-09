@@ -277,47 +277,47 @@ Hana Travers-Smith</p>
 </div>
 <div id="lab5-deliverables" class="section level3 unnumbered hasAnchor">
 <h3>Deliverables<a href="lidar-forest-management.html#lab5-deliverables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><input type="checkbox" unchecked> Answers to the questions posed throughout the lab. (60 points) </input></p>
+<p><input type="checkbox" unchecked> Answers to the questions posed throughout the lab. (70 points) </input></p>
 <p><input type="checkbox" unchecked> Screenshot of your Canopy Height Model (CHM). (15 points)</input></p>
 <p><input type="checkbox" unchecked> Screenshot of final 3D ArcGIS Pro Scene. (15 points)</input></p>
 <hr />
 </div>
 <div id="data-3" class="section level3 unnumbered hasAnchor">
 <h3>Data<a href="lidar-forest-management.html#data-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Lidar data collected by the City of Vancouver in .las format</p>
+<p>LiDAR data collected by the City of Vancouver in .las format</p>
 <hr />
 </div>
 </div>
 <div id="task-1-load-and-understand-lidar-data-in-a-map-project" class="section level2 unnumbered hasAnchor">
 <h2>Task 1: Load and understand LiDAR data in a Map Project<a href="lidar-forest-management.html#task-1-load-and-understand-lidar-data-in-a-map-project" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Step 1:</strong> Download the LiDAR data from the following link: <a href="https://opendata.vancouver.ca/explore/dataset/lidar-2022/information/" class="uri">https://opendata.vancouver.ca/explore/dataset/lidar-2022/information/</a></p>
-<p>THe data is split up into a tiled grid system. You will download one tile covering a section of UBC. Use the “Table” view and search for the following tile and download it: “484000_5455000” by clicking on the .zip link. The zip file is about 2 GB compressed and about 4 GB extracted, so you will need 6 GB of free space on your computer to complete this step. After you have extracted the las file, you can delete the zip file to free up space on your computer.</p>
+<p>The data are split up into a tiled grid system. You will download one tile covering a section of UBC. Use the “Table” view and search for the following tile and download it: “484000_5455000” by clicking on the .zip link. The zip file is about 2 GB compressed and about 4 GB extracted, so you will need 6 GB of free space on your computer to complete this step. After you have extracted the las file, you can delete the zip file to free up space on your computer.</p>
 <p>Use the metadata from the City of Vancouver data portal to answer the following questions:</p>
-<div id="q1.-what-is-the-horizontal-and-vertical-datum-of-the-las-dataset-why-is-it-important-for-lidar-data-to-have-both-horiziantal-and-vertical-datums-10-points" class="section level5 unnumbered hasAnchor">
-<h5>Q1. What is the horizontal and vertical datum of the LAS dataset? Why is it important for Lidar data to have both horiziantal AND vertical datums? (10 points)<a href="lidar-forest-management.html#q1.-what-is-the-horizontal-and-vertical-datum-of-the-las-dataset-why-is-it-important-for-lidar-data-to-have-both-horiziantal-and-vertical-datums-10-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div id="q1.-what-are-the-horizontal-and-vertical-datums-of-the-las-dataset-why-is-it-important-for-lidar-data-to-have-both-horizontal-and-vertical-datums-10-points" class="section level5 unnumbered hasAnchor">
+<h5>Q1. What are the horizontal and vertical datums of the LAS dataset? Why is it important for LiDAR data to have both horizontal and vertical datums? (10 points)<a href="lidar-forest-management.html#q1.-what-are-the-horizontal-and-vertical-datums-of-the-las-dataset-why-is-it-important-for-lidar-data-to-have-both-horizontal-and-vertical-datums-10-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 </div>
 <div id="q2.-what-is-the-point-density-of-the-dataset-points-per-m2-4-points" class="section level5 unnumbered hasAnchor">
 <h5>Q2. What is the point density of the dataset (points per m<sup>2</sup>)? (4 points)<a href="lidar-forest-management.html#q2.-what-is-the-point-density-of-the-dataset-points-per-m2-4-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p><strong>Step 2:</strong> Create a new project in ArcGIS Pro.</p>
-<p>ArcGIS Pro has several tools that we can use to view and analyse LiDAR point clouds. In order to view the dataset, we need to import it as a LAS Dataset. From the geoprcessing pane, search for the “Create LAS dataset” tool, then parameterize it as follows:</p>
+<p>ArcGIS Pro has several tools that we can use to view and analyse LiDAR point clouds. In order to view the dataset, we need to import it as a LAS Dataset. From the geoprocessing pane, search for the “Create LAS Dataset” tool, then parameterize it as follows:</p>
 <ul>
 <li>Input File: 484000_5455000.las</li>
 <li>Output LAS Dataset: pacific_spirit_park.lasd</li>
-<li>Coordinate System: Use the horizontal datum from the dataset specifications</li>
+<li>Coordinate System: Use the horizontal coordinate system from the dataset specifications</li>
 <li>Create PRJ for LAS Files: All LAS files</li>
 <li>Check the “Compute Statistics” box.</li>
 <li>Surface Constraints can be left blank</li>
 </ul>
 <p><img src="images/05-lasd.png" width="50%" style="display: block; margin: auto;" /></p>
-<p><strong>Step 3:</strong> Depending on the zoom extent, you may only see the red bounding box of the las file; this is not an error, you just need to zoom in to see the actual points.</p>
-<p>The points can be classified into the following categories:</p>
+<p><strong>Step 3:</strong> Depending on the zoom extent, you may only see the red bounding box of the LAS file; this is not an error, you just need to zoom in to see the actual points.</p>
+<p>The points can be filtered into the following categories:</p>
 <ul>
 <li>Ground</li>
 <li>Non-Ground</li>
 <li>1st Return (highest feature)</li>
 </ul>
-<p>The default display is that no point cloud filters are applied. To quickly filter only ground points right-click on the file in the Contents Pane, navigate to “LAS Filters”, and click “Ground”.</p>
-<p>There is also a more detailed classification system, which includes vegetation, water, noise, buildings etc. Right-click the file, select “Properties”, then select “LAS Filter”. This menu gives you more control for which points you want to display from the dataset.</p>
+<p>The default display is that no point cloud filters are applied. To quickly filter only ground points, right-click on the file in the Contents Pane, navigate to “LAS Filters”, and click “Ground”.</p>
+<p>There is also a more detailed classification system, which includes vegetation, water, noise, buildings, etc. Right-click the file, select “Properties”, then select “LAS Filter”. This menu gives you more control for which points you want to display from the dataset.</p>
 <p><img src="images/05-filter.png" width="50%" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
@@ -330,10 +330,10 @@ Hana Travers-Smith</p>
 <li>Digital Surface Model (DSM)</li>
 <li>Canopy Height Model (CHM)</li>
 </ul>
-<div id="q3.-what-does-a-dem-dsm-and-chm-represent-how-do-you-interpret-the-values-in-each-one-15-points" class="section level5 unnumbered hasAnchor">
-<h5>Q3. What does a DEM, DSM and CHM represent? How do you interpret the values in each one? (15 points)<a href="lidar-forest-management.html#q3.-what-does-a-dem-dsm-and-chm-represent-how-do-you-interpret-the-values-in-each-one-15-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<p><strong>Step 1:</strong> First, we will create a DEM from the .lasd point cloud. <strong>Filter the point cloud so that only points labelled “02 Ground” are displayed.</strong></p>
-<p>Analysis , Tools , and Search for “LAS Dataset to Raster”. We will use the “Binning” method to interpolate elevation. This method works by dividing the point cloud into cells (pixels) and assigning a value to each cell based on the heights of all the points in the cell. For example, cell values could be assigned as the average height of all points within a 10x10m pixel.</p>
+<div id="q3.-what-do-a-dem-dsm-and-chm-represent-how-do-you-interpret-the-values-in-each-one-15-points" class="section level5 unnumbered hasAnchor">
+<h5>Q3. What do a DEM, DSM and CHM represent? How do you interpret the values in each one? (15 points)<a href="lidar-forest-management.html#q3.-what-do-a-dem-dsm-and-chm-represent-how-do-you-interpret-the-values-in-each-one-15-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p><strong>Step 1:</strong> First, we will create a DEM from the .lasd point cloud. <strong>Filter the point cloud so that only points labelled “2 Ground” are displayed.</strong></p>
+<p>Analysis, Tools, and search for “LAS Dataset to Raster”. We will use the “Binning” method to interpolate elevation. This method works by dividing the point cloud into cells (pixels) and assigning a value to each cell based on the heights of all the points in the cell. For example, cell values could be assigned as the average height of all points within a 10x10m pixel.</p>
 <ul>
 <li>Input LAS Dataset: pacific_spirit_park.lasd</li>
 <li>Output Raster: DEM</li>
@@ -358,28 +358,29 @@ Hana Travers-Smith</p>
 <h5>Q5. What is the maximum value of the DEM? (2 points)<a href="lidar-forest-management.html#q5.-what-is-the-maximum-value-of-the-dem-2-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>You should now have something that looks like this:</p>
 <p><img src="images/05-DEM.jpg" width="50%" style="display: block; margin: auto;" /></p>
-<p><strong>Step 2:</strong> Next, we will create a DSM. We need to ensure that all points labelled as “Noise” are filtered out from the dataset, we will also filter out “Ground” points and just retain points coming from vegetation/infrastructure. Navigate to the LAS Filter menu in the data Properties tab.</p>
+<p><strong>Step 2:</strong> Next, we will create a DSM. We need to ensure that all points labelled as
+Never Classified”, “Unassigned”, and “Noise” are filtered out from the dataset. Navigate to the LAS Filter menu in the data Properties dialog.</p>
 <p><strong>Uncheck the following codes:</strong></p>
 <ul>
 <li>0 Never Classified</li>
 <li>1 Unassigned</li>
-<li>2 Ground</li>
 <li>7 Noise</li>
 </ul>
-<p>Once you have correctly filtered the point cloud open the “LAS Dataset to Raster” tool. This time we will use the “Maximum” value as the Cell Assignment. Name the output raster “DSM”. All other settings can stay the same as the DEM. Click “Run”.</p>
+<p>Once you have correctly filtered the point cloud, open the “LAS Dataset to Raster” tool. This time we will use the “Maximum” value as the Cell Assignment. Name the output raster “DSM”. All other settings can stay the same as the DEM. Click “Run”.</p>
+<p>Run LAS Dataset to Raster again with a cell size of 1 m. Name the output “DSM_1m”.</p>
 </div>
 <div id="q6.-why-might-we-want-to-use-the-maximum-value-as-the-cell-assignment-method-for-a-dsm-5-points" class="section level5 unnumbered hasAnchor">
 <h5>Q6. Why might we want to use the Maximum value as the Cell Assignment method for a DSM? (5 points)<a href="lidar-forest-management.html#q6.-why-might-we-want-to-use-the-maximum-value-as-the-cell-assignment-method-for-a-dsm-5-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 </div>
-<div id="q7.-what-features-or-land-cover-types-can-you-idenify-from-the-dsm-5-points" class="section level5 unnumbered hasAnchor">
-<h5>Q7. What features or land cover types can you idenify from the DSM? (5 points)<a href="lidar-forest-management.html#q7.-what-features-or-land-cover-types-can-you-idenify-from-the-dsm-5-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<p><strong>Step 3:</strong> Finally, we will create a CHM using the DEM and DSM. Navigate to “Analysis”, “Tools”, and “Raster Calculator” (Spatial Analyst Tools).This tool allows you to create a new raster by combining multiple rasters using simple mathematical operators (adding, subtracting etc). You double-click the layer names from the list to add them to the calculator window.</p>
+<div id="q7.-what-features-or-land-cover-types-can-you-identify-from-the-dsm-5-points" class="section level5 unnumbered hasAnchor">
+<h5>Q7. What features or land cover types can you identify from the DSM? (5 points)<a href="lidar-forest-management.html#q7.-what-features-or-land-cover-types-can-you-identify-from-the-dsm-5-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p><strong>Step 3:</strong> Finally, we will create a CHM using the DEM and DSM. Navigate to “Analysis”, “Tools”, and “Raster Calculator” (Spatial Analyst Tools). This tool allows you to create a new raster by combining multiple rasters using simple mathematical operators (adding, subtracting, etc.). Double-click the layer names from the list to add them to the calculator window.</p>
 <p>Calculate the CHM as: DSM - DEM</p>
 </div>
 <div id="q8.-explain-why-we-need-to-subtract-the-dem-from-the-dsm-to-calculate-canopy-height.-describe-potential-sources-of-error-in-deriving-a-chm-from-this-method.-10-points" class="section level5 unnumbered hasAnchor">
 <h5>Q8. Explain why we need to subtract the DEM from the DSM to calculate canopy height. Describe potential sources of error in deriving a CHM from this method. (10 points)<a href="lidar-forest-management.html#q8.-explain-why-we-need-to-subtract-the-dem-from-the-dsm-to-calculate-canopy-height.-describe-potential-sources-of-error-in-deriving-a-chm-from-this-method.-10-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p><img src="images/05-RasterCalc.jpg" width="50%" style="display: block; margin: auto;" /></p>
-<p><strong>Step 4:</strong> Once you have the CHM raster in ArcGIS, right-click the layer and open Symbology. From the top, change “Stretch” to “Classify”, then select 3 classes, and change “Method” to “Manual Interval”. Now on the bottom of the Symbology panel, you can adjust the upper values of each class break to separate unvegetated (&lt; 2 m), medium height vegetation (&lt; 30 m), and high vegetation (&gt; 30 m).</p>
+<p><strong>Step 4:</strong> Once you have the CHM raster in ArcGIS, right-click the layer and open Symbology. From the top, change “Stretch” to “Classify”, then select 3 classes, and change “Method” to “Manual Interval”. Now on the bottom of the Symbology panel, you can adjust the upper values of each class break to separate unvegetated (&lt; 2 m), medium height vegetation (2-30 m), and high vegetation (&gt; 30 m).</p>
 </div>
 <div id="screenshot-1-upload-a-screenshot-of-your-final-chm.-change-the-default-symbology-to-show-unvegetated-areas-2-m-medium-vegetation-30-m-and-tall-vegetation-greater-than-30-m.-15-points" class="section level5 unnumbered hasAnchor">
 <h5>Screenshot 1: Upload a screenshot of your final CHM. Change the default symbology to show unvegetated areas &lt; 2 m, medium vegetation &lt; 30 m, and tall vegetation greater than 30 m. (15 points)<a href="lidar-forest-management.html#screenshot-1-upload-a-screenshot-of-your-final-chm.-change-the-default-symbology-to-show-unvegetated-areas-2-m-medium-vegetation-30-m-and-tall-vegetation-greater-than-30-m.-15-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
@@ -388,23 +389,23 @@ Hana Travers-Smith</p>
 </div>
 <div id="task-3-mapping-tree-tops" class="section level2 unnumbered hasAnchor">
 <h2>Task 3: Mapping Tree Tops<a href="lidar-forest-management.html#task-3-mapping-tree-tops" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Using what you learned in the last task, now you will create a point shapefile of treetops using a higher resolution canopy height model.</p>
-<p><strong>Step 1:</strong> First, we will derive a DSM using points representing High Vegetation. Open the LAS Filter menu and make sure only points labelled “5 High Vegetation” are checked.</p>
+<p>Using what you learned in the last task, now you will create a point feature class of treetops using a higher resolution canopy height model.</p>
+<p><strong>Step 1:</strong> First, we will derive a DSM using points representing High Vegetation. Open the LAS Filter menu and make sure only points labelled “5 High Vegetation” are checked. We keep only High Vegetation points here so that buildings and other structures aren’t detected as treetops in the steps that follow.</p>
 <p>Next, use the “LAS Dataset to Raster” tool to create a raster from the filtered point cloud with the following properties:</p>
 <ul>
 <li><strong>1m</strong> spatial resolution</li>
 <li>the raster values should represent the highest point in each cell</li>
-<li>name the output “DSM_1m”</li>
+<li>name the output “CanopySurface_1m”</li>
 </ul>
 <p><strong>Step 2:</strong> Next, produce a DEM “DEM_1m” at the same spatial resolution of 1m using what you learned in the last task.</p>
-<p><strong>Step 3:</strong> Again following what you learned in the last task, subtract the 1m DEM from the 1m DSM and name the output file <strong>TreeTops</strong>.</p>
-<div id="q9.-what-features-are-now-visible-in-the-1m-dsm-that-were-not-visible-in-the-10m-dsm-5-points" class="section level5 unnumbered hasAnchor">
-<h5>Q9. What features are now visible in the 1m DSM that were not visible in the 10m DSM? (5 points)<a href="lidar-forest-management.html#q9.-what-features-are-now-visible-in-the-1m-dsm-that-were-not-visible-in-the-10m-dsm-5-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<p><strong>Step 4:</strong> Next we will use the “Focal Statistics” tool to identify the maximum height of tree crowns across the forest. We will use a Circular Neighborhood with a Radius of 5. This will calculate the maximum elevation observed within a 11m circular moving window (5m is the radius, 10m is the diameter, plus one more cell for the focal cell = 11m). Use the following parameters:</p>
+<p><strong>Step 3:</strong> Again following what you learned in the last task, subtract the 1m DEM from the CanopySurface_1m and name the output file <strong>TreeTops</strong>.</p>
+<div id="q9.-compare-your-10-m-chm-with-the-1-m-canopy-height-model-treetops-within-the-forested-part-of-the-tile.-what-can-you-see-at-1-m-that-you-could-not-see-at-10-m-what-does-this-mean-for-identifying-individual-trees-5-points" class="section level5 unnumbered hasAnchor">
+<h5>Q9. Compare your 10 m CHM with the 1 m canopy height model (TreeTops) within the forested part of the tile. What can you see at 1 m that you could not see at 10 m? What does this mean for identifying individual trees? (5 points)<a href="lidar-forest-management.html#q9.-compare-your-10-m-chm-with-the-1-m-canopy-height-model-treetops-within-the-forested-part-of-the-tile.-what-can-you-see-at-1-m-that-you-could-not-see-at-10-m-what-does-this-mean-for-identifying-individual-trees-5-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p><strong>Step 4:</strong> Next we will use the “Focal Statistics” tool to identify the maximum height of tree crowns across the forest. We will use a Circular Neighborhood with a Radius of 5. This will calculate the maximum height observed within a 11m circular moving window (5m is the radius, 10m is the diameter, plus one more cell for the focal cell = 11m). Use the following parameters:</p>
 <ul>
 <li>Input raster: TreeTops</li>
-<li>Output raster: TreeTop_max</li>
-<li>Neighbourhood: Circle
+<li>Output raster: TreeTops_max</li>
+<li>Neighborhood: Circle
 <ul>
 <li>Radius: 5</li>
 <li>Unit type: Cell</li>
@@ -413,22 +414,22 @@ Hana Travers-Smith</p>
 <li>Ignore no data in calculations: Checked</li>
 </ul>
 </div>
-<div id="q10.-what-is-a-moving-window-if-you-are-using-a-focal-maximum-explain-how-cell-values-assigned-in-the-final-output.-5-points" class="section level5 unnumbered hasAnchor">
-<h5>Q10. What is a moving window? If you are using a focal maximum, explain how cell values assigned in the final output. (5 points)<a href="lidar-forest-management.html#q10.-what-is-a-moving-window-if-you-are-using-a-focal-maximum-explain-how-cell-values-assigned-in-the-final-output.-5-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div id="q10.-what-is-a-moving-window-if-you-are-using-a-focal-maximum-explain-how-cell-values-are-assigned-in-the-final-output.-5-points" class="section level5 unnumbered hasAnchor">
+<h5>Q10. What is a moving window? If you are using a focal maximum, explain how cell values are assigned in the final output. (5 points)<a href="lidar-forest-management.html#q10.-what-is-a-moving-window-if-you-are-using-a-focal-maximum-explain-how-cell-values-are-assigned-in-the-final-output.-5-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p><strong>Step 5:</strong> Open the “Raster Calculator” tool. We will use this tool to find the pixels in the “TreeTops” raster that match the maximum focal height in the “TreeTops_max”. To do this, we will use a True/False conditional statement using the <code>Con</code> syntax:</p>
-<p><code>Con(statement, iftrue, if false)</code> - Essentially for each pixel the statement is evaulated and if it is true an action is taken, and if it is false a different action is taken.</p>
+<p><code>Con(condition, true_value, {false_value})</code> - Essentially for each pixel the statement is evaluated and if it is true an action is taken, and if it is false a different action is taken.</p>
 <p>Enter the following statement in the “Raster Calculator” tool:</p>
 <p><code>Con("TreeTops"=="TreeTops_max", "TreeTops_max")</code></p>
-<p>Basically, this is a calculation that evaluates the statement “where is the”TreeTops” raster equal to the maximum elevation value identified from the focal statistics?” Where these pixels match, write the maximum value to the output. Otherwise, write a value of NoData to the output. Save the output as “tree_with_height”.</p>
+<p>Basically, this is a calculation that evaluates the statement “where is the”TreeTops” raster equal to the maximum height value identified from the focal statistics?” Where these pixels match, write the maximum value to the output. Otherwise, write a value of NoData to the output. Save the output as “tree_with_height”.</p>
 <p>Refer to the screenshot below for writing this statement correctly.</p>
 <p><img src="images/05-raster-calculator.jpg" width="50%" style="display: block; margin: auto;" /></p>
 <p>Inspect the output. Zooming in reveals what we have done. Pixels that represent the maximum height in each focal window are assigned a value equal to the maximum height, while all other pixels have a NoData value.</p>
 <p><img src="images/05-treetops-raster.jpg" width="602" style="display: block; margin: auto;" /></p>
-<p><strong>Step 6:</strong> Open the “Raster to Point” tool. The input raster is the raster that you just made. Field is Value, and the output name should be “tree_with_height”.</p>
+<p><strong>Step 6:</strong> Open the “Raster to Point” tool. The input raster is the raster that you just made. Field is Value, and the Output name should be “TreeTops_Final”.</p>
 <ul>
 <li>Input: tree_with_height</li>
 <li>Field: Value</li>
-<li>Output: Final_treetops</li>
+<li>Output: TreeTops_Final</li>
 </ul>
 </div>
 <div id="q11.-how-many-tree-tops-are-in-the-final-output-2-points" class="section level5 unnumbered hasAnchor">
@@ -438,27 +439,27 @@ Hana Travers-Smith</p>
 </div>
 <div id="task-4-visualization-in-3d" class="section level2 unnumbered hasAnchor">
 <h2>Task 4: Visualization in 3D<a href="lidar-forest-management.html#task-4-visualization-in-3d" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>So far we have worked with the point cloud data in flat, 2-dimensional space. In this task, you will explore the point cloud in 3-dimensions in a Scene.</p>
+<p>So far we have worked with the point cloud data in flat, 2-dimensional space. In this task, you will explore the point cloud in three dimensions in a Scene.</p>
 <p>On the top ribbon, select “Insert”, then “New Map”, then “New Local Scene”.</p>
 <p><strong>Step 1:</strong> Practice using the On Screen Navigator to manipulate the scene. The first toggle lets you navigate in the normal directions and the second toggle (the person) lets you rotate the scene in 3D.</p>
 <p><img src="images/05-nav1.jpg" width="20%" style="display: block; margin: auto;" /></p>
 <p><img src="images/05-nav2.jpg" width="20%" style="display: block; margin: auto;" /></p>
-<p><strong>Step 2:</strong> Navigate to the UBC campus study area and change the Basemap to “Imagery” in the Map tab located on the top ribbon. In the Contents pane, right-click Ground, located below the Elevation Surfaces group layer. Click “Add Elevation Source”. Browse to the location of your 10m DSM and select it. You can now start to see how the surface features have been incorporated into the surface. Make sure to zoom in to look at areas with high relief and roads.</p>
-<p>Add the “TreeTops_Final” point shapefile to the Scene.</p>
-<p><strong>Step 3:</strong> Click on “Ground” underneath the Elevation Surfaces tab. On the top ribbon click “Elevation Surface Layer”. Set the Vertical Exaggeration to 2 - this will increase the contrast between high/low elevation in the scene. Finally, turn off the WorldElevation3D/Terrain3d layer to better see how the DSM.</p>
+<p><strong>Step 2:</strong> Navigate to the UBC campus study area and change the Basemap to “Imagery” in the Map tab located on the top ribbon. In the Contents Pane, right-click Ground, located below the Elevation Surfaces group layer. Click “Add Elevation Source”. Browse to the location of your 10m DSM and select it. You can now start to see how the surface features have been incorporated into the surface. Make sure to zoom in to look at areas with high relief and roads.</p>
+<p>Add the “TreeTops_Final” point feature class to the Scene.</p>
+<p><strong>Step 3:</strong> Click on “Ground” underneath the Elevation Surfaces tab. On the top ribbon click “Elevation Surface Layer”. Set the Vertical Exaggeration to 2 - this will increase the contrast between high/low elevation in the scene. Finally, turn off the WorldElevation3D/Terrain3D layer to better see the DSM.</p>
 <div id="screenshot-2-upload-a-screenshot-of-the-final-scene.-add-the-tree-tops-points-to-the-visualization.-see-example-below-note-that-yours-will-also-include-the-tree-tops-points.-15-points" class="section level5 unnumbered hasAnchor">
 <h5>Screenshot 2: Upload a screenshot of the final Scene. Add the tree tops points to the visualization. (See example below, note that yours will also include the tree tops points). (15 points)<a href="lidar-forest-management.html#screenshot-2-upload-a-screenshot-of-the-final-scene.-add-the-tree-tops-points-to-the-visualization.-see-example-below-note-that-yours-will-also-include-the-tree-tops-points.-15-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p><img src="images/05-example.jpg" width="808" style="display: block; margin: auto;" /></p>
 </div>
 <div id="q12.-experiment-with-the-10m-and-1m-dsm.-how-does-the-dsm-resolution-impact-the-3d-visualization-which-visualization-is-more-realistic-5-points" class="section level5 unnumbered hasAnchor">
 <h5>Q12. Experiment with the 10m and 1m DSM. How does the DSM resolution impact the 3D visualization? Which visualization is more realistic? (5 points)<a href="lidar-forest-management.html#q12.-experiment-with-the-10m-and-1m-dsm.-how-does-the-dsm-resolution-impact-the-3d-visualization-which-visualization-is-more-realistic-5-points" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<p><img src="images/05-example.jpg" width="808" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 </div>
 <div id="summary-4" class="section level2 unnumbered hasAnchor">
 <h2>Summary<a href="lidar-forest-management.html#summary-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In this lab, you learned how LiDAR data is collected, structured, and used to model forested landscapes. You explored raw point cloud data in ArcGIS Pro, applied filters to distinguish between ground, vegetation, and other surface features, and generated continuous surfaces including a Digital Elevation Model (DEM), a Digital Surface Model (DSM), and a Canopy Height Model (CHM). By comparing these layers, you practiced interpreting terrain, vegetation structure, and potential sources of error in canopy height estimation.</p>
-<p>You then worked at a finer resolution to map tree tops by applying focal statistics and raster-to-point conversion, creating a dataset of individual tree crown positions and heights. Finally, you visualized the forest in 3D using ArcGIS Pro”s Scene tools, experimenting with different resolutions to see how they influence realism and detail. Through these steps, you developed practical skills in working with LiDAR point clouds, learned how to transform raw 3D data into meaningful forest management layers, and gained an understanding of how spatial resolution impacts ecological interpretation.</p>
+<p>You then worked at a finer resolution to map tree tops by applying focal statistics and raster-to-point conversion, creating a dataset of individual tree crown positions and heights. Finally, you visualized the forest in 3D using ArcGIS Pro’s Scene tools, experimenting with different resolutions to see how they influence realism and detail. Through these steps, you developed practical skills in working with LiDAR point clouds, learned how to transform raw 3D data into meaningful forest management layers, and gained an understanding of how spatial resolution impacts ecological interpretation.</p>
 <p>Return to the <a href="lidar-forest-management.html#lab5-deliverables"><strong>Deliverables</strong></a> section to check off everything you need to submit for credit in the course management system.</p>
 
 </div>
